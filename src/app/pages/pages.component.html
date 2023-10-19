@@ -1,0 +1,68 @@
+<p>
+  <mat-toolbar>
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button> -->
+    <img width="100" src="../assets/img/navbar/m-recicla.jpeg" alt="">
+    <span class="example-spacer"></span>
+    <span style="color: #000;">
+      Admin
+    </span>
+  </mat-toolbar>
+</p>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <h4>Admin</h4>
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>inventory</mat-icon>
+      <span>Inventario</span>
+    </button>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>people</mat-icon>
+      <span><a [routerLink]="['proveedor/proveedores']">Proveedores</a></span>
+    </button>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>person</mat-icon>
+      <span>Usuario</span>
+    </button>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>construction</mat-icon>
+      <span>Maquinaria</span>
+    </button>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>work</mat-icon>
+      <span>Areas</span>
+    </button>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>article</mat-icon>
+      <span>Solicitudes</span>
+    </button>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>construction</mat-icon>
+      <span>Producción</span>
+    </button>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,34 @@
+<!--Contenido login-->
+<div class="content_body">
+  <div class="content_margin">
+    <div class="content_grid_padre">
+
+      <div class="content_grid_h2"></div>
+
+      <div class="content_grid_h1">
+        <div class="title_page">
+          <h1>Iniciar Sesión</h1>
+        </div>
+        <div class="form_data">
+          <form>
+            <p>
+              <label>Correo electronico</label><br>
+              <input type="email" placeholder="Correo o telefono" autocomplete="off" autofocus="" formControlName="data">
+            </p>
+            <p>
+              <label>Contraseña</label><br>
+              <input type="password" placeholder="Contraseña" formControlName="password">
+            </p>
+            <p class="txt_a"><a  class="txt_link">Olvide mi contraseña</a></p>
+            <button type="submit" (click)="login();" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
+              Ingresar</button>
+          </form>
+        </div>
+        <div class="registrate">
+          <p>Ó</p>
+          <p>¿Aún no tienes una cuenta? <a><strong class="txt_link">Regístrate</strong></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

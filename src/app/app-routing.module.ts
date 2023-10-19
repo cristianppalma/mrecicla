@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './auth/auth/auth.component';
+import { PagesComponent } from './pages/pages.component';
 
 const routes: Routes = [
-   //cuando el usuario no ponga nada
-//  { path: "", redirectTo: "home", pathMatch: "full" },
- //componentes usuario
+  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path:'login', component: AuthComponent },
+  { path:'dashboard', component: PagesComponent,
+    children: [
+      { path:'proveedor',
+        loadChildren:() => import('./proveedor/proveedor.module').then(m => m.ProveedorModule)
+      }
+    ]
+  }
 ];
 
 @NgModule({
