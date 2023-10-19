@@ -1,44 +1,143 @@
+<div class="conten_inputs">
 
-  <div class="conten_inputs">
+  <div class="btn-asistence">
+    <h1>Proveedores</h1>
+    <label>Buscar:</label>
+    <input class="search" type="search">
+    <button type="submit" (click)="crearProveedor();" class="btn_int">
+      Nuevo Proveedor
+    </button>
+  </div>
 
+  <div class="show-mobile">
+    <div class="card-body">
+      <div class="table-responsive">
 
-
-    <div class="btn-asistence">
-      <h1>Proveedores</h1>
-      <p>Buscar</p>
-
-      <button type="submit" (click)="crearProveedor();" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
-        Crear</button>
-    </div>
-
-    <div class="show-mobile">
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered" id="usuarios" width="100%" cellspacing="0">
+        <table class="table">
+          <thead class="table-dark">
             <tr>
-              <th>ID Usuario</th>
+              <th>Id</th>
               <th>Nombre</th>
-              <th>Fecha</th>
-              <th>Hora de entrada</th>
-              <th>Hora de salida</th>
+              <th>Producto</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>001</td>
+              <td>Jorge Cervantes Garcia</td>
+              <td>Hilo importado</td>
+              <td>
+                <button (click)="editarProveedor();" class="btn-actions btn-edit">Editar</button>
+                <button class="btn-actions btn-delete">Eliminar</button>
+              </td>
             </tr>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>002</td>
+              <td>Mariano Gonzalez Cuellar</td>
+              <td>Poliester</td>
+              <td>
+                <button class="btn-actions btn-edit">Editar</button>
+                <button class="btn-actions btn-delete">Eliminar</button>
+              </td>
             </tr>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              </tr>
-          </table>
-        </div>
+              <td>003</td>
+              <td>Fernando Morales Padilla</td>
+              <td>Borra</td>
+              <td>
+                <button class="btn-actions btn-edit">Editar</button>
+                <button class="btn-actions btn-delete">Eliminar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>004</td>
+              <td>Mario Martinez Saldaña</td>
+              <td>Tela Reciclada</td>
+              <td>
+                <button class="btn-actions btn-edit">Editar</button>
+                <button class="btn-actions btn-delete">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
       </div>
     </div>
-
   </div>
+
+
+  <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<!-- <table class="table table-bordered table-hover" id="usuarios" width="100%" cellspacing="0">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Producto</th>
+            <th>Acciones</th>
+          </tr>
+          <tr>
+            <td>001</td>
+            <td>Jorge Cervantes Garcia</td>
+            <td>Hilo importado</td>
+            <td>
+              <button (click)="editarProveedor();" class="btn-actions btn-edit">Editar</button>
+              <button class="btn-actions btn-delete">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>Mariano Gonzalez Cuellar</td>
+            <td>Poliester</td>
+            <td>
+              <button class="btn-actions btn-edit">Editar</button>
+              <button class="btn-actions btn-delete">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>003</td>
+            <td>Fernando Morales Padilla</td>
+            <td>Borra</td>
+            <td>
+              <button class="btn-actions btn-edit">Editar</button>
+              <button class="btn-actions btn-delete">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>004</td>
+            <td>Mario Martinez Saldaña</td>
+            <td>Tela Reciclada</td>
+            <td>
+              <button class="btn-actions btn-edit">Editar</button>
+              <button class="btn-actions btn-delete">Eliminar</button>
+            </td>
+            </tr>
+        </table> -->

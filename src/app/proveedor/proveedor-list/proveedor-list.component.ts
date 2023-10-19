@@ -14,4 +14,8 @@ export class ProveedorListComponent {
     this.router.navigateByUrl('/dashboard/proveedor/proveedorCreate');
   }
 
+  editarProveedor(){
+    this.router.navigateByUrl('/dashboard/proveedor/proveedorEdit/:1');
+  }
+
 }

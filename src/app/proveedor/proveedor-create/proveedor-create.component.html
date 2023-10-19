@@ -1,12 +1,40 @@
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+<div class="conten_inputs">
+
+  <div class="btn-asistence">
+    <h1>Nuevo Proveedor</h1>
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label for="inputNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" placeholder="Escribe el nombre">
+          </div>
+          <div class="col-md-6">
+            <label for="inputProduct" class="form-label">Producto</label>
+            <select id="inputProduct" class="form-select">
+              <option selected>Selecciona un producto</option>
+              <option value="hilo">Hilo Importado</option>
+              <option value="tela">Tela reciclada</option>
+              <option value="borra">Borra</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="inputAddress" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Escribe la dirección">
+          </div>
+          <div class="col-md-6 ">
+            <label for="inputRfc" class="form-label">RFC</label>
+            <input type="text" class="form-control" id="inputRfc" placeholder="Escribe la RFC">
+          </div>
+          <div class="col-6">
+            <label for="inputDescrip" class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="inputDescrip" placeholder="Escribe la descripción">
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">GUARDAR</button>
+            <button (click)="proveedores();" type="button" class="btn btn-danger">CANCELAR</button>
+          </div>
+        </form>
+
+
+</div>

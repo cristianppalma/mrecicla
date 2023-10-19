@@ -1,11 +1,3 @@
-.btn_int {
-  background: #80a943;
-  color: white;
-  width: 350px;
-  height: 50px;
-  font-size: larger;
-}
-
 .conten_inputs {
   align-items: center;
   text-align: center;
@@ -20,15 +12,28 @@
 
 h1{
   font-size: 48px;
+  margin-bottom: 50px;
+  text-align: center;
+  padding-left: 50px;
+  padding-bottom: 7px;
+  padding-top: 10px;
 }
 
-.select-asistence {
-  position: relative;
-    bottom: 3em;
-    right: 8em;
-    width: 200px;
-    font-size: 20px;
-    padding: 5px 10px;
+label{
+  padding-right: 20px;
+}
+
+.search{
+  margin-right: 180px;
+}
+
+.btn_int {
+  background: #80a943;
+  color: white;
+  width: 300px;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
 }
 
 .show-mobile {
@@ -36,13 +41,6 @@ h1{
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-h1 {
-  text-align: left;
-  padding-left: 50px;
-  padding-bottom: 7px;
-  padding-top: 10px;
 }
 
 table {
@@ -72,22 +70,27 @@ td, th {
   -webkit-overflow-scrolling: touch;
 }
 
-.btn {
-  margin: 0 50px;
-  width: 160px;
-  height: 50px;
-  border-radius: 0px;
-  background: #FD9727;
-  color: black;
+.btn-actions{
+  margin: 0 5px;
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+  padding: 0 5px;
+  border: 0px;
+  color: white;
 }
 
-.txt_btn_footer {
-  font-size: larger;
+.btn-edit {
+  background: #80a943;
+}
+
+.btn-delete{
+  background: red;
 }
 
 
 /* TABLET */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+/* @media screen and (min-width: 768px) and (max-width: 1023px) {
 .select-asistence {
   position: relative;
     bottom: 3em;
@@ -96,10 +99,10 @@ td, th {
     font-size: 20px;
     padding: 5px 10px;
 }
-}
+} */
 
 /* MOBILE */
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
 .select-asistence {
   position: relative;
     bottom: 0em;
@@ -117,7 +120,7 @@ td, th {
   width: 160px;
   height: 50px;
   border-radius: 0px;
-  background: #FD9727;
+  background: #80a943;
   color: black;
 }
-}
+} */

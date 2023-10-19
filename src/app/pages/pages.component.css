@@ -53,10 +53,11 @@ mat-icon, span, a {
 }
 
 .content{
-  height: calc(100vh - 65px);
+  /* height: calc(100vh - 65px); */
+  height: 100%;
   padding-left: 32px;
   padding-top: 20px;
-  display: flex;
+  /* display: flex; */
   font-size:  2rem;
   color: #000;
 }

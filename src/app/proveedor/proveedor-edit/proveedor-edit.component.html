@@ -1,1 +1,40 @@
-<p>proveedor-edit works!</p>
+<div class="conten_inputs">
+
+  <div class="btn-asistence">
+    <h1>Editar Proveedor 001</h1>
+  </div>
+
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label for="inputNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" placeholder="Escribe el nombre" value="Jorge Cervantes Garcia	">
+          </div>
+          <div class="col-md-6">
+            <label for="inputProduct" class="form-label">Producto</label>
+            <select id="inputProduct" class="form-select">
+              <option >Selecciona un producto</option>
+              <option selected value="hilo">Hilo Importado</option>
+              <option value="tela">Tela reciclada</option>
+              <option value="borra">Borra</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="inputAddress" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Escribe la dirección" value="Carr. Federal Puebla - Tlaxcala 4, Panzacola, 90796 Papalotla, Tlax.">
+          </div>
+          <div class="col-md-6 ">
+            <label for="inputRfc" class="form-label">RFC</label>
+            <input type="text" class="form-control" id="inputRfc" placeholder="Escribe la RFC" value="123456RFCRFC">
+          </div>
+          <div class="col-6">
+            <label for="inputDescrip" class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="inputDescrip" placeholder="Escribe la descripción" value="Esto es una descripción">
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">GUARDAR</button>
+            <button (click)="proveedores();" type="button" class="btn btn-danger">CANCELAR</button>
+          </div>
+        </form>
+
+
+</div>
