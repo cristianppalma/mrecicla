@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagesModule } from './pages/pages.module';
 import { ProveedorModule } from './proveedor/proveedor.module';
 import { AuthModule } from './auth/auth.module';
+import { MaquinasModule } from './maquinas/maquinas.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
     PagesModule,
     ProveedorModule,
     AuthModule,
+    MaquinasModule
   ],
   providers: [],
   bootstrap: [AppComponent]

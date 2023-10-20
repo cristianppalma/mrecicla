@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="cabecera">
+        <h1>REGISTRAR NUEVA MAQUINA</h1>
+    </div>
+        <br>
+            <div class="formula" style="border: 15px solid red;" >
+                <div class="formula1">
+                <mat-label>Numero de maquina</mat-label>
+                <mat-form-field>
+                    <mat-label>Numero</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-label>Modelo de maquina</mat-label>
+                <mat-form-field>
+                    <mat-label>Modelo</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-label>Descripción de maquina</mat-label>
+                <mat-form-field>
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+               
+                </div>
+                <div class="formula2">
+                    <mat-label>Serie de maquina</mat-label>
+                    <mat-form-field>
+                    <mat-label>Serie</mat-label>
+                    <input matInput>
+                    </mat-form-field>
+                    <mat-label>Estado de maquina</mat-label>
+                    <mat-form-field>
+                        <mat-label>Status</mat-label>
+                        <mat-select>
+                            <mat-option value="0"> </mat-option>
+                        <mat-option value="one">Activo</mat-option>
+                        <mat-option value="two">Inactivo</mat-option>
+                        <mat-option value="tres">Mantenimiento</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-label>Área de maquina</mat-label>
+                    <mat-form-field>
+                        <mat-label>Área</mat-label>
+                        <mat-select>
+                        <mat-option value="0"> </mat-option>
+                        <mat-option value="one">Hilos</mat-option>
+                        <mat-option value="two">Telar</mat-option>
+                        <mat-option value="tres">bordado</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+            </div>
+        <button  (click)="CANCELAR();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
+        <button  (click)="AGREGAR();" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
+    </div>
+

@@ -64,3 +64,6 @@ mat-icon, span, a {
 mat-sidenav-content{
   height: calc(100vh - 65px);
 }
+a{
+  text-decoration: none;
+}

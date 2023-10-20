@@ -12,7 +12,15 @@ const routes: Routes = [
         loadChildren:() => import('./proveedor/proveedor.module').then(m => m.ProveedorModule)
       }
     ]
-  }
+  },
+  {path: 'dashboard', component: PagesComponent,
+    children:[
+      { path:'maquinas',
+        loadChildren:() => import('./maquinas/maquinas.module').then(m => m.MaquinasModule)
+
+      }
+    ]
+}
 ];
 
 @NgModule({
