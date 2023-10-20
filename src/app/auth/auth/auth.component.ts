@@ -14,4 +14,8 @@ export class AuthComponent {
     this.router.navigateByUrl('/dashboard');
   }
 
+  registro(){
+    this.router.navigateByUrl('/registrarse');
+  }
+
 }

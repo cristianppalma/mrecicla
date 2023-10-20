@@ -1,0 +1,62 @@
+<div class="contenedor">
+
+<div class="contenedor-hijo">
+
+  <div class="title">
+    <h1>REGISTRATE</h1>
+  </div>
+
+  <div class="conten_inputss">
+
+        <form class="row g-4">
+          <div class="col-md-6">
+            <label for="inputNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="inputNombre" placeholder="Escribe el nombre">
+          </div>
+          <div class="col-md-6">
+            <label for="inputApePa" class="form-label">Apellido Paterno</label>
+            <input type="text" class="form-control" id="inputApePa" placeholder="Escribe el apellido paterno">
+          </div>
+          <div class="col-md-6">
+            <label for="inputApeMa" class="form-label">Apellido Materno</label>
+            <input type="text" class="form-control" id="inputApeMa" placeholder="Escribe el apellido materno">
+          </div>
+          <div class="col-md-6 ">
+            <label for="inputTel" class="form-label">Telefono</label>
+            <input type="text" class="form-control" id="inputTel" placeholder="Escribe el numero de telefono">
+          </div>
+          <div class="col-6">
+            <label for="inputDir" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="inputDir" placeholder="Escribe la dirección">
+          </div>
+          <div class="col-6">
+            <label for="inputEmpl" class="form-label">Tipo de empleado</label>
+            <select id="inputEmpl" class="form-select">
+              <option selected>Selecciona un rol</option>
+              <option value="admin">Administrador</option>
+              <option value="recep">Recepcionista</option>
+              <option value="opera">Operador</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="inputEmail" class="form-label">Correo electronico</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Escribe el correo electronico">
+          </div>
+          <div class="col-md-6">
+            <label for="inputPass" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="inputPass" placeholder="Escribe la contraseña">
+          </div>
+
+          <div class="col-12">
+            <div class="btn-align">
+              <button [routerLink]="['/login']" type="submit" class="btn btn-primary">REGISTRARME</button>
+            </div>
+          </div>
+        </form>
+
+  </div>
+
+</div>
+
+
+</div>

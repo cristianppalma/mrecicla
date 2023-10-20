@@ -1,4 +1,78 @@
-.conten_inputs {
+.container {
+  display: flex;
+  flex-direction: column; /* Apila elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
+}
+
+.cabecera {
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
+  margin-left: 2rem;
+}
+
+.table {
+  text-align: center;
+  /* Estilos para la tabla si es necesario */
+  border: 1px solid blue;
+  width: 999px;
+  margin-left: 0rem;
+}
+
+.Filter {
+  margin-left: 3rem;
+}
+
+/* Estilo para los botones BUSCAR y AGREGAR */
+.mat-form-field {
+  display: flex;
+  align-items: center;
+}
+
+
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 10rem; /* Agrega espacio entre los botones */
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
+}
+
+.cabecera {
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px;
+  margin-left: 2rem;
+}
+
+.Filter {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 10rem;
+}
+h1{
+  font-size: 48px;
+}
+
+
+
+
+/* .conten_inputs {
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -86,7 +160,7 @@ td, th {
 
 .btn-delete{
   background: red;
-}
+} */
 
 
 /* TABLET */
