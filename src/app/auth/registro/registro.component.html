@@ -1,4 +1,61 @@
-<div class="contenedor">
+<!--Contenido login-->
+<div class="content_body">
+  <div class="content_margin">
+    <div class="content_grid_padre">
+
+      <div class="content_grid_h1">
+        <div class="title_page">
+          <h1>Registrate</h1>
+        </div>
+        <div class="form_data">
+          <form>
+            <p>
+              <label>Nombre Completo</label><br>
+              <input type="text" placeholder="Escribe el nombre completo" autocomplete="off" autofocus="" formControlName="data">
+            </p>
+            <p>
+              <label>Telefono</label><br>
+              <input type="text" placeholder="Escribe el numero de telefono" autocomplete="off" autofocus="" formControlName="data">
+            </p>
+            <p>
+              <label>Dirección</label><br>
+              <input type="text" placeholder="Escribe la dirección" autocomplete="off" autofocus="" formControlName="data">
+            </p>
+            <p>
+              <label>Tipo de empleado</label><br>
+              <select id="inputEmpl" class="form-select">
+                <option selected>Selecciona un rol</option>
+                <option value="admin">Administrador</option>
+                <option value="recep">Recepcionista</option>
+                <option value="opera">Operador</option>
+              </select>
+            </p>
+            <p>
+              <label>Correo electronico</label><br>
+              <input type="email" placeholder="Escribe el correo electronico" autocomplete="off" autofocus="" formControlName="data">
+            </p>
+            <p>
+              <label>Contraseña</label><br>
+              <input type="password" placeholder="Escribe la contraseña" formControlName="password">
+            </p>
+            <button type="submit" [routerLink]="['/login']" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
+              Registrate</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="content_grid_h2"></div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="contenedor">
 
 <div class="contenedor-hijo">
 
@@ -59,4 +116,4 @@
 </div>
 
 
-</div>
+</div> -->

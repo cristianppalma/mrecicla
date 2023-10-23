@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { ProveedorService } from '../proveedor.service';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
+
 
 interface Food {
   value: string;
@@ -30,7 +35,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './proveedor-list.component.html',
   styleUrls: ['./proveedor-list.component.css']
 })
-export class ProveedorListComponent {
+export class ProveedorListComponent implements OnInit {
 
   formatDateWithLeadingZeros(date: Date): string {
     const day = ('0' + date.getDate()).slice(-2);
@@ -52,6 +57,8 @@ export class ProveedorListComponent {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    console.log(this.dataSource);
+
   }
 
 
@@ -61,7 +68,41 @@ export class ProveedorListComponent {
     // Puedes abrir un modal, mostrar información adicional, etc.
   }
 
-  constructor(private router:Router) {}
+  Proveedores:any;
+
+  constructor(
+    private router:Router,
+    private proveedorService:ProveedorService,
+    public modal:MatDialog
+  ) {}
+
+  ngOnInit(): void {
+    this.proveedorService.obtenerProveedores().subscribe(respuesta=>{
+      console.log(respuesta);
+
+      this.Proveedores=respuesta;
+    });
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string){
+    this.modal.open(ModalDeleteComponent,{
+      width: '550px',
+      height: '330px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    })
+  }
+
+  borrarRegistro(id:any, iControl:any){
+    console.log(id);
+    console.log(iControl);
+
+    if(window.confirm("¿Desea borrar el registro?")) {
+      this.proveedorService.borrarProveedor(id).subscribe((respuesta)=>{
+        this.Proveedores.splice(iControl,1);
+      });
+    }
+  }
 
   crearProveedor(){
     this.router.navigateByUrl('/dashboard/proveedor/proveedorCreate');

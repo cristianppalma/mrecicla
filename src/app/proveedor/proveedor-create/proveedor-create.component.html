@@ -4,37 +4,47 @@
     <h1>NUEVO PROVEEDOR</h1>
   </div>
 
-        <form class="row g-3">
+        <form ngNativeValidate [formGroup]="formularioDeProveedores" (ngSubmit)="enviarDatos()" class="row g-3">
+
           <div class="col-md-6">
-            <label for="inputNombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="inputNombre" placeholder="Escribe el nombre">
+            <label for="" class="form-label">Nombre</label>
+            <input required type="text"
+              class="form-control" name="" formControlName="name_proveedor" id="" placeholder="Escribe el nombre">
           </div>
+
           <div class="col-md-6">
-            <label for="inputProduct" class="form-label">Producto</label>
-            <select id="inputProduct" class="form-select">
+            <label for="" class="form-label">Producto</label>
+            <select required id="" class="form-select" formControlName="producto_proveedor">
               <option selected>Selecciona un producto</option>
               <option value="hilo">Hilo Importado</option>
               <option value="tela">Tela reciclada</option>
               <option value="borra">Borra</option>
             </select>
           </div>
+
           <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Dirección</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Escribe la dirección">
+            <label for="" class="form-label">Dirección</label>
+            <input required type="text"
+              class="form-control" name="" formControlName="direccion_proveedor" id="" placeholder="Escribe la dirección">
           </div>
+
           <div class="col-md-6 ">
-            <label for="inputRfc" class="form-label">RFC</label>
-            <input type="text" class="form-control" id="inputRfc" placeholder="Escribe la RFC">
+            <label for="" class="form-label">RFC</label>
+            <input required type="text"
+              class="form-control" name="" formControlName="rfc_proveedor" id="" placeholder="Escribe la RFC">
           </div>
+
           <div class="col-6">
-            <label for="inputDescrip" class="form-label">Descripción</label>
-            <input type="text" class="form-control" id="inputDescrip" placeholder="Escribe la descripción">
+            <label for="" class="form-label">Descripción</label>
+            <input required type="text"
+              class="form-control" name="" formControlName="description_proveedor" id="" placeholder="Escribe la descripción">
           </div>
-          <div class="col-12">
+
+          <div class="col-12 btn-group" role="group" aria-label="">
             <button type="submit" class="btn btn-primary">GUARDAR</button>
-            <button (click)="proveedores();" type="button" class="btn btn-danger">CANCELAR</button>
+            <button type="button" (click)="proveedores();"  class="btn btn-danger">CANCELAR</button>
+
           </div>
         </form>
-
 
 </div>

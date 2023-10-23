@@ -9,12 +9,15 @@ import { ProveedorRoutingModule } from './proveedor-routing.module';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
+import { MatIconModule } from '@angular/material/icon';
 
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,7 +25,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ProveedorCreateComponent,
     ProveedorListComponent,
     ProveedorDetailsComponent,
-    ProveedorEditComponent
+    ProveedorEditComponent,
+    ModalDeleteComponent,
   ],
   imports: [
     CommonModule,
@@ -31,9 +35,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    ReactiveFormsModule,
     MatSelectModule,
     MatButtonModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatDialogModule,
+    MatIconModule,
+    HttpClientModule
   ]
 })
 export class ProveedorModule { }
