@@ -11,6 +11,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
+import {MatTableModule} from '@angular/material/table';
+
+
 @NgModule({
   declarations: [
     ListaEmpleadosComponent,
@@ -19,6 +22,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
   ],
   imports: [
     CommonModule,
+    MatTableModule,
     MatButtonModule,
     MatDatepickerModule,
     EmpleadoRoutingModule,
