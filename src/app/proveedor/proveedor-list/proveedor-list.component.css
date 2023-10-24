@@ -28,10 +28,14 @@
 th {
   background-color:#80a943;
   color:#ffffff;
+  height: 50px;
+  vertical-align: middle;
 }
 
 td {
   background-color:#ffffff;
+  height: 50px;
+  vertical-align: middle;
 }
 
 .Filter {

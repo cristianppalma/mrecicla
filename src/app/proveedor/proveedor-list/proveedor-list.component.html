@@ -67,7 +67,7 @@
 <div class="btn-asistence-title">
   <input type="text" class="form-control" placeholder="Buscar ... "
 name="filtrarTabla" [(ngModel)]="filtrarTabla">
-<button routerLink="/dashboard/proveedor/proveedorCreate/" mat-button style="background-color: #d6e44b; margin-left: 1rem; width: 300px;">AGREGAR NUEVO PROEVEEDOR</button>
+<button routerLink="/dashboard/proveedor/proveedorCreate/" mat-button style="background-color: #d6e44b; margin-left: 1rem; width: 300px;">AGREGAR NUEVO PROVEEDOR</button>
 </div>
 
 <br>
@@ -92,7 +92,7 @@ name="filtrarTabla" [(ngModel)]="filtrarTabla">
             <a class="btn-actions btn-edit btn-info" routerLink="/dashboard/proveedor/proveedorEdit/{{ proveedor.id_proveedor }}"> Editar </a>
 
             <!-- <a class="btn-actions btn-delete btn-danger" (click)="borrarRegistro(proveedor.id_proveedor, iControl)"  role="button">Eliminar</a> -->
-            <a class="btn-actions btn-delete btn-danger" (click)="openDialog('1000ms', '1000ms', proveedor.id_proveedor)" role="button">Eliminar</a>
+            <a class="btn-actions btn-delete btn-danger" (click)="openDialog('500ms', '500ms', proveedor.id_proveedor)" role="button">Eliminar</a>
           </td>
         </tr>
       </tbody>

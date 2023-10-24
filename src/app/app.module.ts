@@ -10,10 +10,12 @@ import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IndexComponent } from './index/index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    IndexComponent,
   ],
   imports: [
     BrowserModule,
