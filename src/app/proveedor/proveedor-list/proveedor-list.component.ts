@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ProveedorService } from '../proveedor.service';
+import { Proveedor } from '../proveedor';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
@@ -70,6 +71,8 @@ export class ProveedorListComponent implements OnInit {
 
   Proveedores:any;
 
+  filtrarTabla = '';
+
   constructor(
     private router:Router,
     private proveedorService:ProveedorService,
@@ -84,25 +87,37 @@ export class ProveedorListComponent implements OnInit {
     });
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string){
-    this.modal.open(ModalDeleteComponent,{
+  borrarRegistro(id_proveedor:any, iControl:any){
+    console.log(id_proveedor);
+    console.log(iControl);
+
+    // if(window.confirm("¿Estas seguro de eliminar el registro?")) {
+      this.proveedorService.borrarProveedor(id_proveedor).subscribe((respuesta)=>{
+        this.Proveedores.splice(iControl,1);
+        window.location.reload();
+      });
+    // }
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, id_proveedor: string){
+    const dialogRef = this.modal.open(ModalDeleteComponent, {
       width: '550px',
-      height: '330px',
       enterAnimationDuration,
       exitAnimationDuration,
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+      if (res){
+        console.log('delete');
+        this.proveedorService.borrarProveedor(id_proveedor).subscribe((respuesta)=>{
+          this.Proveedores.splice();
+          window.location.reload();
+        });
+      }
     })
   }
 
-  borrarRegistro(id:any, iControl:any){
-    console.log(id);
-    console.log(iControl);
 
-    if(window.confirm("¿Desea borrar el registro?")) {
-      this.proveedorService.borrarProveedor(id).subscribe((respuesta)=>{
-        this.Proveedores.splice(iControl,1);
-      });
-    }
-  }
 
   crearProveedor(){
     this.router.navigateByUrl('/dashboard/proveedor/proveedorCreate');

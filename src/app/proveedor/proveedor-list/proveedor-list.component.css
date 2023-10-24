@@ -21,6 +21,17 @@
   border: 1px solid #e0e0e0;
   width: 999px;
   margin-left: 0rem;
+  -webkit-box-shadow: 2px 5px 15px #999;
+ -moz-box-shadow: 2px 2px 5px #999;
+}
+
+th {
+  background-color:#80a943;
+  color:#ffffff;
+}
+
+td {
+  background-color:#ffffff;
 }
 
 .Filter {
@@ -87,6 +98,12 @@ h1{
 .btn-delete:hover{
   background: #e0e0e0;
 }
+
+.btn-asistence-title {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 
 
 

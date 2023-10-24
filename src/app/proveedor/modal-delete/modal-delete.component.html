@@ -6,5 +6,5 @@
 </div>
 <div class="actions" mat-dialog-actions>
   <button mat-button (click)="onNoClick()">CANCELAR</button>
-  <button mat-button cdkFocusInitial>ACEPTAR</button>
+  <button mat-button [mat-dialog-close]="true">ACEPTAR</button>
 </div>

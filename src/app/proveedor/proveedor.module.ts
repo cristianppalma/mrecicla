@@ -18,6 +18,7 @@ import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
 import { MatIconModule } from '@angular/material/icon';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProveedorDetailsComponent,
     ProveedorEditComponent,
     ModalDeleteComponent,
+    FilterPipe,
   ],
   imports: [
     CommonModule,
