@@ -9,14 +9,17 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { RegistroComponent } from './registro/registro.component';
+import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
 
 
 
 @NgModule({
   declarations: [
     AuthComponent,
-    RegistroComponent
+    RegistroComponent,
+    RecuperarContrasenaComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,8 @@ import { RegistroComponent } from './registro/registro.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatFormFieldModule
   ]
 })
 export class AuthModule { }

@@ -11,7 +11,7 @@ export class AuthComponent {
   constructor(private router:Router){}
 
   login(){
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl('/dashboard/tablero');
   }
 
   registro(){

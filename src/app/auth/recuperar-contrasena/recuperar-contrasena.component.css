@@ -1,0 +1,27 @@
+body {
+ background: #80a943;
+}
+
+.reset-password{
+  padding: 5rem 10rem;
+}
+
+h1{
+  font-size: 42px;
+}
+
+.btn-actions{
+  margin: 19px 5px 0px 5px;
+  width: 180px;
+  height: 44px;
+  font-size: 20px;
+  padding: 0 5px;
+  border: 0px;
+  border-radius: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.btn-back:hover {
+  background: #e0e0e0;
+}

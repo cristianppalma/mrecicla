@@ -18,7 +18,7 @@
 
     <button mat-button class="menu-boton">
       <mat-icon>home</mat-icon>
-      <span>Inicio</span>
+      <span><a [routerLink]="['/dashboard/tablero']">Inicio</a></span>
     </button>
 
     <button mat-button class="menu-boton">
@@ -61,7 +61,8 @@
   <mat-sidenav-content>
 
     <div class="content mat-elevation-z8">
-      <router-outlet></router-outlet>
+      <router-outlet>
+      </router-outlet>
     </div>
 
   </mat-sidenav-content>
