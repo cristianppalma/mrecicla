@@ -68,14 +68,9 @@ export class ListaEmpleadosComponent {
     return `${day}/${month}/${year}`;
   }
 
-  applyFilter() {
-    this.datosMostrados = this.datos.filter(item =>
-      (!this.filter.nombre || item.position.includes(this.filter.nombre)) ||
-      (!this.filter.turno || item.symbol.includes(this.filter.turno)) ||
-      (!this.filter.area || item.weight.includes(this.filter.area)) ||
-      (!this.filter.puesto || item.name.includes(this.filter.puesto)) ||
-      (!this.filter.sueldo || item.action === this.filter.sueldo)
-    );
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   verDetalles(element: PeriodicElement) {

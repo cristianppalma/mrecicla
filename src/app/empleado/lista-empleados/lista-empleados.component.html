@@ -13,27 +13,27 @@
       <!-- Campos de búsqueda -->
       <div class="campos">
 
-       <mat-form-field class="example-full-width">
+       <mat-form-field class="example-full-width custom-width">
     <mat-label>Nombre</mat-label>
     <input matInput placeholder="Ex. Juan" [(ngModel)]="filter.nombre">
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="example-full-width custom-width">
     <mat-label>Turno </mat-label>
     <input matInput placeholder="Ex. M" [(ngModel)]="filter.turno">
   </mat-form-field>
         
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="example-full-width custom-width">
     <mat-label>Sueldo/salario</mat-label>
     <input matInput placeholder="Ex. 1000" value="">
   </mat-form-field>
         
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="example-full-width custom-width" >
     <mat-label>Area</mat-label>
     <input matInput placeholder="Ex. Produccion de tela" value="">
   </mat-form-field>
       
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="example-full-width custom-width">
     <mat-label>Puesto</mat-label>
     <input matInput placeholder="Ex. Supervisor" value="">
   </mat-form-field>
@@ -41,11 +41,8 @@
 
       <!-- Botones -->
       <div class="botones">
-        <button mat-button (click)="applyFilter()" style="background-color: #d6e44b; margin-left: 5rem; color: white;">BUSCAR</button>
-        <button mat-raised-button class="btn-editar">Editar</button>
-          <button mat-raised-button class="btn-eliminar">Eliminar</button>
+        <button mat-button (click)="applyFilter($event)" style="background-color: #d6e44b; margin-left: 5rem; color: white;">BUSCAR</button>
       </div>
-      <br>
       <br>
       <div> 
 
@@ -53,9 +50,13 @@
           <div class="cabecera" style="margin-left: -170px;">
            
               <h1>PERSONAL</h1>
+              <div class="eliminar">
+              <button mat-raised-button class="btn-editar">Editar</button>
+              <button mat-raised-button class="btn-eliminar" style="margin-left: 25px;">Eliminar</button>
           </div>
+        </div>
               <br>
-              <div class="table" style="margin-right: 355px;">
+              <div class="table" >
                 <table style="width: 1000px; " mat-table [dataSource]="dataSource" class="mat-elevation-z8">                      <!-- Position Column -->
                       <ng-container matColumnDef="position">
                         <th mat-header-cell *matHeaderCellDef> Nombre Empleado </th>

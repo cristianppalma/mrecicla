@@ -70,7 +70,9 @@ input[type="text"]{
 
 .pagina{
   border: 15px;
-  
+  /* background-color: aquamarine;*/
+  width: 125%;
+  height: 100%;
 }
 
 .container {
@@ -117,17 +119,43 @@ button.mat-button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 10vh;
-  min-width: 70vh;
-  max-width: 100vh;
+  width: 30%;
+
 }
+
+.table {
+  text-align: center;
+  border: 1px solid blue;
+  width: 70%;
+  position: absolute;
+  bottom: 0px;
+  top: 65%;
+  left: 10px;
+
+  overflow-y: scroll; /* Añade scroll horizontal si es necesario */
+  white-space: nowrap; /* Evita que el contenido se ajuste al ancho disponible */
+  width: 100%; /* O cualquier otro ancho específico que quieras definir */
+  height: 200px;
+  
+}
+
+.eliminar {
+  /* Puedes ajustar este margen según necesites, o incluso eliminarlo si no lo requieres */
+  left: 400px;
+  display: inline-block;
+  position: relative;
+} 
 
 .cabecera {
   text-align: center;
   border: 0px solid red;
   margin-bottom: 20px;
-  
+  /* Añade la siguiente propiedad para que los elementos en el interior estén en línea */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 
 .Filter {
   display: flex;
@@ -140,5 +168,10 @@ button.mat-button {
   margin-left: 1rem;
 }
 h1{
-  font-size: 48px;
+  font-size: 35px;
+}
+
+.custom-width {
+  width: 150px; /* Puedes ajustar este valor según tus necesidades */
+  height: 70px ;
 }
