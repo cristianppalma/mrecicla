@@ -9,7 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path:'listEmp', component: ListaEmpleadosComponent},
   { path:'addEmp', component: AgregarEmpleadoComponent},
-  { path:'edditEmp', component: EditarEmpleadoComponent}
+  { path:'edditEmp/:id', component: EditarEmpleadoComponent}
 ];
 
 

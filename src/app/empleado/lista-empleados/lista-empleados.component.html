@@ -51,7 +51,11 @@
            
               <h1>PERSONAL</h1>
               <div class="eliminar">
-              <button mat-raised-button class="btn-editar">Editar</button>
+              
+                <button mat-raised-button class="btn-editar">
+                <a [routerLink]="['/dashboard/empleado/edditEmp/1']" style="color: white;"> Editar </a>
+                </button>
+
               <button mat-raised-button class="btn-eliminar" style="margin-left: 25px;">Eliminar</button>
           </div>
         </div>
