@@ -1,8 +1,7 @@
-<div class="pagina">
   <!-- Cabecera con título -->
-  <header class="cabecera">
+  <div class="cabecera">
       <h1>Listado de usuarios</h1>
-  </header>
+  </div>
   
   <!-- Sección de búsqueda -->
   <section class="busqueda">
@@ -41,27 +40,26 @@
 
       <!-- Botones -->
       <div class="botones">
-        <button mat-button (click)="applyFilter($event)" style="background-color: #d6e44b; margin-left: 5rem; color: white;">BUSCAR</button>
+        <button mat-button (click)="applyFilter($event)" style="background-color: #d6e44b; margin-left: 1rem; color: white;">BUSCAR</button>
+        <button style="margin-left: 750px; position: relative;  background-color: #d6e44b; color: white;" mat-button > 
+          <a [routerLink]="['/dashboard/empleado/addEmp']" style="color: white;"> Agregar Usuario </a>
+        </button>
       </div>
       <br>
-      <div> 
 
         <div class="container">
           <div class="cabecera" style="margin-left: -170px;">
-           
-              <h1>PERSONAL</h1>
-              <div class="eliminar">
+              <h1 style="width: 200px;">PERSONAL</h1>
               
-                <button mat-raised-button class="btn-editar">
+                <button mat-raised-button class="btn-editar" style="margin-left: 395px;">
                 <a [routerLink]="['/dashboard/empleado/edditEmp/1']" style="color: white;"> Editar </a>
                 </button>
 
-              <button mat-raised-button class="btn-eliminar" style="margin-left: 25px;">Eliminar</button>
-          </div>
+              <button mat-raised-button class="btn-eliminar" style="margin-left: 25px; ">Eliminar</button>
         </div>
               <br>
               <div class="table" >
-                <table style="width: 1000px; " mat-table [dataSource]="dataSource" class="mat-elevation-z8">                      <!-- Position Column -->
+                <table style="width: 1000px; " mat-table [dataSource]="dataSource" class="mat-elevation-z8">   <!-- Position Column -->
                       <ng-container matColumnDef="position">
                         <th mat-header-cell *matHeaderCellDef> Nombre Empleado </th>
                         <td mat-cell *matCellDef="let element">{{ element.position }}</td>
@@ -100,8 +98,7 @@
                     </table>
               </div>
           </div>
-      </div>
+      
     </form>
   </section>
-</div>
 
