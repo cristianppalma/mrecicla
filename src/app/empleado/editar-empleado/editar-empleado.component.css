@@ -1,0 +1,37 @@
+img {
+    width: 100px;  
+    height: auto;     
+    border-radius: 10px; 
+    position: relative;
+}
+.Titulo{
+   position: relative;
+   /* background-color: aquamarine; */
+   height: auto;  
+   margin-left: 500px;   
+}
+
+.contenedor {
+    display: flex;             /* Activa Flexbox */
+    justify-content: space-between; /* Espacia los elementos de extremo a extremo */
+}
+
+.izquierda {
+  /*  background-color: aqua; */
+    height: auto;
+    flex-direction: column; 
+}
+    
+
+.derecha {
+  /*  background-color: antiquewhite;*/
+    margin-left: 350px
+}
+.custom-buton{
+    margin-left: 350px;
+    background-color: #80a943;
+}
+.custom-buton2{
+    margin-left: 350px;
+    background-color: red;
+}
