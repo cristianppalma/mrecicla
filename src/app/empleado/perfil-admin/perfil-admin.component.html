@@ -1,0 +1,55 @@
+
+
+<img src="assets/img/Icons/User2.png">
+
+<div class="Titulo">
+<h1>Perfil personal</h1>
+
+</div>
+
+<div class="contenedor">
+    <div class="izquierda">
+        <br>
+        <mat-form-field class="example-full-width custom-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Ex. Juan" value=" juan" disabled="true">
+          </mat-form-field>
+            <br>
+          <mat-form-field class="example-full-width custom-width">
+            <mat-label>Apellido Paterno</mat-label>
+            <input matInput placeholder="Ex. 1000" value="perez"disabled="true">
+          </mat-form-field>
+            <br>
+          <mat-form-field class="example-full-width custom-width">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput placeholder="Ex. 1000" value="lopez" disabled="true">
+          </mat-form-field>
+        
+    </div>
+    <div class="derecha">
+        <br>
+        <mat-form-field class="example-full-width custom-width">
+            <mat-label>contraseña</mat-label>
+            <input matInput placeholder="" value="********" disabled="true">
+          </mat-form-field>
+          <br>
+<mat-form-field>
+  <mat-label>Puesto</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let Puesto of puestos" [value]="Puesto.value"  disabled="true">
+      {{Puesto.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width custom-width">
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput placeholder="Ex. 1000" value="Juan01" disabled="true">
+          </mat-form-field>
+          <br>
+          <button mat-raised-button class="btn-editar custom-buton" style="color: white;">
+            <a style="color: white;" [routerLink]="['/dashboard/empleado/listEmp']"> Editar </a>
+        </button>
+        
+    </div>
+</div>

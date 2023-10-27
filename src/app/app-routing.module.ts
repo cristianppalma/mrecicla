@@ -20,6 +20,8 @@ const routes: Routes = [
       { path: 'control', loadChildren: () => import('./control/control.module').then(m => m.ControlModule) },
       { path:'inventario', loadChildren:() => import('./inventario/inventario.module').then(m => m.InventarioModule) },
       { path:'solicitudes', loadChildren:() => import('./solicitudes/solicitudes.module').then(m => m.SolicitudesModule) },
+      { path:'proveedor', loadChildren:() => import('./proveedor/proveedor.module').then(m => m.ProveedorModule) },
+      { path: 'empleado', loadChildren:() => import('./empleado/empleado.module').then(m=>m.EmpleadoModule) }
     ]
   },
 ];

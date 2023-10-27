@@ -1,0 +1,55 @@
+
+
+<img src="assets/img/Icons/User2.png">
+
+<div class="Titulo">
+<h1>Editr empleados</h1>
+
+</div>
+
+<div class="contenedor">
+    <div class="izquierda">
+        <br>
+        <mat-form-field class="example-full-width custom-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Ex. Juan" value="">
+          </mat-form-field>
+            <br>
+          <mat-form-field class="example-full-width custom-width">
+            <mat-label>Apellido Paterno</mat-label>
+            <input matInput placeholder="Ex. 1000" value="">
+          </mat-form-field>
+            <br>
+          <mat-form-field class="example-full-width custom-width">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput placeholder="Ex. 1000" value="">
+          </mat-form-field>
+        
+    </div>
+    <div class="derecha">
+        <br>
+        <mat-form-field class="example-full-width custom-width">
+            <mat-label>contraseña</mat-label>
+            <input matInput placeholder="" value="">
+          </mat-form-field>
+          <br>
+<mat-form-field>
+  <mat-label>Puesto</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let Puesto of puestos" [value]="Puesto.value">
+      {{Puesto.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width custom-width">
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput placeholder="Ex. 1000" value="">
+          </mat-form-field>
+          <br>
+          <button mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
+          <button mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
+                    <a style="color: white;" [routerLink]="['/dashboard/empleado/listEmp']"> Cancelar </a>
+          </button>
+    </div>
+</div>

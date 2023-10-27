@@ -1,0 +1,163 @@
+/* listado-empleados.component.css */
+
+
+.cabecera {
+    
+  width: 350px;
+  margin-left: 400px;
+    background-color: #f5f5f5;
+  }
+
+  .botones {
+    display: flex;
+    gap: 1em;
+  }
+  
+  .btn-editar {
+    background-color: #80a943;
+    border-radius: 5px; 
+    color: white;
+    font-size: 14px; 
+  }
+  
+  .btn-eliminar {
+    background-color: red;
+    border-radius: 5px; 
+    color: white;
+    font-size: 14px; 
+  }
+  
+  .busqueda {
+    margin-top: 1em;
+    
+  }
+  
+  .campos {
+    display: flex;
+    gap: 1em;
+  }
+  
+  .params{
+    font-size: 12px; 
+}
+input[type="text"]{
+    font-size: 12px;  
+    padding: 4px 8px; 
+}
+/* Tus estilos actuales... */
+
+.btn-buscar {
+  background-color: #007BFF; 
+  border-radius: 5px; 
+  color: white;
+  font-size: 14px; 
+  margin-right: 1em; /* Espacio a la derecha del botón */
+}
+
+.pagina{
+  border: 15px;
+  /* background-color: aquamarine;*/
+  width: 125%;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Apila elementos verticalmente /
+  align-items: center; / Centra los elementos horizontalmente /
+  justify-content: center; / Centra los elementos verticalmente /
+  min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
+}
+
+.cabecera {
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px; / Agrega un espacio entre el título y la tabla /
+  margin-left: 28rem;
+}
+
+.table {
+  text-align: center;
+  / Estilos para la tabla si es necesario /
+  border: 1px solid blue;
+  width: 999px;
+  margin-left: 28rem;
+}
+
+.Filter {
+  margin-left: 3rem;
+}
+
+/ Estilo para los botones BUSCAR y AGREGAR /
+.mat-form-field {
+  display: flex;
+  align-items: center;
+}
+
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 1rem; / Agrega espacio entre los botones */
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 110%;
+  margin-left: 5px;
+
+}
+
+.table {
+  text-align: center;
+  border: 1px solid blue;
+  bottom: 0px;
+  top: 65%;
+  height: fit-content;
+  left: 10px;
+
+  overflow-y: scroll; /* Añade scroll horizontal si es necesario */
+  white-space: nowrap; /* Evita que el contenido se ajuste al ancho disponible */
+  width: 100%; /* O cualquier otro ancho específico que quieras definir */
+  height: 200px;
+
+}
+
+.eliminar {
+  /* Puedes ajustar este margen según necesites, o incluso eliminarlo si no lo requieres */
+  left: 400px;
+  display: inline-block;
+  width: 800px;
+} 
+
+.cabecera {
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px;
+  /* Añade la siguiente propiedad para que los elementos en el interior estén en línea */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.Filter {
+  display: flex;
+  align-items: center;
+  margin-left: 10rem;
+}
+
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 1rem;
+}
+h1{
+  font-size: 35px;
+}
+
+.custom-width {
+  width: 150px; /* Puedes ajustar este valor según tus necesidades */
+  height: 70px ;
+}

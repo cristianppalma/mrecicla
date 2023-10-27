@@ -8,7 +8,10 @@
     <span style="color: #000;">
       Admin
     </span>
-  </mat-toolbar>
+  <span style="color: #000;" [routerLink]="['empleado/adminPrfile']">
+      <a [routerLink]="['empleado/adminPrfile']"> Admin </a>
+    </span>  
+   </mat-toolbar>
 </p>
 
 <mat-sidenav-container class="example-container">
@@ -33,7 +36,7 @@
 
     <button mat-button class="menu-boton">
       <mat-icon>person</mat-icon>
-      <span>Usuario</span>
+      <span><a [routerLink]="['empleado/listEmp']"> Empleado </a></span> 
     </button>
 
     <button mat-button class="menu-boton">
