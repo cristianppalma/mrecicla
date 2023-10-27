@@ -18,11 +18,12 @@
 .table {
   text-align: center;
   /* Estilos para la tabla si es necesario */
-  border: 1px solid blue;
+ 
   width: 999px;
-  margin-left: 28rem;
+  margin-left: 4rem;
   max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
   overflow-y: auto; 
+ 
 }
 
 .Filter {
@@ -53,13 +54,13 @@ button.mat-button {
   text-align: center;
   border: 0px solid red;
   margin-bottom: 20px;
-  margin-left: 28rem;
+  margin-left: 4rem;
 }
 
 .Filter {
   display: flex;
   align-items: center;
-  margin-left: 10rem;
+  margin-left: 4rem;
 }
 
 button.mat-button {
@@ -70,7 +71,3 @@ h1{
   font-size: 48px;
 }
 
-
-h2{
-
-}

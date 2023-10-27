@@ -8,23 +8,18 @@
     max-width: 100vh;
   }
   
-  .cabecera {
-    text-align: center;
-    border: 0px solid red;
-    margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
-    margin-left: 28rem;
-  }
+
   
   .table {
     text-align: center;
     /* Estilos para la tabla si es necesario */
     border: 1px solid blue;
     width: 999px;
-    margin-left: 28rem;
+    margin-left: 5rem;
   }
   
   .Filter {
-    margin-left: 3rem;
+    margin-left: 2rem;
   }
   
   /* Estilo para los botones BUSCAR y AGREGAR */
@@ -51,13 +46,13 @@
     text-align: center;
     border: 0px solid red;
     margin-bottom: 20px;
-    margin-left: 28rem;
+    margin-left: 10rem;
   }
   
   .Filter {
     display: flex;
     align-items: center;
-    margin-left: 10rem;
+    margin-left: 5rem;
   }
   
   button.mat-button {

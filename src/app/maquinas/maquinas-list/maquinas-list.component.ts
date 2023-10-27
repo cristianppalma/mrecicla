@@ -50,8 +50,10 @@ export class MaquinasListComponent  implements OnInit {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
     // Puedes abrir un modal, mostrar información adicional, etc.
-    this.router.navigateByUrl('/dashboard/maquinas/maquinaseditar/:id')
+    const idMaquina = element.idMaquina; // Obtener el ID de la máquina
+    this.router.navigateByUrl(`/dashboard/maquinas/maquinaseditar/${idMaquina}`);
   }
+
   constructor(private router:Router,
      private dialog: MatDialog,
      private MaquinaService:MaquinasService
@@ -63,12 +65,27 @@ export class MaquinasListComponent  implements OnInit {
   }
   eliminarElemento(element: PeriodicElement): void {
     const index = this.dataSource.data.indexOf(element);
-  
     if (index >= 0) {
       this.dataSource.data.splice(index, 1);
       this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
     }
   }
+
+  eliminarElemento2(element: PeriodicElement): void {
+    const index = this.dataSource.data.indexOf(element);
+  
+    if (index >= 0) {
+      const idMaquina = element.idMaquina;
+      this.dataSource.data.splice(index, 1);
+      this.MaquinaService.eliminarMaquina(idMaquina).subscribe();
+      this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
+      
+      // Aquí tienes tanto el índice como el idMaquina
+      console.log(`Elemento eliminado en el índice ${index}, ID de la máquina: ${idMaquina}`);
+    }
+  }
+  
+
   mostrarDialogoDeConfirmacion(element: PeriodicElement): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
@@ -77,6 +94,18 @@ export class MaquinasListComponent  implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.eliminarElemento(element);
+      }
+    });
+  }
+
+  mostrarDialogoDeConfirmacion2(element: PeriodicElement): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.eliminarElemento2(element);
       }
     });
   }

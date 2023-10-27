@@ -23,4 +23,9 @@ export class MaquinasService {
    listarMaquina(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API);
   }
+
+  eliminarMaquina(id: any): Observable<any> {
+    return this.clientService.delete(this.API + "?borrar=" + id);
+  }
+  
 }
