@@ -12,13 +12,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import {MatTableModule} from '@angular/material/table';
+import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
 
 
 @NgModule({
   declarations: [
     ListaEmpleadosComponent,
     EditarEmpleadoComponent,
-    AgregarEmpleadoComponent
+    AgregarEmpleadoComponent,
+    PerfilAdminComponent
   ],
   imports: [
     CommonModule,
