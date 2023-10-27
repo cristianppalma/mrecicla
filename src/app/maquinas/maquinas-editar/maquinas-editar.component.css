@@ -14,15 +14,7 @@
     margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
     margin-left: 28rem;
   }
-  
-  .table {
-    text-align: center;
-    /* Estilos para la tabla si es necesario */
-    border: 1px solid blue;
-    width: 999px;
-    margin-left: 28rem;
-  }
-  
+
   .Filter {
     margin-left: 3rem;
   }
@@ -51,14 +43,8 @@
     text-align: center;
     border: 0px solid red;
     margin-bottom: 20px;
-    margin-left: 28rem;
+    margin-left: 5rem;
     width: 80REM;
-  }
-  
-  .Filter {
-    display: flex;
-    align-items: center;
-    margin-left: 10rem;
   }
   
   button.mat-button {
@@ -73,7 +59,7 @@
   .formula {
     display: flex;
     border: 15px solid red;
-    margin-left: 27rem;
+    margin-left: 5rem;
     width: 58rem;
   }
   
@@ -97,7 +83,7 @@
     font-size: 14px;
   }
   .botones{
-    padding-left: 48.5rem;
+    padding-left: 25.5rem;
   }
   label{
     font-size: 17px;

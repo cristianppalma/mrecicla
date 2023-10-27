@@ -52,7 +52,7 @@ mat-icon, span, a {
 }
 
 .content{
-  height: auto;
+  height: 42rem;
   padding-left: 32px;
   padding-top: 20px;
   /* display: flex; */
