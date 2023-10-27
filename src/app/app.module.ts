@@ -8,9 +8,15 @@ import { PagesModule } from './pages/pages.module';
 import { ProveedorModule } from './proveedor/proveedor.module';
 import { AuthModule } from './auth/auth.module';
 
+
+
+import { ControlModule } from './control/control.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -19,6 +25,7 @@ import { AuthModule } from './auth/auth.module';
     PagesModule,
     ProveedorModule,
     AuthModule,
+    ControlModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

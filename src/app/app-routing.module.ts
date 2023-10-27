@@ -4,16 +4,18 @@ import { AuthComponent } from './auth/auth/auth.component';
 import { PagesComponent } from './pages/pages.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: "full" },
-  { path:'login', component: AuthComponent },
-  { path:'dashboard', component: PagesComponent,
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: AuthComponent },
+  {
+    path: 'dashboard',
+    component: PagesComponent,
     children: [
-      { path:'proveedor',
-        loadChildren:() => import('./proveedor/proveedor.module').then(m => m.ProveedorModule)
-      }
+      { path: 'proveedor', loadChildren: () => import('./proveedor/proveedor.module').then(m => m.ProveedorModule) },
+      { path: 'control', loadChildren: () => import('./control/control.module').then(m => m.ControlModule) }
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,28 @@
+.btn_int {
+    background: #80a943;
+    color: white;
+    width: 250px;
+    height: 50px;
+    font-size: large;
+    margin: 8px;
+  }
+.Title {
+  text-align: center;
+  font-size: larger;
+  }
+  .button-container {
+    position: absolute;
+    top: 10px; /* Ajusta la distancia desde la parte superior según tu preferencia */
+    right: 10px; /* Ajusta la distancia desde la derecha según tu preferencia */
+    margin-bottom: 20px;
+    margin: 8px;
+    border-radius: 5px;
+  }
+
+
+  mat-sidenav-content{
+    background-image: url(/../../assets/img/navbar/grafica.png);
+    background-size: cover;
+    width: 600px;
+    height: 600px;
+  }
