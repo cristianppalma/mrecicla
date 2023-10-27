@@ -63,13 +63,12 @@ mat-icon, span, a {
 
 mat-sidenav-content{
   height: calc(100vh - 65px);
-}
-.mat-sidenav-content {
   width: auto;
   height: 100%;
   background-image: url(/../../assets/img/navbar/m-recicla.jpeg);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  border: 1px solid #80a943;
+  border: 1px solid #80a943;
 }
+

@@ -10,9 +10,16 @@ import { AuthModule } from './auth/auth.module';
 /*librerias axel*/ 
 import { InventarioModule } from './inventario/inventario.module';
 import { SolicitudesModule } from './solicitudes/solicitudes.module';
+
+
+
+import { ControlModule } from './control/control.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -22,7 +29,8 @@ import { SolicitudesModule } from './solicitudes/solicitudes.module';
     ProveedorModule,
     AuthModule,
     InventarioModule,
-    SolicitudesModule
+    SolicitudesModule,
+    ControlModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

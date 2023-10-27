@@ -1,0 +1,83 @@
+
+<H1 class="Title">Control de Gastos Generales</H1>
+
+<div class="button-container">
+    <button type="submit" (click)="CrearGastosGenerales();" class="btn_int" mat-raised-button style="background: #76e672; color: white;">
+        Crear
+    </button>
+</div>
+<br>
+<br>
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- service  Column -->
+      <ng-container matColumnDef="concepto">
+        <th mat-header-cell *matHeaderCellDef> Concepto </th>
+        <td mat-cell *matCellDef="let element">{{ element.concepto }}</td>
+      </ng-container>
+
+      <!-- service  Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+        <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+      </ng-container>
+
+      <!-- service  Column -->
+      <ng-container matColumnDef="periodo">
+        <th mat-header-cell *matHeaderCellDef> Periodo </th>
+        <td mat-cell *matCellDef="let element">{{ element.periodo }}</td>
+      </ng-container>
+
+      <!-- service  Column -->
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef> Usuario </th>
+        <td mat-cell *matCellDef="let element">{{ element.usuario }}</td>
+      </ng-container>
+
+      <!-- product Column -->
+      <ng-container matColumnDef="fechacreacion">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Creacion </th>
+        <td mat-cell *matCellDef="let element">{{ element.fechacreacion }}</td>
+      </ng-container>
+
+      <!-- amount Column -->
+      <ng-container matColumnDef="usuarioactualizar">
+        <th mat-header-cell *matHeaderCellDef> Actualizacion Por </th>
+        <td mat-cell *matCellDef="let element">{{ element.usuarioactualizar }}</td>
+      </ng-container>
+      <!-- paymentdate Column -->
+      <ng-container matColumnDef="fechaactualizacion">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Actualizacion </th>
+        <td mat-cell *matCellDef="let element">{{ element.fechaactualizacion }}</td>
+      </ng-container>
+
+      <!-- paymentdate Column -->
+      <ng-container matColumnDef="monto">
+        <th mat-header-cell *matHeaderCellDef> Monto </th>
+        <td mat-cell *matCellDef="let element">{{ element.monto }}</td>
+      </ng-container>
+
+      <!-- action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Accion </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="EditarGastosGenerales();" class="btn_edit" mat-raised-button style="background: #eaf27f; color: white;">Editar</button>
+          <button mat-button (click)="verDetalles(element)" class="btn_delete" mat-raised-button style="background: #f33a37; color: white;" >Eliminar</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+     <!--  <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Ningún dato coincide con: "{{ input.value }}"</td>
+      </tr> -->
+    </table>
+    
+</div>
+<div class="button-container-regresar">
+    <button type="submit" (click)="RegresarGastosGenerales();" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
+        Regresar 
+    </button>
+</div>
