@@ -105,7 +105,7 @@ button.mat-button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 110%;
+  width: 80%; 
   margin-left: 5px;
 
 }
@@ -139,6 +139,7 @@ button.mat-button {
   /* Añade la siguiente propiedad para que los elementos en el interior estén en línea */
   display: flex;
   justify-content: space-between;
+  width: 0px;
   align-items: center;
 }
 

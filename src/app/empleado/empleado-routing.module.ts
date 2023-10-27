@@ -10,7 +10,7 @@ import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
 const routes: Routes = [
   { path:'listEmp', component: ListaEmpleadosComponent},
   { path:'addEmp', component: AgregarEmpleadoComponent},
-  { path:'edditEmp/:id', component: EditarEmpleadoComponent},
+  { path:'edditEmp', component: EditarEmpleadoComponent},
   { path:'adminPrfile', component: PerfilAdminComponent}
 
 ];

@@ -14,12 +14,12 @@
 
        <mat-form-field class="example-full-width custom-width">
     <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Ex. Juan" [(ngModel)]="filter.nombre">
+    <input matInput placeholder="Ex. Juan" >
   </mat-form-field>
   
   <mat-form-field class="example-full-width custom-width">
     <mat-label>Turno </mat-label>
-    <input matInput placeholder="Ex. M" [(ngModel)]="filter.turno">
+    <input matInput placeholder="Ex. M" >
   </mat-form-field>
         
   <mat-form-field class="example-full-width custom-width">
@@ -49,17 +49,17 @@
 
         <div class="container">
           <div class="cabecera" style="margin-left: -170px;">
-              <h1 style="width: 200px;">PERSONAL</h1>
+              <h1 style="width: 100px;">PERSONAL</h1>
               
                 <button mat-raised-button class="btn-editar" style="margin-left: 395px;">
-                <a [routerLink]="['/dashboard/empleado/edditEmp/1']" style="color: white;"> Editar </a>
+                <a [routerLink]="['/dashboard/empleado/edditEmp']" style="color: white;"> Editar </a>
                 </button>
 
               <button mat-raised-button class="btn-eliminar" style="margin-left: 25px; ">Eliminar</button>
         </div>
               <br>
               <div class="table" >
-                <table style="width: 1000px; " mat-table [dataSource]="dataSource" class="mat-elevation-z8">   <!-- Position Column -->
+                <table style="width: 100px; " mat-table [dataSource]="dataSource" class="mat-elevation-z8">   <!-- Position Column -->
                       <ng-container matColumnDef="position">
                         <th mat-header-cell *matHeaderCellDef> Nombre Empleado </th>
                         <td mat-cell *matCellDef="let element">{{ element.position }}</td>
