@@ -52,7 +52,7 @@ export class AuthComponent  implements OnInit {
             this.mostrarDialogoLoginError(response.error);
           } else {
             console.log('Se logueó correctamente');
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/dashboard/tablero');
           }
         },
         (error) => {
