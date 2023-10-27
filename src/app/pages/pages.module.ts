@@ -24,7 +24,7 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
   ]
 })
 export class PagesModule { }

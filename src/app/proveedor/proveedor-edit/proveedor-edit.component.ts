@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder} from '@angular/forms';
+import { ProveedorService } from '../proveedor.service';
 
 @Component({
   selector: 'app-proveedor-edit',
@@ -6,5 +9,50 @@ import { Component } from '@angular/core';
   styleUrls: ['./proveedor-edit.component.css']
 })
 export class ProveedorEditComponent {
+
+  formularioDeProveedores:FormGroup;
+  elID:any;
+
+  constructor(
+    private activatedRoute:ActivatedRoute,
+    private router: Router,
+    private proveedorService:ProveedorService,
+    public formulario:FormBuilder
+    ) {
+      this.elID=this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.elID);
+    this.proveedorService.obtenerProveedor(this.elID).subscribe(
+      respuesta=> {
+        console.log(respuesta);
+        this.formularioDeProveedores.setValue({
+          name_proveedor:respuesta[0]['name_proveedor'],
+          producto_proveedor:respuesta[0]['producto_proveedor'],
+          direccion_proveedor:respuesta[0]['direccion_proveedor'],
+          rfc_proveedor:respuesta[0]['rfc_proveedor'],
+          description_proveedor:respuesta[0]['description_proveedor']
+        })
+      }
+    );
+    this.formularioDeProveedores=this.formulario.group({
+      name_proveedor:[''],
+      producto_proveedor:[''],
+      direccion_proveedor:[''],
+      rfc_proveedor:[''],
+      description_proveedor:['']
+    });
+    }
+
+    enviarDatos():any {
+      console.log(this.elID);
+      console.log(this.formularioDeProveedores.value);
+
+      this.proveedorService.editarProveedor(this.elID, this.formularioDeProveedores.value).subscribe(()=>{
+        this.router.navigateByUrl('/dashboard/proveedor/proveedores');
+      });
+    }
+
+  proveedores(){
+    this.router.navigateByUrl('/dashboard/proveedor/proveedores');
+  }
 
 }

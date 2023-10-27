@@ -1,0 +1,48 @@
+.conten_inputs {
+  align-items:flex-start;
+  text-align: left;
+  justify-content: center;
+}
+
+.btn-asistence{
+  text-align: left;
+  align-items: flex-start;
+  justify-content: left;
+}
+
+h1{
+  font-size: 48px;
+  margin-bottom: 50px;
+  text-align: center;
+  padding-left: 50px;
+  padding-bottom: 7px;
+  padding-top: 10px;
+}
+
+.row{
+  width: 99%;
+}
+
+label {
+  font-size: 20px;
+}
+
+input{
+  width: 500px;
+}
+
+select {
+  width: 500px;
+}
+
+.btn{
+  margin-top: 50px;
+  width: 200px;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
+}
+
+.btn-primary{
+  margin-right: 50px;
+}

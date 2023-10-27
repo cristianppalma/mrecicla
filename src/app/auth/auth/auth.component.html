@@ -19,14 +19,14 @@
               <label>Contraseña</label><br>
               <input type="password" placeholder="Contraseña" formControlName="password">
             </p>
-            <p class="txt_a"><a  class="txt_link">Olvide mi contraseña</a></p>
+            <p class="txt_a"><a [routerLink]="['/recuperar-contrasena']"  class="txt_link">Olvide mi contraseña</a></p>
             <button type="submit" (click)="login();" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
               Ingresar</button>
           </form>
         </div>
         <div class="registrate">
           <p>Ó</p>
-          <p>¿Aún no tienes una cuenta? <a><strong class="txt_link">Regístrate</strong></a></p>
+          <p>¿Aún no tienes una cuenta? <a [routerLink]="['/registrarse']"><strong class="txt_link">Regístrate</strong></a></p>
         </div>
       </div>
     </div>

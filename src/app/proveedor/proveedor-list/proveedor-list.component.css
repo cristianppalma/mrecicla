@@ -1,12 +1,118 @@
-.btn_int {
-  background: #80a943;
-  color: white;
-  width: 350px;
-  height: 50px;
-  font-size: larger;
+.container {
+  display: flex;
+  flex-direction: column; /* Apila elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
 }
 
-.conten_inputs {
+.cabecera {
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
+  margin-left: 2rem;
+}
+
+.table {
+  text-align: left;
+  /* Estilos para la tabla si es necesario */
+  border: 1px solid #e0e0e0;
+  width: 999px;
+  margin-left: 0rem;
+  -webkit-box-shadow: 2px 5px 15px #999;
+ -moz-box-shadow: 2px 2px 5px #999;
+}
+
+th {
+  background-color:#80a943;
+  color:#ffffff;
+  height: 50px;
+  vertical-align: middle;
+}
+
+td {
+  background-color:#ffffff;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.Filter {
+  margin-left: 3rem;
+}
+
+/* Estilo para los botones BUSCAR y AGREGAR */
+.mat-form-field {
+  display: flex;
+  align-items: center;
+}
+
+
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 10rem; /* Agrega espacio entre los botones */
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
+}
+
+.cabecera {
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px;
+  margin-left: 2rem;
+}
+
+.Filter {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 10rem;
+}
+h1{
+  font-size: 48px;
+}
+
+.btn-actions{
+  margin: 0 5px;
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+  padding: 0 5px;
+  border: 0px;
+  color: black;
+  text-decoration: none;
+}
+
+.btn-edit:hover {
+  background: #e0e0e0;
+}
+
+.btn-delete:hover{
+  background: #e0e0e0;
+}
+
+.btn-asistence-title {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+
+
+
+/* .conten_inputs {
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -20,15 +126,28 @@
 
 h1{
   font-size: 48px;
+  margin-bottom: 50px;
+  text-align: center;
+  padding-left: 50px;
+  padding-bottom: 7px;
+  padding-top: 10px;
 }
 
-.select-asistence {
-  position: relative;
-    bottom: 3em;
-    right: 8em;
-    width: 200px;
-    font-size: 20px;
-    padding: 5px 10px;
+label{
+  padding-right: 20px;
+}
+
+.search{
+  margin-right: 180px;
+}
+
+.btn_int {
+  background: #80a943;
+  color: white;
+  width: 300px;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
 }
 
 .show-mobile {
@@ -36,13 +155,6 @@ h1{
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-h1 {
-  text-align: left;
-  padding-left: 50px;
-  padding-bottom: 7px;
-  padding-top: 10px;
 }
 
 table {
@@ -72,22 +184,27 @@ td, th {
   -webkit-overflow-scrolling: touch;
 }
 
-.btn {
-  margin: 0 50px;
-  width: 160px;
-  height: 50px;
-  border-radius: 0px;
-  background: #FD9727;
-  color: black;
+.btn-actions{
+  margin: 0 5px;
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+  padding: 0 5px;
+  border: 0px;
+  color: white;
 }
 
-.txt_btn_footer {
-  font-size: larger;
+.btn-edit {
+  background: #80a943;
 }
+
+.btn-delete{
+  background: red;
+} */
 
 
 /* TABLET */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+/* @media screen and (min-width: 768px) and (max-width: 1023px) {
 .select-asistence {
   position: relative;
     bottom: 3em;
@@ -96,10 +213,10 @@ td, th {
     font-size: 20px;
     padding: 5px 10px;
 }
-}
+} */
 
 /* MOBILE */
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
 .select-asistence {
   position: relative;
     bottom: 0em;
@@ -117,7 +234,7 @@ td, th {
   width: 160px;
   height: 50px;
   border-radius: 0px;
-  background: #FD9727;
+  background: #80a943;
   color: black;
 }
-}
+} */
