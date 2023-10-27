@@ -12,7 +12,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RegistroComponent } from './registro/registro.component';
 import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -29,8 +31,7 @@ import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-c
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatDividerModule,
-    MatFormFieldModule
+    MatDividerModule
   ]
 })
 export class AuthModule { }
