@@ -1,0 +1,36 @@
+.Title{
+    color: #80a943;
+    text-align: center;
+    font-size: larger;
+  }
+  .btn_int {
+    background: #80a943;
+    width: 150px;
+    height: 50px;
+    font-size: large;
+    margin: 8px;
+    border-radius: 5px;
+    margin-left: 600px;
+    }
+  
+  .derecha{
+    margin-left: 20px;
+  }
+  .select_img{
+    margin-left: 20px;
+    font-size: large;
+  }
+  mat-grid-tile {
+    background: lightblue;
+    
+  }
+  .cont{
+    margin-left: 250px;
+  }
+  
+  .img_update{
+    margin-left: 20px;
+  }
+  .example-form{
+   margin-left: 300px;
+  }

@@ -17,7 +17,8 @@ import { ProveedorRoutingModule } from './proveedor-routing.module';
   ],
   imports: [
     CommonModule,
-    ProveedorRoutingModule
+    ProveedorRoutingModule,
+    
   ]
 })
 export class ProveedorModule { }
