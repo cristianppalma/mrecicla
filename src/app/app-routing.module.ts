@@ -21,7 +21,9 @@ const routes: Routes = [
       { path:'inventario', loadChildren:() => import('./inventario/inventario.module').then(m => m.InventarioModule) },
       { path:'solicitudes', loadChildren:() => import('./solicitudes/solicitudes.module').then(m => m.SolicitudesModule) },
       { path:'proveedor', loadChildren:() => import('./proveedor/proveedor.module').then(m => m.ProveedorModule) },
-      { path: 'empleado', loadChildren:() => import('./empleado/empleado.module').then(m=>m.EmpleadoModule) }
+      { path: 'empleado', loadChildren:() => import('./empleado/empleado.module').then(m=>m.EmpleadoModule) },
+      { path:'maquinas', loadChildren:() => import('./maquinas/maquinas.module').then(m => m.MaquinasModule) },
+      { path:'areas', loadChildren:() => import('./areas/areas.module').then(m => m.AreasModule) },
     ]
   },
 ];

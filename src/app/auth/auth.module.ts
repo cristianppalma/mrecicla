@@ -9,19 +9,23 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { RegistroComponent } from './registro/registro.component';
 import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
-import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
+import { AvisoLoginComponent } from './aviso-login/aviso-login.component';
+
 
 
 @NgModule({
   declarations: [
     AuthComponent,
     RegistroComponent,
-    RecuperarContrasenaComponent
+    RecuperarContrasenaComponent,
+    AvisoLoginComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +35,13 @@ import { CookieService } from 'ngx-cookie-service';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }

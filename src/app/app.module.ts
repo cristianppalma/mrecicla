@@ -13,12 +13,13 @@ import { SolicitudesModule } from './solicitudes/solicitudes.module';
 /*librerioas benja*/
 import { ControlModule } from './control/control.module';
 
-import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexComponent } from './index/index/index.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-
+import { MaquinasModule } from './maquinas/maquinas.module';
+import { AreasModule } from './areas/areas.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,10 +36,12 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
     InventarioModule,
     SolicitudesModule,
     ControlModule,
-    HttpClientModule,
+    MatIconModule,
+    MaquinasModule,
+    AreasModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
