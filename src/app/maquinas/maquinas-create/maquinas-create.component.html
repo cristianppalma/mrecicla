@@ -2,56 +2,67 @@
     <div class="cabecera">
         <h1>REGISTRAR NUEVA MAQUINA</h1>
     </div>
-        <br>
-            <div class="formula" style="border: 15px solid red;" >
+  
+        
+        <form [formGroup]="formularioMaquina" (ngSubmit)="enviarDatos()">
+            <div class="formula" style="border:none;" >         
                 <div class="formula1">
-                <mat-label>Numero de maquina</mat-label>
+                    
+                <label>Numero de maquina</label>
                 <mat-form-field>
                     <mat-label>Numero</mat-label>
-                    <input matInput>
+                    <input  min="1" type="number" name="Numero" formControlName="Numero" matInput>
+                    <mat-error *ngIf="formularioMaquina.get('Numero')?.hasError('required')">
+                        El número de la máquina es obligatorio.
+                      </mat-error>
+                      
                 </mat-form-field>
-                <mat-label>Modelo de maquina</mat-label>
+                <label>Modelo de maquina</label>
                 <mat-form-field>
                     <mat-label>Modelo</mat-label>
-                    <input matInput>
+                    <input formControlName="Modelo" matInput>
                 </mat-form-field>
-                <mat-label>Descripción de maquina</mat-label>
+                <label>Descripción de maquina</label>
                 <mat-form-field>
                     <mat-label>Descripción</mat-label>
-                    <textarea matInput></textarea>
+                    <textarea formControlName="Descripcion" matInput></textarea>
                 </mat-form-field>
                
                 </div>
                 <div class="formula2">
-                    <mat-label>Serie de maquina</mat-label>
+                    <label>Serie de maquina</label>
                     <mat-form-field>
                     <mat-label>Serie</mat-label>
-                    <input matInput>
+                    <input formControlName="Serie" matInput>
                     </mat-form-field>
-                    <mat-label>Estado de maquina</mat-label>
+                    <label>Estado de maquina</label>
                     <mat-form-field>
                         <mat-label>Status</mat-label>
-                        <mat-select>
+                        <mat-select  formControlName="Estado">
                             <mat-option value="0"> </mat-option>
-                        <mat-option value="one">Activo</mat-option>
-                        <mat-option value="two">Inactivo</mat-option>
-                        <mat-option value="tres">Mantenimiento</mat-option>
+                        <mat-option value="Activo">Activo</mat-option>
+                        <mat-option value="Inactivo">Inactivo</mat-option>
+                        <mat-option value="Mantenimiento">Mantenimiento</mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <mat-label>Área de maquina</mat-label>
+                    <label>Área de maquina</label>
                     <mat-form-field>
                         <mat-label>Área</mat-label>
-                        <mat-select>
+                        <mat-select  formControlName="Area">
                         <mat-option value="0"> </mat-option>
-                        <mat-option value="one">Hilos</mat-option>
-                        <mat-option value="two">Telar</mat-option>
-                        <mat-option value="tres">bordado</mat-option>
+                        <mat-option value="Hilos">Hilos</mat-option>
+                        <mat-option value="Telar">Telar</mat-option>
+                        <mat-option value="bordado">bordado</mat-option>
                         </mat-select>
                     </mat-form-field>
 
                 </div>
             </div>
+            <div class="botones">
+                <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
         <button  (click)="CANCELAR();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
-        <button  (click)="AGREGAR();" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
+        
     </div>
+</form>
+</div>
 

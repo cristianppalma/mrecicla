@@ -8,17 +8,25 @@ import { MaquinasRoutingModule } from './maquinas-routing.module';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { AvisoDialogComponent } from './aviso-dialog/aviso-dialog.component';
 
 @NgModule({
   declarations: [
     MaquinasCreateComponent,
     MaquinasListComponent,
     MaquinasEditarComponent,
-    MaquinasEliminarComponent
+    MaquinasEliminarComponent,
+    ConfirmationDialogComponent,
+    AvisoDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +37,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     FormsModule,
     MatSelectModule,
     MatButtonModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatDialogModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class MaquinasModule { }

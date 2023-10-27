@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 19vh;
+}
+
+#message {
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  margin: 6px;
+}
+
+.icon-message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  margin-top: 21px;
+  font-size: 20px;
+  animation: iconRotate 2s linear infinite; /* Agrega animación constante */
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px); /* Anima el icono hacia arriba y abajo */
+  }
+}
+
+#doneIcon {
+  color: red; /* Cambia el color del icono a rojo */
+  transform: scale(3) rotate(45deg); /* Hace el icono más grande y lo rota 45 grados */
+}
+
+#yesButton, #noButton {
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#yesButton {
+  background-color: #d6e44b;
+}
+
+#noButton {
+  background-color: #ff0000;
+}
+
+#yesButton:hover, #noButton:hover {
+  background-color: #80a943;
+}

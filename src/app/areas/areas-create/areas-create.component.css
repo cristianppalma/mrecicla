@@ -74,7 +74,7 @@
     display: flex;
     border: 15px solid red;
     margin-left: 27rem;
-    width: 58rem;
+    width: 40rem;
   }
   
   .formula1,
@@ -97,7 +97,7 @@
     font-size: 14px;
   }
   .botones{
-    padding-left: 48.5rem;
+    padding-left: 26.5rem;
   }
   label{
     font-size: 17px;

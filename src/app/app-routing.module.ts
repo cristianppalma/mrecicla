@@ -20,6 +20,13 @@ const routes: Routes = [
 
       }
     ]
+},
+{path: 'dashboard', component: PagesComponent,
+children:[
+  { path:'areas',
+    loadChildren:() => import('./areas/areas.module').then(m => m.AreasModule)
+  }
+]
 }
 ];
 

@@ -52,7 +52,6 @@
     border: 0px solid red;
     margin-bottom: 20px;
     margin-left: 28rem;
-    width: 80REM;
   }
   
   .Filter {
@@ -67,38 +66,4 @@
   }
   h1{
     font-size: 48px;
-  }
-
- 
-  .formula {
-    display: flex;
-    border: 15px solid red;
-    margin-left: 27rem;
-    width: 58rem;
-  }
-  
-  .formula1,
-  .formula2 {
-    flex: 1;
-    padding: 1rem; /* Añade espacio entre los elementos */
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .mat-form-field {
-    margin: 1rem 0;
-    flex: 1; /* Hace que los campos de entrada ocupen el espacio disponible */
-  }
-  
-  .mat-label {
-    margin-bottom: 0.5rem;
-    width: 80%; /* Ancho al 100% del contenedor */
-    box-sizing: border-box; /* Incluye el padding en el ancho */
-    font-size: 14px;
-  }
-  .botones{
-    padding-left: 48.5rem;
-  }
-  label{
-    font-size: 17px;
   }

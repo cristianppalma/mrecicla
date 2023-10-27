@@ -8,7 +8,9 @@ import { PagesModule } from './pages/pages.module';
 import { ProveedorModule } from './proveedor/proveedor.module';
 import { AuthModule } from './auth/auth.module';
 import { MaquinasModule } from './maquinas/maquinas.module';
-
+import { AreasModule } from './areas/areas.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,11 @@ import { MaquinasModule } from './maquinas/maquinas.module';
     PagesModule,
     ProveedorModule,
     AuthModule,
-    MaquinasModule
+    MaquinasModule,
+    AreasModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
