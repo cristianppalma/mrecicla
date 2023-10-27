@@ -1,0 +1,59 @@
+<H1 class="Title">EDITAR PRODUCTO</H1>
+<div>
+    
+    </div>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>ID</mat-label>
+          <input matInput placeholder="" value="">
+        </mat-form-field>
+        <mat-form-field class="derecha">
+          <mat-label>Composicion</mat-label>
+          <input matInput placeholder="" value="">
+        </mat-form-field>
+        
+        <div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Producto</mat-label>
+            <input matInput placeholder="" value="">
+          </mat-form-field>
+
+          <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
+        </div>
+
+        <div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Peso</mat-label>
+            <input matInput placeholder="" value="">
+          </mat-form-field>
+          <mat-form-field class="derecha">
+            <mat-label >Area designada</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let area of Areas" [value]="area.value">
+                {{area.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+        </div>
+       
+        <div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Dimenciones</mat-label>
+            <input matInput placeholder="" value="">
+          </mat-form-field>
+          
+        </div>
+
+        <div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Calibre</mat-label>
+            <input matInput placeholder="" value="">
+          </mat-form-field>
+        </div>
+        <button type="submit" (click)="inventarioReturn();" class="btn_int" mat-raised-button style="background: #80a943;">
+          Regresar</button>
+      </form>
+      
+
+        

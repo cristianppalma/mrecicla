@@ -12,6 +12,20 @@ const routes: Routes = [
         loadChildren:() => import('./proveedor/proveedor.module').then(m => m.ProveedorModule)
       }
     ]
+  },
+  { path:'dashboard', component: PagesComponent,
+    children: [
+      { path:'inventario',
+        loadChildren:() => import('./inventario/inventario.module').then(m => m.InventarioModule)
+      }
+    ]
+  },
+  { path:'dashboard', component: PagesComponent,
+    children: [
+      { path:'solicitudes',
+        loadChildren:() => import('./solicitudes/solicitudes.module').then(m => m.SolicitudesModule)
+      }
+    ]
   }
 ];
 
