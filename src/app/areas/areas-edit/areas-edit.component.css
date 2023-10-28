@@ -7,32 +7,32 @@
     min-width: 70vh;
     max-width: 100vh;
   }
-  
+
   .cabecera {
     text-align: center;
     border: 0px solid red;
     margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
-    margin-left: 28rem;
+    /* margin-left: 28rem; */
   }
-  
+
   .table {
     text-align: center;
     /* Estilos para la tabla si es necesario */
     border: 1px solid blue;
     width: 999px;
-    margin-left: 28rem;
+    /* margin-left: 28rem; */
   }
-  
+
   .Filter {
     margin-left: 3rem;
   }
-  
+
   /* Estilo para los botones BUSCAR y AGREGAR */
   .mat-form-field {
     display: flex;
     align-items: center;
   }
-  
+
   button.mat-button {
     background-color: #d6e44b;
     margin-left: 1rem; /* Agrega espacio entre los botones */
@@ -46,21 +46,21 @@
     min-width: 70vh;
     max-width: 100vh;
   }
-  
+
   .cabecera {
     text-align: center;
     border: 0px solid red;
     margin-bottom: 20px;
-    margin-left: 28rem;
+    /* margin-left: 28rem; */
     width: 80REM;
   }
-  
+
   .Filter {
     display: flex;
     align-items: center;
     margin-left: 10rem;
   }
-  
+
   button.mat-button {
     background-color: #d6e44b;
     margin-left: 1rem;
@@ -69,14 +69,14 @@
     font-size: 48px;
   }
 
- 
+
   .formula {
     display: flex;
     border: 15px solid red;
-    margin-left: 27rem;
+    /* margin-left: 27rem; */
     width: 40rem;
   }
-  
+
   .formula1,
   .formula2 {
     flex: 1;
@@ -84,12 +84,12 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   .mat-form-field {
     margin: 1rem 0;
     flex: 1; /* Hace que los campos de entrada ocupen el espacio disponible */
   }
-  
+
   .mat-label {
     margin-bottom: 0.5rem;
     width: 80%; /* Ancho al 100% del contenedor */

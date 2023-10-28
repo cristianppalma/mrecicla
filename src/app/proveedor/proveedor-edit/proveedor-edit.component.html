@@ -1,4 +1,70 @@
-<div class="conten_inputs">
+<div class="container">
+
+  <div class="cabecera">
+    <h1>EDITAR PROVEEDOR</h1>
+  </div>
+
+  <form [formGroup]="formularioProveedor" (ngSubmit)="enviarDatos()">
+    <div class="formula" style="border:none;" >
+
+      <div class="formula1">
+
+        <label>Nombre completo</label>
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input  min="1" type="text" name="name_proveedor" formControlName="name_proveedor" matInput>
+          <mat-error *ngIf="formularioProveedor.get('name_proveedor')?.hasError('required')">
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+
+        <label>Dirección</label>
+        <mat-form-field>
+          <mat-label>Dirección</mat-label>
+          <input formControlName="direccion_proveedor" matInput>
+        </mat-form-field>
+
+        <label>Descripción</label>
+        <mat-form-field>
+          <mat-label>Descripción</mat-label>
+          <input formControlName="description_proveedor" matInput>
+        </mat-form-field>
+
+      </div>
+
+      <div class="formula2">
+
+        <label>Producto</label>
+        <mat-form-field>
+          <mat-label>Producto</mat-label>
+          <mat-select  formControlName="producto_proveedor">
+            <mat-option value="0"> </mat-option>
+            <mat-option value="Hilo">Hilo Importado</mat-option>
+            <mat-option value="Tela">Tela reciclada</mat-option>
+            <mat-option value="Borra">Borra</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <label>RFC</label>
+        <mat-form-field>
+            <mat-label>RFC</mat-label>
+            <input formControlName="rfc_proveedor" matInput>
+        </mat-form-field>
+
+      </div>
+    </div>
+
+    <div class="botones">
+      <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">ACTUALIZAR</button>
+      <button  (click)="CANCELAR();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- SEPARACION DEL MAQUETADO DE LOS DIFERENTES TABLAS -->
+
+<!-- <div class="conten_inputs">
 
   <div class="btn-asistence">
     <h1>Editar Proveedor</h1>
@@ -47,5 +113,4 @@
 
         </form>
 
-
-</div>
+</div> -->
