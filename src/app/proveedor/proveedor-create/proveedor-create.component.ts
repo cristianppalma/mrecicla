@@ -37,7 +37,7 @@ export class ProveedorCreateComponent implements OnInit {
   }
 
   enviarDatos(): void {
-    if (this.formularioProveedor.value) {
+    if (this.formularioProveedor.valid) {
       console.log('Se presionó el botón');
       console.log(this.formularioProveedor.value);
       this.proveedorService.agregarProveedor(this.formularioProveedor.value).subscribe(

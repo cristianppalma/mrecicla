@@ -8,6 +8,7 @@ import { ProveedorService } from '../proveedor.service';
   styleUrls: ['./proveedor-edit.component.css']
 })
 export class ProveedorEditComponent implements OnInit {
+
   formularioProveedorEdit: FormGroup;
   elID:any;
 
@@ -18,57 +19,103 @@ export class ProveedorEditComponent implements OnInit {
     private proveedorService:ProveedorService
   ) {
 
-    this.formularioProveedorEdit = this.formBuilder.group({
-      name_proveedor: [''],
-      producto_proveedor: [''],
-      direccion_proveedor: [''],
-      rfc_proveedor: [''],
-      description_proveedor: ['']
+
+    this.formularioProveedorEdit=this.formBuilder.group({
+      name_proveedor:[''],
+      producto_proveedor:[''],
+      direccion_proveedor:[''],
+      rfc_proveedor:[''],
+      description_proveedor:['']
     });
+    }
 
+    ngOnInit(): any {
 
-    this.activatedRoute.paramMap.subscribe((params) =>{
-      this.elID = params.get('id');
-      console.log('ID recibido: ', this.elID);
-      console.log('Obtenemos el id para visualizar');
+      this.elID=this.activatedRoute.snapshot.paramMap.get('id');
+      console.log('OBTENEMOS EL ID: ', this.elID);
+      this.proveedorService.obtenerProveedor(this.elID).subscribe(
+        respuesta => {
+          console.log('respuesta de la API',respuesta);
+            const proveedor = respuesta[0];
+            console.log('datos del proveedor ', proveedor);
 
-      this.proveedorService.obtenerProveedor(this.elID).subscribe(respuesta => {
-        console.log('Respuesta del servicio: ',respuesta);
+            this.formularioProveedorEdit.setValue({
+              name_proveedor: proveedor.name_proveedor,
+              producto_proveedor: proveedor.producto_proveedor,
+              direccion_proveedor: proveedor.direccion_proveedor,
+              rfc_proveedor: proveedor.rfc_proveedor,
+              description_proveedor: proveedor.description_proveedor
+            });
 
-        if(respuesta && respuesta.name_proveedor) {
-          this.formularioProveedorEdit.setValue({
-            name_proveedor:respuesta.name_proveedor,
-            producto_proveedor:respuesta.producto_proveedor,
-            direccion_proveedor:respuesta.direccion_proveedor,
-            rfc_proveedor:respuesta.rfc_proveedor,
-            description_proveedor:respuesta.description_proveedor
-          });
-        } else {
-          console.error('No existe el id');
+                // this.formularioProveedorEdit.setValue({
+          //   name_proveedor:respuesta.name_proveedor,
+          //   producto_proveedor:respuesta.producto_proveedor,
+          //   direccion_proveedor:respuesta.direccion_proveedor,
+          //   rfc_proveedor:respuesta.rfc_proveedor,
+          //   description_proveedor:respuesta.description_proveedor
+          // });
+        }, error => {
+          console.error('ERROR DE LA SOLICITUD: ',error);
         }
+      );
+    }
 
-      });
-    });
-  }
+    // this.formularioProveedorEdit = this.formBuilder.group({
+    //   name_proveedor: [''],
+    //   producto_proveedor: [''],
+    //   direccion_proveedor: [''],
+    //   rfc_proveedor: [''],
+    //   description_proveedor: ['']
+    // });
+
+
+  //   this.activatedRoute.paramMap.subscribe((params) =>{
+  //     this.elID = params.get('id');
+  //     console.log('ID recibido: ', this.elID);
+
+  //     this.proveedorService.obtenerProveedor(this.elID).subscribe(respuesta => {
+  //       console.log('Respuesta del servicio: ',respuesta);
+
+  //       if(respuesta) {
+  //         this.formularioProveedorEdit.setValue({
+  //           name_proveedor: respuesta.name_proveedor,
+  //           producto_proveedor: respuesta.producto_proveedor,
+  //           direccion_proveedor: respuesta.direccion_proveedor,
+  //           rfc_proveedor: respuesta.rfc_proveedor,
+  //           description_proveedor: respuesta.description_proveedor
+  //         });
+  //       } else {
+  //         console.error('No existe el id');
+  //         console.log('No se encontro ese id');
+  //       }
+
+  //     });
+  //   });
+  // }
 
   CANCELAR() {
     this.router.navigateByUrl('/dashboard/proveedor/proveedores');
   }
   enviarDatos(): void {
+    if (this.formularioProveedorEdit.valid) {
       console.log(this.elID);
       console.log('Se presionó el botón');
       console.log(this.formularioProveedorEdit.value);
       this.proveedorService.editarProveedor(this.elID, this.formularioProveedorEdit.value).subscribe(
-        ()=> {
+        (respuesta)=> {
+          console.log('SALIO BIEN');
+
+        },
+        (error) => {
+          console.log('SALIO UN ERROR');
           this.router.navigateByUrl('/dashboard/proveedor/proveedores');
         }
       );
+    }
   }
 
 
-  ngOnInit(): void {
-    // Puedes realizar alguna inicialización adicional aquí si es necesario.
-  }
+
 }
 
 
