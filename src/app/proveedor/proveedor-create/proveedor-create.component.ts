@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProveedorService } from '../proveedor.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component';
-import { MatTableModule } from '@angular/material/table';import { MatTableDataSource } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -36,19 +37,21 @@ export class ProveedorCreateComponent implements OnInit {
   }
 
   enviarDatos(): void {
-    if (this.formularioProveedor.valid) {
+    if (this.formularioProveedor.value) {
       console.log('Se presionó el botón');
       console.log(this.formularioProveedor.value);
       this.proveedorService.agregarProveedor(this.formularioProveedor.value).subscribe(
         (response) => {
           console.log('Hasta aqui todo bien');
          console.log('Se registro correctamente');
-         this.mostratDialogoAviso();
 
 
         },
         (error) => {
           // Manejar errores del servicio aquí
+          console.log('ESTO ES UN ERROR');
+          this.mostratDialogoAviso();
+
         }
       );
     }
