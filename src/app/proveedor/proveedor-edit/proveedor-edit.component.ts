@@ -9,13 +9,13 @@ import { ProveedorService } from '../proveedor.service';
 })
 export class ProveedorEditComponent implements OnInit {
   formularioProveedorEdit: FormGroup;
-  elID: any;
+  elID:any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private proveedorService: ProveedorService
+    private proveedorService:ProveedorService
   ) {
 
     this.formularioProveedorEdit = this.formBuilder.group({
@@ -23,30 +23,29 @@ export class ProveedorEditComponent implements OnInit {
       producto_proveedor: [''],
       direccion_proveedor: [''],
       rfc_proveedor: [''],
-      description_proveedor: [''],
+      description_proveedor: ['']
     });
 
 
     this.activatedRoute.paramMap.subscribe((params) =>{
       this.elID = params.get('id');
       console.log('ID recibido: ', this.elID);
-      console.log('Obtenemos el id para visualizar');
 
       this.proveedorService.obtenerProveedor(this.elID).subscribe(respuesta => {
-        console.log('Respuesta del servicio: ',respuesta);
+        console.log('Respuesta del servicio: ', respuesta);
 
         if(respuesta && respuesta.name_proveedor) {
           this.formularioProveedorEdit.setValue({
-            name_proveedor:respuesta.name_proveedor,
-            producto_proveedor:respuesta.producto_proveedor,
-            direccion_proveedor:respuesta.direccion_proveedor,
-            rfc_proveedor:respuesta.rfc_proveedor,
-            description_proveedor:respuesta.description_proveedor
+            name_proveedor: respuesta.name_proveedor,
+            producto_proveedor: respuesta.producto_proveedor,
+            direccion_proveedor: respuesta.direccion_proveedor,
+            rfc_proveedor: respuesta.rfc_proveedor,
+            description_proveedor: respuesta.description_proveedor
           });
         } else {
           console.error('No existe el id');
+          // Mensaje de error
         }
-
       });
     });
   }

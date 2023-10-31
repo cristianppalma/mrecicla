@@ -13,9 +13,6 @@
         <mat-form-field>
           <mat-label>Nombre</mat-label>
           <input required min="1" type="text" formControlName="name_proveedor" matInput>
-          <mat-error *ngIf="formularioProveedorEdit.get('name_proveedor')?.hasError('required')">
-            El nombre es obligatorio.
-          </mat-error>
         </mat-form-field>
 
         <label>Dirección</label>
