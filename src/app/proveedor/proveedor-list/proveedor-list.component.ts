@@ -44,13 +44,15 @@ export class ProveedorListComponent  implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
   verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
     // Puedes abrir un modal, mostrar información adicional, etc.
-    this.router.navigateByUrl('/dashboard/proveedor/proveedorEdit/:id')
+    const idProveedor = element.id_proveedor; // Obtener el ID de la máquina
+    this.router.navigateByUrl(`/dashboard/proveedor/proveedorEdit/${idProveedor}`);
   }
+
+
   constructor(private router:Router,
      private dialog: MatDialog,
      private proveedorService:ProveedorService
