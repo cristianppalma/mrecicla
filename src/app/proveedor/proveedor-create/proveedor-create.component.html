@@ -4,7 +4,7 @@
     <h1>REGISTRAR NUEVO PROVEEDOR</h1>
   </div>
 
-  <form [formGroup]="formularioProveedor" (ngSubmit)="enviarDatos()">
+  <form ngNativeValidate [formGroup]="formularioProveedor" (ngSubmit)="enviarDatos()">
     <div class="formula" style="border:none;" >
 
       <div class="formula1">
