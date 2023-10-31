@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component'
-import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { ProveedorService } from '../proveedor.service';
 import { PeriodicElement } from '../PeriodicElement';
 
@@ -76,18 +75,43 @@ export class ProveedorListComponent  implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.eliminarElemento(element);
-      }
+        console.log('delete');
+        // this.proveedorService.borrarProveedor(element).subscribe((respuesta)=>{
+        //   this.Proveedores.splice();
+          this.eliminarElemento(element);
+        }
+      //   )
+      // }
     });
   }
   ngOnInit(): void {
     this.proveedorService.listarProveedor().subscribe((respuesta: PeriodicElement[]) => {
       console.log(respuesta);
+      console.log('Obtenemos todos los registros');
+
       this.Proveedor = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
   }
 
+
+  // openDialog(enterAnimationDuration: string, exitAnimationDuration: string, id_proveedor: string){
+  //       const dialogRef = this.dialog.open(ModalDeleteComponent, {
+  //         width: '550px',
+  //         enterAnimationDuration,
+  //         exitAnimationDuration,
+  //       });
+  //       dialogRef.afterClosed().subscribe(res => {
+  //         console.log(res);
+  //         if (res){
+  //           console.log('delete');
+  //           this.proveedorService.borrarProveedor(id_proveedor).subscribe((respuesta)=>{
+  //             this.Proveedores.splice();
+  //             window.location.reload();
+  //           });
+  //         }
+  //       })
+  //     }
 
 
 }

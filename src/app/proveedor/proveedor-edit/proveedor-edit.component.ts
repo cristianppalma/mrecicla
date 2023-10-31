@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProveedorService } from '../proveedor.service';
 @Component({
@@ -9,14 +9,33 @@ import { ProveedorService } from '../proveedor.service';
 })
 export class ProveedorEditComponent implements OnInit {
   formularioProveedor: FormGroup;
+  elID: any;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
     private proveedorService: ProveedorService
   ) {
+    this.elID=this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.elID);
+    console.log('Obtenemos el id para visualizar');
+
+    this.proveedorService.obtenerProveedor(this.elID).subscribe(
+      respuesta=> {
+        console.log(respuesta);
+        this.formularioProveedor.setValue({
+          name_proveedor:respuesta[0]['name_proveedor'],
+          producto_proveedor:respuesta[0]['producto_proveedor'],
+          direccion_proveedor:respuesta[0]['direccion_proveedor'],
+          rfc_proveedor:respuesta[0]['rfc_proveedor'],
+          description_proveedor:respuesta[0]['description_proveedor']
+        })
+      }
+    );
+
     this.formularioProveedor = this.formBuilder.group({
-      name_proveedor: ['', [Validators.required]],
+      name_proveedor: [''],
       producto_proveedor: [''],
       direccion_proveedor: [''],
       rfc_proveedor: [''],
@@ -29,18 +48,14 @@ export class ProveedorEditComponent implements OnInit {
     this.router.navigateByUrl('/dashboard/proveedor/proveedores');
   }
   enviarDatos(): void {
-    if (this.formularioProveedor.valid) {
+      console.log(this.elID);
       console.log('Se presionó el botón');
       console.log(this.formularioProveedor.value);
-      this.proveedorService.agregarProveedor(this.formularioProveedor.value).subscribe(
-        (response) => {
-          // Manejar la respuesta del servicio aquí
-        },
-        (error) => {
-          // Manejar errores del servicio aquí
+      this.proveedorService.editarProveedor(this.elID, this.formularioProveedor.value).subscribe(
+        ()=> {
+          this.router.navigateByUrl('/dashboard/proveedor/proveedores');
         }
       );
-    }
   }
 
 

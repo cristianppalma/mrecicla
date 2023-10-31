@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProveedorService } from '../proveedor.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component'
-import { MatTableModule } from '@angular/material/table';import { MatTableDataSource } from '@angular/material/table';
+import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -27,7 +28,7 @@ export class ProveedorCreateComponent implements OnInit {
       producto_proveedor: [''],
       direccion_proveedor: [''],
       rfc_proveedor: [''],
-      descripTion_proveedor: [''],
+      description_proveedor: [''],
     });
   }
 
@@ -41,6 +42,7 @@ export class ProveedorCreateComponent implements OnInit {
       console.log(this.formularioProveedor.value);
       this.proveedorService.agregarProveedor(this.formularioProveedor.value).subscribe(
         (response) => {
+          console.log('Hasta aqui todo bien');
          console.log('Se registro correctamente');
          this.mostratDialogoAviso();
 

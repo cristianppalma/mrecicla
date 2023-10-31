@@ -16,7 +16,7 @@ export class ProveedorService {
     return this.clientService.post(this.API+"?insertar=1",datosProveedor);
   }
 
- // listarMaquina(){
+ // listarProveedor(){
    // return this.clientService.get(this.API);
    //}
 
@@ -26,13 +26,26 @@ export class ProveedorService {
 
 
 
+
+
+
   obtenerProveedor(id_proveedor:any):Observable<any>{
     return this.clientService.get(this.API+"?consultar="+id_proveedor);
   }
 
-  editarProveedor(id_proveedor:any, datosProveedor:any):Observable<any>{
+  editarProveedor(id_proveedor:any, datosProveedor:Proveedor):Observable<any>{
     return this.clientService.post(this.API+"?actualizar="+id_proveedor,datosProveedor);
   }
+
+
+
+
+
+  borrarProveedor(id_proveedor:any):Observable<any>{
+    return this.clientService.get(this.API+"?borrar="+id_proveedor);
+  }
+
+
 }
 
 

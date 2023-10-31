@@ -41,7 +41,7 @@
               <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Accion</th>
                 <td mat-cell *matCellDef="let element">
-                  <button mat-button (click)="verDetalles(element)" >Editar</button>
+                  <button mat-button routerLink="/dashboard/proveedor/proveedorEdit/{{ element.id_proveedor}}">Editar</button>
                   <button mat-button (click)="mostrarDialogoDeConfirmacion(element)">Eliminar</button>
                 </td>
               </ng-container>

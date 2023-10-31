@@ -12,7 +12,7 @@
         <label>Nombre completo</label>
         <mat-form-field>
           <mat-label>Nombre</mat-label>
-          <input  min="1" type="text" name="name_proveedor" formControlName="name_proveedor" matInput>
+          <input required min="1" type="text" name="" formControlName="name_proveedor" matInput>
           <mat-error *ngIf="formularioProveedor.get('name_proveedor')?.hasError('required')">
             El nombre es obligatorio.
           </mat-error>
@@ -21,13 +21,13 @@
         <label>Dirección</label>
         <mat-form-field>
           <mat-label>Dirección</mat-label>
-          <input formControlName="direccion_proveedor" matInput>
+          <input required type="text" formControlName="direccion_proveedor" matInput>
         </mat-form-field>
 
         <label>Descripción</label>
         <mat-form-field>
           <mat-label>Descripción</mat-label>
-          <input formControlName="description_proveedor" matInput>
+          <input required type="text" formControlName="description_proveedor" matInput>
         </mat-form-field>
 
       </div>
@@ -37,7 +37,7 @@
         <label>Producto</label>
         <mat-form-field>
           <mat-label>Producto</mat-label>
-          <mat-select  formControlName="producto_proveedor">
+          <mat-select required formControlName="producto_proveedor">
             <mat-option value="0"> </mat-option>
             <mat-option value="Hilo">Hilo Importado</mat-option>
             <mat-option value="Tela">Tela reciclada</mat-option>
@@ -48,15 +48,15 @@
         <label>RFC</label>
         <mat-form-field>
             <mat-label>RFC</mat-label>
-            <input formControlName="rfc_proveedor" matInput>
+            <input required type="text" formControlName="rfc_proveedor" matInput>
         </mat-form-field>
 
       </div>
     </div>
 
-    <div class="botones">
-      <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
-      <button  (click)="CANCELAR();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
+    <div class="botones" role="group">
+      <button type="submit" class="btn-acep" mat-button>AGREGAR</button>
+      <button type="button" (click)="CANCELAR();" class="btn-canc" mat-button>CANCELAR</button>
     </div>
   </form>
 </div>

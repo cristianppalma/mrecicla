@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProveedorCreateComponent } from './proveedor-create/proveedor-create.component';
 import { ProveedorListComponent } from './proveedor-list/proveedor-list.component';
-import { ProveedorDetailsComponent } from './proveedor-details/proveedor-details.component';
 import { ProveedorEditComponent } from './proveedor-edit/proveedor-edit.component';
 import { ProveedorRoutingModule } from './proveedor-routing.module';
 
@@ -14,21 +13,22 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
 import { MatIconModule } from '@angular/material/icon';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FilterPipe } from './pipes/filter.pipe';
+import { AvisoDialogComponent } from './aviso-dialog/aviso-dialog.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
   declarations: [
     ProveedorCreateComponent,
     ProveedorListComponent,
-    ProveedorDetailsComponent,
     ProveedorEditComponent,
-    ModalDeleteComponent,
     FilterPipe,
+    AvisoDialogComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -37,12 +37,12 @@ import { FilterPipe } from './pipes/filter.pipe';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule,
     MatSelectModule,
     MatButtonModule,
     MatDatepickerModule,
     MatDialogModule,
     MatIconModule,
+    ReactiveFormsModule,
     HttpClientModule
   ]
 })

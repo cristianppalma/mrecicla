@@ -101,6 +101,16 @@ label{
   font-size: 17px;
 }
 
+.btn-acep {
+  background-color: #d6e44b;
+  margin-left: 1rem;
+}
+
+.btn-canc {
+  background-color: #b60000;
+  color: white;
+  margin-left: 1rem;
+}
 
 /* SEPARACION DE LOS ESTILOS DE ANTES */
 
