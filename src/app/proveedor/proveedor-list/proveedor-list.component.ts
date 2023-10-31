@@ -48,8 +48,8 @@ export class ProveedorListComponent  implements OnInit {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
     // Puedes abrir un modal, mostrar información adicional, etc.
-    const idProveedor = element.id_proveedor; // Obtener el ID de la máquina
-    this.router.navigateByUrl(`/dashboard/proveedor/proveedorEdit/${idProveedor}`);
+    const id_proveedor = element.id_proveedor; // Obtener el ID de la máquina
+    this.router.navigateByUrl(`/dashboard/proveedor/proveedorEdit/${element.id_proveedor}`);
   }
 
 
@@ -70,6 +70,22 @@ export class ProveedorListComponent  implements OnInit {
       this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
     }
   }
+
+  eliminarElemento2(element: PeriodicElement): void {
+    const index = this.dataSource.data.indexOf(element);
+
+    if (index >= 0) {
+      const id_proveedor = element.id_proveedor;
+      this.dataSource.data.splice(index, 1);
+      this.proveedorService.borrarProveedor(id_proveedor).subscribe();
+      this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
+
+      // Aquí tienes tanto el índice como el idMaquina
+      console.log(`Elemento eliminado en el índice ${index}, ID del Proveedor: ${id_proveedor}`);
+    }
+  }
+
+
   mostrarDialogoDeConfirmacion(element: PeriodicElement): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
@@ -86,6 +102,20 @@ export class ProveedorListComponent  implements OnInit {
       // }
     });
   }
+
+  mostrarDialogoDeConfirmacion2(element: PeriodicElement): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.eliminarElemento2(element);
+      }
+    });
+  }
+
+
   ngOnInit(): void {
     this.proveedorService.listarProveedor().subscribe((respuesta: PeriodicElement[]) => {
       console.log(respuesta);

@@ -16,18 +16,13 @@ export class ProveedorService {
     return this.clientService.post(this.API+"?insertar=1",datosProveedor);
   }
 
- // listarProveedor(){
-   // return this.clientService.get(this.API);
-   //}
-
    listarProveedor(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API);
   }
 
-
-
-
-
+  borrarProveedor(id_proveedor:any):Observable<any>{
+    return this.clientService.get(this.API+"?borrar="+id_proveedor);
+  }
 
   obtenerProveedor(id_proveedor:any):Observable<any>{
     return this.clientService.get(this.API+"?consultar="+id_proveedor);
@@ -35,14 +30,6 @@ export class ProveedorService {
 
   editarProveedor(id_proveedor:any, datosProveedor:Proveedor):Observable<any>{
     return this.clientService.post(this.API+"?actualizar="+id_proveedor,datosProveedor);
-  }
-
-
-
-
-
-  borrarProveedor(id_proveedor:any):Observable<any>{
-    return this.clientService.get(this.API+"?borrar="+id_proveedor);
   }
 
 
