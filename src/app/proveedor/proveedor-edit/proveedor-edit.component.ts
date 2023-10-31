@@ -8,7 +8,7 @@ import { ProveedorService } from '../proveedor.service';
   styleUrls: ['./proveedor-edit.component.css']
 })
 export class ProveedorEditComponent implements OnInit {
-  formularioProveedor: FormGroup;
+  formularioProveedorEdit: FormGroup;
   elID: any;
 
   constructor(
@@ -17,32 +17,39 @@ export class ProveedorEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private proveedorService: ProveedorService
   ) {
-    this.elID=this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.elID);
-    console.log('Obtenemos el id para visualizar');
 
-    this.proveedorService.obtenerProveedor(this.elID).subscribe(
-      respuesta=> {
-        console.log(respuesta);
-        this.formularioProveedor.setValue({
-          name_proveedor:respuesta[0]['name_proveedor'],
-          producto_proveedor:respuesta[0]['producto_proveedor'],
-          direccion_proveedor:respuesta[0]['direccion_proveedor'],
-          rfc_proveedor:respuesta[0]['rfc_proveedor'],
-          description_proveedor:respuesta[0]['description_proveedor']
-        })
-      }
-    );
-
-    this.formularioProveedor = this.formBuilder.group({
+    this.formularioProveedorEdit = this.formBuilder.group({
       name_proveedor: [''],
       producto_proveedor: [''],
       direccion_proveedor: [''],
       rfc_proveedor: [''],
       description_proveedor: [''],
     });
-  }
 
+
+    this.activatedRoute.paramMap.subscribe((params) =>{
+      this.elID = params.get('id');
+      console.log('ID recibido: ', this.elID);
+      console.log('Obtenemos el id para visualizar');
+
+      this.proveedorService.obtenerProveedor(this.elID).subscribe(respuesta => {
+        console.log('Respuesta del servicio: ',respuesta);
+
+        if(respuesta && respuesta.name_proveedor) {
+          this.formularioProveedorEdit.setValue({
+            name_proveedor:respuesta.name_proveedor,
+            producto_proveedor:respuesta.producto_proveedor,
+            direccion_proveedor:respuesta.direccion_proveedor,
+            rfc_proveedor:respuesta.rfc_proveedor,
+            description_proveedor:respuesta.description_proveedor
+          });
+        } else {
+          console.error('No existe el id');
+        }
+
+      });
+    });
+  }
 
   CANCELAR() {
     this.router.navigateByUrl('/dashboard/proveedor/proveedores');
@@ -50,8 +57,8 @@ export class ProveedorEditComponent implements OnInit {
   enviarDatos(): void {
       console.log(this.elID);
       console.log('Se presionó el botón');
-      console.log(this.formularioProveedor.value);
-      this.proveedorService.editarProveedor(this.elID, this.formularioProveedor.value).subscribe(
+      console.log(this.formularioProveedorEdit.value);
+      this.proveedorService.editarProveedor(this.elID, this.formularioProveedorEdit.value).subscribe(
         ()=> {
           this.router.navigateByUrl('/dashboard/proveedor/proveedores');
         }

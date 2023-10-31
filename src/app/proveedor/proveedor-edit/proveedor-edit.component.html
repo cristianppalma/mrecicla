@@ -4,7 +4,7 @@
     <h1>EDITAR PROVEEDOR</h1>
   </div>
 
-  <form [formGroup]="formularioProveedor" (ngSubmit)="enviarDatos()">
+  <form [formGroup]="formularioProveedorEdit" (ngSubmit)="enviarDatos()">
     <div class="formula" style="border:none;" >
 
       <div class="formula1">
@@ -13,7 +13,7 @@
         <mat-form-field>
           <mat-label>Nombre</mat-label>
           <input required min="1" type="text" formControlName="name_proveedor" matInput>
-          <mat-error *ngIf="formularioProveedor.get('name_proveedor')?.hasError('required')">
+          <mat-error *ngIf="formularioProveedorEdit.get('name_proveedor')?.hasError('required')">
             El nombre es obligatorio.
           </mat-error>
         </mat-form-field>
