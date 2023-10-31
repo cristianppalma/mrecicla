@@ -12,10 +12,9 @@
   
   .table {
     text-align: center;
-    /* Estilos para la tabla si es necesario */
-    border: 1px solid blue;
-    width: 999px;
-    margin-left: 5rem;
+    width: 1300px;
+    padding-right: 13rem;
+    max-height: 400px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */ 
   }
   
   .Filter {
@@ -32,27 +31,19 @@
     background-color: #d6e44b;
     margin-left: 1rem; /* Agrega espacio entre los botones */
   }
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 10vh;
-    min-width: 70vh;
-    max-width: 100vh;
-  }
-  
+
   .cabecera {
     text-align: center;
     border: 0px solid red;
     margin-bottom: 20px;
-    margin-left: 10rem;
+    margin-right: 13rem;
   }
   
   .Filter {
+    margin-right: 14rem;
     display: flex;
     align-items: center;
-    margin-left: 5rem;
+    margin-left: 0rem;
   }
   
   button.mat-button {

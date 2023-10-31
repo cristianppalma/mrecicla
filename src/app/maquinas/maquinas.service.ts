@@ -28,4 +28,7 @@ export class MaquinasService {
     return this.clientService.delete(this.API + "?borrar=" + id);
   }
   
+  consultarmaquina(id: any):Observable<any>{
+    return this.clientService.get(this.API + "?consultarmaquina=" + id);
+  }
 }

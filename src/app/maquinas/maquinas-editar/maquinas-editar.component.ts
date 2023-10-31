@@ -1,50 +1,64 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MaquinasService } from '../maquinas.service';
+
 @Component({
   selector: 'app-maquinas-editar',
   templateUrl: './maquinas-editar.component.html',
   styleUrls: ['./maquinas-editar.component.css']
 })
 export class MaquinasEditarComponent implements OnInit {
-  formularioMaquina: FormGroup;
+  formularioMaquina2: FormGroup;
+  idRecibido:any;
 
   constructor(
+    private activeRoute: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private MaquinasService: MaquinasService
+    private maquinasService:MaquinasService
   ) {
-    this.formularioMaquina = this.formBuilder.group({
-      Numero: ['', [Validators.required]],
+
+    this.formularioMaquina2 = this.formBuilder.group({
+      Numero: [''],
       Serie: [''],
       Modelo: [''],
       Descripcion: [''],
       Estado: [''],
       Area: ['']
     });
+
+
+    this.activeRoute.paramMap.subscribe((params) => {
+      this.idRecibido = params.get('id');
+      console.log('ID Recibido:', this.idRecibido);
+  
+      this.maquinasService.consultarmaquina(this.idRecibido).subscribe(respuesta => {
+        console.log('Respuesta del servicio:', respuesta);
+  
+        if (respuesta && respuesta.Serie) {
+          this.formularioMaquina2.setValue({
+            Serie: respuesta.Serie,
+            Numero: respuesta.Numero,
+            Modelo: respuesta.Modelo,
+            Descripcion: respuesta.Descripcion,
+            Estado: respuesta.Estado,
+            Area: respuesta.Area
+          });
+        } else {
+          console.error('No se encontraron datos válidos para el ID proporcionado.');
+          // Aquí puedes mostrar un mensaje de error al usuario o redirigir a una página de error.
+        }
+      });
+    });
   }
-
-
   CANCELAR() {
     this.router.navigateByUrl('/dashboard/maquinas/maquinas');
   }
-  enviarDatos(): void {
-    if (this.formularioMaquina.valid) {
-      console.log('Se presionó el botón');
-      console.log(this.formularioMaquina.value);
-      this.MaquinasService.agregarMaquina(this.formularioMaquina.value).subscribe(
-        (response) => {
-          // Manejar la respuesta del servicio aquí
-        },
-        (error) => {
-          // Manejar errores del servicio aquí
-        }
-      );
-    }
+  enviarDatos(){
+    
   }
-
-
+ 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
   }

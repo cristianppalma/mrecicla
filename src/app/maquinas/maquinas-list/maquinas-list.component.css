@@ -12,22 +12,23 @@
   text-align: center;
   border: 0px solid red;
   margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
-  margin-left: 28rem;
+  margin-left: 0rem;
 }
 
 .table {
   text-align: center;
   /* Estilos para la tabla si es necesario */
  
-  width: 999px;
-  margin-left: 4rem;
-  max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
-  overflow-y: auto; 
- 
-}
+  width: 1100px;
+  margin-right: 10rem;
 
+  max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
+  max-width: 1350px;
+  overflow-y: auto;
+  box-shadow: 10px 5-px 20px rgba(0, 0, 0, 0.2);
+}
 .Filter {
-  margin-left: 3rem;
+  margin-right: 13rem;
 }
 
 /* Estilo para los botones BUSCAR y AGREGAR */
@@ -50,11 +51,11 @@ button.mat-button {
   max-width: 100vh;
 }
 
-.cabecera {
+.cabecera { /*Label de Maquinas*/
   text-align: center;
   border: 0px solid red;
   margin-bottom: 20px;
-  margin-left: 4rem;
+  margin-right: 10rem;
 }
 
 .Filter {
