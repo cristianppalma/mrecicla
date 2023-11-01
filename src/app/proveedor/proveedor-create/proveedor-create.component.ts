@@ -44,13 +44,13 @@ export class ProveedorCreateComponent implements OnInit {
         (response) => {
           console.log('Hasta aqui todo bien');
          console.log('Se registro correctamente');
-
+         this.mostratDialogoAviso();
 
         },
         (error) => {
           // Manejar errores del servicio aquí
           console.log('ESTO ES UN ERROR');
-          this.mostratDialogoAviso();
+
 
         }
       );

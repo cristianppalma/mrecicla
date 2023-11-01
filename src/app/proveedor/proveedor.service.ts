@@ -9,7 +9,7 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class ProveedorService {
-  API: string = 'http://localhost/PhpAngular/';
+  API: string = 'http://localhost/PhpAngular/proveedores/';
 
   constructor( private clientService:HttpClient) { }
 

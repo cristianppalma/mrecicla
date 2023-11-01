@@ -46,10 +46,17 @@ export class ProveedorListComponent  implements OnInit {
 
   verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
-    console.log('Detalles de:');
+    console.log('Detalles de: ', element);
+    console.log('ID: ', element.id_proveedor);
+    console.log('NAME: ', element.name_proveedor);
+    console.log('PRODUCTO: ', element.producto_proveedor);
+    console.log('DIRECCION: ', element.direccion_proveedor);
+    console.log('RFC: ', element.rfc_proveedor);
+    console.log('DESCRIPCION: ', element.description_proveedor);
+
     // Puedes abrir un modal, mostrar información adicional, etc.
-    const id_proveedor = element.id_proveedor; // Obtener el ID de la máquina
-    this.router.navigateByUrl(`/dashboard/proveedor/proveedorEdit/${element.id_proveedor}`);
+    const idProveedor = element.id_proveedor; // Obtener el ID de la máquina
+    this.router.navigateByUrl(`/dashboard/proveedor/proveedorEdit/${idProveedor}`);
   }
 
 

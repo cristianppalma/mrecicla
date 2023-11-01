@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProveedorService } from '../proveedor.service';
+import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-proveedor-edit',
   templateUrl: './proveedor-edit.component.html',
@@ -16,7 +19,8 @@ export class ProveedorEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private proveedorService:ProveedorService
+    private proveedorService:ProveedorService,
+    private dialog: MatDialog
   ) {
 
 
@@ -56,6 +60,7 @@ export class ProveedorEditComponent implements OnInit {
           // });
         }, error => {
           console.error('ERROR DE LA SOLICITUD: ',error);
+
         }
       );
     }
@@ -104,14 +109,28 @@ export class ProveedorEditComponent implements OnInit {
       this.proveedorService.editarProveedor(this.elID, this.formularioProveedorEdit.value).subscribe(
         (respuesta)=> {
           console.log('SALIO BIEN');
+          this.mostratDialogoAviso();
+
 
         },
         (error) => {
           console.log('SALIO UN ERROR');
-          this.router.navigateByUrl('/dashboard/proveedor/proveedores');
         }
       );
     }
+  }
+
+
+  mostratDialogoAviso():void{
+    const dialogAviso = this.dialog.open(AvisoDialogComponent,{
+      data: {message: 'Se actualizo correctamente en la Base de Datos'}
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigateByUrl('/dashboard/proveedor/proveedores');
+      }
+    });
+
   }
 
 
