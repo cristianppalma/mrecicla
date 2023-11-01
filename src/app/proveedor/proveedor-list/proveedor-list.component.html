@@ -41,9 +41,9 @@
               <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Accion</th>
                 <td mat-cell *matCellDef="let element">
-                  <button mat-button routerLink="/dashboard/proveedor/proveedorEdit/{{ element.id_proveedor}}">Editar</button>
+                  <button class="btn-edit" mat-button routerLink="/dashboard/proveedor/proveedorEdit/{{ element.id_proveedor}}">Editar</button>
                   <!-- <button mat-button (click)="verDetalles(element.id_proveedor)">Editar</button> -->
-                  <button mat-button (click)="mostrarDialogoDeConfirmacion2(element)">Eliminar</button>
+                  <button class="btn-delete" mat-button (click)="mostrarDialogoDeConfirmacion2(element)">Eliminar</button>
                 </td>
               </ng-container>
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

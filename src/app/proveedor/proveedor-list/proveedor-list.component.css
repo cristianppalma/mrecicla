@@ -71,6 +71,14 @@ mat-form-field {
   width: 300px;
 }
 
+.btn-edit {
+  color: green;
+}
+
+.btn-delete {
+  color: red;
+}
+
 /* ESPACIO ENTRE LOS DIFERENTES ESTILOS */
 
 /* .container {

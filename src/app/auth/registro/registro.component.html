@@ -4,55 +4,70 @@
     <div class="content_grid_padre">
 
       <div class="content_grid_h1">
+
         <div class="title_page">
           <h1>Registrate</h1>
         </div>
+
         <div class="form_data">
+
           <form>
+
             <p>
               <label>Nombre Completo</label><br>
-              <input type="text" placeholder="Escribe el nombre completo" autocomplete="off" autofocus="" formControlName="data">
+              <input required type="text" placeholder="Escribe el nombre completo" autofocus="" formControlName="name_registro">
             </p>
+
             <p>
               <label>Telefono</label><br>
-              <input type="text" placeholder="Escribe el numero de telefono" autocomplete="off" autofocus="" formControlName="data">
+              <input required type="text" placeholder="Escribe el numero de telefono"formControlName="telefono_registro">
             </p>
+
             <p>
               <label>Dirección</label><br>
-              <input type="text" placeholder="Escribe la dirección" autocomplete="off" autofocus="" formControlName="data">
+              <input required type="text" placeholder="Escribe la dirección" formControlName="direccion_registro">
             </p>
+
             <p>
-              <label>Tipo de empleado</label><br>
-              <select id="inputEmpl" class="form-select">
+              <label>Rol de empleado</label><br>
+              <select required formControlName="rol_registro" class="form-select">
                 <option selected>Selecciona un rol</option>
-                <option value="admin">Administrador</option>
-                <option value="recep">Recepcionista</option>
-                <option value="opera">Operador</option>
+                <option value="Administrador">Administrador</option>
+                <option value="Recepcion">Recepcionista</option>
+                <option value="Operador">Operador</option>
               </select>
             </p>
+
             <p>
               <label>Correo electronico</label><br>
-              <input type="email" placeholder="Escribe el correo electronico" autocomplete="off" autofocus="" formControlName="data">
+              <input required type="email" placeholder="Escribe el correo electronico" formControlName="correo_registro">
             </p>
+
             <p>
               <label>Contraseña</label><br>
-              <input type="password" placeholder="Escribe la contraseña" formControlName="password">
+              <input required type="password" placeholder="Escribe la contraseña" formControlName="contraseña_registro">
             </p>
-            <button type="submit" [routerLink]="['/login']" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
-              Registrate</button>
+
+            <div class="botones" role="group">
+              <button type="submit" class="btn_regis" mat-raised-button style="background: #80a943; color: white;">Registrate</button>
+              <br><br>
+              <button type="button" routerLink="/login" class="btn-canc" mat-raised-button style="background: red; color: white;">Cancelar</button>
+
+            </div>
+
           </form>
+
         </div>
+
       </div>
 
+
       <div class="content_grid_h2"></div>
+
 
     </div>
   </div>
 </div>
-
-
-
-
 
 
 <!-- <div class="contenedor">

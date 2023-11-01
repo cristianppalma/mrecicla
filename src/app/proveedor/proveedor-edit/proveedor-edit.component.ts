@@ -23,7 +23,6 @@ export class ProveedorEditComponent implements OnInit {
     private dialog: MatDialog
   ) {
 
-
     this.formularioProveedorEdit=this.formBuilder.group({
       name_proveedor:[''],
       producto_proveedor:[''],
@@ -51,89 +50,45 @@ export class ProveedorEditComponent implements OnInit {
               description_proveedor: proveedor.description_proveedor
             });
 
-                // this.formularioProveedorEdit.setValue({
-          //   name_proveedor:respuesta.name_proveedor,
-          //   producto_proveedor:respuesta.producto_proveedor,
-          //   direccion_proveedor:respuesta.direccion_proveedor,
-          //   rfc_proveedor:respuesta.rfc_proveedor,
-          //   description_proveedor:respuesta.description_proveedor
-          // });
         }, error => {
           console.error('ERROR DE LA SOLICITUD: ',error);
-
         }
       );
     }
 
-    // this.formularioProveedorEdit = this.formBuilder.group({
-    //   name_proveedor: [''],
-    //   producto_proveedor: [''],
-    //   direccion_proveedor: [''],
-    //   rfc_proveedor: [''],
-    //   description_proveedor: ['']
-    // });
-
-
-  //   this.activatedRoute.paramMap.subscribe((params) =>{
-  //     this.elID = params.get('id');
-  //     console.log('ID recibido: ', this.elID);
-
-  //     this.proveedorService.obtenerProveedor(this.elID).subscribe(respuesta => {
-  //       console.log('Respuesta del servicio: ',respuesta);
-
-  //       if(respuesta) {
-  //         this.formularioProveedorEdit.setValue({
-  //           name_proveedor: respuesta.name_proveedor,
-  //           producto_proveedor: respuesta.producto_proveedor,
-  //           direccion_proveedor: respuesta.direccion_proveedor,
-  //           rfc_proveedor: respuesta.rfc_proveedor,
-  //           description_proveedor: respuesta.description_proveedor
-  //         });
-  //       } else {
-  //         console.error('No existe el id');
-  //         console.log('No se encontro ese id');
-  //       }
-
-  //     });
-  //   });
-  // }
-
-  CANCELAR() {
-    this.router.navigateByUrl('/dashboard/proveedor/proveedores');
-  }
-  enviarDatos(): void {
-    if (this.formularioProveedorEdit.valid) {
-      console.log(this.elID);
-      console.log('Se presionó el botón');
-      console.log(this.formularioProveedorEdit.value);
-      this.proveedorService.editarProveedor(this.elID, this.formularioProveedorEdit.value).subscribe(
-        (respuesta)=> {
-          console.log('SALIO BIEN');
-          this.mostratDialogoAviso();
-
-
-        },
-        (error) => {
-          console.log('SALIO UN ERROR');
-        }
-      );
+    CANCELAR() {
+      this.router.navigateByUrl('/dashboard/proveedor/proveedores');
     }
-  }
 
+    enviarDatos(): void {
+      if (this.formularioProveedorEdit.valid) {
+        console.log(this.elID);
+        console.log('Se presionó el botón');
+        console.log(this.formularioProveedorEdit.value);
+        this.proveedorService.editarProveedor(this.elID, this.formularioProveedorEdit.value).subscribe(
+          (respuesta)=> {
+            console.log('SALIO BIEN');
+            this.mostratDialogoAviso();
 
-  mostratDialogoAviso():void{
-    const dialogAviso = this.dialog.open(AvisoDialogComponent,{
-      data: {message: 'Se actualizo correctamente en la Base de Datos'}
-    });
-    dialogAviso.afterClosed().subscribe(result => {
-      if (result) {
-        this.router.navigateByUrl('/dashboard/proveedor/proveedores');
+          },
+          (error) => {
+            console.log('SALIO UN ERROR');
+          }
+        );
       }
-    });
+    }
 
-  }
+    mostratDialogoAviso():void{
+      const dialogAviso = this.dialog.open(AvisoDialogComponent,{
+        data: {message: 'Se actualizo correctamente en la Base de Datos'}
+      });
+      dialogAviso.afterClosed().subscribe(result => {
+        if (result) {
+          this.router.navigateByUrl('/dashboard/proveedor/proveedores');
+        }
+      });
 
-
+    }
 
 }
 

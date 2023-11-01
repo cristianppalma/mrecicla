@@ -5,12 +5,16 @@
     </button> -->
     <img width="100" src="../assets/img/navbar/m-recicla.jpeg" alt="">
     <span class="example-spacer"></span>
-    <span style="color: #000;">
+    <!-- <span style="color: #000;">
       Admin
-    </span>
+    </span> -->
   <span style="color: #000;" [routerLink]="['empleado/adminPrfile']">
-      <a [routerLink]="['empleado/adminPrfile']"> Admin </a>
+      <a style="color: #000;" [routerLink]="['empleado/adminPrfile']"> Admin </a>
     </span>
+    <button mat-button class="" style="color:#000;">
+      <mat-icon style="color: #000;">logout</mat-icon>
+      <span style="color: #000;"><a style="color: #000;" [routerLink]="['/login']">Cerrar Sesión</a></span>
+    </button>
    </mat-toolbar>
 </p>
 
