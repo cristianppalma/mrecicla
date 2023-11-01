@@ -24,7 +24,8 @@ export class MaquinasEditarComponent implements OnInit {
       Area: ['']
     });
   }
-
+  //regalo para el negro 
+  // https://www.eneba.com/latam/xbox-prototype-biohazard-bundle-xbox-live-key-argentina?itm_campaign=Recombee%20Page&itm_content=recommended%20for%20you%20page&itm_medium=product%20card&itm_term=261
 
   CANCELAR() {
     this.router.navigateByUrl('/dashboard/maquinas/maquinas');
