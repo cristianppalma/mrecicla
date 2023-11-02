@@ -1,4 +1,4 @@
-export class listaEmpleado {
+export class editarEmpleado {
 
     idUsuario           !:string;
     Nombre              !:string;
@@ -6,6 +6,9 @@ export class listaEmpleado {
     Correo              !:string;
     Pass                !:string;
     ApellidoMaterno     !:string;
+    Turno               !:string;
+    Sueldo              !:string;
+    Area                !:string;
     Puesto              !:string;
-    
+    Domicilio           !:string;
 }

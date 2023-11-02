@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Empleado} from './Empleado' ;
 import { listaEmpleado } from './listaEmpleado';
+import {editarEmpleado} from './editarEmpleado';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,10 +19,6 @@ export class EmpleadoService {
     return this.clientService.post(this.API+"?insertarEmpleado=1",datosEmpleado);
   }
 
-  
-  // listarMaquina(){
-  // return this.clientService.get(this.API);
-  //}
   listaEmpleado(): Observable<listaEmpleado[]> {
     return this.clientService.get<listaEmpleado[]>(this.API+"?seleccionarEmpleado=1");
   }
@@ -28,6 +26,16 @@ export class EmpleadoService {
   eliminarUsuario(id:string): Observable<listaEmpleado[]> {
     return this.clientService.get<listaEmpleado[]>(this.API+"?borrarEmpleado=1");
   }
+
+  EditarEmpleado(id:string): Observable<editarEmpleado> {
+    return this.clientService.get<editarEmpleado>(this.API+"?editarEmpleado="+id);
+  }
+
+  UpdateEmpleado(UpdateEmpleado:editarEmpleado, id:any):Observable<any>{
+    return this.clientService.post(this.API+"?updateEmpleado="+id,UpdateEmpleado);
+  }
+
+  
 }
 
 
