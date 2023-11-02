@@ -6,23 +6,23 @@
 <h1>Agregar empleados</h1>
 
 </div>
-
+<form [formGroup]="formularioEmpleado" (ngSubmit)="enviarDatos()">
 <div class="contenedor">
     <div class="izquierda">
         <br>
         <mat-form-field class="example-full-width custom-width">
             <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Ex. Juan" value="">
+            <input formControlName ='Nombre' matInput placeholder="Ex. Juan" value="">
           </mat-form-field>
             <br>
           <mat-form-field class="example-full-width custom-width">
             <mat-label>Apellido Paterno</mat-label>
-            <input matInput placeholder="Ex. 1000" value="">
+            <input formControlName ='ApellidoPaterno' matInput placeholder="Ex. Perez" value="">
           </mat-form-field>
             <br>
           <mat-form-field class="example-full-width custom-width">
             <mat-label>Apellido Materno</mat-label>
-            <input matInput placeholder="Ex. 1000" value="">
+            <input formControlName ='ApellidoMaterno' matInput placeholder="Ex. Perez" value="">
           </mat-form-field>
         
     </div>
@@ -30,26 +30,28 @@
         <br>
         <mat-form-field class="example-full-width custom-width">
             <mat-label>contraseña</mat-label>
-            <input matInput placeholder="" value="">
+            <input formControlName ='Pass' matInput placeholder="" value="">
           </mat-form-field>
           <br>
 <mat-form-field>
   <mat-label>Puesto</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let Puesto of puestos" [value]="Puesto.value">
+  <mat-select formControlName ='Puesto'>
+    <mat-option  *ngFor="let Puesto of puestos" [value]="Puesto.value">
       {{Puesto.viewValue}}
     </mat-option>
   </mat-select>
-</mat-form-field>
+</mat-form-field> 
           <br>
           <mat-form-field class="example-full-width custom-width">
-            <mat-label>Nombre de usuario</mat-label>
-            <input matInput placeholder="Ex. 1000" value="">
+            <mat-label>Correo</mat-label>
+            <input formControlName ='Correo' matInput placeholder="example@algo.com" value="">
           </mat-form-field>
           <br>
-          <button mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
+          <button type=submit mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
+          
           <button mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
                     <a style="color: white;" [routerLink]="['/dashboard/empleado/listEmp']"> Cancelar </a>
           </button>
     </div>
 </div>
+</form>

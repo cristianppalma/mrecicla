@@ -40,7 +40,7 @@
 
       <!-- Botones -->
       <div class="botones">
-        <button mat-button (click)="applyFilter($event)" style="background-color: #d6e44b; margin-left: 1rem; color: white;">BUSCAR</button>
+        <button mat-button style="background-color: #d6e44b; margin-left: 1rem; color: white;">BUSCAR</button>
         <button style="margin-left: 750px; position: relative;  background-color: #d6e44b; color: white;" mat-button > 
           <a [routerLink]="['/dashboard/empleado/addEmp']" style="color: white;"> Agregar Usuario </a>
         </button>
@@ -50,42 +50,52 @@
         <div class="container">
           <div class="cabecera" style="margin-left: -170px;">
               <h1 style="width: 100px;">PERSONAL</h1>
-              
-                <button mat-raised-button class="btn-editar" style="margin-left: 395px;">
-                <a [routerLink]="['/dashboard/empleado/edditEmp']" style="color: white;"> Editar </a>
-                </button>
-
-              <button mat-raised-button class="btn-eliminar" style="margin-left: 25px; ">Eliminar</button>
+             
         </div>
               <br>
+              <!--inicio de mi tabla -->
+
               <div class="table" >
-                <table style="width: 100px; " mat-table [dataSource]="dataSource" class="mat-elevation-z8">   <!-- Position Column -->
-                      <ng-container matColumnDef="position">
-                        <th mat-header-cell *matHeaderCellDef> Nombre Empleado </th>
-                        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+                <table style="width: 100px; " mat-table [dataSource]="dataSource" class="mat-elevation-z8">                
+                      <!-- Nombre Column -->
+
+                      <ng-container matColumnDef="idUsuario">
+                        <th mat-header-cell *matHeaderCellDef> Id usuario </th>
+                        <td mat-cell *matCellDef="let element"> {{element.idUsuario}} </td>
                       </ng-container>
-                
-                      <!-- Name Column -->
-                      <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef> Puesto  </th>
-                        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+
+                      <ng-container matColumnDef="Nombre">
+                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
                       </ng-container>
-                
                       <!-- Weight Column -->
-                      <ng-container matColumnDef="weight">
-                        <th mat-header-cell *matHeaderCellDef> Área </th>
-                        <td mat-cell *matCellDef="let element">{{ (element.weight) }}</td>
+                      <ng-container matColumnDef="ApellidoPaterno">
+                        <th mat-header-cell *matHeaderCellDef> Apellido Paterno </th>
+                        <td mat-cell *matCellDef="let element">{{ (element.ApellidoPaterno) }}</td>
                       </ng-container>
                       <!-- Symbol Column -->
-                      <ng-container matColumnDef="symbol">
-                        <th mat-header-cell *matHeaderCellDef> Turno </th>
-                        <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+                      <ng-container matColumnDef="ApellidoMaterno">
+                        <th mat-header-cell *matHeaderCellDef> Apellido Materno</th>
+                        <td mat-cell *matCellDef="let element">{{ element.ApellidoMaterno }}</td>
                       </ng-container>
-                
-                      <ng-container matColumnDef="action">
-                        <th mat-header-cell *matHeaderCellDef>Sueldo/Salario</th>
-                        <td mat-cell *matCellDef="let element">{{ element.action }}</td>
+
+                      <ng-container matColumnDef="Correo">
+                        <th mat-header-cell *matHeaderCellDef>Correo</th>
+                        <td mat-cell *matCellDef="let element">{{ element.Correo }}</td>
                       </ng-container>  
+
+                      <ng-container matColumnDef="Puesto">
+                        <th mat-header-cell *matHeaderCellDef>Puesto</th>
+                        <td mat-cell *matCellDef="let element">{{ element.Puesto }}</td>
+                      </ng-container>  
+
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Accion </th>
+                        <td mat-cell *matCellDef="let element">
+                          <button mat-button (click)="verDetalles(element)" >Editar</button>
+                          <button mat-button (click)="mostrarDialogoDeConfirmacion(element)">Eliminar</button>
+                        </td>
+                     </ng-container>
 
                       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -98,7 +108,6 @@
                     </table>
               </div>
           </div>
-      
     </form>
   </section>
 

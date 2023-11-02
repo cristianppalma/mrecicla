@@ -119,6 +119,7 @@ button.mat-button {
   left: 10px;
 
   overflow-y: scroll; /* Añade scroll horizontal si es necesario */
+  overflow-x: scroll; /* Añade scroll horizontal si es necesario */
   white-space: nowrap; /* Evita que el contenido se ajuste al ancho disponible */
   width: 100%; /* O cualquier otro ancho específico que quieras definir */
   height: 200px;

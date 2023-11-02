@@ -24,8 +24,7 @@ export class MaquinasEditarComponent implements OnInit {
       Area: ['']
     });
   }
-
-
+  
   CANCELAR() {
     this.router.navigateByUrl('/dashboard/maquinas/maquinas');
   }
