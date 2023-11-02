@@ -50,6 +50,7 @@ export class AreasEditComponent  implements OnInit{
                   console.error('No se encontraron datos válidos para el ID proporcionado.');
                   // Aquí puedes mostrar un mensaje de error al usuario o redirigir a una página de error.
                 }
+                
               });
             });
           }
