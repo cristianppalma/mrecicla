@@ -21,26 +21,15 @@ export class ControlService {
   eliminargasto(id: any): Observable<any> {
   return this.clientService.delete(this.API+"?eliminargasto="+ id);
   }
-  //actualizargasto(id: number, datos: any): Observable<any> {
-    //return this.clientService.put(`${this.API}/actualizar/${id}`, datos);
-  //editargasto(id: any): Observable<any> {
-  //  return this.clientService.put(this.API+?"editargasto="+id);
-  //}
+
   consultargasto(id: any): Observable<PeriodicElement> {
     //return this.clientService.get<PeriodicElement>(`${this.API}?idControl=${id}`);
     return this.clientService.get<PeriodicElement>(this.API+"?consultargasto="+id);
     // Reemplaza "?id=${id}" por la ruta correcta en tu API para obtener un registro por su ID.
   }
 
-
-  obtenerGasto(id: any): Observable<PeriodicElement> {
-    //return this.clientService.get<PeriodicElement>(`${this.API}?idControl=${id}`);
-    return this.clientService.get<PeriodicElement>(this.API+"?consultargasto=1"+id);
-    // Reemplaza "?id=${id}" por la ruta correcta en tu API para obtener un registro por su ID.
-  }
-
-  editargasto(id: any, datosGasto: any): Observable<any> {
-    return this.clientService.put(`${this.API}?editargasto=${id}`, datosGasto);
+  editargasto(id: any, datosGasto: Gastos): Observable<any> {
+    return this.clientService.post(this.API+"?editargasto="+id, datosGasto);
     // Reemplaza "?editargasto=${id}" por la ruta correcta en tu API para editar un registro por su ID.
   }
 
