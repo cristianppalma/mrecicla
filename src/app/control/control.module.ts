@@ -7,7 +7,7 @@ import { ControlRoutingModule } from './control-routing.module';
 import { ControlGastosGeneralesCrearComponent } from './control-gastos-generales-crear/control-gastos-generales-crear.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDatepickerModule, matDatepickerAnimations } from '@angular/material/datepicker';
@@ -23,6 +23,10 @@ import {MatListModule} from '@angular/material/list';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatBottomSheetModule,
     MatGridListModule,
     MatListModule,
+    MatDialogModule,
+    MatIconModule,
+    HttpClientModule,
+    MatCheckboxModule,
+    ReactiveFormsModule
   ]
 })
 

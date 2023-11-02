@@ -10,7 +10,7 @@ const routes: Routes = [
  {path: 'controlGastos', component:ControlGastosComponent},
  {path: 'controlGastosGenerales', component:ControlGastosGeneralesComponent},
  {path: 'controlGastosGeneralesCrear', component:ControlGastosGeneralesCrearComponent},
- {path: 'controlGastosGeneralesEditar', component:ControlGastosGeneralesEditarComponent}
+ {path: 'controlGastosGeneralesEditar/:id', component:ControlGastosGeneralesEditarComponent}
 ];
 
 @NgModule({

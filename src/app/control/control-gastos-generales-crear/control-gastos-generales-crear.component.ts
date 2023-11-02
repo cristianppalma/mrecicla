@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { FormControl } from '@angular/forms';
+
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ControlService } from '../control.service';
+
+import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component'
+import { MatDialog } from '@angular/material/dialog';
+
+
 
 @Component({
   selector: 'app-control-gastos-generales-crear',
@@ -10,15 +16,62 @@ import { FormControl } from '@angular/forms';
 })
 
 
-export class ControlGastosGeneralesCrearComponent {
-
-  constructor(private router:Router) {}
-  GuardarGastosGeneralesCrear(){
-    this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
+export class ControlGastosGeneralesCrearComponent implements OnInit {
+  formularioGastos: FormGroup;
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private ControlService: ControlService,
+    private dialog: MatDialog
+  ) {
+    this.formularioGastos = this.formBuilder.group({
+      Concepto: [''],
+      Descripcion: [''],
+      Periodo: [''],
+      UsuarioCreador: [''],
+      FechaCreacion: [''],
+      UsuarioActualizar: [''],
+      FechaActualizacion:[''],
+      Monto:['', [Validators.required]],
+      Tipo:['']
+    });
   }
 
   CancelarGastosGeneralesCrear(){
     this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
   }
+
+  enviarDatos(): void {
+    if (this.formularioGastos.valid) {
+      console.log('Se presionó el botón');
+      console.log(this.formularioGastos.value);
+      this.ControlService.agregargasto(this.formularioGastos.value).subscribe(
+        (response) => {
+         console.log('Se registro correctamente');
+         this.mostratDialogoAviso();
+         
+        
+        },
+        (error) => {
+          // Manejar errores del servicio aquí7
+          
+        }
+      );
+    }
+  }
+  mostratDialogoAviso():void{
+    const dialogAviso = this.dialog.open(AvisoDialogComponent,{
+      data: {message: 'Se registro correctamente en la Base de Datos'}
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
+      }
+    });
   
+  }
+
+  ngOnInit(): void {
+    // Puedes realizar alguna inicialización adicional aquí si es necesario.
+  }
 }
