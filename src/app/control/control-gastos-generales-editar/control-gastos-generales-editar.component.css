@@ -26,14 +26,34 @@
 .example-form input {
   font-size: 16px;
 }
-.button-div{
-  width: 150px;
-  height: 50px;
-  font-size: large;
-  margin: 8px;
-  border-radius: 5px;
-  text-align: center;
-}
 .center-button{
   text-align: center;
+}
+.centrar-columnas{
+  display: flex;
+  justify-content: center;
+}
+.formula1,
+.formula2 {
+  flex: 1;
+  padding: 1rem; /* Añade espacio entre los elementos */
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+  flex-direction: column;
+  margin-right: 20px;
+}
+.formula {
+  display: flex;
+  border: 15px solid red;
+  margin-left: center;
+  width: 58rem;
+  justify-content: space-around;
+  
+}
+label{
+  font-size: 17px;
+}
+.botones{
+  padding-left: 48.5rem;
 }

@@ -21,6 +21,6 @@ export class MaquinasService {
    //}
 
    listarMaquina(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API);
+    return this.clientService.get<PeriodicElement[]>(this.API+"?seleccionar=1");
   }
 }

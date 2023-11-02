@@ -7,41 +7,11 @@
   margin: 8px;
   border-radius: 5px;
 }
-.button-container {
-  position: absolute;
-  top: 10px; /* Ajusta la distancia desde la parte superior según tu preferencia */
-  right: 10px; /* Ajusta la distancia desde la derecha según tu preferencia */
-  margin-bottom: 20px;
-  margin: 8px;
-  border-radius: 5px;
-}
+
 .button-container-regresar {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  border-radius: 5px;
-  margin: 20px; /* Agrega un margen para separar el botón del borde de la pantalla */
-}
-.center-container {
-  display: flex;
-  justify-content: center;
-}
-.center-table {
-  max-width: 800px; /* Opcional: ajusta el ancho máximo según tus necesidades */
-}
-.btn_edit {
-  background-color: #80a943;
-  border-radius: 5px;
-  width: 90px;
-  height: 30px;
-  margin: 2px;
-}
-.btn_delete {
-  background-color:red;
-  border-radius: 5px;
-  width: 90px;
-  height: 30px;
-  margin: 2px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 .Title{
   color:#151a0d;
@@ -49,45 +19,23 @@
   font-size: larger;
 }
 .table-container {
+  display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
-  width: 1000px;
+  width: 1200px;
+  margin: 10px; /* Ajusta según sea necesario */
+  display: flex;
+}
+.formula {
+  display: flex;
+  justify-content: center;
 }
 
-
-/* TABLET */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-.select-asistence {
-  position: relative;
-    bottom: 3em;
-    right: -2em;
-    width: 200px;
-    font-size: 20px;
-    padding: 5px 10px;
-}
+.formula-container {
+  display: flex;
 }
 
-/* MOBILE */
-@media screen and (max-width: 767px) {
-.select-asistence {
-  position: relative;
-    bottom: 0em;
-    right: 2em;
-    width: 200px;
-    font-size: 20px;
-    padding: 5px 10px;
+.formula1,
+.formula2 {
+  margin: 0 10px; /* Espacio entre las dos secciones */
 }
-.body {
-  height: 70%;
-  margin: 0 0em;
-}
-.btn {
-  margin: 10px 50px;
-  width: 160px;
-  height: 50px;
-  border-radius: 0px;
-  background: #FD9727;
-  color: black;
-}
-}
-

@@ -1,72 +1,77 @@
 <H1 class="Title">REGISTRAR NUEVO GASTO</H1>
 <br>
-  <div>
-    <form class="example-form">
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Concepto</mat-label>
-            <input matInput placeholder="" value="">
-        </mat-form-field>
+  <div class="centrar-columnas">
+    <form [formGroup]="formularioGastos" (ngSubmit)="enviarDatos()">
+      <div class="formula">
+        <div class="formula1">
+          <label>Concepto</label>
+          <mat-form-field >
+            <mat-label>Concepto</mat-label>
+              <input formControlName="Concepto" matInput >
+          </mat-form-field>
+
+          <label>Descripcion</label>
+          <mat-form-field>
+            <mat-label>Descripcion</mat-label>
+              <input formControlName="Descripcion" matInput >
+          </mat-form-field>
+
+          <label>Periodo</label>
+          <mat-form-field>
+            <mat-label>Periodo</mat-label>
+              <input formControlName="Periodo" matInput>
+          </mat-form-field>
+
+          <label>Usuario</label>
+          <mat-form-field>
+            <mat-label>Usuario</mat-label>
+              <input formControlName="UsuarioCreador" matInput>
+          </mat-form-field>
+          
+          <label>Fecha de Creacion</label>
+          <mat-form-field>
+            <mat-label>Fecha de Creacion</mat-label>
+              <input formControlName="FechaCreacion" matInput>
+          </mat-form-field>
+
+        </div>
+        <div class="formula2">
+          <label>Actualizado Por</label>
+          <mat-form-field>
+            <mat-label>Actualizado por</mat-label>
+              <input formControlName="UsuarioActualizar" matInput>
+          </mat-form-field>
+
+          <label>Fecha de Actualizacion</label>
+          <mat-form-field>
+            <mat-label>Fecha de Actualizacion</mat-label>
+              <input formControlName="FechaActualizacion" matInput>
+          </mat-form-field>
+
+          <label>Monto</label>
+          <mat-form-field>
+            <mat-label>Monto</mat-label>
+              <input formControlName="Monto" matInput>
+              <mat-error *ngIf="formularioGastos.get('Monto')?.hasError('required')">
+                El monto del gasto es obligatorio.
+              </mat-error>
+          </mat-form-field>
+          
+          <label>Tipo de Gasto</label>
+          <mat-form-field>
+            <mat-label>Tipo de Gasto</mat-label>
+              <mat-select formControlName="Tipo">
+                <mat-option value="0"> </mat-option>
+                <mat-option value="gastoGeneral">Gasto General</mat-option>
+                <mat-option value="gastoMaquinaria">Gasto Maquinaria</mat-option>
+                <mat-option value="gastoNomina">Gasto Nómina</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
       </div>
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Descripcion</mat-label>
-            <input matInput placeholder="" value="">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Periodo</mat-label>
-            <input matInput placeholder="" value="">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Usuario</mat-label>
-            <input matInput placeholder="" value="">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Fecha de Creacion</mat-label>
-            <input matInput placeholder="" value="">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Actualizado por</mat-label>
-            <input matInput placeholder="" value="">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Fecha de Actualizacion</mat-label>
-            <input matInput placeholder="" value="">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Monto</mat-label>
-            <input matInput placeholder="" value="">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Tipo de Gasto</mat-label>
-            <mat-select>
-             <mat-option value="gastoGeneral">Gasto General</mat-option>
-             <mat-option value="gastoMaquinaria">Gasto Maquinaria</mat-option>
-            <mat-option value="gastoNomina">Gasto Nómina</mat-option>
-            </mat-select>
-        </mat-form-field>
+      <div class="botones">
+        <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
+        <button (click)="CancelarGastosGeneralesCrear();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
       </div>
     </form>
   </div>
-<div class="center-button">
-  <button type="submit" (click)="GuardarGastosGeneralesCrear();" class="button-div" mat-raised-button style="background: #59e154; color: white;">
-    Guardar
-  </button>
-  <button type="submit" (click)="CancelarGastosGeneralesCrear();" class="button-div"mat-raised-button style="background: #dd3030; color: white;">
-    Cancelar
-  </button>
-</div>
