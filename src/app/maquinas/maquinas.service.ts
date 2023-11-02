@@ -13,7 +13,7 @@ export class MaquinasService {
   constructor( private clientService:HttpClient) { }
 
   agregarMaquina(datosMaquina:Maquina):Observable<any>{
-    return this.clientService.post(this.API+"?insertar=1",datosMaquina);
+    return this.clientService.post(this.API+"?insertarr=1",datosMaquina);
   }
 
  // listarMaquina(){

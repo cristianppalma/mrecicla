@@ -8,7 +8,7 @@
                   <mat-label>Serie</mat-label>
                   <input matInput (keyup)="applyFilter($event)" placeholder="Ej.980K-326P" #input>
                 </mat-form-field>
-                
+
                 <mat-form-field>
                     <mat-label>Área</mat-label>
                     <mat-select>
@@ -17,11 +17,11 @@
                       </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <button mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;">BUSCAR</button>  
+                <button mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;">BUSCAR</button>
                  <button  (click)="crearMaquina();" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
 
         </div>
-      
+
         <div class="table">
             <table style="width: 800px;" mat-table [dataSource]="dataSource" class="mat-elevation-z8" let iControl=index>
                <!-- Position Column -->
@@ -29,19 +29,19 @@
                 <th mat-header-cell *matHeaderCellDef> ID </th>
                 <td mat-cell *matCellDef="let element">{{ element.idMaquina }}</td>
               </ng-container>
-          
+
               <!-- Position Column -->
                 <ng-container matColumnDef="Serie">
                   <th mat-header-cell *matHeaderCellDef> Serie </th>
                   <td mat-cell *matCellDef="let element">{{ element.Serie }}</td>
                 </ng-container>
-          
+
                 <!-- Name Column -->
                 <ng-container matColumnDef="Numero">
                   <th mat-header-cell *matHeaderCellDef> Numero  </th>
                   <td mat-cell *matCellDef="let element">{{ element.Numero }}</td>
                 </ng-container>
-          
+
                 <!-- Weight Column -->
                 <ng-container matColumnDef="Modelo">
                   <th mat-header-cell *matHeaderCellDef> Modelo </th>
@@ -62,8 +62,8 @@
                   <th mat-header-cell *matHeaderCellDef> Area </th>
                   <td mat-cell *matCellDef="let element">{{ element.Area }}</td>
                 </ng-container>
-                
-          
+
+
                 <ng-container matColumnDef="action">
                   <th mat-header-cell *matHeaderCellDef>Accion</th>
                   <td mat-cell *matCellDef="let element">

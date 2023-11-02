@@ -10,9 +10,13 @@
  background: #ffffff;
 }
 
-.btn-asistence-title {
+.title-navbar {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+}
+
+.navbar-brand{
+  padding-left: 20px;
 }
 
 .btn{
@@ -37,8 +41,6 @@
 .content_grid_h1 {
   margin: auto;
 }
-
-
 
 .title_page{
   text-align: left;
