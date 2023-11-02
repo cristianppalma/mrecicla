@@ -2,9 +2,7 @@
     <div class="cabecera">
         <h1>EDITAR MAQUINA</h1>
     </div>
-  
-        
-        <form [formGroup]="formularioMaquina" (ngSubmit)="enviarDatos()">
+        <form [formGroup]="formularioMaquina2" (ngSubmit)="enviarDatos()">
             <div class="formula" style="border:none;" >         
                 <div class="formula1">
                     
@@ -12,9 +10,7 @@
                 <mat-form-field>
                     <mat-label>Numero</mat-label>
                     <input  min="1" type="number" name="Numero" formControlName="Numero" matInput>
-                    <mat-error *ngIf="formularioMaquina.get('Numero')?.hasError('required')">
-                        El número de la máquina es obligatorio.
-                      </mat-error>
+                   
                       
                 </mat-form-field>
                 <label>Modelo de maquina</label>

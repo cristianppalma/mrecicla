@@ -3,35 +3,37 @@
         <h1>REGISTRAR NUEVA ÁREA</h1>
     </div>
         <br>
+        <form [formGroup]="formularioAreas" (ngSubmit)="enviarDatos()">
             <div class="formula" style="border: 1px solid red;" >
                 <div class="formula1">
                 <label>Nombre de Área</label>
                 <mat-form-field>
                     <mat-label>Nombre de Área</mat-label>
-                    <input matInput>
+                    <input formControlName="NombreArea" matInput>
                 </mat-form-field>
                 <label>Descripción de Área</label>
                 <mat-form-field>
                     <mat-label>Descripción de Área</mat-label>
-                    <textarea matInput></textarea>
+                    <textarea formControlName="DescripcionArea" matInput></textarea>
                 </mat-form-field>
                 <label>Estado de Área</label>
                 <mat-form-field>
                     <mat-label>Status</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="EstadoArea"> 
                         <mat-option value="0"> </mat-option>
-                    <mat-option value="one">Activo</mat-option>
-                    <mat-option value="two">Inactivo</mat-option>
-                    <mat-option value="tres">Mantenimiento</mat-option>
+                    <mat-option value="Activo">Activo</mat-option>
+                    <mat-option value="Inactivo">Inactivo</mat-option>
+                    <mat-option value="Mantenimiento">Mantenimiento</mat-option>
                     </mat-select>
                 </mat-form-field>
                
                 </div>
             </div>
             <div class="botones">
-                <button  (click)="AGREGAR();" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
+                <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
         <button  (click)="CANCELAR();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
-        
+ 
     </div>
+</form>
 </div>
 

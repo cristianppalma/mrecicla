@@ -55,14 +55,16 @@ export class MaquinasListComponent  implements OnInit {
   }
 
   constructor(private router:Router,
-     private dialog: MatDialog,
-     private MaquinaService:MaquinasService
+              private dialog: MatDialog,
+              private MaquinaService:MaquinasService
      ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
      }
   crearMaquina(){
     this.router.navigateByUrl('/dashboard/maquinas/maquinascreate');
   }
+
+
   eliminarElemento(element: PeriodicElement): void {
     const index = this.dataSource.data.indexOf(element);
     if (index >= 0) {
@@ -84,6 +86,7 @@ export class MaquinasListComponent  implements OnInit {
       console.log(`Elemento eliminado en el índice ${index}, ID de la máquina: ${idMaquina}`);
     }
   }
+  
   
 
   mostrarDialogoDeConfirmacion(element: PeriodicElement): void {
@@ -109,6 +112,7 @@ export class MaquinasListComponent  implements OnInit {
       }
     });
   }
+  
   ngOnInit(): void {
     this.MaquinaService.listarMaquina().subscribe((respuesta: PeriodicElement[]) => {
       console.log(respuesta);
