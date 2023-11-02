@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MaquinasService } from '../maquinas.service';
+import { MatDialog } from '@angular/material/dialog';
+
+import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component';
 
 @Component({
   selector: 'app-maquinas-editar',
@@ -10,15 +13,16 @@ import { MaquinasService } from '../maquinas.service';
 })
 export class MaquinasEditarComponent implements OnInit {
   formularioMaquina2: FormGroup;
-  idRecibido:any;
+  idRecibido: any;
 
+  
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private maquinasService:MaquinasService
+    private maquinasService: MaquinasService,
+    private dialog: MatDialog
   ) {
-
     this.formularioMaquina2 = this.formBuilder.group({
       Numero: [''],
       Serie: [''],
@@ -28,23 +32,29 @@ export class MaquinasEditarComponent implements OnInit {
       Area: ['']
     });
 
-
     this.activeRoute.paramMap.subscribe((params) => {
       this.idRecibido = params.get('id');
       console.log('ID Recibido:', this.idRecibido);
   
+
       this.maquinasService.consultarmaquina(this.idRecibido).subscribe(respuesta => {
         console.log('Respuesta del servicio:', respuesta);
-  
-        if (respuesta && respuesta.Serie) {
-          this.formularioMaquina2.setValue({
-            Serie: respuesta.Serie,
-            Numero: respuesta.Numero,
-            Modelo: respuesta.Modelo,
-            Descripcion: respuesta.Descripcion,
-            Estado: respuesta.Estado,
-            Area: respuesta.Area
-          });
+
+        // Asegúrate de que respuesta sea un objeto JSON válido
+        if (respuesta && typeof respuesta === 'object') {
+          // Asegúrate de que los datos se serialicen como JSON válido
+          try {
+            this.formularioMaquina2.setValue({
+              Serie: respuesta.Serie || '',
+              Numero: respuesta.Numero || '',
+              Modelo: respuesta.Modelo || '',
+              Descripcion: respuesta.Descripcion || '',
+              Estado: respuesta.Estado || '',
+              Area: respuesta.Area || ''
+            });
+          } catch (error) {
+            console.error('Error al deserializar los datos JSON:', error);
+          }
         } else {
           console.error('No se encontraron datos válidos para el ID proporcionado.');
           // Aquí puedes mostrar un mensaje de error al usuario o redirigir a una página de error.
@@ -52,13 +62,52 @@ export class MaquinasEditarComponent implements OnInit {
       });
     });
   }
+
   CANCELAR() {
     this.router.navigateByUrl('/dashboard/maquinas/maquinas');
   }
-  enviarDatos(){
-    
+  enviarDatos() {
+    if (this.formularioMaquina2.valid) {
+      console.log('Formulario:', this.formularioMaquina2.value);
+      console.log('id rec', this.idRecibido);
+      console.log('Datos que se enviarán:', this.formularioMaquina2.value);
+
+     this.maquinasService.actualizarMaquina(this.idRecibido, this.formularioMaquina2.value).subscribe(
+    (response) => {
+        console.log('Respuesta del servidor:', response);
+
+        if (response.success === 1) {
+            console.log('La actualización fue exitosa');
+            // Accede a los datos actualizados
+            const maquinaActualizada = response.data;
+            console.log('Datos de la máquina actualizada:', maquinaActualizada);
+
+            this.mostrarDialogoAviso();
+        } else {
+            console.error('Error al actualizar la máquina:', response.error);
+            // Manejar errores del servicio aquí
+        }
+    },
+    (error) => {
+        console.error('Error al actualizar la máquina con error:', error);
+    }
+);
+
+    }
   }
- 
+  
+
+  mostrarDialogoAviso(): void {
+    const dialogAviso = this.dialog.open(AvisoDialogComponent, {
+      data: { message: 'Se actualizó correctamente en la Base de Datos' }
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigateByUrl('/dashboard/maquinas/maquinas');
+      }
+    });
+  }
+
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
   }

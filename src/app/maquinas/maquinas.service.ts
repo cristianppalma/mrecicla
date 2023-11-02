@@ -9,19 +9,14 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class MaquinasService {
   API: string = 'http://localhost/PhpAngular/';
-
   constructor( private clientService:HttpClient) { }
-
+  
   agregarMaquina(datosMaquina:Maquina):Observable<any>{
     return this.clientService.post(this.API+"?insertar=1",datosMaquina);
   }
 
- // listarMaquina(){
-   // return this.clientService.get(this.API);
-   //}
-
    listarMaquina(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API);
+    return this.clientService.get<PeriodicElement[]>(this.API+"?seleccionar=1");
   }
 
   eliminarMaquina(id: any): Observable<any> {
@@ -31,4 +26,8 @@ export class MaquinasService {
   consultarmaquina(id: any):Observable<any>{
     return this.clientService.get(this.API + "?consultarmaquina=" + id);
   }
+  actualizarMaquina(id: any, datosMaquina: Maquina): Observable<any> {
+    return this.clientService.post(this.API + "?actualizarv2=" + id, datosMaquina);
+  }
+  
 }

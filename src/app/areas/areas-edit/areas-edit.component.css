@@ -12,7 +12,7 @@
     text-align: center;
     border: 0px solid red;
     margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
-    margin-left: 28rem;
+    margin-left: 1rem;
   }
   
   .table {
@@ -51,7 +51,7 @@
     text-align: center;
     border: 0px solid red;
     margin-bottom: 20px;
-    margin-left: 28rem;
+    margin-right: 11rem;
     width: 80REM;
   }
   
@@ -73,7 +73,7 @@
   .formula {
     display: flex;
     border: 15px solid red;
-    margin-left: 27rem;
+    margin-right: 13rem;
     width: 40rem;
   }
   
@@ -97,7 +97,7 @@
     font-size: 14px;
   }
   .botones{
-    padding-left: 26.5rem;
+    padding-left: 12.5rem;
   }
   label{
     font-size: 17px;

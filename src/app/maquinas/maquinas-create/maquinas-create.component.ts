@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MaquinasService } from '../maquinas.service';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component'
-import { MatTableModule } from '@angular/material/table';import { MatTableDataSource } from '@angular/material/table';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -53,6 +50,7 @@ export class MaquinasCreateComponent implements OnInit {
       );
     }
   }
+  
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
       data: {message: 'Se registro correctamente en la Base de Datos'}
