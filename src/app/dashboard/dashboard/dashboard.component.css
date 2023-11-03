@@ -1,3 +1,12 @@
+.container {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.col-xl-3{
+  width: 24%;
+}
+
 .grey-bg {
   background-color: #F5F7FA;
 }
