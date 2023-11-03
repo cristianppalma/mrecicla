@@ -13,6 +13,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     InventarioControlComponent,
@@ -30,7 +34,12 @@ import {MatListModule} from '@angular/material/list';
     MatGridListModule,
     MatSelectModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    MatIconModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class InventarioModule { }

@@ -6,7 +6,7 @@ import { InventarioEditComponent } from './inventario-edit/inventario-edit.compo
 const routes: Routes = [
   {path:'inventarios',component: InventarioControlComponent},
   {path:'inventarioCrear', component:InventarioCrearComponent},
-  {path:'inventarioEdit',component:InventarioEditComponent}
+  {path:'inventarioEdit/:id',component:InventarioEditComponent}
 ]
 
 @NgModule({

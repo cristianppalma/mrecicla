@@ -1,58 +1,77 @@
+<div class="container">
+  <div class="cabecera">
+    <H1 >EDITAR NUEVA SOLICITUD </H1>
+  </div >
+  
+    <form [formGroup]="formularioEditarSolicitud" (ngSubmit)="enviarDatosActualizar()" >
+      <div class="formula" style="border:none;" > 
+        <div class="formula1">
 
-<H1 class="Title">EDITAR SOLICITUD </H1>
-<div>
-    </div>
-    <form class="example-form">
-
-        <mat-form-field class="example-full-width">
-          <mat-label>ID</mat-label>
-          <input matInput placeholder="" value="">
-        </mat-form-field>
-        <mat-form-field class="derecha">
-          <mat-label>Puesto</mat-label>
-          <input matInput placeholder="" value="">
-        </mat-form-field>
-        
-        <div>
-          <mat-form-field class="example-full-width">
+        <label>Nombre del producto</label> 
+          <mat-form-field>
             <mat-label>Producto</mat-label>
-            <input matInput placeholder="" value="">
+            <input formControlName="nombreProducto" matInput>
           </mat-form-field>
-          <mat-form-field class="derecha">
-            <mat-label >Area designada</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let area of Areas" [value]="area.value">
-                {{area.viewValue}}
-              </mat-option>
-            </mat-select>
-            
-          </mat-form-field>
-        </div>
 
-        <div>
-          <mat-form-field class="example-full-width">
-            <mat-label>Color</mat-label>
-            <input matInput placeholder="" value="">
+          <label>Peso</label> 
+          <mat-form-field >
+            <mat-label>Peso</mat-label>
+            <input formControlName="Peso" matInput>
           </mat-form-field>
-         
-        </div>
-       
-        <div>
+
+          <label>Dimensiones</label>
           <mat-form-field class="example-full-width">
-            <mat-label>Dimenciones</mat-label>
-            <input matInput placeholder="" value="">
+            <mat-label>Dimensiones</mat-label>
+            <input formControlName="Dimensiones" matInput>
           </mat-form-field>
-        
+
+          <label>Fecha Peticion</label> 
+          <mat-form-field >
+            <mat-label>Fecha Peticion</mat-label>
+            <input formControlName="FechaPeticion" matInput>
+          </mat-form-field>
+
           
+         
+        <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
+
         </div>
 
-        <div>
+        <div class="formula2">
+          <label>Calibre</label>
           <mat-form-field class="example-full-width">
             <mat-label>Calibre</mat-label>
-            <input matInput placeholder="" value="">
+            <input formControlName="Calibre" matInput>
+          </mat-form-field>
+
+          <label>Area designada</label> 
+          <mat-form-field>
+            <mat-label >Area designada</mat-label>
+            <input formControlName="AreaDesignada" matInput>
+          </mat-form-field>
+
+          <label>Composicion</label> 
+          <mat-form-field >
+            <mat-label>Composicion</mat-label>
+            <input formControlName="Composicion" matInput>
+          </mat-form-field>
+
+          <label>Fecha Recepcion</label> 
+          <mat-form-field >
+            <mat-label>Fecha Recepcion</mat-label>
+            <input formControlName="FechaRecepcion" matInput>
           </mat-form-field>
         </div>
-        <button type="submit" (click)="SolicitudReturn();" class="btn_int" mat-raised-button style="background: #80a943;">
-          Regresar</button>
-      </form>
-     
+      </div>
+        <div class="center-button">
+          <button type="submit" mat-button class="button-guardar" mat-raised-button style="background: #59e154; color: white;">
+            Guardar
+          </button>
+          <button  (click)="Cancelar();" mat-button class="button-div"mat-raised-button style="background: #dd3030; color: white;">
+            Cancelar
+          </button>
+        </div>
+    </form>
+</div>
+
+        

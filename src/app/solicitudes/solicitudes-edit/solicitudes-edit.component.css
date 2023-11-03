@@ -1,36 +1,63 @@
-.Title{
-    color: #80a943;
-    text-align: center;
-    font-size: larger;
-  }
-  .btn_int {
-    background: #80a943;
-    width: 150px;
-    height: 50px;
-    font-size: large;
-    margin: 8px;
-    border-radius: 5px;
-    margin-left: 600px;
-    }
-  
-  .derecha{
-    margin-left: 20px;
-  }
-  .select_img{
-    margin-left: 20px;
-    font-size: large;
-  }
-  mat-grid-tile {
-    background: lightblue;
-    
-  }
-  .cont{
-    margin-left: 250px;
-  }
-  
-  .img_update{
-    margin-left: 20px;
-  }
-  .example-form{
-   margin-left: 300px;
-  }
+.container {
+  display: flex;
+  flex-direction: column; /* Apila elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
+}
+.cabecera {
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
+  margin-left: 28rem;
+}
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 1rem; /* Agrega espacio entre los botones */
+}
+.cabecera {
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px;
+  margin-left: 28rem;
+  width: 80REM;
+}
+h1{
+  font-size: 48px;
+  margin-right: 450px;
+}
+.mat-form-field {
+  margin: 1rem 0;
+  flex: 1; /* Hace que los campos de entrada ocupen el espacio disponible */
+}
+.mat-label {
+  margin-bottom: 0.5rem;
+  width: 80%; /* Ancho al 100% del contenedor */
+  box-sizing: border-box; /* Incluye el padding en el ancho */
+  font-size: 14px;
+}
+label{
+  font-size: 17px;
+}
+
+.center-button{
+  margin-left: 550px;
+}
+.formula {
+  display: flex;
+  border: 15px solid red;
+  margin-left: 27rem;
+  width: 58rem;
+}
+.formula1,
+.formula2 {
+  padding: 1rem; /* Añade espacio entre los elementos */
+  display: flex;
+  flex-direction: column;
+}
+
+.button-div{
+  margin-left: 40px;
+}

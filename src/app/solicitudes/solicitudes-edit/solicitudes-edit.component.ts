@@ -1,18 +1,19 @@
-import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   MatBottomSheet,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
-import { MatListModule } from '@angular/material/list';
-import {MatNativeDateModule} from '@angular/material/core';
-import { MatIcon } from '@angular/material/icon';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
-import {NgIf} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { PeriodicElement } from '../PeriodicElement';
+import { SolicitudesService } from '../solicitudes.service';
+import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
+import { HttpParams } from '@angular/common/http';
+import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component';
 interface Area {
   value: string;
   viewValue: string;
@@ -27,21 +28,87 @@ export interface DialogData {
   templateUrl: './solicitudes-edit.component.html',
   styleUrls: ['./solicitudes-edit.component.css']
 })
-export class SolicitudesEditComponent {
+export class SolicitudesEditComponent implements OnInit{
  
+  formularioEditarSolicitud:FormGroup;
+  idsolicitud:any;
   Areas: Area[] = [
     {value: 'area1', viewValue: 'telares'},
     {value: 'area2', viewValue: 'hilado'},
     {value: 'area3', viewValue: 'otro'},
   ];
+  
 
-  constructor(private router:Router, private _bottomSheet: MatBottomSheet,public dialog: MatDialog) {}
+  constructor(private router:Router,
+     private _bottomSheet: MatBottomSheet,
+     public dialog: MatDialog,
+     private formBuilder :FormBuilder,
+       private SolicitudesService :SolicitudesService,
+       private activateRoute: ActivatedRoute
+     
+     ) {
+      this.formularioEditarSolicitud =this.formBuilder.group({
+        nombreProducto:[''],
+        Peso: [''],
+        Dimensiones: [''],  
+        FechaPeticion: [''],
+        Calibre: [''],
+        AreaDesignada:[''],
+        Composicion:[''],
+        FechaRecepcion:['']
+        
+      });
+      this.activateRoute.paramMap.subscribe(params =>{
+        this.idsolicitud=params.get('id');
 
+        this.SolicitudesService.consultarSolicitudes(this.idsolicitud).subscribe((respuesta=>{
+          this.formularioEditarSolicitud.setValue({
+            nombreProducto: respuesta.nombreProducto,
+            Peso: respuesta.Peso,
+            Dimensiones:  respuesta.Dimensiones,
+            FechaPeticion: respuesta.FechaPeticion,
+            Calibre: respuesta.Calibre,
+            AreaDesignada: respuesta.AreaDesignada,
+            Composicion: respuesta.Composicion,
+            FechaRecepcion: respuesta.FechaRecepcion
+          });
+        }))
+      })
 
-  SolicitudReturn()
-  {
-    this.router.navigateByUrl('/dashboard/solicitudes/solicitudes');
-  } 
+     }
+     enviarDatosActualizar(): void {
+      if (this.formularioEditarSolicitud.valid) 
+      {
+        console.log('Se presionó el botón');
+        console.log(this.formularioEditarSolicitud.value);
+        this.SolicitudesService.editarSolicitud(this.idsolicitud,this.formularioEditarSolicitud.value).subscribe(
+          (response) => {
+           console.log('Se actualizo correctamente');
+           this.mostratDialogoAviso();
+           
+          
+          },
+          (error) => {
+             //Manejar errores del servicio aquí
+          }
+        );
+      }
+    }
+    mostratDialogoAviso():void{
+      const dialogAviso = this.dialog.open(AvisoDialogComponent,{
+        data: {message: 'Se actualizo correctamente en la Base de Datos'}
+      });
+      dialogAviso.afterClosed().subscribe(result => {
+        if (result) {
+          this.router.navigateByUrl('/dashboard/solicitudes/solicitudes');
+        }
+      });
+    
+    }
+
+     Cancelar(){
+      this.router.navigateByUrl('/dashboard/solicitudes/solicitudes');
+    }
     /**
     boton de abrir imagen
     */
@@ -49,7 +116,9 @@ export class SolicitudesEditComponent {
   {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
-  
+  ngOnInit(): void {
+    // Puedes realizar alguna inicialización adicional aquí si es necesario.
+  }
 }
 
 export class BottomSheetOverviewExampleSheet {

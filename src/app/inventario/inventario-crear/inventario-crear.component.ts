@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   MatBottomSheet,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InventarioService } from '../inventario.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component'
+import { MatTableModule } from '@angular/material/table';import { MatTableDataSource } from '@angular/material/table';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
 
-
-interface Area {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-inventario-crear',
@@ -22,20 +24,30 @@ interface Area {
 
 
 
-export class InventarioCrearComponent {
+export class InventarioCrearComponent implements OnInit{
+  formularioProducto: FormGroup;
 
-  Areas: Area[] = [
-    {value: 'area1', viewValue: 'telares'},
-    {value: 'area2', viewValue: 'hilado'},
-    {value: 'area3', viewValue: 'otro'},
-  ];
-
-  constructor(private router:Router, private _bottomSheet: MatBottomSheet) {}
-
-  inventarioReturn()
-  {
+  constructor(private router:Router, 
+    private _bottomSheet: MatBottomSheet,
+    private formBuilder :FormBuilder,
+    private InventarioService: InventarioService,
+    private dialog:MatDialog
+  ) {
+    this.formularioProducto = this.formBuilder.group({
+      ID: ['', [Validators.required]],
+      Producto: [''],
+      Peso: [''],
+      Dimensiones: [''],  
+      FechaCreacion: [''],
+      Clibre: [''],
+      Porcentaje:[''],
+      AreasDesignadas:['']
+    });
+  }
+  
+  Cancelar(){
     this.router.navigateByUrl('/dashboard/inventario/inventarios');
-  } 
+  }
     /**
     boton de abrir imagen
     */
@@ -43,7 +55,47 @@ export class InventarioCrearComponent {
   {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
+  
+
+  enviarDatos(): void {
+    if (this.formularioProducto.valid) 
+    {
+      console.log('Se presionó el botón');
+      console.log(this.formularioProducto.value);
+      this.InventarioService.agregarProducto(this.formularioProducto.value).subscribe(
+        (response) => {
+         console.log('Se registro correctamente');
+         this.mostratDialogoAviso();
+         
+        
+        },
+        (error) => {
+           //Manejar errores del servicio aquí
+        }
+      );
+    }
+  }
+  mostratDialogoAviso():void{
+    const dialogAviso = this.dialog.open(AvisoDialogComponent,{
+      data: {message: 'Se registro correctamente en la Base de Datos'}
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigateByUrl('/dashboard/inventario/inventarios');
+      }
+    });
+  
+  }
+
+  ngOnInit(): void {
+    // Puedes realizar alguna inicialización adicional aquí si es necesario.
+  }
 }
+
+
+
+
+
 @Component({
   selector: 'bottom-sheet-overview-example-sheet',
   templateUrl: 'inventario-opciones.component.html',
