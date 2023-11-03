@@ -1,57 +1,123 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { PeriodicElement } from '../PeriodicElement';
+import { MatDialog } from '@angular/material/dialog';
+import { InventarioService } from '../inventario.service';
+import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  calibre: string;
-  porcentaje: string;
- fecha:string;
-  area: string;
-  action:string;
-  
+interface Food {
+  value: string;
+  viewValue: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Borra', weight: 300, symbol: 'Pendiente',calibre:'No aplica',porcentaje:'Borra',fecha:Date().toLocaleString(),area:'telares',action:'Editar'},
-  {position: 2, name: 'Hilo', weight: 200, symbol: 'Pendiente',calibre:'14',porcentaje:'80% algodon, 20% poliester',fecha:Date().toLocaleString(),area:'telares',action:'Editar'},
-  {position: 3, name: 'Hilo', weight: 180, symbol: 'Pendiente',calibre:'24',porcentaje:'100% algodon',fecha:Date().toLocaleString(),area:'telares',action:'Editar'},
-  {position: 4, name: 'Trapo', weight: 400, symbol: 'Pendiente',calibre:'No aplica',porcentaje:'',fecha:Date().toLocaleString(),area:'telares',action:'Editar'},
-  {position: 5, name: 'Trapo', weight: 250, symbol: 'Pendiente',calibre:'No aplica',porcentaje:'',fecha:Date().toLocaleString(),area:'telares',action:'Editar'},
-];
+
 @Component({
   selector: 'app-inventario-control',
   templateUrl: './inventario-control.component.html',
   styleUrls: ['./inventario-control.component.css'],
 })
 
-export class InventarioControlComponent {
+export class InventarioControlComponent implements OnInit {
 
-   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','calibre','porcentaje','fecha','area','action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  Producto:PeriodicElement[] = [];
+  displayedColumns:string[] = ['idproducto','Producto','Peso','Dimensiones','FechaCreacion','Clibre','Porcentaje','AreasDesignadas','action']
+  dataSource: MatTableDataSource<PeriodicElement>;
 
-  
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  formatDateWithLeadingZeros(date: Date): string {
+    const day = ('0' + date.getDate()).slice(-2);
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const year = date.getFullYear();
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    return `${day}/${month}/${year}`;
   }
-  constructor(private router:Router) {}
+  foods: Food[] = [
+    {value:'',viewValue:''},
+    {value: 'Hilos', viewValue: 'Hilos'},
+    {value: 'Telar', viewValue: 'Telar'},
+    {value: 'Bordado', viewValue: 'Bordado'},
+  ];
 
-  inventario(){
-    this.router.navigateByUrl('/dashboard/inventario/inventarioCrear');
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  inventarioEdit(){
-    this.router.navigateByUrl('/dashboard/inventario/inventarioEdit');
-  }
-  
-  Editar(element: PeriodicElement) {
+
+  verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
-    console.log('Detalles de:', element.name);
+    console.log('Detalles de:');
+    const idproducto = element.idproducto;
     // Puedes abrir un modal, mostrar información adicional, etc.
+    this.router.navigateByUrl(`/dashboard/inventario/inventarioEdit/${idproducto}`)
   }
+
+  constructor(private router:Router,
+    private dialog:MatDialog,
+    private InventarioService:InventarioService
+    
+    ) {
+      this.dataSource=new MatTableDataSource<PeriodicElement>([]);
+    }
+    inventario(){
+      this.router.navigateByUrl('/dashboard/inventario/inventarioCrear');
+    }
+
+    eliminarInventario(element:PeriodicElement): void{
+      const index =this.dataSource.data.indexOf(element);
+
+      if(index >=0){
+        this.dataSource.data.splice(index,1);
+        this.dataSource._updateChangeSubscription();
+      }
+    }
+    eliminarInventario2(element:PeriodicElement): void{
+      const index =this.dataSource.data.indexOf(element);
+
+      if(index >=0){
+        const idproducto = element.idproducto;
+        this.dataSource.data.splice(index,1);
+        this.InventarioService.borrarInventario(idproducto).subscribe();
+        this.dataSource._updateChangeSubscription();
+      }
+    }
+    mostrarDialogoDeConfirmacion(element: PeriodicElement): void {
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.eliminarInventario(element);
+        }
+      });
+    }
+    mostrarDialogoDeConfirmacion2(element: PeriodicElement): void {
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.eliminarInventario2(element);
+        }
+      });
+    }
   
+  ngOnInit(): void {
+    this.InventarioService.listarInventario().subscribe((respuesta: PeriodicElement[]) => {
+      console.log(respuesta);
+      this.Producto = respuesta;
+      this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
+    });
+  }
+
+  
+ 
+
+
+
+
 }
+
+
+
+  
