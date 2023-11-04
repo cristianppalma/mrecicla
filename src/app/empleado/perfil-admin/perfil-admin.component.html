@@ -5,15 +5,20 @@
 <div class="Titulo">
 <h1>Perfil personal</h1>
 
+ <!--    <mat-checkbox  (change)="onCheckboxChange()" style="margin-left: 200px;">Editar Informacion</mat-checkbox>
+ 
+  esto se pone despues del matImput de los textos  [disabled]="checkboxState" 
+ -->
 </div>
 
 <form [formGroup]="formularioEditarEmpleado" (ngSubmit)="enviarDatos()">
 
   <div class="contenedor">
-  
+    <section class="example-section">
+    </section>
       <div class="izquierda">
           <br>
-          <mat-form-field class="example-full-width custom-width">
+          <mat-form-field  class="example-full-width custom-width">
               <mat-label>Nombre</mat-label>
               <input formControlName ='Nombre' matInput placeholder="EX. juan" >
             </mat-form-field>
@@ -48,7 +53,7 @@
   
             <mat-form-field>
               <mat-label>Puesto </mat-label>
-              <mat-select formControlName="Puesto">
+              <mat-select  formControlName="Puesto">
                   <mat-option value="0"> </mat-option>
                   <mat-option value="Administrador">Administrador</mat-option>
               <mat-option value="Operador-costura">Operador de costura circular</mat-option>

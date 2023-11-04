@@ -16,7 +16,12 @@ import { __param } from 'tslib';
 export class PerfilAdminComponent implements OnInit {
   formularioEditarEmpleado: FormGroup;
   idEmpleado: any;
+  checkboxState: boolean = false;
 
+  // Función para cambiar el estado del checkbox
+  onCheckboxChange() {
+    this.checkboxState = !this.checkboxState;
+  }
   constructor(
     private editarEmpleado: EmpleadoService,
     private FormBuilder: FormBuilder,
