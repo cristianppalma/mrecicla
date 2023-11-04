@@ -10,11 +10,13 @@ import {editarEmpleado} from './editarEmpleado';
   providedIn: 'root'
 })
 export class EmpleadoService {
-  API: string = 'http://localhost/PhpAngular/';
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/'
+
+  // API: string = 'http://localhost/PhpAngular/';
   constructor( private clientService:HttpClient) { }
 
 
-  
+
   AgregarUsuartio(datosEmpleado:Empleado):Observable<any>{
     return this.clientService.post(this.API+"?insertarEmpleado=1",datosEmpleado);
   }
@@ -22,7 +24,7 @@ export class EmpleadoService {
   listaEmpleado(): Observable<listaEmpleado[]> {
     return this.clientService.get<listaEmpleado[]>(this.API+"?seleccionarEmpleado=1");
   }
-  
+
   eliminarUsuario(id:string): Observable<listaEmpleado[]> {
     return this.clientService.get<listaEmpleado[]>(this.API+"?borrarEmpleado=1");
   }
@@ -35,7 +37,7 @@ export class EmpleadoService {
     return this.clientService.post(this.API+"?updateEmpleado="+id,UpdateEmpleado);
   }
 
-  
+
 }
 
 

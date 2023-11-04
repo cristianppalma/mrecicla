@@ -8,9 +8,11 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class MaquinasService {
-  API: string = 'http://localhost/PhpAngular/';
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/'
+
+  // API: string = 'http://localhost/PhpAngular/';
   constructor( private clientService:HttpClient) { }
-  
+
   agregarMaquina(datosMaquina:Maquina):Observable<any>{
     return this.clientService.post(this.API+"?insertarr=1",datosMaquina);
   }
@@ -22,12 +24,12 @@ export class MaquinasService {
   eliminarMaquina(id: any): Observable<any> {
     return this.clientService.delete(this.API + "?borrar=" + id);
   }
-  
+
   consultarmaquina(id: any):Observable<any>{
     return this.clientService.get(this.API + "?consultarmaquina=" + id);
   }
   actualizarMaquina(id: any, datosMaquina: Maquina): Observable<any> {
     return this.clientService.post(this.API + "?actualizarv2=" + id, datosMaquina);
   }
-  
+
 }

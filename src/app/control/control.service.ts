@@ -7,7 +7,9 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class ControlService {
-  API: string = 'http://localhost/PhpAngular/controlgastos/';
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/controlgastos/'
+
+  // API: string = 'http://localhost/PhpAngular/controlgastos/';
 
   constructor( private clientService:HttpClient) {}
     agregargasto(datosControl:Gastos):Observable<any>{
