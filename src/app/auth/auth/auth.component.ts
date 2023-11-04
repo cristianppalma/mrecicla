@@ -45,6 +45,7 @@ export class AuthComponent  implements OnInit {
       console.log('Se presionó el botón');
       console.log(this.formularioLogin.value);
       this.AuthService.verUsuario(this.formularioLogin.value).subscribe(
+        
         (response) => {
           if (response.hasOwnProperty('error')) {
             // Se encontró un mensaje de error en la respuesta
@@ -53,7 +54,11 @@ export class AuthComponent  implements OnInit {
           } else {
             console.log('Se logueó correctamente');
             this.router.navigateByUrl('/dashboard/tablero');
-          }
+
+            let usuario = response.idUsuario;
+            localStorage.setItem("id_user", usuario );
+
+          } 
         },
         (error) => {
           // Manejar errores del servicio aquí

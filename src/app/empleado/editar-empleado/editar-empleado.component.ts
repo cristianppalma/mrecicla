@@ -1,24 +1,15 @@
 import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component'
-import { MatTableModule } from '@angular/material/table';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { EmpleadoService } from '../empleado.service';
 import { ActivatedRoute } from '@angular/router';
 import { __param } from 'tslib';
 
 
-interface puesto {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
   selector: 'app-editar-empleado',
   templateUrl: './editar-empleado.component.html',

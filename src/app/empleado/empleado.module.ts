@@ -16,7 +16,7 @@ import {MatTableModule} from '@angular/material/table';
 import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AvisoDialogComponent } from './aviso-dialog/aviso-dialog.component';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     UsuarioTableComponent,
@@ -28,6 +28,7 @@ import { AvisoDialogComponent } from './aviso-dialog/aviso-dialog.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
     MatIconModule,
     HttpClientModule,
     MatDialogModule,
