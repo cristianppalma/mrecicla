@@ -7,15 +7,15 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class ControlService {
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/controlgastos/'
+ API: string = 'https://recicladora.arvispace.com/PhpAngular/controlgastos/'
 
-  // API: string = 'http://localhost/PhpAngular/controlgastos/';
+ //API: string = 'http://localhost/PhpAngular/controlgastos/';
 
   constructor( private clientService:HttpClient) {}
-    agregargasto(datosControl:Gastos):Observable<any>{
-      return this.clientService.post(this.API+"?insertarGastos=1",datosControl);
+    agregargasto(datosGasto:Gastos):Observable<any>{
+      return this.clientService.post(this.API+"?insertarGastos=1",datosGasto);
     }
-
+    
    listarGastos(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API+"?seleccionarGastos=1");
   }
