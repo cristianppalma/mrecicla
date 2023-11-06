@@ -20,11 +20,16 @@
 }
 .table-container {
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
   width: 1200px;
   margin: 10px; /* Ajusta según sea necesario */
   display: flex;
+  
+  text-align: center;
+  /* Estilos para la tabla si es necesario */
+
+
+  max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
+  overflow-y: auto;
 }
 .formula {
   display: flex;
