@@ -24,7 +24,6 @@
   width: 999px;
   /* margin-left: 28rem; */
   max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
-  overflow-y: auto;
 }
 
 /* Estilo para los botones BUSCAR y AGREGAR */
