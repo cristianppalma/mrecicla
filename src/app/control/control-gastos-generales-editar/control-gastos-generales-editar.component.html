@@ -16,7 +16,7 @@
           <label>Periodo</label>
           <mat-form-field>
             <mat-label>Periodo</mat-label>
-              <input formControlName="Periodo" matInput>
+              <input type="date" formControlName="Periodo" matInput>
           </mat-form-field>
           <label>Usuario</label>
           <mat-form-field>
@@ -26,7 +26,7 @@
           <label>Fecha de Creacion</label>
           <mat-form-field>
             <mat-label>Fecha de Creacion</mat-label>
-              <input formControlName="FechaCreacion" matInput>
+              <input type="date"  formControlName="FechaCreacion" matInput>
           </mat-form-field>
         </div>
         <div class="formula2">
@@ -38,7 +38,7 @@
           <label>Fecha de Actualizacion</label>
           <mat-form-field>
             <mat-label>Fecha de Actualizacion</mat-label>
-              <input formControlName="FechaActualizacion" matInput>
+              <input type="date"  formControlName="FechaActualizacion" matInput>
           </mat-form-field>
           <label>Monto</label>
           <mat-form-field>
@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="botones">
-        <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
+        <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">EDITAR</button>
         <button (click)="CancelarGastosGeneralesEditar();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
       </div>
     </form>

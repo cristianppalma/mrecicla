@@ -53,7 +53,8 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
         
         },
         (error) => {
-          // Manejar errores del servicio aquí7
+          // Manejar errores del servicio aquí
+          console.log(error);
           
         }
       );
