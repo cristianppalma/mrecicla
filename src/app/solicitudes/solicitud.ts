@@ -1,5 +1,5 @@
 export class solicitud{
-    ID!:String;
+   // ID!:String;
     nombreProducto!:String;
     Peso!:String;
     Dimensiones!:String;

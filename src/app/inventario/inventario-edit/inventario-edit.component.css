@@ -7,57 +7,82 @@
   min-width: 70vh;
   max-width: 100vh;
 }
-.cabecera {
-  text-align: center;
-  border: 0px solid red;
-  margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
-  margin-left: 28rem;
+
+
+
+.Filter {
+  margin-left: 3rem;
 }
+
+/* Estilo para los botones BUSCAR y AGREGAR */
+.mat-form-field {
+  display: flex;
+  align-items: center;
+}
+
 button.mat-button {
   background-color: #d6e44b;
   margin-left: 1rem; /* Agrega espacio entre los botones */
 }
+
+
 .cabecera {
   text-align: center;
   border: 0px solid red;
-  margin-bottom: 20px;
-  margin-left: 28rem;
+  margin-bottom: 10px;
+  margin-right: 12rem;
   width: 80REM;
+}
+
+.Filter {
+  display: flex;
+  align-items: center;
+  margin-left: 5rem;
+}
+
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 1rem;
 }
 h1{
   font-size: 48px;
-  margin-right: 450px;
 }
+
+
+.formula {
+  display: flex;
+  border: 15px solid red;
+  margin-right: 15rem;
+  width: 57rem;
+  /* margin-left: 27rem; */
+  width: 58rem;
+}
+
+.formula1,
+.formula2 {
+  flex: 1;
+  padding: 1rem; /* Añade espacio entre los elementos */
+  display: flex;
+  flex-direction: column;
+}
+
 .mat-form-field {
   margin: 1rem 0;
   flex: 1; /* Hace que los campos de entrada ocupen el espacio disponible */
 }
+
 .mat-label {
   margin-bottom: 0.5rem;
   width: 80%; /* Ancho al 100% del contenedor */
   box-sizing: border-box; /* Incluye el padding en el ancho */
   font-size: 14px;
 }
+.botones{
+  padding-left: 20rem;
+}
+.left{
+ margin-right: 10px;
+}
 label{
   font-size: 17px;
-}
-
-.center-button{
-  margin-left: 550px;
-}
-.formula {
-  display: flex;
-  border: 15px solid red;
-  margin-left: 27rem;
-  width: 58rem;
-}
-.formula1,
-.formula2 {
-  padding: 1rem; /* Añade espacio entre los elementos */
-  display: flex;
-  flex-direction: column;
-}
-
-.button-div{
-  margin-left: 40px;
 }

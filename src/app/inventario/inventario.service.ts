@@ -7,7 +7,8 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class InventarioService {
-  API: string = 'http://localhost/PhpAngular/inventario/';
+  //API: string= 'https://recicladora.arvispace.com/PhpAngular/inventario/'
+ API: string = 'http://localhost/PhpAngular/inventario/';
 
   constructor( private clientService:HttpClient) { }
 

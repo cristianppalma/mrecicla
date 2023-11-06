@@ -44,10 +44,14 @@
             <input formControlName="Calibre" matInput>
           </mat-form-field>
 
-          <label>Area designada</label> 
+          <label>Area designada</label>
           <mat-form-field>
-            <mat-label >Area designada</mat-label>
-            <input formControlName="AreaDesignada" matInput>
+            <mat-label>Área</mat-label>
+            <mat-select  formControlName="AreaDesignada">
+              <mat-option value="0"> </mat-option>
+              <mat-option value="Telares">Telares</mat-option>
+              <mat-option value="Hilado">Hilado</mat-option>
+            </mat-select>
           </mat-form-field>
 
           <label>Composicion</label> 

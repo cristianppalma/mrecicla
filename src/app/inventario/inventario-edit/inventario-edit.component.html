@@ -21,16 +21,21 @@
             <input formControlName="Peso" matInput>
           </mat-form-field>
           <label>Image</label>
-          <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
-        </div>
 
-        <div class="formula2">
+
           <label>Dimensiones</label>
           <mat-form-field class="example-full-width">
             
             <mat-label>Dimensiones </mat-label>
             <input formControlName="Dimensiones" matInput>
-          </mat-form-field>
+          </mat-form-field> 
+
+
+          <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
+        </div>
+
+        <div class="formula2">
+          
 
           <label>FechaCreacion</label>
           <mat-form-field class="example-full-width">
@@ -39,10 +44,14 @@
           </mat-form-field>
         
 
-          <label>Area Designada</label>
-          <mat-form-field class="example-full-width">
-            <mat-label>Area Designada</mat-label>
-            <input formControlName="AreasDesignadas" matInput>
+          <label>Area designada</label>
+          <mat-form-field>
+            <mat-label>Área</mat-label>
+            <mat-select  formControlName="AreaDesignada">
+              <mat-option value="0"> </mat-option>
+              <mat-option value="Telares">Telares</mat-option>
+              <mat-option value="Hilado">Hilado</mat-option>
+            </mat-select>
           </mat-form-field>
 
           <label>Porcentaje</label>
@@ -59,13 +68,11 @@
         
         </div>
       </div>
-        <div class="center-button">
-          <button type="submit" mat-button class="button-guardar" mat-raised-button style="background: #59e154; color: white;">
-            Guardar
-          </button>
-          <button (click)="Cancelar();" mat-button class="button-div"mat-raised-button style="background: #dd3030; color: white;">
-            Cancelar
-          </button>
-        </div>
+      <div class="botones">
+        <button type="submit" class="left" mat-button style="background-color: #d6e44b; margin-left: 1rem;">ACTUALIZAR</button>
+      <button  (click)="Cancelar();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
+
+      </div>
       </form>
+     
 </div>

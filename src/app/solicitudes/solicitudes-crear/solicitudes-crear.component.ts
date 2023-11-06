@@ -38,7 +38,7 @@ export class SolicitudesCrearComponent implements OnInit{
  private dialog:MatDialog
  ) {
   this.formularioSolicitud = this.formBuilder.group({
-    ID: ['', [Validators.required]],
+    //ID: ['', [Validators.required]],
     nombreProducto: [''],
     Peso: [''],
     Dimensiones: [''],  

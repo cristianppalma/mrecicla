@@ -34,7 +34,7 @@ export class InventarioCrearComponent implements OnInit{
     private dialog:MatDialog
   ) {
     this.formularioProducto = this.formBuilder.group({
-      ID: ['', [Validators.required]],
+      //ID: ['', [Validators.required]],
       Producto: [''],
       Peso: [''],
       Dimensiones: [''],  
