@@ -7,8 +7,9 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class InventarioService {
-  //API: string= 'https://recicladora.arvispace.com/PhpAngular/inventario/'
- API: string = 'http://localhost/PhpAngular/inventario/';
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
+
+  // API: string = 'http://localhost/PhpAngular/inventario/';
 
   constructor( private clientService:HttpClient) { }
 
@@ -27,7 +28,7 @@ export class InventarioService {
   //Actualizar y consultar
   consultarInventario(id:any): Observable<PeriodicElement> {
     return this.clientService.get<PeriodicElement>(this.API+"?consultarInventario="+id);
-    
+
   }
 
   editarproducto(id:any, datosProducto:producto):Observable<any>{
@@ -36,4 +37,3 @@ export class InventarioService {
   }
 
 }
-  

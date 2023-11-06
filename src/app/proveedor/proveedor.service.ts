@@ -8,8 +8,9 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class ProveedorService {
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/proveedores/'
 
-  API: string = 'http://localhost/PhpAngular/proveedores/';
+  // API: string = 'http://localhost/PhpAngular/proveedores/';
 
   constructor( private clientService:HttpClient) { }
 

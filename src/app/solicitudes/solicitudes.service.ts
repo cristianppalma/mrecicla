@@ -7,8 +7,9 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class SolicitudesService {
-  //API: string= 'https://recicladora.arvispace.com/PhpAngular/solicitudes/'
- API: string = 'http://localhost/PhpAngular/solicitudes/';
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/solicitudes/'
+
+  // API: string = 'http://localhost/PhpAngular/solicitudes/';
 
   constructor( private clientService:HttpClient) { }
 
@@ -27,7 +28,7 @@ export class SolicitudesService {
   //Actualizar y consultar
   consultarSolicitudes(id:any): Observable<PeriodicElement> {
     return this.clientService.get<PeriodicElement>(this.API+"?consultarSolicitudes="+id);
-    
+
   }
 
   editarSolicitud(id:any, datosSolicitud:solicitud):Observable<any>{

@@ -6,6 +6,8 @@
   min-height: 10vh;
   min-width: 70vh;
   max-width: 100vh;
+
+  margin-left: 18%;
 }
 
 .cabecera {
@@ -18,7 +20,7 @@
 .table {
   text-align: center;
   /* Estilos para la tabla si es necesario */
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 999px;
   /* margin-left: 28rem; */
   max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */

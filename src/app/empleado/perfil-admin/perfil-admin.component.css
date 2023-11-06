@@ -14,6 +14,8 @@ img {
 .contenedor {
     display: flex;             /* Activa Flexbox */
     justify-content: space-between; /* Espacia los elementos de extremo a extremo */
+    width: 990px;
+
 }
 
 .izquierda {
@@ -25,7 +27,7 @@ img {
 
 .derecha {
   /*  background-color: antiquewhite;*/
-    margin-left: 350px
+    margin-left: 50px
 }
 .custom-buton{
     margin-left: 350px;
