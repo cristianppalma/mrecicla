@@ -15,6 +15,7 @@ body{
   margin-top:20px;
   background:#FAFAFA;
 }
+
 .order-card {
   color: #fff;
 }
@@ -46,7 +47,6 @@ body{
 .bg-c-purple {
   background: linear-gradient(45deg, #ff2fe8, #6851ff);
 }
-
 
 .card {
   border-radius: 5px;
