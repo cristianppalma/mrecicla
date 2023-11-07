@@ -8,8 +8,7 @@ import { Component } from '@angular/core';
 export class PagesComponent {
   borrarStorage(){
     // Para borrar todos los elementos del Local Storage
-localStorage.clear();
-
+  localStorage.clear();
   }
 
 }

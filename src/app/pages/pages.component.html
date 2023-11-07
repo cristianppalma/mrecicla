@@ -9,15 +9,17 @@
       Admin
     </span> -->
     <button mat-button class="" style="color:#000;">
-  <span style="color: #000;" [routerLink]="['empleado/adminPrfile']">
-      <a style="color: #000;" [routerLink]="['empleado/adminPrfile']"> Admin </a>
-    </span>
-  </button>
+      <span style="color: #000;" [routerLink]="['empleado/adminPrfile']">
+        <a style="color: #000;" [routerLink]="['empleado/adminPrfile']"> Admin </a>
+      </span>
+    </button>
     <button mat-button class="" style="color:#000;">
       <mat-icon style="color: #000;">logout</mat-icon>
-      <span style="color: #000;"><a style="color: #000;" [routerLink]="['/login']" (click)="borrarStorage()">Cerrar Sesión</a></span>
+      <span style="color: #000;">
+        <a style="color: #000;" [routerLink]="['/login']" (click)="borrarStorage()">Cerrar Sesión</a>
+      </span>
     </button>
-   </mat-toolbar>
+  </mat-toolbar>
 </p>
 
 <mat-sidenav-container class="example-container">
@@ -77,7 +79,6 @@
       <router-outlet>
       </router-outlet>
     </div>
-
 
   </mat-sidenav-content>
 </mat-sidenav-container>
