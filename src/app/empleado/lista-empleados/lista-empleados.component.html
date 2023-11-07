@@ -14,27 +14,27 @@
 
        <mat-form-field class="example-full-width custom-width">
     <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Ex. Juan" >
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Juan" >
   </mat-form-field>
   
   <mat-form-field class="example-full-width custom-width">
     <mat-label>Turno </mat-label>
-    <input matInput placeholder="Ex. M" >
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. M" >
   </mat-form-field>
         
   <mat-form-field class="example-full-width custom-width">
     <mat-label>Sueldo/salario</mat-label>
-    <input matInput placeholder="Ex. 1000" value="">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 1000" value="">
   </mat-form-field>
         
   <mat-form-field class="example-full-width custom-width" >
     <mat-label>Area</mat-label>
-    <input matInput placeholder="Ex. Produccion de tela" value="">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Produccion de tela" value="">
   </mat-form-field>
       
   <mat-form-field class="example-full-width custom-width">
     <mat-label>Puesto</mat-label>
-    <input matInput placeholder="Ex. Supervisor" value="">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Supervisor" value="">
   </mat-form-field>
       </div>
 

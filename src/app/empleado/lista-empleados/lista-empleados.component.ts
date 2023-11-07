@@ -76,6 +76,11 @@ export class UsuarioTableComponent implements OnInit {
         }
       });
     }
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+  
     ngOnInit(): void {
       this.EmpleadoService.listaEmpleado().subscribe((respuesta: listaEmpleado[]) => {
         console.log(respuesta);
