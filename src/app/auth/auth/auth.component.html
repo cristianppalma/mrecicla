@@ -11,28 +11,28 @@
         </div>
         <form [formGroup]="formularioLogin" (ngSubmit)="enviarDatos()">
         <div class="form_data">
-          
+
             <p>
               <label>Correo electronico</label><br>
               <input type="email" placeholder="Correo o telefono" autocomplete="off" autofocus="" formControlName="Correo">
             </p>
-            <p>
+            <p> 
               <label>Contraseña</label><br>
               <input type="password" placeholder="Contraseña" formControlName="Pass">
             </p>
             <p class="txt_a"><a [routerLink]="['/recuperar-contrasena']"  class="txt_link">Olvide mi contraseña</a></p>
             <button type="submit"  class="btn_int" mat-raised-button style="background: #80a943; color: white;">
               Ingresar</button>
-         
+
         </div>
       </form>
-        <div class="registrate">
+        <!-- <div class="registrate">
           <p>Ó</p>
           <p>¿Aún no tienes una cuenta? <a [routerLink]="['/registrarse']"><strong class="txt_link">Regístrate</strong></a></p>
-        </div>
-  
+        </div> -->
+
       </div>
-      
+
     </div>
   </div>
 </div>

@@ -5,51 +5,85 @@
 <div class="Titulo">
 <h1>Perfil personal</h1>
 
+ <!--    <mat-checkbox  (change)="onCheckboxChange()" style="margin-left: 200px;">Editar Informacion</mat-checkbox>
+ 
+  esto se pone despues del matImput de los textos  [disabled]="checkboxState" 
+ -->
 </div>
 
-<div class="contenedor">
-    <div class="izquierda">
-        <br>
-        <mat-form-field class="example-full-width custom-width">
-            <mat-label>Nombre</mat-label>
-            <input matInput placeholder="Ex. Juan" value=" juan" disabled="true">
-          </mat-form-field>
+<form [formGroup]="formularioEditarEmpleado" (ngSubmit)="enviarDatos()">
+
+  <div class="contenedor">
+    <section class="example-section">
+    </section>
+      <div class="izquierda">
+          <br>
+          <mat-form-field  class="example-full-width custom-width">
+              <mat-label>Nombre</mat-label>
+              <input formControlName ='Nombre' matInput placeholder="EX. juan" >
+            </mat-form-field>
+              <br>
+            <mat-form-field class="example-full-width custom-width">
+              <mat-label>Apellido Paterno</mat-label>
+              <input formControlName ='ApellidoPaterno' matInput placeholder="Ex. 1000" value="">
+            </mat-form-field>
+              <br>
+            <mat-form-field class="example-full-width custom-width">
+              <mat-label>Apellido Materno</mat-label>
+              <input formControlName ='ApellidoMaterno' matInput placeholder="Ex. 1000" value="">
+            </mat-form-field>
             <br>
-          <mat-form-field class="example-full-width custom-width">
-            <mat-label>Apellido Paterno</mat-label>
-            <input matInput placeholder="Ex. 1000" value="perez"disabled="true">
-          </mat-form-field>
+            <mat-form-field class="example-full-width custom-width">
+              <mat-label>correo E</mat-label>
+              <input formControlName ='Correo' matInput placeholder="Ex. 1000" value="">
+            </mat-form-field>
             <br>
-          <mat-form-field class="example-full-width custom-width">
-            <mat-label>Apellido Materno</mat-label>
-            <input matInput placeholder="Ex. 1000" value="lopez" disabled="true">
-          </mat-form-field>
-        
-    </div>
-    <div class="derecha">
-        <br>
-        <mat-form-field class="example-full-width custom-width">
-            <mat-label>contraseña</mat-label>
-            <input matInput placeholder="" value="********" disabled="true">
-          </mat-form-field>
-          <br>
-<mat-form-field>
-  <mat-label>Puesto</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let Puesto of puestos" [value]="Puesto.value"  disabled="true">
-      {{Puesto.viewValue}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+            <mat-form-field class="example-full-width custom-width">
+              <mat-label>Domicilio</mat-label>
+              <input formControlName ='Domicilio' matInput placeholder="Ex. 1000" value="">
+            </mat-form-field>
+      </div>
+      <div class="derecha">
           <br>
           <mat-form-field class="example-full-width custom-width">
-            <mat-label>Nombre de usuario</mat-label>
-            <input matInput placeholder="Ex. 1000" value="Juan01" disabled="true">
+              <mat-label>contraseña</mat-label>
+              <input formControlName ='Pass' matInput placeholder="" value="">
+            </mat-form-field>
+            <br>
+  
+            <mat-form-field>
+              <mat-label>Puesto </mat-label>
+              <mat-select  formControlName="Puesto">
+                  <mat-option value="0"> </mat-option>
+                  <mat-option value="Administrador">Administrador</mat-option>
+              <mat-option value="Operador-costura">Operador de costura circular</mat-option>
+              <mat-option value="Supervisor">Supervisor</mat-option>
+              <mat-option value="Mecanico">Mecanico GRAL</mat-option>
+              <mat-option value="Hilador">Hilador</mat-option>
+              </mat-select>
           </mat-form-field>
-          <br>
-          <button mat-raised-button class="btn-editar custom-buton" style="color: white;">
-            <a style="color: white;" [routerLink]="['/dashboard/empleado/listEmp']"> Editar </a>
-        </button>
-        
+  
+            <br>
+            <mat-form-field class="example-full-width custom-width">
+              <mat-label>Sueldo</mat-label>
+              <input formControlName ='Sueldo' matInput placeholder="Ex. 1000" value="">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width custom-width">
+              <mat-label >Turno</mat-label>
+              <input formControlName ='Turno' matInput placeholder="Ex. Matutino" value="">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width custom-width">
+              <mat-label>Area</mat-label>
+              <input formControlName ='Area' matInput placeholder="Ex. Cortadora" value="">
+            </mat-form-field>
+            <br>
+            <button type=submit mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
+            <button mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
+              <a style="color: white;" [routerLink]="['/dashboard/empleado/listEmp']"> Cancelar </a>
+            </button>
+      </div>
     </div>
-</div>
+  </form>
+  

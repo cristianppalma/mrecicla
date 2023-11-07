@@ -3,47 +3,27 @@
   text-align: center;
   font-size: larger;
 }
-.btn_int {
-  background: #80a943;
-  width: 150px;
-  height: 50px;
-  font-size: large;
-  margin: 8px;
-  border-radius: 5px;
-  margin-left: 600px;
-  }
-  .example-form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Distribuye uniformemente los campos */
-  }
-  /* Estilos para los campos individuales */
-.example-form mat-form-field {
-  flex: 1; /* Ocupa todo el espacio disponible en el contenedor */
-  margin: 10px; /* Agrega espaciado entre los campos */
-}
-/* Ajusta el tamaño de fuente si es necesario */
-.example-form input {
-  font-size: 16px;
-}
-.button-div{
-  width: 150px;
-  height: 50px;
-  font-size: large;
-  margin: 8px;
-  border-radius: 5px;
-  text-align: center;
-}
-.center-button{
-  text-align: center;
-}
-
-.checkbox-container {
+.formula1,
+.formula2 {
+  flex: 1;
+  padding: 1rem; /* Añade espacio entre los elementos */
   display: flex;
-  align-items: center; /* Alinea verticalmente los checkboxes en el centro */
+  flex-direction: column;
+  margin: 8px;
+  flex-direction: column;
+  margin-right: 20px;
 }
-
-.mat-checkbox {
-  display: inline-block; /* Esto coloca los checkboxes en fila */
-  margin-right: 10px; /* Espacio entre los checkboxes */
+.formula {
+  display: flex;
+  width: 58rem;
+}
+label{
+  font-size: 17px;
+}
+.botones{
+  padding-left: 48.5rem;
+}
+.centrar-columnas{
+  display: flex;
+  justify-content: center;
 }

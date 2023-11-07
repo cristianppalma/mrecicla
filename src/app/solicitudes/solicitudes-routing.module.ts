@@ -6,7 +6,7 @@ import { SolicitudesEditComponent } from './solicitudes-edit/solicitudes-edit.co
 const routes: Routes = [
   {path:'solicitudes',component: SolicitudesControlComponent},
   {path:'SolicitudesCrear', component:SolicitudesCrearComponent},
-  {path:'SolicitudesEdit',component:SolicitudesEditComponent}
+  {path:'SolicitudesEdit/:id',component:SolicitudesEditComponent}
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

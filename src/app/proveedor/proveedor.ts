@@ -1,5 +1,4 @@
 export class Proveedor{
-  id_proveedor!:String;
   name_proveedor!:String;
   producto_proveedor!:String;
   direccion_proveedor!:String;

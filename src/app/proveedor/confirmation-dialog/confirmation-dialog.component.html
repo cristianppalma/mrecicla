@@ -1,0 +1,10 @@
+<div class="container" style="width: 550px; height:150px;">
+  <div class="icon-message-container">
+    <mat-icon id="warningIcon" color="warn" style="transform: scale(2);">warning</mat-icon>
+    <h2 id="message">{{ data.message }}</h2>
+  </div>
+  <div class="button-container">
+    <button mat-button id="yesButton" (click)="confirm(true)">Sí</button>
+    <button mat-button id="noButton" (click)="confirm(false)">No</button>
+  </div>
+</div>

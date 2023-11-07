@@ -10,23 +10,31 @@
   
 
   
+
+  .cabecera {
+    text-align: center;
+    border: 0px solid red;
+    margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
+    /* margin-left: 28rem; */
+  }
+
   .table {
     text-align: center;
     width: 1300px;
     padding-right: 13rem;
     max-height: 400px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */ 
   }
-  
+
   .Filter {
     margin-left: 2rem;
   }
-  
+
   /* Estilo para los botones BUSCAR y AGREGAR */
   .mat-form-field {
     display: flex;
     align-items: center;
   }
-  
+
   button.mat-button {
     background-color: #d6e44b;
     margin-left: 1rem; /* Agrega espacio entre los botones */
@@ -38,14 +46,14 @@
     margin-bottom: 20px;
     margin-right: 13rem;
   }
-  
+
   .Filter {
     margin-right: 14rem;
     display: flex;
     align-items: center;
     margin-left: 0rem;
   }
-  
+
   button.mat-button {
     background-color: #d6e44b;
     margin-left: 1rem;

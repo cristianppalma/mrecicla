@@ -1,83 +1,92 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component'
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
+import {listaEmpleado} from '../listaEmpleado';
+import { EmpleadoService } from '../empleado.service';
 
-interface Food {
-  value: string;
-  viewValue: string;
+export interface Usuario {
+    Nombre: string; 
+    ApellidoPaterno: string;
+    Correo: string;
+    ApellidoMaterno: String,  
+    Turno: string;
+    Sueldo: number; 
+    Area: string; 
+    Puesto: string;
 }
-
-export interface PeriodicElement {
-  position: string;
-  name: String;
-  weight: string;
-  symbol: string;
-  action: number;
-  Fingreso: Date;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [ //ya no se ocupa 
-{ position: 'Gerado Lopez', name: 'Gerente', weight: 'Hilos', symbol: 'M', action: 1000, Fingreso: new Date(2020, 9, 10) }, // los meses en JavaScript son 0-indexados, por lo que 9 es octubre.
-{ position: 'Pancrasio Martinez', name: 'Operador de costura', weight: 'Hilos', symbol: 'M', action: 1000, Fingreso: new Date(2020, 9, 10) },
-{ position: 'Alejando Magno', name: 'Recepcionista', weight: 'Hilos', symbol: 'B', action: 1500, Fingreso: new Date(2020, 9, 10) },
-{position: 'Riracrdo Lopez', name:'Supervisor', weight:'Telar', symbol: 'N', action: 2500, Fingreso: new Date(2020, 9, 10) }
-];
 
 @Component({
   selector: 'app-lista-empleados',
   templateUrl: './lista-empleados.component.html',
   styleUrls: ['./lista-empleados.component.css'],
 })
-export class ListaEmpleadosComponent {
+export class UsuarioTableComponent implements OnInit {
+  listaEmpleado: listaEmpleado [] = [];
+  displayedColumns: string[] = [  'idUsuario', 
+                                  'Nombre', 
+                                  'ApellidoPaterno',
+                                  'ApellidoMaterno',
+                                  'Correo',
+                                  'Puesto',
+                                  'action'];
+  dataSource: MatTableDataSource<listaEmpleado>
+
+  verDetalles(element: listaEmpleado) {
+    const id =element.idUsuario;
+    // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
+    console.log('Detalles de:');
+    // Puedes abrir un modal, mostrar información adicional, etc.
+    this.router.navigateByUrl(`/dashboard/empleado/edditEmp/${id}`)
+  }
+
+  constructor(private router:Router,
+    private dialog: MatDialog,
+    private EmpleadoService:EmpleadoService
+    ) {
+     this.dataSource = new MatTableDataSource<listaEmpleado>([]);
+    }
+ 
+    eliminarElemento(element: listaEmpleado): void {
+      const index = this.dataSource.data.indexOf(element);    
+      if (index >= 0) {
+        const idUsuario=element.idUsuario; 
+        this.dataSource.data.splice(index, 1);
+        this.EmpleadoService.eliminarUsuario(idUsuario).subscribe();
+        this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
+      }
+    }
+    mostrarDialogoDeConfirmacion(element: listaEmpleado): void {
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          console.log('El elemanto va a ser eliminado ' + element.idUsuario);
+          this.eliminarElemento(element);
+        }
+      });
+    }
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
   
-  // Datos originales (sin filtro)
-  datos = [
-    { position: 'Gerado L', name: 'Gerente', weight: 'Hilos', symbol: 'M', action: 1000, Fingreso: new Date(2020, 9, 10) }, // los meses en JavaScript son 0-indexados, por lo que 9 es octubre.
-    { position: 'Pancrasio Martinez', name: 'Operador de costura', weight: 'Hilos', symbol: 'M', action: 1000, Fingreso: new Date(2020, 9, 10) },
-    { position: 'Alejando Magno', name: 'Recepcionista', weight: 'Hilos', symbol: 'B', action: 1500, Fingreso: new Date(2020, 9, 10) },
-    {position: 'Riracrdo Lopez', name:'Supervisor', weight:'Telar', symbol: 'N', action: 2500, Fingreso: new Date(2020, 9, 10) }
-  ];
-
-  // Datos que se mostrarán (pueden estar filtrados)
-  datosMostrados = [...this.datos];
-
-  // Objeto para los valores del filtro
-  filter = {
-    nombre: '',
-    turno: '',
-    area: '',
-    puesto: '',
-    sueldo: null
-  };
-
-  foods: Food[] = [
-    { value: '', viewValue: '' },
-    { value: 'Hilos', viewValue: 'Hilos' },
-    // ... otros datos
-  ];
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
-  dataSource = new MatTableDataSource(this.datosMostrados);
-
-  constructor(private router: Router) { }
-
-  formatDateWithLeadingZeros(date: Date): string {
-    const day = ('0' + date.getDate()).slice(-2);
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const year = date.getFullYear();
-
-    return `${day}/${month}/${year}`;
+    ngOnInit(): void {
+      this.EmpleadoService.listaEmpleado().subscribe((respuesta: listaEmpleado[]) => {
+        console.log(respuesta);
+        this.listaEmpleado = respuesta;
+        this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
+      });
+    }
+  
   }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  verDetalles(element: PeriodicElement) {
-    console.log('Detalles de:', element.name);
-  }
-
-  crearMaquina() {
-    this.router.navigateByUrl('/dashboard/maquinas/maquinascreate');
-  }
-}

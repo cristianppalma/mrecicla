@@ -2,19 +2,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     height: 19vh;
   }
-  
+
   #message {
     font-size: 20px;
     color: #333;
     text-align: center;
     margin: 6px;
   }
-  
+
   #yesButton, #noButton {
-    
+
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -30,7 +30,7 @@
   #noButton{
     background-color: #ff0000;
   }
-  
+
   #yesButton:hover, #noButton:hover {
     background-color: #80a943;
   }
@@ -43,6 +43,5 @@
     margin-top: 21px; /* Establecemos el nuevo margen superior deseado */
     font-size: 20px; /* Aumentamos el tamaño de fuente */
   }
-  
+
   /* Resto de tus estilos */
-  

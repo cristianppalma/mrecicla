@@ -21,8 +21,9 @@
 
 
   mat-sidenav-content{
-    background-image: url(/../../assets/img/navbar/grafica.png);
+    background-image: url(/../../assets/img/navbar/graficas.jpg);
     background-size: cover;
-    width: 600px;
-    height: 600px;
+    background-position: center;
+    width: 40%;
+    height: 500px;
   }

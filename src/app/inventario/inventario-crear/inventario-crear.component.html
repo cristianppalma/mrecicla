@@ -1,58 +1,74 @@
-<H1 class="Title">REGISTRAR NUEVO PRODUCTO</H1>
-<div>
-    
-    </div>
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>ID</mat-label>
-          <input matInput placeholder="" value="">
-        </mat-form-field>
-        <mat-form-field class="derecha">
-          <mat-label>Composicion</mat-label>
-          <input matInput placeholder="" value="">
-        </mat-form-field>
-        
-        <div>
-          <mat-form-field class="example-full-width">
+<div class="container">
+  <div class="cabecera">
+    <H1 >REGISTRAR NUEVO PRODUCTO</H1>
+  </div >
+  
+    <form [formGroup]="formularioProducto" (ngSubmit)="enviarDatos()" >
+      <div class="formula" style="border:none;" > 
+        <div class="formula1">
+
+          <!--<label>ID</label> 
+          <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input formControlName="ID" matInput>
+          </mat-form-field>-->
+
+        <label>Nombre del producto</label> 
+          <mat-form-field>
             <mat-label>Producto</mat-label>
-            <input matInput placeholder="" value="">
+            <input formControlName="Producto" matInput>
           </mat-form-field>
 
-          <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
+          <label>Fecha</label> 
+          <mat-form-field >
+            <mat-label>Fecha</mat-label>
+            <input formControlName="FechaCreacion" matInput type="date">
+          </mat-form-field>
+
+          <label>Composicion</label> 
+          <mat-form-field >
+            <mat-label>Composicion</mat-label>
+            <input formControlName="Porcentaje" matInput>
+          </mat-form-field>
+         
+        <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
+
         </div>
 
-        <div>
-          <mat-form-field class="example-full-width">
+        <div class="formula2">
+          <label>Peso</label> 
+          <mat-form-field >
             <mat-label>Peso</mat-label>
-            <input matInput placeholder="" value="">
+            <input formControlName="Peso" matInput>
           </mat-form-field>
-          <mat-form-field class="derecha">
-            <mat-label >Area designada</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let area of Areas" [value]="area.value">
-                {{area.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          
-        </div>
-       
-        <div>
+          <label>Area designada</label>
+        <mat-form-field>
+          <mat-label>Área</mat-label>
+          <mat-select  formControlName="AreasDesignadas">
+            <mat-option value="0"> </mat-option>
+            <mat-option value="Telares">Telares</mat-option>
+            <mat-option value="Hilado">Hilado</mat-option>
+          </mat-select>
+        </mat-form-field>
+          <label>Dimensiones</label>
           <mat-form-field class="example-full-width">
-            <mat-label>Dimenciones</mat-label>
-            <input matInput placeholder="" value="">
+            <mat-label>Dimensiones</mat-label>
+            <input formControlName="Dimensiones" matInput>
           </mat-form-field>
-        </div>
-
-        <div>
+          <label>Calibre</label>
           <mat-form-field class="example-full-width">
             <mat-label>Calibre</mat-label>
-            <input matInput placeholder="" value="">
+            <input formControlName="Clibre" matInput>
           </mat-form-field>
         </div>
-        <button type="submit" (click)="inventarioReturn();" class="btn_int" mat-raised-button style="background: #80a943;">
-          Regresar</button>
-      </form>
-      
+      </div>
+      <div class="botones">
+        <button type="submit" class="left" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
+      <button  (click)="Cancelar();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
+
+      </div>
+    </form>
+    
+</div>
 
         

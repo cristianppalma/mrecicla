@@ -41,8 +41,7 @@ export class MaquinasCreateComponent implements OnInit {
         (response) => {
          console.log('Se registro correctamente');
          this.mostratDialogoAviso();
-         
-        
+
         },
         (error) => {
           // Manejar errores del servicio aquí

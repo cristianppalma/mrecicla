@@ -1,42 +1,78 @@
-.Title{
-  color: #80a943;
+.container {
+  display: flex;
+  flex-direction: column; /* Apila elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
+}
+
+.cabecera {
   text-align: center;
-  font-size: larger;
+  border: 0px solid red;
+  margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
+  margin-left: 0rem;
 }
-.btn_edit {
-  background-color: #80a943;
-  color: white;
-  border-radius: 5px;
-  width: 90px;
-  height: 30px;
-  margin: 2px;
+
+.table {
+  text-align: center;
+  /* Estilos para la tabla si es necesario */
+ 
+  width: 1100px;
+  margin-right: 10rem;
+
+  max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
+  max-width: 1350px;
+  overflow-y: auto;
+  box-shadow: 10px 5-px 20px rgba(0, 0, 0, 0.2);
 }
-.btn_delete {
-  color: white;
-  background-color:red;
-  border-radius: 5px;
-  width: 90px;
-  height: 30px;
-  margin: 2px;
+.Filter {
+  margin-right: 13rem;
 }
-.btn_create {
-  background: #80a943;
-  width: 150px;
-  height: 50px;
-  font-size: large;
-  margin: 8px;
-  border-radius: 5px;
-  }
-  table {
-    width: auto;
-    align-items: center;
-    text-align: center;
-    /* Estilos para la tabla si es necesario */
-  }
-  .button-container {
-    position: absolute;
-    top: 10px; /* Ajusta la distancia desde la parte superior según tu preferencia */
-    right: 10px; /* Ajusta la distancia desde la derecha según tu preferencia */
-    margin-bottom: 20px;
-    border-radius: 5px;
-  }
+
+/* Estilo para los botones BUSCAR y AGREGAR */
+.mat-form-field {
+  display: flex;
+  align-items: center;
+}
+
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 1rem; /* Agrega espacio entre los botones */
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
+}
+
+.cabecera { /*Label de Maquinas*/
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px;
+  margin-right: 10rem;
+}
+
+.Filter {
+  display: flex;
+  align-items: center;
+  margin-left: 4rem;
+}
+
+button.mat-button {
+  background-color: #d6e44b;
+  margin-left: 1rem;
+}
+h1{
+  font-size: 48px;
+}
+
+
+h2{
+
+}

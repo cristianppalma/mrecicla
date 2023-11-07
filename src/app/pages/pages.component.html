@@ -5,13 +5,21 @@
     </button> -->
     <img width="100" src="../assets/img/navbar/m-recicla.jpeg" alt="">
     <span class="example-spacer"></span>
-    <span style="color: #000;">
+    <!-- <span style="color: #000;">
       Admin
-    </span>
-  <span style="color: #000;" [routerLink]="['empleado/adminPrfile']">
-      <a [routerLink]="['empleado/adminPrfile']"> Admin </a>
-    </span>  
-   </mat-toolbar>
+    </span> -->
+    <button mat-button class="" style="color:#000;">
+      <span style="color: #000;" [routerLink]="['empleado/adminPrfile']">
+        <a style="color: #000;" [routerLink]="['empleado/adminPrfile']"> Admin </a>
+      </span>
+    </button>
+    <button mat-button class="" style="color:#000;">
+      <mat-icon style="color: #000;">logout</mat-icon>
+      <span style="color: #000;">
+        <a style="color: #000;" [routerLink]="['/login']" (click)="borrarStorage()">Cerrar Sesión</a>
+      </span>
+    </button>
+  </mat-toolbar>
 </p>
 
 <mat-sidenav-container class="example-container">
@@ -36,7 +44,7 @@
 
     <button mat-button class="menu-boton">
       <mat-icon>person</mat-icon>
-      <span><a [routerLink]="['empleado/listEmp']"> Empleado </a></span> 
+      <span><a [routerLink]="['empleado/listEmp']"> Empleado </a></span>
     </button>
 
     <button mat-button class="menu-boton">
@@ -54,23 +62,23 @@
       <span><a [routerLink]="['solicitudes/solicitudes']">Solicitudes</a></span>
     </button>
 
-    <button mat-button class="menu-boton">
+    <!-- <button mat-button class="menu-boton">
       <mat-icon>construction</mat-icon>
       <span>Producción</span>
-    </button>
+    </button> -->
+
     <button mat-button class="menu-boton">
       <mat-icon>work</mat-icon>
-      <span><a [routerLink]="['control/controlGastos']">Control Gastos</a></span>
+      <span><a [routerLink]="['control/controlGastosGenerales']">Control Gastos</a></span>
     </button>
   </mat-sidenav>
 
   <mat-sidenav-content>
 
-    <div class="content ">
+    <div class="content">
       <router-outlet>
       </router-outlet>
     </div>
-
 
   </mat-sidenav-content>
 </mat-sidenav-container>
