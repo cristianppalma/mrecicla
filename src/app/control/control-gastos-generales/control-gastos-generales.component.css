@@ -13,9 +13,10 @@
   top: 10px;
   right: 10px;
 }
+
 .Title{
-  color:#151a0d;
-  text-align: center;
+  color: black;
+  margin-left: 450px;
   font-size: larger;
 }
 .table-container {

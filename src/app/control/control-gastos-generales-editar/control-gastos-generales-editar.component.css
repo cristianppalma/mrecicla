@@ -1,6 +1,6 @@
 .Title{
   color: black;
-  text-align: center;
+  margin-left: 450px;
   font-size: larger;
 }
 .btn_int {
@@ -35,25 +35,20 @@
 }
 .formula1,
 .formula2 {
-  flex: 1;
-  padding: 1rem; /* Añade espacio entre los elementos */
+  flex: 0.5; /* Añade espacio entre los elementos */
   display: flex;
   flex-direction: column;
-  margin: 8px;
-  flex-direction: column;
-  margin-right: 20px;
+  margin-right: 15px;
 }
 .formula {
   display: flex;
-  border: 15px solid red;
-  margin-left: center;
-  width: 58rem;
-  justify-content: space-around;
-  
 }
 label{
   font-size: 17px;
 }
 .botones{
   padding-left: 48.5rem;
+}
+.centrar-columnas{
+  width: 1250px; /* Ancho del formulario */
 }

@@ -6,6 +6,8 @@ import { ControlService } from '../control.service';
 import { ActivatedRoute } from '@angular/router';
 import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component'
+
 @Component({
   selector: 'app-control-gastos-generales-editar',
   templateUrl: './control-gastos-generales-editar.component.html',
@@ -55,6 +57,19 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
   CancelarGastosGeneralesEditar(){
     this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
   }
+
+  mostrarDialogDeConfirmacion2(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    data: { message: '¿Estás seguro de que deseas cancelar este registro?' }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
+      }
+    });
+  }
+
   enviarDatosActualizarGastos(){
     if (this.formularioEditarGastos.valid) {
       console.log('Se presionó el botón');
