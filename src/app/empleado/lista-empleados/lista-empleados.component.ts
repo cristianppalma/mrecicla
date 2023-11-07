@@ -56,8 +56,7 @@ export class UsuarioTableComponent implements OnInit {
     }
  
     eliminarElemento(element: listaEmpleado): void {
-      const index = this.dataSource.data.indexOf(element);
-    
+      const index = this.dataSource.data.indexOf(element);    
       if (index >= 0) {
         const idUsuario=element.idUsuario; 
         this.dataSource.data.splice(index, 1);

@@ -26,7 +26,7 @@ export class EmpleadoService {
   }
 
   eliminarUsuario(id:string): Observable<listaEmpleado[]> {
-    return this.clientService.get<listaEmpleado[]>(this.API+"?borrarEmpleado=1");
+    return this.clientService.get<listaEmpleado[]>(this.API+"?borrarEmpleado="+id);
   }
 
   EditarEmpleado(id:string): Observable<editarEmpleado> {
