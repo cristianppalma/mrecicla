@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
 import { EmpleadoService } from '../empleado.service';
 import { ActivatedRoute } from '@angular/router';
 import { __param } from 'tslib';
-
+import { FormGroup, FormBuilder, Validators, FormControl, FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -28,24 +27,25 @@ export class EditarEmpleadoComponent implements OnInit {
 
 
     ) {
-      this.formularioEditarEmpleado =this.FormBuilder.group({
-        Nombre:['', [Validators.required]],
-        ApellidoPaterno: ['', [Validators.required]],
-        Correo:['', [Validators.required]],
-        Pass:['', [Validators.required]],
-        ApellidoMaterno:['', [Validators.required]],
-        Turno:['', [Validators.required]],
-        Sueldo:['', [Validators.required]],
-        Area :[''],
-        Puesto:[''],
-        Domicilio:['']
+  
+      this.formularioEditarEmpleado = new FormGroup({
+        practicante: new FormControl('no'),
+        Nombre: new FormControl('', [Validators.required]),
+        ApellidoPaterno: new FormControl('', [Validators.required]),
+        ApellidoMaterno: new FormControl('', [Validators.required]),
+        Pass: new FormControl('', [Validators.required]),
+        Puesto: new FormControl(''),
+        Correo: new FormControl('', [Validators.required]),
+        Turno : new FormControl(''),
+        Area : new FormControl (''),
+        Sueldo : new FormControl (''),
+        Domicilio : new FormControl('', [Validators.required])
       });
 
-      this.activateRoute.paramMap.subscribe((params) =>{
-        this.idEmpleado = params.get('id'); 
-        this.editarEmpleado.EditarEmpleado(this.idEmpleado).subscribe((respuesta=>{
-        
-           this.formularioEditarEmpleado.setValue({
+      this.activateRoute.paramMap.subscribe((params) => {
+        this.idEmpleado = params.get('id');
+        this.editarEmpleado.EditarEmpleado(this.idEmpleado).subscribe((respuesta) => {
+          this.formularioEditarEmpleado.patchValue({
             Nombre: respuesta.Nombre,
             ApellidoPaterno: respuesta.ApellidoPaterno,
             Correo: respuesta.Correo,
@@ -55,11 +55,11 @@ export class EditarEmpleadoComponent implements OnInit {
             Sueldo: respuesta.Sueldo,
             Area: respuesta.Area,
             Puesto: respuesta.Puesto,
-            Domicilio: respuesta.Domicilio,
-           }); 
-         } ))
-
-      })
+            Domicilio: respuesta.Domicilio
+          });
+          this.formularioEditarEmpleado.controls['practicante'].setValue(respuesta.Practicante);
+        });
+      });
      }
 
 
@@ -95,9 +95,37 @@ export class EditarEmpleadoComponent implements OnInit {
     
     }
   
+ 
     ngOnInit(): void {
-    
+
+      this.formularioEditarEmpleado.controls['practicante'].valueChanges.subscribe(
+        (practicante) => {
+          if (practicante === 'no') {
+            this.formularioEditarEmpleado.controls['Puesto'].enable();
+            this.formularioEditarEmpleado.controls['Turno'].enable();
+            this.formularioEditarEmpleado.controls['Area'].enable();
+            this.formularioEditarEmpleado.controls['Sueldo'].enable();
+          
+          } else {
+            this.formularioEditarEmpleado.controls['Puesto'].disable();
+            this.formularioEditarEmpleado.controls['Turno'].disable();
+            this.formularioEditarEmpleado.controls['Area'].disable();
+            this.formularioEditarEmpleado.controls['Sueldo'].disable();
+            
+            this.formularioEditarEmpleado.controls['Puesto'].reset();
+            this.formularioEditarEmpleado.controls['Turno'].reset();
+            this.formularioEditarEmpleado.controls['Area'].reset();
+            this.formularioEditarEmpleado.controls['Sueldo'].reset();
+  
+  
+          }
+        }
+     
+        );
+      
+      // Puedes realizar alguna inicialización adicional aquí si es necesario.
     }
+    
     
 }
 

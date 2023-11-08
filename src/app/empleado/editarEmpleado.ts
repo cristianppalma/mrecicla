@@ -11,4 +11,6 @@ export class editarEmpleado {
     Area                !:string;
     Puesto              !:string;
     Domicilio           !:string;
+    Practicante         !:string;
+
 }

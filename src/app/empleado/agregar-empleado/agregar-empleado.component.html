@@ -18,32 +18,43 @@
               <br>
             <mat-form-field class="example-full-width custom-width">
               <mat-label>Apellido Paterno</mat-label>
-              <input formControlName ='ApellidoPaterno' matInput placeholder="Ex. 1000" value="">
+              <input formControlName ='ApellidoPaterno' matInput placeholder="Ex. 1000" >
             </mat-form-field>
               <br>
             <mat-form-field class="example-full-width custom-width">
               <mat-label>Apellido Materno</mat-label>
-              <input formControlName ='ApellidoMaterno' matInput placeholder="Ex. 1000" value="">
+              <input formControlName ='ApellidoMaterno' matInput placeholder="Ex. 1000" >
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width custom-width">
               <mat-label>correo E</mat-label>
-              <input formControlName ='Correo' matInput placeholder="Ex. 1000" value="">
+              <input formControlName ='Correo' matInput placeholder="Ex. 1000" >
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width custom-width">
               <mat-label>Domicilio</mat-label>
-              <input formControlName ='Domicilio' matInput placeholder="Ex. 1000" value="">
+              <input formControlName ='Domicilio' matInput placeholder="Ex. 1000" >
             </mat-form-field>
       </div>
       <div class="derecha">
           <br>
           <mat-form-field class="example-full-width custom-width">
               <mat-label>contraseña</mat-label>
-              <input formControlName ='Pass' matInput placeholder="" value="">
+              <input formControlName ='Pass' matInput placeholder="">
             </mat-form-field>
             <br>
-  
+            <mat-label style="font-size: medium;">practicante?</mat-label>
+            
+            <label style="font-size: medium; margin-left: 10px;">
+            <input type="radio" value="si" formControlName ="practicante" />
+              si
+          </label>
+          <label style="font-size: medium; margin-left: 50px;">
+           <input type="radio" value="no" formControlName ="practicante" />
+            no   
+          </label> 
+           <br>
+           <br>
             <mat-form-field>
               <mat-label>Puesto </mat-label>
               <mat-select formControlName="Puesto">
@@ -58,17 +69,17 @@
             <br>
             <mat-form-field class="example-full-width custom-width">
               <mat-label>Sueldo</mat-label>
-              <input formControlName ='Sueldo' matInput placeholder="Ex. 1000" value="">
+              <input formControlName ='Sueldo' matInput placeholder="Ex. 1000">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width custom-width">
               <mat-label >Turno</mat-label>
-              <input formControlName ='Turno' matInput placeholder="Ex. Matutino" value="">
+              <input formControlName ='Turno' matInput placeholder="Ex. Matutino">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width custom-width">
               <mat-label>Area</mat-label>
-              <input formControlName ='Area' matInput placeholder="Ex. Cortadora" value="">
+              <input formControlName ='Area' matInput placeholder="Ex. Cortadora">
             </mat-form-field>
             <br>
             <button type=submit mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
