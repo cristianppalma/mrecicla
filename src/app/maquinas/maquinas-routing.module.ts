@@ -5,14 +5,34 @@ import { MaquinasCreateComponent } from './maquinas-create/maquinas-create.compo
 import { MaquinasEditarComponent } from './maquinas-editar/maquinas-editar.component';
 import { MaquinasEliminarComponent } from './maquinas-eliminar/maquinas-eliminar.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-
+import { authGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
- {path: 'maquinas', component:MaquinasListComponent},
- {path: 'maquinascreate', component:MaquinasCreateComponent},
- {path: 'maquinaseditar/:id', component:MaquinasEditarComponent},
- {path: 'maquinasEliminar/:id', component:MaquinasEliminarComponent},
- {path: 'confirmation', component:ConfirmationDialogComponent}
+  {
+    path: 'maquinas',
+    component: MaquinasListComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'maquinascreate',
+    component: MaquinasCreateComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'maquinaseditar/:id',
+    component: MaquinasEditarComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'maquinasEliminar/:id',
+    component: MaquinasEliminarComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'confirmation',
+    component:ConfirmationDialogComponent,
+    // canActivate: [authGuard]
+  },
 ];
 
 @NgModule({

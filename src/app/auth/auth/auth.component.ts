@@ -13,7 +13,7 @@ import { AvisoLoginComponent } from '../aviso-login/aviso-login.component';
 })
 export class AuthComponent  implements OnInit {
   formularioLogin: FormGroup;
- 
+
 
   login(){
     this.router.navigateByUrl('/dashboard/tablero');
@@ -24,7 +24,7 @@ export class AuthComponent  implements OnInit {
   }
 
 
-  
+
 
   constructor(
     private router: Router,
@@ -45,7 +45,7 @@ export class AuthComponent  implements OnInit {
       console.log('Se presionó el botón');
       console.log(this.formularioLogin.value);
       this.AuthService.verUsuario(this.formularioLogin.value).subscribe(
-        
+
         (response) => {
           if (response.hasOwnProperty('error')) {
             // Se encontró un mensaje de error en la respuesta
@@ -53,12 +53,13 @@ export class AuthComponent  implements OnInit {
             this.mostrarDialogoLoginError(response.error);
           } else {
             console.log('Se logueó correctamente');
+            localStorage.setItem('token', Math.random().toString());
             this.router.navigateByUrl('/dashboard/tablero');
 
             let usuario = response.idUsuario;
             localStorage.setItem("id_user", usuario );
 
-          } 
+          }
         },
         (error) => {
           // Manejar errores del servicio aquí
@@ -68,7 +69,7 @@ export class AuthComponent  implements OnInit {
       );
     }
   }
-  
+
   mostratDialogoLogin():void{
     const dialogAviso = this.dialog.open(AvisoLoginComponent,{
       data: {message: 'Se registro correctamente en la Base de Datos'}
@@ -78,7 +79,7 @@ export class AuthComponent  implements OnInit {
         this.router.navigateByUrl('/dashboard/maquinas/maquinas');
       }
     });
-  
+
   }
   mostrarDialogoLoginError(errorMsg: string): void {
     const dialogRef = this.dialog.open(AvisoLoginComponent, {

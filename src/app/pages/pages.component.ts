@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pages',
@@ -6,9 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent {
-  borrarStorage(){
+
+  constructor(
+    private router: Router
+  ) {}
+
+  logout(){
     // Para borrar todos los elementos del Local Storage
-  localStorage.clear();
+    localStorage.removeItem('token');
+    // localStorage.clear();
+    console.log('Se elimino el token');
+    this.router.navigate(['/login'])
   }
 
 }

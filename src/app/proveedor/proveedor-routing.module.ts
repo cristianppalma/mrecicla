@@ -4,12 +4,24 @@ import { ProveedorListComponent } from './proveedor-list/proveedor-list.componen
 import { ProveedorCreateComponent } from './proveedor-create/proveedor-create.component';
 import { ProveedorEditComponent } from './proveedor-edit/proveedor-edit.component';
 import { ProveedorDetailsComponent } from './proveedor-details/proveedor-details.component';
+import { authGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
-  { path:'proveedores', component: ProveedorListComponent},
-  { path:'proveedorCreate', component: ProveedorCreateComponent},
-  { path:'proveedorEdit/:id', component: ProveedorEditComponent},
-  { path:'proveedorDetails/:id', component: ProveedorDetailsComponent},
+  {
+    path: 'proveedores',
+    component: ProveedorListComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'proveedorCreate',
+    component: ProveedorCreateComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'proveedorEdit/:id',
+    component: ProveedorEditComponent,
+    // canActivate: [authGuard]
+  },
 ];
 
 @NgModule({
