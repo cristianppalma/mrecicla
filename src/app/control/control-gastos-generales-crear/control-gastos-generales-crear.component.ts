@@ -41,7 +41,7 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
   CancelarGastosGeneralesCrear(){
     this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
   }
-  mostrarDialogDeConfirmacion2(): void {
+  mostrarDialogDeConfirmacion3(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
     data: { message: '¿Estás seguro de que deseas cancelar este registro?' }
     });

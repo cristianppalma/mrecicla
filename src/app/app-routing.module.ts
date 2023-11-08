@@ -6,6 +6,7 @@ import { RegistroComponent } from './auth/registro/registro.component';
 import { IndexComponent } from './index/index/index.component';
 import { RecuperarContrasenaComponent } from './auth/recuperar-contrasena/recuperar-contrasena.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { ProduccionComponent } from './produccion/produccion/produccion.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'dashboard', component: PagesComponent,
     children: [
       { path:'tablero', component:DashboardComponent },
+      { path:'produccion', component: ProduccionComponent },
       { path: 'proveedor', loadChildren: () => import('./proveedor/proveedor.module').then(m => m.ProveedorModule) },
       { path: 'control', loadChildren: () => import('./control/control.module').then(m => m.ControlModule) },
       { path:'inventario', loadChildren:() => import('./inventario/inventario.module').then(m => m.InventarioModule) },
@@ -24,6 +26,7 @@ const routes: Routes = [
       { path: 'empleado', loadChildren:() => import('./empleado/empleado.module').then(m=>m.EmpleadoModule) },
       { path:'maquinas', loadChildren:() => import('./maquinas/maquinas.module').then(m => m.MaquinasModule) },
       { path:'areas', loadChildren:() => import('./areas/areas.module').then(m => m.AreasModule) },
+      // { path:'produccion', loadChildren:() => import('./produccion/produccion.module').then(m => m.ProduccionModule) },
     ]
   },
 ];

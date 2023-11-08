@@ -1,0 +1,7 @@
+/* Establece el tamaño del canvas para que ocupe toda la pantalla */
+#chart {
+    position: auto;
+    width: 100vw; /* Ancho igual al 100% del ancho de la ventana */
+    height: 100vh; /* Altura igual al 100% de la altura de la ventana */
+    max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
+  }
