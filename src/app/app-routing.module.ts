@@ -7,6 +7,7 @@ import { IndexComponent } from './index/index/index.component';
 import { RecuperarContrasenaComponent } from './auth/recuperar-contrasena/recuperar-contrasena.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
+// import { rolesGuard } from './guards/roles.guard';
 
 const routes: Routes = [
   {
@@ -36,7 +37,15 @@ const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'tablero', component:DashboardComponent },
-      { path: 'proveedor', loadChildren: () => import('./proveedor/proveedor.module').then(m => m.ProveedorModule) },
+      {
+        path: 'proveedor',
+        loadChildren: () =>
+        import('./proveedor/proveedor.module').then(m => m.ProveedorModule),
+        // data: {
+        //   role: 'Supervisor'
+        // },
+        // canActivate: [rolesGuard]
+      },
       { path: 'control', loadChildren: () => import('./control/control.module').then(m => m.ControlModule) },
       { path: 'inventario', loadChildren: () => import('./inventario/inventario.module').then(m => m.InventarioModule) },
       { path: 'solicitudes', loadChildren: () => import('./solicitudes/solicitudes.module').then(m => m.SolicitudesModule) },
