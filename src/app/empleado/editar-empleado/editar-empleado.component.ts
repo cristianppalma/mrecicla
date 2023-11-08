@@ -45,6 +45,7 @@ export class EditarEmpleadoComponent implements OnInit {
       this.activateRoute.paramMap.subscribe((params) => {
         this.idEmpleado = params.get('id');
         this.editarEmpleado.EditarEmpleado(this.idEmpleado).subscribe((respuesta) => {
+          console.log(respuesta);
           this.formularioEditarEmpleado.patchValue({
             Nombre: respuesta.Nombre,
             ApellidoPaterno: respuesta.ApellidoPaterno,
