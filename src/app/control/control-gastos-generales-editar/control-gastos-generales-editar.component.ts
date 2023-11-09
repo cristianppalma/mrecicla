@@ -25,10 +25,7 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
                   Concepto: [''],
                   Descripcion: [''],
                   Periodo: [''],
-                  UsuarioCreador: [''],
-                  FechaCreacion: [''],
-                  UsuarioActualizar: [''],
-                  FechaActualizacion:[''],
+                  
                   Monto:['', [Validators.required]],
                   Tipo:['']
                 });
@@ -41,10 +38,7 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
                     Concepto: respuesta.Concepto,
                     Descripcion: respuesta.Descripcion,
                     Periodo: respuesta.Periodo,
-                    UsuarioCreador: respuesta.UsuarioCreador,
-                    FechaCreacion: respuesta.FechaCreacion,
-                    UsuarioActualizar: respuesta.UsuarioActualizar,
-                    FechaActualizacion: respuesta.FechaActualizacion,
+                    
                     Monto: respuesta.Monto,
                     Tipo: respuesta.Tipo
                   });

@@ -29,10 +29,7 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
       Concepto: ['', [Validators.required]],
       Descripcion: ['', [Validators.required]],
       Periodo: ['', [Validators.required]],
-      UsuarioCreador: ['', [Validators.required]],
-      FechaCreacion: ['', [Validators.required]],
-      UsuarioActualizar: ['', [Validators.required]],
-      FechaActualizacion:['', [Validators.required]],
+      
       Monto:['', [Validators.required]],
       Tipo:['', [Validators.required]]
     });
