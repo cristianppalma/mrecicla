@@ -7,7 +7,7 @@ import { IndexComponent } from './index/index/index.component';
 import { RecuperarContrasenaComponent } from './auth/recuperar-contrasena/recuperar-contrasena.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
-// import { rolesGuard } from './guards/roles.guard';
+import { rolesGuard } from './guards/roles.guard';
 
 const routes: Routes = [
   {
@@ -41,18 +41,49 @@ const routes: Routes = [
         path: 'proveedor',
         loadChildren: () =>
         import('./proveedor/proveedor.module').then(m => m.ProveedorModule),
-        // data: {
-        //   role: 'Supervisor'
-        // },
-        // canActivate: [rolesGuard]
+        canActivate: [rolesGuard],
       },
-      { path: 'control', loadChildren: () => import('./control/control.module').then(m => m.ControlModule) },
-      { path: 'inventario', loadChildren: () => import('./inventario/inventario.module').then(m => m.InventarioModule) },
-      { path: 'solicitudes', loadChildren: () => import('./solicitudes/solicitudes.module').then(m => m.SolicitudesModule) },
-      { path: 'proveedor', loadChildren: () => import('./proveedor/proveedor.module').then(m => m.ProveedorModule) },
-      { path: 'empleado', loadChildren: () => import('./empleado/empleado.module').then(m=>m.EmpleadoModule) },
-      { path: 'maquinas', loadChildren: () => import('./maquinas/maquinas.module').then(m => m.MaquinasModule) },
-      { path: 'areas', loadChildren: () => import('./areas/areas.module').then(m => m.AreasModule) },
+      {
+        path: 'control',
+        loadChildren: () =>
+        import('./control/control.module').then(m => m.ControlModule),
+        canActivate: [rolesGuard],
+      },
+      {
+        path: 'inventario',
+        loadChildren: () =>
+        import('./inventario/inventario.module').then(m => m.InventarioModule),
+        canActivate: [rolesGuard],
+      },
+      {
+        path: 'solicitudes',
+        loadChildren: () =>
+        import('./solicitudes/solicitudes.module').then(m => m.SolicitudesModule)
+      },
+      {
+        path: 'proveedor',
+        loadChildren: () =>
+        import('./proveedor/proveedor.module').then(m => m.ProveedorModule),
+        canActivate: [rolesGuard],
+      },
+      {
+        path: 'empleado',
+        loadChildren: () =>
+        import('./empleado/empleado.module').then(m=>m.EmpleadoModule),
+        canActivate: [rolesGuard],
+      },
+      {
+        path: 'maquinas',
+        loadChildren: () =>
+        import('./maquinas/maquinas.module').then(m => m.MaquinasModule),
+        canActivate: [rolesGuard],
+      },
+      {
+        path: 'areas',
+        loadChildren: () =>
+        import('./areas/areas.module').then(m => m.AreasModule),
+        canActivate: [rolesGuard],
+      },
     ]
   },
 ];

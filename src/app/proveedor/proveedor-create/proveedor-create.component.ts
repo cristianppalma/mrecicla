@@ -29,6 +29,7 @@ export class ProveedorCreateComponent implements OnInit {
       direccion_proveedor: [''],
       rfc_proveedor: [''],
       description_proveedor: [''],
+      estatus_proveedor: ['1'],
     });
   }
 

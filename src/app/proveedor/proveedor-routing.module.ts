@@ -5,6 +5,7 @@ import { ProveedorCreateComponent } from './proveedor-create/proveedor-create.co
 import { ProveedorEditComponent } from './proveedor-edit/proveedor-edit.component';
 import { ProveedorDetailsComponent } from './proveedor-details/proveedor-details.component';
 import { authGuard } from '../guards/auth.guard';
+import { rolesGuard } from '../guards/roles.guard';
 
 const routes: Routes = [
   {
@@ -15,12 +16,14 @@ const routes: Routes = [
   {
     path: 'proveedorCreate',
     component: ProveedorCreateComponent,
-    // canActivate: [authGuard]
+    // canActivate: [rolesGuard],
+    // data: { puesto: 'Administrador' }
   },
   {
     path: 'proveedorEdit/:id',
     component: ProveedorEditComponent,
-    // canActivate: [authGuard]
+    // canActivate: [rolesGuard],
+    // data: { puesto: 'Administrador' }
   },
 ];
 

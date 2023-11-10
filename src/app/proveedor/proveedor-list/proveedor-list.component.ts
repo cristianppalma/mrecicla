@@ -20,7 +20,7 @@ interface Food {
 
 export class ProveedorListComponent  implements OnInit {
   Proveedor: PeriodicElement[] = [];
-  displayedColumns: string[] = ['id_proveedor','name_proveedor', 'producto_proveedor', 'direccion_proveedor','rfc_proveedor', 'action'];
+  displayedColumns: string[] = ['id_proveedor','name_proveedor', 'producto_proveedor', 'direccion_proveedor','rfc_proveedor','estatus_proveedor', 'action'];
   dataSource: MatTableDataSource<PeriodicElement>;
 
   formatDateWithLeadingZeros(date: Date): string {

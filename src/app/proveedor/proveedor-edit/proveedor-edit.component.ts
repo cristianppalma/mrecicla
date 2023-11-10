@@ -28,7 +28,8 @@ export class ProveedorEditComponent implements OnInit {
       producto_proveedor:[''],
       direccion_proveedor:[''],
       rfc_proveedor:[''],
-      description_proveedor:['']
+      description_proveedor:[''],
+      estatus_proveedor: [''],
     });
     }
 
@@ -47,7 +48,8 @@ export class ProveedorEditComponent implements OnInit {
               producto_proveedor: proveedor.producto_proveedor,
               direccion_proveedor: proveedor.direccion_proveedor,
               rfc_proveedor: proveedor.rfc_proveedor,
-              description_proveedor: proveedor.description_proveedor
+              description_proveedor: proveedor.description_proveedor,
+              estatus_proveedor:proveedor.estatus_proveedor
             });
 
         }, error => {

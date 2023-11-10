@@ -5,4 +5,5 @@ export interface PeriodicElement {
   direccion_proveedor:String;
   rfc_proveedor:String;
   description_proveedor:String;
+  estatus_proveedor:String;
 }

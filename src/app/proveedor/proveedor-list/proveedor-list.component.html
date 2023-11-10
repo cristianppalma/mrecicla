@@ -44,6 +44,11 @@
                 <td mat-cell *matCellDef="let element">{{ element.rfc_proveedor }}</td>
               </ng-container>
 
+              <ng-container matColumnDef="estatus_proveedor">
+                <th mat-header-cell *matHeaderCellDef> Estatus </th>
+                <td mat-cell *matCellDef="let element"><span class="estatus">{{ element.estatus_proveedor }}</span></td>
+              </ng-container>
+
               <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Accion</th>
                 <td mat-cell *matCellDef="let element">
