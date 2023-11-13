@@ -8,7 +8,6 @@
 </div>
 <form [formGroup]="formularioEditarEmpleado" (ngSubmit)="enviarDatos()">
   <div class="contenedor">
-  
     <div class="izquierda">
         <br>
         <mat-form-field class="example-full-width custom-width">
@@ -43,9 +42,6 @@
             <mat-select formControlName="idTipoUsuario">
               <mat-option value="0"> </mat-option>
               <mat-option *ngFor="let tipoUsuarios of tipoUsuarios" [value]="tipoUsuarios.idTipoUsuario">{{ tipoUsuarios.NombreTipoUser}}</mat-option>
-       <!--   <mat-option value="1">Hilos</mat-option>
-          <mat-option value="2">Telas</mat-option>
-          <mat-option value="3">Bordado</mat-option>-->
           </mat-select>  
         </mat-form-field>
     </div>
@@ -68,18 +64,13 @@
         </label> 
          <br>
          <br>
-
          <mat-form-field>
           <mat-label>Puesto </mat-label>
          <mat-select formControlName="Puesto">
           <mat-option value="0"> </mat-option>
           <mat-option *ngFor="let puestos of puestos" [value]="puestos.idAsignacion">{{ puestos.Puesto}}</mat-option>
-   <!--   <mat-option value="1">Hilos</mat-option>
-      <mat-option value="2">Telas</mat-option>
-      <mat-option value="3">Bordado</mat-option>-->
       </mat-select>  
     </mat-form-field>
-         
     <br>
           <mat-form-field class="example-full-width custom-width">
             <mat-label>Sueldo</mat-label>
@@ -87,22 +78,26 @@
           </mat-form-field>
           <br>
           <mat-form-field class="example-full-width custom-width">
-            <mat-label >Turno</mat-label>
-            <input formControlName ='Turno' matInput placeholder="Ex. Matutino">
-          </mat-form-field>
+            <mat-label>Turno </mat-label>
+           <mat-select formControlName="Turno">
+            <mat-option value="sin turno">Sin turno</mat-option>
+        <mat-option value="M">Matutino</mat-option>
+        <mat-option value="B">Bespertino</mat-option>
+        <mat-option value="N">Nocturno</mat-option>
+        </mat-select>  
+      </mat-form-field>
+
           <br>
           <mat-form-field>
             <mat-label>Area</mat-label>
             <mat-select formControlName="Area">
                 <mat-option value="0"> </mat-option>
                 <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea}}</mat-option>
-         <!--   <mat-option value="1">Hilos</mat-option>
-            <mat-option value="2">Telas</mat-option>
-            <mat-option value="3">Bordado</mat-option>-->
             </mat-select>
         </mat-form-field>
           <br>
           <button type=submit mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
+          
           <button mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
             <a style="color: white;" [routerLink]="['/dashboard/empleado/listEmp']"> Cancelar </a>
           </button>

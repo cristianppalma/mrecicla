@@ -87,9 +87,14 @@
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width custom-width">
-              <mat-label >Turno</mat-label>
-              <input formControlName ='Turno' matInput placeholder="Ex. Matutino">
-            </mat-form-field>
+              <mat-label>Turno </mat-label>
+             <mat-select formControlName="Turno">
+              <mat-option value="sin turno">Sin turno</mat-option>
+          <mat-option value="M">Matutino</mat-option>
+          <mat-option value="B">Bespertino</mat-option>
+          <mat-option value="N">Nocturno</mat-option>
+          </mat-select>  
+        </mat-form-field>
             <br>
             <mat-form-field>
               <mat-label>Area</mat-label>
