@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MaquinasCreateComponent implements OnInit {
   formularioMaquina: FormGroup;
+  areas: any[]=[];
 
   constructor(
     private router: Router,
@@ -64,5 +65,8 @@ export class MaquinasCreateComponent implements OnInit {
 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
+    this.MaquinasService.getAreas().subscribe((data) => {
+      this.areas = data;
+    });
   }
 }

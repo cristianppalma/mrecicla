@@ -59,8 +59,11 @@
   .formula {
     display: flex;
     border: 15px solid red;
-    margin-right: 15rem;
+    margin-right: 12rem;
     width: 57rem;
+    overflow-y: auto;
+    box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
   }
 
   .formula1,

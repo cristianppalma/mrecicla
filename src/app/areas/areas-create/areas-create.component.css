@@ -8,12 +8,6 @@
     max-width: 100vh;
   }
 
-  .cabecera {
-    text-align: center;
-    border: 0px solid red;
-    margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
-    margin-left: 10rem;
-  }
 
   .table {
     text-align: center;
@@ -49,9 +43,9 @@
 
   .cabecera {
     text-align: center;
-    border: 0px solid red;
+    
     margin-bottom: 20px;
-    margin-left: 05rem;
+    margin-right: 13rem;
     width: 80REM;
   }
 
@@ -72,9 +66,12 @@
 
   .formula {
     display: flex;
-    border: 15px solid red;
-    margin-left: 0rem;
+    
+    margin-right: 13rem;
     width: 40rem;
+    overflow-y: auto;
+    box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
   }
 
   .formula1,
@@ -97,7 +94,7 @@
     font-size: 14px;
   }
   .botones{
-    padding-left: 2.5rem;
+    padding-left: 12.5rem;
   }
   label{
     font-size: 17px;

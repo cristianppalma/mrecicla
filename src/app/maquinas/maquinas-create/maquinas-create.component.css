@@ -10,9 +10,6 @@
   
 
   
-  .Filter {
-    margin-left: 3rem;
-  }
 
   /* Estilo para los botones BUSCAR y AGREGAR */
   .mat-form-field {
@@ -52,10 +49,13 @@
   .formula {
     display: flex;
     border: 15px solid red;
-    margin-right: 15rem;
+    margin-right: 10rem;
     width: 57rem;
     /* margin-left: 27rem; */
     width: 58rem;
+    overflow-y: auto;
+    box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
   }
 
   .formula1,

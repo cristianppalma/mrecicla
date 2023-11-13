@@ -1,6 +1,6 @@
 <div class="container">
     <div class="cabecera">
-        <h1>Áreas</h1>
+        <h1>ÁREAS</h1>
     </div>
         <br>
         <div   class="Filter"  >
@@ -9,9 +9,10 @@
                 <mat-label>Área</mat-label>
                 <mat-select [(value)]="selectedArea">
                   <mat-option value="">Todos</mat-option>
-                  <mat-option *ngFor="let food of foods" [value]="food.value">
+              <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
+                <!--- <mat-option *ngFor="let food of foods" [value]="food.value">
                     {{ food.viewValue }}
-                  </mat-option>
+                  </mat-option>-->
                 </mat-select>
               </mat-form-field>
               <button mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;" (click)="aplicarFiltro()">BUSCAR</button>
@@ -48,8 +49,8 @@
                 <ng-container matColumnDef="action">
                   <th mat-header-cell *matHeaderCellDef>Accion</th>
                   <td mat-cell *matCellDef="let element">
-                    <button mat-button (click)="verDetalles(element)" >Editar</button>
-                    <button mat-button (click)="mostrarDialogoDeConfirmacion(element)">Eliminar</button>
+                    <button mat-button (click)="verDetalles(element)" style="color:  #80a943;">Editar</button>
+                    <button mat-button (click)="mostrarDialogoDeConfirmacion(element)" style="color:  #fd0000;">Eliminar</button>
                   </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

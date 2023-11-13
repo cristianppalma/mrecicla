@@ -15,17 +15,7 @@
     margin-left: 1rem;
   }
 
-  .table {
-    text-align: center;
-    /* Estilos para la tabla si es necesario */
-    border: 1px solid blue;
-    width: 999px;
-    /* margin-left: 28rem; */
-  }
-
-  .Filter {
-    margin-left: 3rem;
-  }
+  
 
   /* Estilo para los botones BUSCAR y AGREGAR */
   .mat-form-field {
@@ -37,15 +27,7 @@
     background-color: #d6e44b;
     margin-left: 1rem; /* Agrega espacio entre los botones */
   }
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 10vh;
-    min-width: 70vh;
-    max-width: 100vh;
-  }
+
 
   .cabecera {
     text-align: center;
@@ -73,9 +55,12 @@
 
   .formula {
     display: flex;
-    border: 15px solid red;
+   
     margin-right: 13rem;
     width: 40rem;
+    overflow-y: auto;
+    box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
   }
 
   .formula1,

@@ -12,9 +12,10 @@ import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog
   styleUrls: ['./maquinas-editar.component.css']
 })
 export class MaquinasEditarComponent implements OnInit {
+  areas: any[]=[];
   formularioMaquina2: FormGroup;
   idRecibido: any;
-
+ 
   
   constructor(
     private activeRoute: ActivatedRoute,
@@ -23,6 +24,10 @@ export class MaquinasEditarComponent implements OnInit {
     private maquinasService: MaquinasService,
     private dialog: MatDialog
   ) {
+    this.maquinasService.getAreas().subscribe((data) => {
+      this.areas = data;
+    });
+  
     this.formularioMaquina2 = this.formBuilder.group({
       Numero: [''],
       Serie: [''],
@@ -36,7 +41,7 @@ export class MaquinasEditarComponent implements OnInit {
       this.idRecibido = params.get('id');
       console.log('ID Recibido:', this.idRecibido);
   
-
+   
       this.maquinasService.consultarmaquina(this.idRecibido).subscribe(respuesta => {
         console.log('Respuesta del servicio:', respuesta);
 
@@ -50,8 +55,10 @@ export class MaquinasEditarComponent implements OnInit {
               Modelo: respuesta.Modelo || '',
               Descripcion: respuesta.Descripcion || '',
               Estado: respuesta.Estado || '',
-              Area: respuesta.Area || ''
+              Area: respuesta.Area.toString()
             });
+
+            
           } catch (error) {
             console.error('Error al deserializar los datos JSON:', error);
           }
@@ -59,7 +66,9 @@ export class MaquinasEditarComponent implements OnInit {
           console.error('No se encontraron datos válidos para el ID proporcionado.');
           // Aquí puedes mostrar un mensaje de error al usuario o redirigir a una página de error.
         }
+        
       });
+     
     });
   }
 
@@ -94,6 +103,7 @@ export class MaquinasEditarComponent implements OnInit {
 );
 
     }
+    
   }
   
 
