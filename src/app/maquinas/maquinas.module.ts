@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { AvisoDialogComponent } from './aviso-dialog/aviso-dialog.component';
+import { AvisoErrorComponent } from './aviso-error/aviso-error.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AvisoDialogComponent } from './aviso-dialog/aviso-dialog.component';
     MaquinasEditarComponent,
     MaquinasEliminarComponent,
     ConfirmationDialogComponent,
-    AvisoDialogComponent
+    AvisoDialogComponent,
+    AvisoErrorComponent
   ],
   imports: [
     CommonModule,

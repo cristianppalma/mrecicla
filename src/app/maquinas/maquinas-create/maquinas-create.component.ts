@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MaquinasService } from '../maquinas.service';
 import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
+import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.component';
 
 @Component({
   selector: 'app-maquinas-create',
@@ -42,10 +43,10 @@ export class MaquinasCreateComponent implements OnInit {
         (response) => {
          console.log('Se registro correctamente');
          this.mostratDialogoAviso();
-
         },
         (error) => {
           // Manejar errores del servicio aquí
+          this.mostrarDialogError();
         }
       );
     }
@@ -58,6 +59,19 @@ export class MaquinasCreateComponent implements OnInit {
     dialogAviso.afterClosed().subscribe(result => {
       if (result) {
         this.router.navigateByUrl('/dashboard/maquinas/maquinas');
+      }
+    });
+  
+  }
+
+   
+  mostrarDialogError():void{
+    const dialogAviso = this.dialog.open(AvisoErrorComponent,{
+      data: {message: 'Hubo un error al registrar en la Base de Datos'}
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+      if (result) {
+      
       }
     });
   
