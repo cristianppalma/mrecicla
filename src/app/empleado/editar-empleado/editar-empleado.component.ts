@@ -7,6 +7,7 @@ import { EmpleadoService } from '../empleado.service';
 import { ActivatedRoute } from '@angular/router';
 import { __param } from 'tslib';
 import { FormGroup, FormBuilder, Validators, FormControl, FormsModule } from '@angular/forms';
+import { Areas } from 'src/app/areas/areas';
 
 
 @Component({
@@ -18,9 +19,13 @@ export class EditarEmpleadoComponent implements OnInit {
   formularioEditarEmpleado: FormGroup;
   idEmpleado: any;
 
+  areas : any[]= [];
+  puestos : any[]= [];
+  tipoUsuarios : any[]= [];
+
   constructor(
     private editarEmpleado: EmpleadoService,
-    private FormBuilder: FormBuilder,
+   
     private activateRoute : ActivatedRoute,
     private dialog: MatDialog, 
     private router: Router,
@@ -29,7 +34,7 @@ export class EditarEmpleadoComponent implements OnInit {
     ) {
   
       this.formularioEditarEmpleado = new FormGroup({
-        practicante: new FormControl('no'),
+        practicante: new FormControl(''),
         Nombre: new FormControl('', [Validators.required]),
         ApellidoPaterno: new FormControl('', [Validators.required]),
         ApellidoMaterno: new FormControl('', [Validators.required]),
@@ -39,7 +44,9 @@ export class EditarEmpleadoComponent implements OnInit {
         Turno : new FormControl(''),
         Area : new FormControl (''),
         Sueldo : new FormControl (''),
-        Domicilio : new FormControl('', [Validators.required])
+        Domicilio : new FormControl('', [Validators.required]),
+        idTipoUsuario : new FormControl('')
+
       });
 
       this.activateRoute.paramMap.subscribe((params) => {
@@ -54,11 +61,14 @@ export class EditarEmpleadoComponent implements OnInit {
             ApellidoMaterno: respuesta.ApellidoMaterno,
             Turno: respuesta.Turno,
             Sueldo: respuesta.Sueldo,
-            Area: respuesta.Area,
-            Puesto: respuesta.Puesto,
-            Domicilio: respuesta.Domicilio
+            Area: respuesta.idArea.toString(),
+            Puesto: respuesta.idAsignacion.toString(),
+            Domicilio: respuesta.Domicilio,
+            idTipoUsuario : respuesta.idTipoUsuario.toString(),
+            
           });
           this.formularioEditarEmpleado.controls['practicante'].setValue(respuesta.Practicante);
+
         });
       });
      }
@@ -125,6 +135,17 @@ export class EditarEmpleadoComponent implements OnInit {
         );
       
       // Puedes realizar alguna inicialización adicional aquí si es necesario.
+      this.editarEmpleado.SelectAreas().subscribe((data) => {
+        this.areas=data;
+      });
+  
+      this.editarEmpleado.SelectPuestos().subscribe((data) => {
+        this.puestos=data;
+      });
+      
+      this.editarEmpleado.SelectTipoUsuarios().subscribe((data) => {
+        this.tipoUsuarios=data;
+      });
     }
     
     

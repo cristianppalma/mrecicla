@@ -12,5 +12,7 @@ export class editarEmpleado {
     Puesto              !:string;
     Domicilio           !:string;
     Practicante         !:string;
-
+    idAsignacion        !:string;
+    idArea              !:string;
+    idTipoUsuario       !:string;
 }

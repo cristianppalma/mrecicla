@@ -13,8 +13,9 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AgregarEmpleadoComponent implements OnInit{
   formularioEmpleado: FormGroup;
- 
-
+  areas : any[]= [];
+  puestos : any[]= [];
+  tipoUsuarios : any[]= [];
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -32,7 +33,8 @@ export class AgregarEmpleadoComponent implements OnInit{
       Turno : new FormControl(''),
       Area : new FormControl (''),
       Sueldo : new FormControl (''),
-      Domicilio : new FormControl('', [Validators.required])
+      Domicilio : new FormControl('', [Validators.required]),
+      idTipoUsuario : new FormControl('')
     });
   }
 
@@ -100,6 +102,17 @@ export class AgregarEmpleadoComponent implements OnInit{
       );
     
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
+    this.EmpleadoService.SelectAreas().subscribe((data) => {
+      this.areas=data;
+    });
+
+    this.EmpleadoService.SelectPuestos().subscribe((data) => {
+      this.puestos=data;
+    });
+    
+    this.EmpleadoService.SelectTipoUsuarios().subscribe((data) => {
+      this.tipoUsuarios=data;
+    });
   }
   
 }

@@ -35,6 +35,19 @@
               <mat-label>Domicilio</mat-label>
               <input formControlName ='Domicilio' matInput placeholder="Ex. 1000" >
             </mat-form-field>
+            <br>
+           
+
+            <mat-form-field>
+              <mat-label>Tipo de Usuario </mat-label>
+              <mat-select formControlName="idTipoUsuario">
+                <mat-option value="0"> </mat-option>
+                <mat-option *ngFor="let tipoUsuarios of tipoUsuarios" [value]="tipoUsuarios.idTipoUsuario">{{ tipoUsuarios.NombreTipoUser}}</mat-option>
+         <!--   <mat-option value="1">Hilos</mat-option>
+            <mat-option value="2">Telas</mat-option>
+            <mat-option value="3">Bordado</mat-option>-->
+            </mat-select>  
+          </mat-form-field>
       </div>
       <div class="derecha">
           <br>
@@ -55,18 +68,19 @@
           </label> 
            <br>
            <br>
-            <mat-form-field>
-              <mat-label>Puesto </mat-label>
-              <mat-select formControlName="Puesto">
-                  <mat-option value="0"> </mat-option>
-              <mat-option value="Operador-costura">Operador de costura circular</mat-option>
-              <mat-option value="Supervisor">Supervisor</mat-option>
-              <mat-option value="Mecanico">Mecanico GRAL</mat-option>
-              <mat-option value="Hilador">Hilador</mat-option>
-              </mat-select>
-          </mat-form-field>
-  
-            <br>
+
+           <mat-form-field>
+            <mat-label>Puesto </mat-label>
+           <mat-select formControlName="Puesto">
+            <mat-option value="0"> </mat-option>
+            <mat-option *ngFor="let puestos of puestos" [value]="puestos.idAsignacion">{{ puestos.Puesto}}</mat-option>
+     <!--   <mat-option value="1">Hilos</mat-option>
+        <mat-option value="2">Telas</mat-option>
+        <mat-option value="3">Bordado</mat-option>-->
+        </mat-select>  
+      </mat-form-field>
+           
+      <br>
             <mat-form-field class="example-full-width custom-width">
               <mat-label>Sueldo</mat-label>
               <input formControlName ='Sueldo' matInput placeholder="Ex. 1000">
@@ -77,10 +91,16 @@
               <input formControlName ='Turno' matInput placeholder="Ex. Matutino">
             </mat-form-field>
             <br>
-            <mat-form-field class="example-full-width custom-width">
+            <mat-form-field>
               <mat-label>Area</mat-label>
-              <input formControlName ='Area' matInput placeholder="Ex. Cortadora">
-            </mat-form-field>
+              <mat-select formControlName="Area">
+                  <mat-option value="0"> </mat-option>
+                  <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
+           <!--   <mat-option value="1">Hilos</mat-option>
+              <mat-option value="2">Telas</mat-option>
+              <mat-option value="3">Bordado</mat-option>-->
+              </mat-select>
+          </mat-form-field>
             <br>
             <button type=submit mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
             <button mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
