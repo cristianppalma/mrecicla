@@ -86,6 +86,17 @@ mat-form-field {
   color: white;
 }
 
+.activo{
+  background-color: green;
+  padding: 5px;
+  color: white;
+}
+
+.inactivo{
+  background-color: red;
+  padding: 5px;
+  color: white;
+}
 /* ESPACIO ENTRE LOS DIFERENTES ESTILOS */
 
 /* .container {
