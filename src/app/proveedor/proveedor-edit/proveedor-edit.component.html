@@ -24,10 +24,16 @@
           <input required type="text" formControlName="direccion_proveedor" matInput>
         </mat-form-field>
 
-        <label>Descripción</label>
+        <label>Teléfono</label>
         <mat-form-field>
-          <mat-label>Descripción</mat-label>
-          <input required type="text" formControlName="description_proveedor" matInput>
+          <mat-label>Teléfono</mat-label>
+          <input required type="number" formControlName="telefono_proveedor" matInput>
+        </mat-form-field>
+
+        <label>Correo</label>
+        <mat-form-field>
+          <mat-label>Correo</mat-label>
+          <input required type="email" formControlName="correo_proveedor" matInput>
         </mat-form-field>
 
       </div>
@@ -51,10 +57,20 @@
             <input required type="text" formControlName="rfc_proveedor" matInput>
         </mat-form-field>
 
+        <label>Descripción</label>
+        <mat-form-field>
+          <mat-label>Descripción</mat-label>
+          <input required type="text" formControlName="description_proveedor" matInput>
+        </mat-form-field>
+
         <label>Estatus</label>
         <mat-form-field>
             <mat-label>Estatus</mat-label>
-            <input required type="text" formControlName="estatus_proveedor" matInput>
+            <mat-select required formControlName="estatus_proveedor">
+              <mat-option value="0"> </mat-option>
+              <mat-option value="Activo">Activo</mat-option>
+              <mat-option value="Inactivo">Inactivo</mat-option>
+            </mat-select>
         </mat-form-field>
 
       </div>

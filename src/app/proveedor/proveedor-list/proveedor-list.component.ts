@@ -20,7 +20,7 @@ interface Food {
 
 export class ProveedorListComponent  implements OnInit {
   Proveedor: PeriodicElement[] = [];
-  displayedColumns: string[] = ['id_proveedor','name_proveedor', 'producto_proveedor', 'direccion_proveedor','rfc_proveedor','estatus_proveedor', 'action'];
+  displayedColumns: string[] = ['id_proveedor','name_proveedor', 'producto_proveedor', 'direccion_proveedor','telefono_proveedor','correo_proveedor','estatus_proveedor', 'action'];
   dataSource: MatTableDataSource<PeriodicElement>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -51,8 +51,11 @@ export class ProveedorListComponent  implements OnInit {
     console.log('NAME: ', element.name_proveedor);
     console.log('PRODUCTO: ', element.producto_proveedor);
     console.log('DIRECCION: ', element.direccion_proveedor);
+    console.log('TELEFONO: ', element.telefono_proveedor);
+    console.log('CORREO: ', element.correo_proveedor);
     console.log('RFC: ', element.rfc_proveedor);
     console.log('DESCRIPCION: ', element.description_proveedor);
+    console.log('ESTATUS: ', element.estatus_proveedor);
 
     // Puedes abrir un modal, mostrar información adicional, etc.
     const idProveedor = element.id_proveedor; // Obtener el ID de la máquina
@@ -112,7 +115,9 @@ export class ProveedorListComponent  implements OnInit {
 
   mostrarDialogoDeConfirmacion2(element: PeriodicElement): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
+      data: {
+        title: '¿Estás seguro de que deseas eliminar este registro?',
+        message: 'Esta accion no podra revertirse' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -132,26 +137,6 @@ export class ProveedorListComponent  implements OnInit {
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
   }
-
-
-  // openDialog(enterAnimationDuration: string, exitAnimationDuration: string, id_proveedor: string){
-  //       const dialogRef = this.dialog.open(ModalDeleteComponent, {
-  //         width: '550px',
-  //         enterAnimationDuration,
-  //         exitAnimationDuration,
-  //       });
-  //       dialogRef.afterClosed().subscribe(res => {
-  //         console.log(res);
-  //         if (res){
-  //           console.log('delete');
-  //           this.proveedorService.borrarProveedor(id_proveedor).subscribe((respuesta)=>{
-  //             this.Proveedores.splice();
-  //             window.location.reload();
-  //           });
-  //         }
-  //       })
-  //     }
-
 
 }
 

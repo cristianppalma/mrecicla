@@ -27,6 +27,8 @@ export class ProveedorEditComponent implements OnInit {
       name_proveedor:[''],
       producto_proveedor:[''],
       direccion_proveedor:[''],
+      telefono_proveedor:[''],
+      correo_proveedor:[''],
       rfc_proveedor:[''],
       description_proveedor:[''],
       estatus_proveedor: [''],
@@ -47,6 +49,8 @@ export class ProveedorEditComponent implements OnInit {
               name_proveedor: proveedor.name_proveedor,
               producto_proveedor: proveedor.producto_proveedor,
               direccion_proveedor: proveedor.direccion_proveedor,
+              telefono_proveedor: proveedor.telefono_proveedor,
+              correo_proveedor: proveedor.correo_proveedor,
               rfc_proveedor: proveedor.rfc_proveedor,
               description_proveedor: proveedor.description_proveedor,
               estatus_proveedor:proveedor.estatus_proveedor

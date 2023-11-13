@@ -27,9 +27,11 @@ export class ProveedorCreateComponent implements OnInit {
       name_proveedor: ['', [Validators.required]],
       producto_proveedor: [''],
       direccion_proveedor: [''],
+      telefono_proveedor: [''],
+      correo_proveedor: [''],
       rfc_proveedor: [''],
       description_proveedor: [''],
-      estatus_proveedor: ['1'],
+      estatus_proveedor: ['Activo'],
     });
   }
 
