@@ -12,8 +12,8 @@
         <label>Nombre completo</label>
         <mat-form-field>
           <mat-label>Nombre</mat-label>
-          <input required min="1" type="text" name="" formControlName="name_proveedor" matInput>
-          <mat-error *ngIf="formularioProveedor.get('name_proveedor')?.hasError('required')">
+          <input required min="1" type="text" name="" formControlName="NombreProveedor" matInput>
+          <mat-error *ngIf="formularioProveedor.get('NombreProveedor')?.hasError('required')">
             El nombre es obligatorio.
           </mat-error>
         </mat-form-field>
@@ -21,19 +21,19 @@
         <label>Dirección</label>
         <mat-form-field>
           <mat-label>Dirección</mat-label>
-          <input required type="text" formControlName="direccion_proveedor" matInput>
+          <input required type="text" formControlName="DireccionProveedor" matInput>
         </mat-form-field>
 
         <label>Teléfono</label>
         <mat-form-field>
           <mat-label>Teléfono</mat-label>
-          <input required type="number" formControlName="telefono_proveedor" matInput>
+          <input required type="number" formControlName="Telefono" matInput>
         </mat-form-field>
 
         <label>Correo</label>
         <mat-form-field>
           <mat-label>Correo</mat-label>
-          <input required type="email" formControlName="correo_proveedor" matInput>
+          <input required type="email" formControlName="Correo" matInput>
         </mat-form-field>
 
       </div>
@@ -43,7 +43,7 @@
         <label>Producto</label>
         <mat-form-field>
           <mat-label>Producto</mat-label>
-          <mat-select required formControlName="producto_proveedor">
+          <mat-select required formControlName="ProductoProveedor">
             <mat-option value="0"> </mat-option>
             <mat-option value="Hilo">Hilo Importado</mat-option>
             <mat-option value="Tela">Tela reciclada</mat-option>
@@ -54,13 +54,13 @@
         <label>RFC</label>
         <mat-form-field>
             <mat-label>RFC</mat-label>
-            <input required type="text" formControlName="rfc_proveedor" matInput>
+            <input required type="text" formControlName="RFCProveedor" matInput>
         </mat-form-field>
 
         <label>Descripción</label>
         <mat-form-field>
           <mat-label>Descripción</mat-label>
-          <input required type="text" formControlName="description_proveedor" matInput>
+          <input required type="text" formControlName="DescripcionProveedor" matInput>
         </mat-form-field>
 
       </div>

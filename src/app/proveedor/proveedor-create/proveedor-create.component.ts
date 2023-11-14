@@ -24,14 +24,14 @@ export class ProveedorCreateComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.formularioProveedor = this.formBuilder.group({
-      name_proveedor: ['', [Validators.required]],
-      producto_proveedor: [''],
-      direccion_proveedor: [''],
-      telefono_proveedor: [''],
-      correo_proveedor: [''],
-      rfc_proveedor: [''],
-      description_proveedor: [''],
-      estatus_proveedor: ['Activo'],
+      NombreProveedor: ['', [Validators.required]],
+      ProductoProveedor: [''],
+      DireccionProveedor: [''],
+      Telefono: [''],
+      Correo: [''],
+      RFCProveedor: [''],
+      DescripcionProveedor: [''],
+      EstatusProveedor: ['Activo'],
     });
   }
 

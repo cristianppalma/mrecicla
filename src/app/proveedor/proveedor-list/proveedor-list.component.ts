@@ -20,7 +20,7 @@ interface Food {
 
 export class ProveedorListComponent  implements OnInit {
   Proveedor: PeriodicElement[] = [];
-  displayedColumns: string[] = ['id_proveedor','name_proveedor', 'producto_proveedor', 'direccion_proveedor','telefono_proveedor','correo_proveedor','estatus_proveedor', 'action'];
+  displayedColumns: string[] = ['idProveedor','NombreProveedor', 'ProductoProveedor', 'DireccionProveedor','Telefono','Correo','EstatusProveedor', 'action'];
   dataSource: MatTableDataSource<PeriodicElement>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -47,19 +47,19 @@ export class ProveedorListComponent  implements OnInit {
   verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de: ', element);
-    console.log('ID: ', element.id_proveedor);
-    console.log('NAME: ', element.name_proveedor);
-    console.log('PRODUCTO: ', element.producto_proveedor);
-    console.log('DIRECCION: ', element.direccion_proveedor);
-    console.log('TELEFONO: ', element.telefono_proveedor);
-    console.log('CORREO: ', element.correo_proveedor);
-    console.log('RFC: ', element.rfc_proveedor);
-    console.log('DESCRIPCION: ', element.description_proveedor);
-    console.log('ESTATUS: ', element.estatus_proveedor);
+    console.log('ID: ', element.idProveedor);
+    console.log('NAME: ', element.NombreProveedor);
+    console.log('PRODUCTO: ', element.ProductoProveedor);
+    console.log('DIRECCION: ', element.DireccionProveedor);
+    console.log('TELEFONO: ', element.Telefono);
+    console.log('CORREO: ', element.Correo);
+    console.log('RFC: ', element.RFCProveedor);
+    console.log('DESCRIPCION: ', element.DescripcionProveedor);
+    console.log('ESTATUS: ', element.EstatusProveedor);
 
     // Puedes abrir un modal, mostrar información adicional, etc.
-    const idProveedor = element.id_proveedor; // Obtener el ID de la máquina
-    this.router.navigateByUrl(`/dashboard/proveedor/proveedorEdit/${idProveedor}`);
+    const id_proveedor = element.idProveedor; // Obtener el ID de la máquina
+    this.router.navigateByUrl(`/dashboard/proveedor/proveedorEdit/${id_proveedor}`);
   }
 
 
@@ -85,7 +85,7 @@ export class ProveedorListComponent  implements OnInit {
     const index = this.dataSource.data.indexOf(element);
 
     if (index >= 0) {
-      const id_proveedor = element.id_proveedor;
+      const id_proveedor = element.idProveedor;
       this.dataSource.data.splice(index, 1);
       this.proveedorService.borrarProveedor(id_proveedor).subscribe();
       this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla

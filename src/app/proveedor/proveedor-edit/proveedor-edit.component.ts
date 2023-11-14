@@ -24,14 +24,14 @@ export class ProveedorEditComponent implements OnInit {
   ) {
 
     this.formularioProveedorEdit=this.formBuilder.group({
-      name_proveedor:[''],
-      producto_proveedor:[''],
-      direccion_proveedor:[''],
-      telefono_proveedor:[''],
-      correo_proveedor:[''],
-      rfc_proveedor:[''],
-      description_proveedor:[''],
-      estatus_proveedor: [''],
+      NombreProveedor:[''],
+      ProductoProveedor:[''],
+      DireccionProveedor:[''],
+      Telefono:[''],
+      Correo:[''],
+      RFCProveedor:[''],
+      DescripcionProveedor:[''],
+      EstatusProveedor: [''],
     });
     }
 
@@ -46,14 +46,14 @@ export class ProveedorEditComponent implements OnInit {
             console.log('datos del proveedor ', proveedor);
 
             this.formularioProveedorEdit.setValue({
-              name_proveedor: proveedor.name_proveedor,
-              producto_proveedor: proveedor.producto_proveedor,
-              direccion_proveedor: proveedor.direccion_proveedor,
-              telefono_proveedor: proveedor.telefono_proveedor,
-              correo_proveedor: proveedor.correo_proveedor,
-              rfc_proveedor: proveedor.rfc_proveedor,
-              description_proveedor: proveedor.description_proveedor,
-              estatus_proveedor:proveedor.estatus_proveedor
+              NombreProveedor: proveedor.NombreProveedor,
+              ProductoProveedor: proveedor.ProductoProveedor,
+              DireccionProveedor: proveedor.DireccionProveedor,
+              Telefono: proveedor.Telefono,
+              Correo: proveedor.Correo,
+              RFCProveedor: proveedor.RFCProveedor,
+              DescripcionProveedor: proveedor.DescripcionProveedor,
+              EstatusProveedor:proveedor.EstatusProveedor
             });
 
         }, error => {
