@@ -42,14 +42,14 @@ mat-sidenav {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 1rem;
+  font-size: 15px;
   margin-bottom: 10px;
 }
 
 mat-icon, span, a {
-  margin-right: 8px;
+  margin-right: 0px;
   color: #fff;
-} 
+}
 
 .content{
   height: 42rem;
@@ -63,7 +63,7 @@ mat-icon, span, a {
 mat-sidenav-content{
   width: 100%;
   height: 100%;
- 
+
   background-size: contain;
   background-position: center;
   background-repeat: repeat;

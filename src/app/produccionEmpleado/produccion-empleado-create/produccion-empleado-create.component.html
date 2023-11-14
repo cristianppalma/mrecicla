@@ -1,0 +1,90 @@
+<div class="container">
+
+  <div class="cabecera">
+    <h1>Registrar tiempo para producción</h1>
+  </div>
+
+<div class="centrar-columnas">
+    <form >
+      <div class="formula">
+        <div class="formula1">
+
+          <label>Fecha de Inicio</label>
+          <mat-form-field>
+            <input required type="date" matInput>
+          </mat-form-field>
+
+          <label>Fecha de Finalización</label>
+          <mat-form-field>
+            <input required type="date" matInput>
+          </mat-form-field>
+
+          <label>Hora de Inicio</label>
+          <mat-form-field>
+            <input required type="time" matInput>
+          </mat-form-field>
+
+          <label>Hora de Finalización</label>
+          <mat-form-field>
+            <input required type="time" matInput>
+          </mat-form-field>
+
+          <label>Turno</label>
+          <mat-form-field>
+            <mat-label>Matutino</mat-label>
+            <mat-select required >
+              <mat-option value="">Matutino</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+        <div class="formula2">
+
+          <label>Unidades de Insumo Inicial (pz)</label>
+          <mat-form-field>
+            <mat-label>1</mat-label>
+            <input required type="number" matInput>
+          </mat-form-field>
+
+          <label>Kg Totales de produccion</label>
+          <mat-form-field>
+            <mat-label>20</mat-label>
+            <input required type="number" matInput>
+          </mat-form-field>
+
+          <label>Empleado</label>
+          <mat-form-field>
+            <mat-label>id Empleado</mat-label>
+            <mat-select required >
+              <mat-option value="">1</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <label>Maquina</label>
+          <mat-form-field>
+            <mat-label>Hilos</mat-label>
+            <mat-select required>
+              <mat-option selected value="">Hilos</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <label>Area</label>
+          <mat-form-field>
+            <mat-label>Tela para playera</mat-label>
+            <mat-select required >
+              <mat-option value="">Tela para playera</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <div class="botones" role="group">
+        <button type="submit" class="btn-acep" mat-button>REGISTRAR</button>
+        <button type="button"class="btn-canc" mat-button>CANCELAR</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

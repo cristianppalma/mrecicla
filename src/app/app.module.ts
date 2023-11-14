@@ -14,6 +14,8 @@ import { SolicitudesModule } from './solicitudes/solicitudes.module';
 import { ControlModule } from './control/control.module';
 import { ProduccionModule } from './produccion/produccion.module';
 
+import { ProduccionEmpleadoModule } from './produccionEmpleado/produccion-empleado.module';
+
 import { MatIconModule } from '@angular/material/icon';
 import { IndexComponent } from './index/index/index.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
@@ -38,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     SolicitudesModule,
     ControlModule,
     ProduccionModule,
+    ProduccionEmpleadoModule,
     MatIconModule,
     MaquinasModule,
     AreasModule,
