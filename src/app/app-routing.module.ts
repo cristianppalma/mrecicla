@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'dashboard', component: PagesComponent,
     children: [
       { path:'tablero', component:DashboardComponent },
-      { path:'produccion', component: ProduccionComponent },
+      { path:'produccion', loadChildren: () => import('./produccion/produccion.module').then(m => m.ProduccionModule) },
       { path: 'proveedor', loadChildren: () => import('./proveedor/proveedor.module').then(m => m.ProveedorModule) },
       { path: 'control', loadChildren: () => import('./control/control.module').then(m => m.ControlModule) },
       { path:'inventario', loadChildren:() => import('./inventario/inventario.module').then(m => m.InventarioModule) },

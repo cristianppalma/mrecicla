@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-produccion',
   templateUrl: './produccion.component.html',
   styleUrls: ['./produccion.component.css']
 })
+
 export class ProduccionComponent implements OnInit {
   public chart: Chart;
   ngOnInit(): void {7
@@ -23,5 +25,11 @@ export class ProduccionComponent implements OnInit {
       type: 'line' as ChartType,
       data
     })
+  }
+
+  constructor(private router:Router) {}
+
+  VerGastosGenerales(){
+    this.router.navigateByUrl('/dashboard/produccion/produccionList');
   }
 }
