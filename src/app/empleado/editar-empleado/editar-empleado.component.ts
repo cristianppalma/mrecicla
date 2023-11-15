@@ -111,7 +111,7 @@ export class EditarEmpleadoComponent implements OnInit {
 
       this.formularioEditarEmpleado.controls['practicante'].valueChanges.subscribe(
         (practicante) => {
-          if (practicante === 'no') {
+          if (practicante === 'No') {
             this.formularioEditarEmpleado.controls['Puesto'].enable();
             this.formularioEditarEmpleado.controls['Turno'].enable();
             this.formularioEditarEmpleado.controls['Area'].enable();

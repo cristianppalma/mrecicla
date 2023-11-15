@@ -55,11 +55,11 @@
           <mat-label style="font-size: medium;">practicante?</mat-label>
           
           <label style="font-size: medium; margin-left: 10px;">
-          <input type="radio" value="si" formControlName ="practicante" />
+          <input type="radio" value="Si" formControlName ="practicante" />
             si
         </label>
         <label style="font-size: medium; margin-left: 50px;">
-         <input type="radio" value="no" formControlName ="practicante" />
+         <input type="radio" value="No" formControlName ="practicante" />
           no   
         </label> 
          <br>
@@ -98,7 +98,7 @@
           <br>
           <button type=submit mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
           
-          <button mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
+          <button [routerLink]="['/dashboard/empleado/listEmp']" mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
             <a style="color: white;" [routerLink]="['/dashboard/empleado/listEmp']"> Cancelar </a>
           </button>
     </div>

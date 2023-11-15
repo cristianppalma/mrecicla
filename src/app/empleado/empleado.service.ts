@@ -13,10 +13,8 @@ export class EmpleadoService {
   //API: string = 'https://recicladora.arvispace.com/PhpAngular/'
 
    API: string = 'http://localhost/PhpAngular/';
-  constructor( private clientService:HttpClient) { }
-
-
-
+  
+   constructor( private clientService:HttpClient) { }
   AgregarUsuartio(datosEmpleado:Empleado):Observable<any>{
     return this.clientService.post(this.API+"?insertarEmpleado=",datosEmpleado);
   }

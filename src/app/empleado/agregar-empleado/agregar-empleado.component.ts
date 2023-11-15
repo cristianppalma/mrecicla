@@ -23,7 +23,7 @@ export class AgregarEmpleadoComponent implements OnInit{
     private dialog: MatDialog
   ) {
     this.formularioEmpleado = new FormGroup({
-      practicante: new FormControl('no'),
+      practicante: new FormControl('No'),
       Nombre: new FormControl('', [Validators.required]),
       ApellidoPaterno: new FormControl('', [Validators.required]),
       ApellidoMaterno: new FormControl('', [Validators.required]),
@@ -78,7 +78,7 @@ export class AgregarEmpleadoComponent implements OnInit{
 
     this.formularioEmpleado.controls['practicante'].valueChanges.subscribe(
       (practicante) => {
-        if (practicante === 'no') {
+        if (practicante === 'No') {
           this.formularioEmpleado.controls['Puesto'].enable();
           this.formularioEmpleado.controls['Turno'].enable();
           this.formularioEmpleado.controls['Area'].enable();
