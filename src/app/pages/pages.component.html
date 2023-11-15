@@ -62,15 +62,21 @@
       <span><a [routerLink]="['solicitudes/solicitudes']">Solicitudes</a></span>
     </button>
 
-    <!-- <button mat-button class="menu-boton">
+    <button mat-button class="menu-boton">
       <mat-icon>construction</mat-icon>
-      <span>Producción</span>
-    </button> -->
+      <span><a [routerLink]="['produccion/produccion']">Producción</a></span>
+    </button>
 
     <button mat-button class="menu-boton">
       <mat-icon>work</mat-icon>
       <span><a [routerLink]="['control/controlGastosGenerales']">Control Gastos</a></span>
     </button>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>alarm</mat-icon>
+      <span><a [routerLink]="['produccion-empleado/produccionEmpleado']">Tiempo Prod.</a></span>
+    </button>
+
   </mat-sidenav>
 
   <mat-sidenav-content>

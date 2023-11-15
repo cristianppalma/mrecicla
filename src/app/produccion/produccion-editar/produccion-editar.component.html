@@ -1,6 +1,7 @@
+<p>produccion-editar works!</p>
 <H1 class="Title">EDITAR GASTO</H1>
   <div class="centrar-columnas">
-    <form [formGroup]="formularioEditarGastos" (ngSubmit)="enviarDatosActualizarGastos()">
+    <form >
       <div class="formula" style="border:none;" >
         <div class="formula1">
           <label>Concepto</label>
@@ -42,10 +43,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="botones">
-        <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">EDITAR</button>
-        <button (click)="mostrarDialogDeConfirmacion2();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
-      </div>
+      
     </form>
   </div>
 <br>

@@ -8,6 +8,7 @@ import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog
 import { MatDialog } from '@angular/material/dialog';
 
 
+import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component'
 
 @Component({
   selector: 'app-control-gastos-generales-crear',
@@ -25,20 +26,28 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.formularioGastos = this.formBuilder.group({
-      Concepto: [''],
-      Descripcion: [''],
-      Periodo: [''],
-      UsuarioCreador: [''],
-      FechaCreacion: [''],
-      UsuarioActualizar: [''],
-      FechaActualizacion:[''],
+      Concepto: ['', [Validators.required]],
+      Descripcion: ['', [Validators.required]],
+      Periodo: ['', [Validators.required]],
+      
       Monto:['', [Validators.required]],
-      Tipo:['']
+      Tipo:['', [Validators.required]]
     });
   }
 
   CancelarGastosGeneralesCrear(){
     this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
+  }
+  mostrarDialogDeConfirmacion3(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    data: { message: '¿Estás seguro de que deseas cancelar este registro?' }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
+      }
+    });
   }
 
   enviarDatos(): void {
@@ -71,6 +80,8 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
     });
   
   }
+
+  
 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
