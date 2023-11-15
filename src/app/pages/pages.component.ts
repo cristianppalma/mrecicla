@@ -30,6 +30,8 @@ export class PagesComponent {
   logout(){
     // Para borrar el token del Local Storage
     localStorage.removeItem('token');
+    localStorage.removeItem('id_user');
+    localStorage.removeItem('NombreTipoUser');
     // Para borrar todos los elementos del Local Storage
     // localStorage.clear();
     console.log('Se elimino el token');
