@@ -11,9 +11,14 @@ export class AuthService {
 
    API: string = 'http://localhost/PhpAngular/'
 
+  // OBTENER rol de usuario
+  // private isAuthenticate = false;
+  // private userRole: string | null = null;
+
   constructor( private clientService:HttpClient) { }
 
   verUsuario(datosUsuario:usuario):Observable<any>{
     return this.clientService.post(this.API+"?login=",datosUsuario);
   }
+
 }

@@ -14,7 +14,6 @@ import { AvisoLoginComponent } from '../aviso-login/aviso-login.component';
 export class AuthComponent  implements OnInit {
   formularioLogin: FormGroup;
 
-
   login(){
     this.router.navigateByUrl('/dashboard/tablero');
   }
@@ -22,9 +21,6 @@ export class AuthComponent  implements OnInit {
   registro(){
     this.router.navigateByUrl('/registrarse');
   }
-
-
-
 
   constructor(
     private router: Router,
@@ -39,7 +35,6 @@ export class AuthComponent  implements OnInit {
     });
   }
 
-
   enviarDatos(): void {
     if (this.formularioLogin.valid) {
       console.log('Se presionó el botón');
@@ -53,11 +48,14 @@ export class AuthComponent  implements OnInit {
             this.mostrarDialogoLoginError(response.error);
           } else {
             console.log('Se logueó correctamente');
+            // Se crea el token de forma ramdon para iniciar sesion
+            localStorage.setItem('token', Math.random().toString());
             this.router.navigateByUrl('/dashboard/tablero');
 
+            // Obtenemos el id y puesto del usuario
             let usuario = response.idUsuario;
             localStorage.setItem("id_user", usuario );
-            let puesto= response.Puesto;
+            let puesto = response.Puesto;
             localStorage.setItem("Puesto", puesto);
 
           }
@@ -91,9 +89,6 @@ export class AuthComponent  implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-
-
-
 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.

@@ -5,16 +5,31 @@ import { EditarEmpleadoComponent } from './editar-empleado/editar-empleado.compo
 import { UsuarioTableComponent } from './lista-empleados/lista-empleados.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
+import { authGuard } from '../guards/auth.guard';
 
 
 const routes: Routes = [
-  { path:'listEmp', component: UsuarioTableComponent},
-  { path:'addEmp', component: AgregarEmpleadoComponent},
-  { path:'edditEmp/:id', component: EditarEmpleadoComponent},
-  { path:'adminPrfile', component: PerfilAdminComponent}
-
+  {
+    path: 'listEmp',
+    component: UsuarioTableComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'addEmp',
+    component: AgregarEmpleadoComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'edditEmp/:id',
+    component: EditarEmpleadoComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'adminPrfile',
+    component: PerfilAdminComponent,
+    // canActivate: [authGuard]
+  },
 ];
-
 
 @NgModule({
   declarations: [],
