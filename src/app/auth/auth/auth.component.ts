@@ -57,6 +57,8 @@ export class AuthComponent  implements OnInit {
 
             let usuario = response.idUsuario;
             localStorage.setItem("id_user", usuario );
+            let puesto= response.Puesto;
+            localStorage.setItem("Puesto", puesto);
 
           }
         },
