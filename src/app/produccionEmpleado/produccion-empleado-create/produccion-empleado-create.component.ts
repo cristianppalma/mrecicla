@@ -18,11 +18,18 @@ import { ProduccionEmpleadoService } from '../produccion-empleado.service';
   styleUrls: ['./produccion-empleado-create.component.css']
 })
 export class ProduccionEmpleadoCreateComponent implements OnInit {
-  ngOnInit(): void {
 
+  constructor(
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
     const usuario = localStorage.getItem("id_user");
     console.log('ID: ', usuario);
+  }
 
+  cancelar(){
+    this.router.navigateByUrl('/dashboard/produccion-empleado/produccionEmpleado');
   }
 
 

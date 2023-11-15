@@ -25,12 +25,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { ProduccionEmpleadoListComponent } from './produccion-empleado-list/produccion-empleado-list.component';
 
 
 
 @NgModule({
   declarations: [
-    ProduccionEmpleadoCreateComponent
+    ProduccionEmpleadoCreateComponent,
+    ProduccionEmpleadoListComponent
   ],
   imports: [
     CommonModule,
