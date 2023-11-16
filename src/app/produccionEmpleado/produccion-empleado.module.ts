@@ -26,13 +26,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { ProduccionEmpleadoListComponent } from './produccion-empleado-list/produccion-empleado-list.component';
+import { AvisoDialogComponent } from './aviso-dialog/aviso-dialog.component';
+import { ProduccionEmpleadoEditComponent } from './produccion-empleado-edit/produccion-empleado-edit.component';
 
 
 
 @NgModule({
   declarations: [
     ProduccionEmpleadoCreateComponent,
-    ProduccionEmpleadoListComponent
+    ProduccionEmpleadoListComponent,
+    AvisoDialogComponent,
+    ProduccionEmpleadoEditComponent
   ],
   imports: [
     CommonModule,
