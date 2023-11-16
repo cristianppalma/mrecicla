@@ -1,7 +1,12 @@
 export class Produccion{
-  // name_proveedor!:String;
-  // producto_proveedor!:String;
-  // direccion_proveedor!:String;
-  // rfc_proveedor!:String;
-  // description_proveedor!:String;
+  FechaInicio     !:String;
+  FechaFin        !:String;
+  HoraInicio      !:String;
+  HoraFin         !:String;
+  Turno           !:String;
+  UnidadesInsumo  !:String;
+  KgProduccion    !:String;
+  idMaquina       !:String;
+  idArea          !:String;
+  idEmpleado      !:String;
 }
