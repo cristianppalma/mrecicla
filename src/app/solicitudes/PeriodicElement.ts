@@ -5,7 +5,7 @@ export interface PeriodicElement {
     Dimensiones: string;
     FechaPeticion: string;
     Calibre: string;
-    AreaDesignada: string;
+    idProveedor: string;
     Composicion: string;
     FechaRecepcion: string;
   }

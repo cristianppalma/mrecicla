@@ -29,7 +29,7 @@ export interface DialogData {
   styleUrls: ['./solicitudes-edit.component.css']
 })
 export class SolicitudesEditComponent implements OnInit{
- 
+  proveedor: any[];
   formularioEditarSolicitud:FormGroup;
   idsolicitud:any;
   Areas: Area[] = [
@@ -53,7 +53,7 @@ export class SolicitudesEditComponent implements OnInit{
         Dimensiones: [''],  
         FechaPeticion: [''],
         Calibre: [''],
-        AreaDesignada:[''],
+        idProveedor:[''],
         Composicion:[''],
         FechaRecepcion:['']
         
@@ -68,7 +68,7 @@ export class SolicitudesEditComponent implements OnInit{
             Dimensiones:  respuesta.Dimensiones,
             FechaPeticion: respuesta.FechaPeticion,
             Calibre: respuesta.Calibre,
-            AreaDesignada: respuesta.AreaDesignada,
+            idProveedor: respuesta.idProveedor.toString(),
             Composicion: respuesta.Composicion,
             FechaRecepcion: respuesta.FechaRecepcion
           });
@@ -118,6 +118,10 @@ export class SolicitudesEditComponent implements OnInit{
   }
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
+    this.SolicitudesService.selectProveedor().subscribe((data)=>{
+      this.proveedor=data;
+    });
+
   }
 }
 

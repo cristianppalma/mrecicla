@@ -12,6 +12,7 @@ import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog
 import { MatTableModule } from '@angular/material/table';import { MatTableDataSource } from '@angular/material/table';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
+import { Proveedor } from 'src/app/proveedor/proveedor';
 
 interface Area {
   value: string;
@@ -30,6 +31,7 @@ export class SolicitudesCrearComponent implements OnInit{
     {value: 'area2', viewValue: 'hilado'},
     {value: 'area3', viewValue: 'otro'},
   ];
+  proveedor: any[];
   formularioSolicitud: FormGroup;
   constructor(private router:Router,
  private _bottomSheet: MatBottomSheet,
@@ -39,14 +41,14 @@ export class SolicitudesCrearComponent implements OnInit{
  ) {
   this.formularioSolicitud = this.formBuilder.group({
     //ID: ['', [Validators.required]],
-    nombreProducto: [''],
-    Peso: [''],
-    Dimensiones: [''],  
-    FechaPeticion: [''],
-    Calibre: [''],
-    AreaDesignada:[''],
-    Composicion:[''],
-    FechaRecepcion: ['']
+    nombreProducto: ['', [Validators.required]],
+    Peso: ['', [Validators.required]],
+    Dimensiones: ['', [Validators.required]],  
+    FechaPeticion: ['', [Validators.required]],
+    Calibre: ['', [Validators.required]],
+    idProveedor:['', [Validators.required]],
+    Composicion:['', [Validators.required]],
+    FechaRecepcion: ['', [Validators.required]]
    
   });
  }
@@ -95,6 +97,10 @@ export class SolicitudesCrearComponent implements OnInit{
 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
+    this.SolicitudesService.selectProveedor().subscribe((data)=>{
+      this.proveedor=data;
+    });
+
   }
 }
 

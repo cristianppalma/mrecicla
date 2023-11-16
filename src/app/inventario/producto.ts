@@ -6,5 +6,5 @@ export class producto{
     FechaCreacion!:String;
     Clibre!:String;
     Porcentaje!:String;
-    AreasDesignadas!:String;
+    IdArea!:String;
 }
