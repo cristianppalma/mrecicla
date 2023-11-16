@@ -1,0 +1,49 @@
+<p>produccion-editar works!</p>
+<H1 class="Title">EDITAR GASTO</H1>
+  <div class="centrar-columnas">
+    <form >
+      <div class="formula" style="border:none;" >
+        <div class="formula1">
+          <label>Concepto</label>
+          <mat-form-field >
+            <mat-label>Concepto</mat-label>
+              <input placeholder="Ej. Luz" formControlName="Concepto" matInput >
+          </mat-form-field>
+          <label>Descripcion</label>
+          <mat-form-field>
+            <mat-label>Descripcion</mat-label>
+              <input placeholder="Ej. Pago de Servicio" formControlName="Descripcion" matInput >
+          </mat-form-field>
+          <label>Periodo</label>
+          <mat-form-field>
+            <mat-label>Periodo</mat-label>
+              <input placeholder="Ej. Enero - Febrero" formControlName="Periodo" matInput>
+          </mat-form-field>
+          
+        </div>
+        <div class="formula2">
+          
+          <label>Monto</label>
+          <mat-form-field>
+            <mat-label>Monto</mat-label>
+              <input placeholder="2500" formControlName="Monto" matInput>
+          </mat-form-field>
+          <label>Tipo de Gasto</label>
+          <mat-form-field>
+            <mat-label>Tipo de Gasto</mat-label>
+              <mat-select formControlName="Tipo">
+                <mat-option value="0"> </mat-option>
+                <mat-option value="gastoGeneral">Gasto General</mat-option>
+                <mat-option value="gastoMaquinaria">Gasto Maquinaria</mat-option>
+                <mat-option value="gastoNomina">Gasto Nómina</mat-option>
+                <mat-option value="gastoMateriaPrima">Gasto Materia Prima</mat-option>
+                <mat-option value="gastoServicios">Gasto Servicios</mat-option>
+                <mat-option value="gastoViaticos">Gasto Viaticos </mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+<br>

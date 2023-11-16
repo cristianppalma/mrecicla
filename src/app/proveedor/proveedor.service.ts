@@ -8,9 +8,9 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class ProveedorService {
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/proveedores/'
+  // API: string = 'https://recicladora.arvispace.com/PhpAngular/proveedores/'
 
-  // API: string = 'http://localhost/PhpAngular/proveedores/';
+  API: string = 'http://localhost/recicla/proveedores/';
 
   constructor( private clientService:HttpClient) { }
 
@@ -22,16 +22,16 @@ export class ProveedorService {
     return this.clientService.get<PeriodicElement[]>(this.API);
   }
 
-  borrarProveedor(id_proveedor:any):Observable<any>{
-    return this.clientService.get(this.API+"?borrar="+id_proveedor);
+  borrarProveedor(idProveedor:any):Observable<any>{
+    return this.clientService.get(this.API+"?borrar="+idProveedor);
   }
 
-  obtenerProveedor(id_proveedor:string):Observable<any>{
-    return this.clientService.get(this.API+"?consultar="+id_proveedor);
+  obtenerProveedor(idProveedor:string):Observable<any>{
+    return this.clientService.get(this.API+"?consultar="+idProveedor);
   }
 
-  editarProveedor(id_proveedor:any, datosProveedor:Proveedor):Observable<any>{
-    return this.clientService.post(this.API+"?actualizar="+id_proveedor,datosProveedor);
+  editarProveedor(idProveedor:any, datosProveedor:Proveedor):Observable<any>{
+    return this.clientService.post(this.API+"?actualizar="+idProveedor,datosProveedor);
   }
 
 }

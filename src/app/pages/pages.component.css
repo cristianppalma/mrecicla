@@ -42,7 +42,7 @@ mat-sidenav {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 1rem;
+  font-size: 15px;
   margin-bottom: 10px;
 }
 

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
 import { EmpleadoService } from '../empleado.service';
 import { ActivatedRoute } from '@angular/router';
 import { __param } from 'tslib';
-
+import { FormGroup, FormBuilder, Validators, FormControl, FormsModule } from '@angular/forms';
+import { Areas } from 'src/app/areas/areas';
 
 
 @Component({
@@ -19,33 +19,41 @@ export class EditarEmpleadoComponent implements OnInit {
   formularioEditarEmpleado: FormGroup;
   idEmpleado: any;
 
+  areas : any[]= [];
+  puestos : any[]= [];
+  tipoUsuarios : any[]= [];
+
   constructor(
     private editarEmpleado: EmpleadoService,
-    private FormBuilder: FormBuilder,
+   
     private activateRoute : ActivatedRoute,
     private dialog: MatDialog, 
     private router: Router,
 
 
     ) {
-      this.formularioEditarEmpleado =this.FormBuilder.group({
-        Nombre:['', [Validators.required]],
-        ApellidoPaterno: ['', [Validators.required]],
-        Correo:['', [Validators.required]],
-        Pass:['', [Validators.required]],
-        ApellidoMaterno:['', [Validators.required]],
-        Turno:['', [Validators.required]],
-        Sueldo:['', [Validators.required]],
-        Area :[''],
-        Puesto:[''],
-        Domicilio:['']
+  
+      this.formularioEditarEmpleado = new FormGroup({
+        practicante: new FormControl(''),
+        Nombre: new FormControl('', [Validators.required]),
+        ApellidoPaterno: new FormControl('', [Validators.required]),
+        ApellidoMaterno: new FormControl('', [Validators.required]),
+        Pass: new FormControl('', [Validators.required]),
+        Puesto: new FormControl(''),
+        Correo: new FormControl('', [Validators.required]),
+        Turno : new FormControl(''),
+        Area : new FormControl (''),
+        Sueldo : new FormControl (''),
+        Domicilio : new FormControl('', [Validators.required]),
+        idTipoUsuario : new FormControl('')
+
       });
 
-      this.activateRoute.paramMap.subscribe((params) =>{
-        this.idEmpleado = params.get('id'); 
-        this.editarEmpleado.EditarEmpleado(this.idEmpleado).subscribe((respuesta=>{
-        
-           this.formularioEditarEmpleado.setValue({
+      this.activateRoute.paramMap.subscribe((params) => {
+        this.idEmpleado = params.get('id');
+        this.editarEmpleado.EditarEmpleado(this.idEmpleado).subscribe((respuesta) => {
+          console.log(respuesta);
+          this.formularioEditarEmpleado.patchValue({
             Nombre: respuesta.Nombre,
             ApellidoPaterno: respuesta.ApellidoPaterno,
             Correo: respuesta.Correo,
@@ -53,13 +61,16 @@ export class EditarEmpleadoComponent implements OnInit {
             ApellidoMaterno: respuesta.ApellidoMaterno,
             Turno: respuesta.Turno,
             Sueldo: respuesta.Sueldo,
-            Area: respuesta.Area,
-            Puesto: respuesta.Puesto,
+            Area: respuesta.idArea.toString(),
+            Puesto: respuesta.idAsignacion.toString(),
             Domicilio: respuesta.Domicilio,
-           }); 
-         } ))
+            idTipoUsuario : respuesta.idTipoUsuario.toString(),
+            
+          });
+          this.formularioEditarEmpleado.controls['practicante'].setValue(respuesta.Practicante);
 
-      })
+        });
+      });
      }
 
 
@@ -95,9 +106,48 @@ export class EditarEmpleadoComponent implements OnInit {
     
     }
   
+ 
     ngOnInit(): void {
-    
+
+      this.formularioEditarEmpleado.controls['practicante'].valueChanges.subscribe(
+        (practicante) => {
+          if (practicante === 'No') {
+            this.formularioEditarEmpleado.controls['Puesto'].enable();
+            this.formularioEditarEmpleado.controls['Turno'].enable();
+            this.formularioEditarEmpleado.controls['Area'].enable();
+            this.formularioEditarEmpleado.controls['Sueldo'].enable();
+          
+          } else {
+            this.formularioEditarEmpleado.controls['Puesto'].disable();
+            this.formularioEditarEmpleado.controls['Turno'].disable();
+            this.formularioEditarEmpleado.controls['Area'].disable();
+            this.formularioEditarEmpleado.controls['Sueldo'].disable();
+            
+            this.formularioEditarEmpleado.controls['Puesto'].reset();
+            this.formularioEditarEmpleado.controls['Turno'].reset();
+            this.formularioEditarEmpleado.controls['Area'].reset();
+            this.formularioEditarEmpleado.controls['Sueldo'].reset();
+  
+  
+          }
+        }
+     
+        );
+      
+      // Puedes realizar alguna inicialización adicional aquí si es necesario.
+      this.editarEmpleado.SelectAreas().subscribe((data) => {
+        this.areas=data;
+      });
+  
+      this.editarEmpleado.SelectPuestos().subscribe((data) => {
+        this.puestos=data;
+      });
+      
+      this.editarEmpleado.SelectTipoUsuarios().subscribe((data) => {
+        this.tipoUsuarios=data;
+      });
     }
+    
     
 }
 

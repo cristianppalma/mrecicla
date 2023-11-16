@@ -1,0 +1,54 @@
+.Title{
+    color: black;
+    margin-left: 400px;
+    font-size: larger;
+  }
+  .btn_int {
+    background: #80a943;
+    width: 150px;
+    height: 50px;
+    font-size: large;
+    margin: 8px;
+    border-radius: 5px;
+    margin-left: 600px;
+    }
+    .example-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; /* Distribuye uniformemente los campos */
+    }
+    /* Estilos para los campos individuales */
+  .example-form mat-form-field {
+    flex: 1; /* Ocupa todo el espacio disponible en el contenedor */
+    margin: 10px; /* Agrega espaciado entre los campos */
+  }
+  /* Ajusta el tamaño de fuente si es necesario */
+  .example-form input {
+    font-size: 16px;
+  }
+  .center-button{
+    text-align: center;
+  }
+  .centrar-columnas{
+    display: flex;
+    justify-content: center;
+  }
+  .formula1,
+  .formula2 {
+    flex: 0.5; /* Añade espacio entre los elementos */
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+  }
+  .formula {
+    display: flex;
+  }
+  label{
+    font-size: 17px;
+  }
+  .botones{
+    padding-left: 48.5rem;
+  }
+  .centrar-columnas{
+    width: 1300px; /* Ancho del formulario */
+  }

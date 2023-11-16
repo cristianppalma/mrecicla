@@ -12,6 +12,9 @@ import { InventarioModule } from './inventario/inventario.module';
 import { SolicitudesModule } from './solicitudes/solicitudes.module';
 /*librerioas benja*/
 import { ControlModule } from './control/control.module';
+import { ProduccionModule } from './produccion/produccion.module';
+
+import { ProduccionEmpleadoModule } from './produccionEmpleado/produccion-empleado.module';
 
 import { MatIconModule } from '@angular/material/icon';
 import { IndexComponent } from './index/index/index.component';
@@ -36,6 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     InventarioModule,
     SolicitudesModule,
     ControlModule,
+    ProduccionModule,
+    ProduccionEmpleadoModule,
     MatIconModule,
     MaquinasModule,
     AreasModule,

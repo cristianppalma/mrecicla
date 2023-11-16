@@ -3,11 +3,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { SolicitudesControlComponent } from './solicitudes-control/solicitudes-control.component';
 import { SolicitudesCrearComponent } from './solicitudes-crear/solicitudes-crear.component';
 import { SolicitudesEditComponent } from './solicitudes-edit/solicitudes-edit.component';
+import { authGuard } from '../guards/auth.guard';
+
 const routes: Routes = [
-  {path:'solicitudes',component: SolicitudesControlComponent},
-  {path:'SolicitudesCrear', component:SolicitudesCrearComponent},
-  {path:'SolicitudesEdit/:id',component:SolicitudesEditComponent}
+  {
+    path: 'solicitudes',
+    component: SolicitudesControlComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'SolicitudesCrear',
+    component: SolicitudesCrearComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'SolicitudesEdit/:id',
+    component: SolicitudesEditComponent,
+    // canActivate: [authGuard]
+  },
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

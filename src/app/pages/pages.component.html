@@ -16,7 +16,7 @@
     <button mat-button class="" style="color:#000;">
       <mat-icon style="color: #000;">logout</mat-icon>
       <span style="color: #000;">
-        <a style="color: #000;" [routerLink]="['/login']" (click)="borrarStorage()">Cerrar Sesión</a>
+        <a style="color: #000;" (click)="logout()">Cerrar Sesión</a>
       </span>
     </button>
   </mat-toolbar>
@@ -32,6 +32,7 @@
       <span><a [routerLink]="['/dashboard/tablero']">Inicio</a></span>
     </button>
 
+    <!-- <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso"> --> <!-- ngIf nos ayuda a verificar si el usuario tiene permiso de ver esas opciones -->
     <button mat-button class="menu-boton">
       <mat-icon>inventory</mat-icon>
       <span><a [routerLink]="['inventario/inventarios']">Inventario</a></span>
@@ -62,15 +63,21 @@
       <span><a [routerLink]="['solicitudes/solicitudes']">Solicitudes</a></span>
     </button>
 
-    <!-- <button mat-button class="menu-boton">
+    <button mat-button class="menu-boton">
       <mat-icon>construction</mat-icon>
-      <span>Producción</span>
-    </button> -->
+      <span><a [routerLink]="['produccion/produccion']">Producción</a></span>
+    </button>
 
     <button mat-button class="menu-boton">
       <mat-icon>work</mat-icon>
       <span><a [routerLink]="['control/controlGastosGenerales']">Control Gastos</a></span>
     </button>
+
+    <button mat-button class="menu-boton">
+      <mat-icon>alarm</mat-icon>
+      <span><a [routerLink]="['produccion-empleado/produccionEmpleado']">Tiempo Prod.</a></span>
+    </button>
+
   </mat-sidenav>
 
   <mat-sidenav-content>

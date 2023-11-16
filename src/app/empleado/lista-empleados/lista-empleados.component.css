@@ -2,7 +2,6 @@
 
 
 .cabecera {
-    
   width: 350px;
   margin-left: 400px;
     background-color: #f5f5f5;
@@ -160,6 +159,6 @@ h1{
 }
 
 .custom-width {
-  width: 150px; /* Puedes ajustar este valor según tus necesidades */
+  width: 180px; /* Puedes ajustar este valor según tus necesidades */
   height: 70px ;
 }

@@ -1,12 +1,10 @@
-
-<H1 class="Title">Control de Gastos Generales</H1>
+<H1 class="Title">Control de Gastos</H1>
 <br>
 <div   class="Filter"  >
         <mat-form-field>
           <mat-label>Concepto</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Ej.Luz" #input>
-        </mat-form-field>
-        <button mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;">BUSCAR</button>  
+        </mat-form-field> 
         <button  (click)="CrearGastosGenerales();" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
 </div>
 <br>

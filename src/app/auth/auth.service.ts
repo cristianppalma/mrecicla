@@ -7,13 +7,18 @@ import { usuario } from './auth';
   providedIn: 'root'
 })
 export class AuthService {
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/'
+ // API: string = 'https://recicladora.arvispace.com/PhpAngular/'
 
-  // API: string = 'http://localhost/PhpAngular/';
+   API: string = 'http://localhost/PhpAngular/'
+
+  // OBTENER rol de usuario
+  // private isAuthenticate = false;
+  // private userRole: string | null = null;
 
   constructor( private clientService:HttpClient) { }
 
   verUsuario(datosUsuario:usuario):Observable<any>{
-    return this.clientService.post(this.API+"?login=1",datosUsuario);
+    return this.clientService.post(this.API+"?login=",datosUsuario);
   }
+
 }
