@@ -7,4 +7,6 @@ export interface PeriodicElement {
   Turno             :String;
   UnidadesInsumo    :String;
   KgProduccion      :String;
+  idMaquinaria      :String;
+  idArea            :String;
 }

@@ -6,7 +6,8 @@ export class Produccion{
   Turno           !:String;
   UnidadesInsumo  !:String;
   KgProduccion    !:String;
-  // idMaquina       !:String;
-  // idArea          !:String;
+
+  idMaquinaria    !:String;
+  idArea          !:String;
   // idEmpleado      !:String;
 }

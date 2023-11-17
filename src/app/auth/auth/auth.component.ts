@@ -55,6 +55,8 @@ export class AuthComponent  implements OnInit {
             // Obtenemos el id y puesto del usuario
             let usuario = response.idUsuario;
             localStorage.setItem("id_user", usuario );
+            let usuarioNombre = response.Nombre;
+            localStorage.setItem("Nombre", usuarioNombre );
             let nombreUsuario = response.NombreTipoUser;
             localStorage.setItem("NombreTipoUser", nombreUsuario);
 

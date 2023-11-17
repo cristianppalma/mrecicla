@@ -52,29 +52,29 @@
             <input required type="number" step="0.01" formControlName="KgProduccion" matInput readonly="">
           </mat-form-field>
 
-          <!-- <label>Empleado</label>
-          <mat-form-field>
-            <mat-label>id Empleado</mat-label>
-            <mat-select >
-              <mat-option value="">1</mat-option>
-            </mat-select>
-          </mat-form-field>
-
           <label>Maquina</label>
           <mat-form-field>
-            <mat-label>Hilos</mat-label>
-            <mat-select>
-              <mat-option value="">Hilos</mat-option>
+            <mat-label>Maquina</mat-label>
+            <mat-select formControlName="idMaquinaria">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let maquinaria of maquinarias" [value]="maquinaria.idMaquinaria">{{ maquinaria.Modelo }}</mat-option>
             </mat-select>
           </mat-form-field>
 
           <label>Area</label>
           <mat-form-field>
-            <mat-label>Tela para playera</mat-label>
-            <mat-select>
-              <mat-option value="">Tela para playera</mat-option>
+            <mat-label>Area</mat-label>
+            <mat-select formControlName="idArea">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
             </mat-select>
-          </mat-form-field> -->
+          </mat-form-field>
+
+          <label>Empleado</label>
+          <mat-form-field>
+            <mat-label>Nombre Empleado</mat-label>
+            <input disabled="" type="text" matInput value="{{usuarioNombre}}">
+          </mat-form-field>
 
         </div>
       </div>

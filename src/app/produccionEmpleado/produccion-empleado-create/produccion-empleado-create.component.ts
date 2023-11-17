@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProduccionEmpleadoService } from '../produccion-empleado.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component';
+import { Maquina } from 'src/app/maquinas/maquina';
 
 import { inject } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -18,6 +19,11 @@ import { Dialog } from '@angular/cdk/dialog';
 })
 export class ProduccionEmpleadoCreateComponent implements OnInit {
 
+  // @ViewChild('idUsuarioInput') idUsuarioInput: ElementRef;
+  // @ViewChild('usuarioNombreInput') usuarioNombreInput: ElementRef;
+  usuarioNombre: string | null;
+  maquinarias: any[];
+  areas: any[];
   formularioProduccionArea: FormGroup;
 
   constructor(
@@ -34,8 +40,8 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       Turno: [''],
       UnidadesInsumo: [''],
       KgProduccion: [''],
-      // idMaquina: [''],
-      // idArea: [''],
+      idMaquinaria: [''],
+      idArea: [''],
       // idEmpleado: [''],
     });
   }
@@ -79,6 +85,38 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
   ngOnInit(): void {
     const usuario = localStorage.getItem("id_user");
     console.log('ID: ', usuario);
+
+    this.usuarioNombre = localStorage.getItem("Nombre");
+    console.log('Nombre', this.usuarioNombre);
+
+    this.produccionEmpleadoService.selectMaquinaria().subscribe((data)=>{
+      this.maquinarias=data;
+    });
+
+    this.produccionEmpleadoService.selectAreas().subscribe((data)=>{
+      this.areas=data;
+    });
   }
+
+  // ngAfterViewInit(): void {
+  //   const usuario = localStorage.getItem("id_user");
+  //   console.log('ID: ', usuario);
+
+  //   const usuarioNombre = localStorage.getItem("Nombre");
+  //   console.log('Nombre', usuarioNombre);
+
+  //   if (this.idUsuarioInput && this.usuarioNombreInput){
+  //     this.idUsuarioInput.nativeElement.value = usuario;
+  //     this.usuarioNombreInput.nativeElement.value = usuarioNombre;
+  //   }
+
+  //   this.produccionEmpleadoService.selectMaquinaria().subscribe((data)=>{
+  //     this.maquinarias=data;
+  //   });
+
+  //   this.produccionEmpleadoService.selectAreas().subscribe((data)=>{
+  //     this.areas=data;
+  //   });
+  // }
 
 }
