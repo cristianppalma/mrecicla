@@ -83,6 +83,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     const usuario = localStorage.getItem("id_user");
     console.log('ID: ', usuario);
 
@@ -96,6 +97,8 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     this.produccionEmpleadoService.selectAreas().subscribe((data)=>{
       this.areas=data;
     });
+
+
   }
 
   // ngAfterViewInit(): void {

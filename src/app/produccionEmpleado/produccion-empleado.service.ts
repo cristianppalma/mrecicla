@@ -9,6 +9,9 @@ import { Produccion } from './produccion';
 })
 export class ProduccionEmpleadoService {
 
+  private correo: string;
+  private nombre: string;
+
   API: string = 'http://localhost/PhpAngular/produccionarea/';
 
   constructor(
@@ -40,5 +43,20 @@ export class ProduccionEmpleadoService {
   selectAreas(){
     return this.clientService.get<any[]>(this.API+"?selectArea");
   }
+
+  // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  getCorreo(): string {
+    return this.correo = localStorage.getItem("Correo") || '';
+  }
+
+  // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  getNombre(): string {
+    return this.nombre = localStorage.getItem("Nombre") || '';
+  }
+
+  // setCorreo(nuevoCorreo: string): void{
+  //   this.correo = nuevoCorreo;
+  //   localStorage.setItem("Correo", nuevoCorreo);
+  // }
 
 }

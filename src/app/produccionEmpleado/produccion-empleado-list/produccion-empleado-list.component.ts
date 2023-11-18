@@ -83,6 +83,16 @@ export class ProduccionEmpleadoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TRAEMOS EL CORREO DESDE EL SERVICIO
+    console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const correoSave = this.produccionEmpleadoService.getCorreo();
+    console.log('Correo desde el localStorage: ', correoSave);
+
+    console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const nombreSave = this.produccionEmpleadoService.getNombre();
+    console.log('Nombre desde el localStorage: ', nombreSave);
+
+
     this.produccionEmpleadoService.listarProduccionArea().subscribe((respuesta: PeriodicElement[]) => {
       console.log(respuesta);
       console.log('Obtenemos todos los registros');
@@ -90,6 +100,7 @@ export class ProduccionEmpleadoListComponent implements OnInit {
       this.Produccion = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
+
   }
 
 }
