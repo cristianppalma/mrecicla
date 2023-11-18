@@ -21,8 +21,9 @@ export class ProveedorCreateComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private proveedorService: ProveedorService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
+    const correoSave = this.proveedorService.getCorreo();
     this.formularioProveedor = this.formBuilder.group({
       NombreProveedor: ['', [Validators.required]],
       ProductoProveedor: [''],
@@ -32,6 +33,7 @@ export class ProveedorCreateComponent implements OnInit {
       RFCProveedor: [''],
       DescripcionProveedor: [''],
       EstatusProveedor: ['Activo'],
+      UsuarioCreador:[correoSave],
     });
   }
 
@@ -72,7 +74,15 @@ export class ProveedorCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Puedes realizar alguna inicialización adicional aquí si es necesario.
+     // TRAEMOS EL CORREO DESDE EL SERVICIO
+     console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
+     const correoSave = this.proveedorService.getCorreo();
+     console.log('Correo desde el localStorage: ', correoSave);
+
+     console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
+     const nombreSave = this.proveedorService.getNombre();
+     console.log('Nombre desde el localStorage: ', nombreSave);
+
   }
 }
 

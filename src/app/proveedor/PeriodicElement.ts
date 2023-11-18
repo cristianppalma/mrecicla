@@ -8,6 +8,7 @@ export interface PeriodicElement {
   RFCProveedor:String;
   DescripcionProveedor:String;
   EstatusProveedor:String;
+  UsuarioCreador:String;
 }
 
 // export interface PeriodicElement {

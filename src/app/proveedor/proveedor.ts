@@ -7,6 +7,7 @@ export class Proveedor{
   RFCProveedor!:String;
   DescripcionProveedor!:String;
   EstatusProveedor!:String;
+  UsuarioCreador!:String;
 }
 
 // export class Proveedor{
