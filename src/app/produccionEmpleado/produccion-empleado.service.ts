@@ -44,6 +44,13 @@ export class ProduccionEmpleadoService {
     return this.clientService.get<any[]>(this.API+"?selectArea");
   }
 
+  // // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
+  // selectInventarioSalida(){
+  //   return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
+  // }
+
+
+
   // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
   getCorreo(): string {
     return this.correo = localStorage.getItem("Correo") || '';
