@@ -12,6 +12,9 @@ export class ProveedorService {
 
   API: string = 'http://localhost/recicla/proveedores/';
 
+  private correo: string;
+  private nombre: string;
+
   constructor( private clientService:HttpClient) { }
 
   agregarProveedor(datosProveedor:Proveedor):Observable<any>{
@@ -32,6 +35,16 @@ export class ProveedorService {
 
   editarProveedor(idProveedor:any, datosProveedor:Proveedor):Observable<any>{
     return this.clientService.post(this.API+"?actualizar="+idProveedor,datosProveedor);
+  }
+
+  // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  getCorreo(): string {
+    return this.correo = localStorage.getItem("Correo") || '';
+  }
+
+  // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  getNombre(): string {
+    return this.nombre = localStorage.getItem("Nombre") || '';
   }
 
 }

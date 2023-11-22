@@ -44,13 +44,13 @@ const routes: Routes = [
       {
         path:'produccion',
         loadChildren: () =>
-        import('./produccion/produccion.module').then(m => m.ProduccionModule)
+        import('./produccion/produccion.module').then(m => m.ProduccionModule),
+        canActivate: [rolesGuard],
       },
       {
         path:'produccion-empleado',
         loadChildren: () =>
         import('./produccionEmpleado/produccion-empleado.module').then(m => m.ProduccionEmpleadoModule),
-        canActivate: [rolesGuard],
       },
       {
         path: 'control',
@@ -67,7 +67,8 @@ const routes: Routes = [
       {
         path: 'solicitudes',
         loadChildren: () =>
-        import('./solicitudes/solicitudes.module').then(m => m.SolicitudesModule)
+        import('./solicitudes/solicitudes.module').then(m => m.SolicitudesModule),
+        canActivate: [rolesGuard],
       },
       {
         path: 'proveedor',

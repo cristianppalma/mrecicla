@@ -1,39 +1,38 @@
 <div class="container">
 
   <div class="cabecera">
-    <h1>Registrar tiempo para producción</h1>
+    <h1>Detalles del registro de tiempo de producción</h1>
   </div>
 
 <div class="centrar-columnas">
-    <form ngNativeValidate [formGroup]="formularioProduccionArea" (ngSubmit)="enviarDatos()">
+    <form ngNativeValidate [formGroup]="formularioProduccionAreaDetails">
       <div class="formula">
         <div class="formula1">
 
           <label>Fecha de Inicio</label>
           <mat-form-field>
-            <input required min="1" type="date" name="" formControlName="FechaInicio" matInput>
+            <input required min="1" type="date" name="" formControlName="FechaInicio" matInput readonly="">
           </mat-form-field>
 
           <label>Fecha de Finalización</label>
           <mat-form-field>
-            <input required type="date" formControlName="FechaFin" matInput>
+            <input required type="date" formControlName="FechaFin" matInput readonly="">
           </mat-form-field>
 
           <label>Hora de Inicio</label>
           <mat-form-field>
-            <input required type="time" formControlName="HoraInicio" matInput>
+            <input required type="time" formControlName="HoraInicio" matInput readonly="">
           </mat-form-field>
 
           <label>Hora de Finalización</label>
           <mat-form-field>
-            <input required type="time" formControlName="HoraFin" matInput>
+            <input required type="time" formControlName="HoraFin" matInput readonly="">
           </mat-form-field>
 
           <label>Turno</label>
           <mat-form-field>
-            <mat-label>Turno</mat-label>
-            <mat-select required formControlName="Turno" >
-              <mat-option value="0"> </mat-option>
+            <mat-select required formControlName="Turno" [disabled]="true">
+              <mat-option value="0" disabled=""> </mat-option>
               <mat-option value="Matutino">Matutino</mat-option>
               <mat-option value="Vespertino">Vespertino</mat-option>
               <mat-option value="Nocturno">Nocturno</mat-option>
@@ -43,25 +42,14 @@
         </div>
         <div class="formula2">
 
-          <!-- <label>Insumos</label>
-          <mat-form-field>
-            <mat-label>Producto</mat-label>
-            <mat-select formControlName="idproducto">
-              <mat-option value="0"> </mat-option>
-              <mat-option *ngFor="let inventarioSalida of inventariosSalidas" [value]="inventarioSalida.idproducto">{{ inventarioSalida.Producto }}</mat-option>
-            </mat-select>
-          </mat-form-field> -->
-
           <label>Unidades de Insumo Inicial (pz)</label>
           <mat-form-field>
-            <mat-label>1</mat-label>
-            <input required type="number" formControlName="UnidadesInsumo" matInput>
+            <input required type="number" formControlName="UnidadesInsumo" matInput readonly="">
           </mat-form-field>
 
           <label>Kg Totales de produccion</label>
           <mat-form-field>
-            <mat-label>20</mat-label>
-            <input required type="number" step="0.01" formControlName="KgProduccion" matInput>
+            <input required type="number" step="0.01" formControlName="KgProduccion" matInput readonly="">
           </mat-form-field>
 
           <label>Maquina</label>
@@ -92,8 +80,8 @@
       </div>
 
       <div class="botones" role="group">
-        <button type="submit" class="btn-acep" mat-button>REGISTRAR</button>
-        <button type="button" (click)="cancelar()" class="btn-canc" mat-button>CANCELAR</button>
+        <!-- <button type="submit" class="btn-acep" mat-button>ACTUALIZAR</button> -->
+        <button type="button" (click)="cancelar()" class="btn-canc" mat-button>REGRESAR</button>
       </div>
 
     </form>

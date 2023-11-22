@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,24 +6,35 @@ import { Router } from '@angular/router';
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.css']
 })
-export class PagesComponent {
+export class PagesComponent implements OnInit {
 
   // Visualizar de acuerdo al rol
-  // usuarioTienePermiso: boolean;
+  usuarioTienePermiso: boolean;
+  //
+  nombreUsuario: string | null;
+
 
   constructor(
     private router: Router
   ) {
     // Visualizar de acuerdo al rol
-    // this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
+    this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
+  }
+
+  ngOnInit(): void {
+
+    this.nombreUsuario = localStorage.getItem("NombreTipoUser");
+    console.log('NombreTipoUser', this.nombreUsuario);
+
   }
 
   // Visualizar de acuerdo al rol
-  // private verificarPermisosDelUsuario(): boolean {
-  //   const puesto = localStorage.getItem("Puesto");
-  //   // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
-  //   return puesto === "Administrador"; // Ejemplo: el usuario con rol "admin" tiene permiso
-  // }
+  private verificarPermisosDelUsuario(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    const puesto = localStorage.getItem("Puesto");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ((nombreUsuario === "Administrador") || (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+  }
 
 
   // Se termina la sesion y eliminamos el token del localStorage
@@ -32,6 +43,8 @@ export class PagesComponent {
     localStorage.removeItem('token');
     localStorage.removeItem('id_user');
     localStorage.removeItem('NombreTipoUser');
+    localStorage.removeItem('Nombre');
+    localStorage.removeItem('Correo');
     // Para borrar todos los elementos del Local Storage
     // localStorage.clear();
     console.log('Se elimino el token');
