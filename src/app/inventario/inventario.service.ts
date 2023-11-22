@@ -3,6 +3,7 @@ import{HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { producto } from './producto';
 import { PeriodicElement } from './PeriodicElement';
+import { PeriodicElement2 } from './PeriodicElement2';
 @Injectable({
   providedIn: 'root'
 })
@@ -39,4 +40,11 @@ export class InventarioService {
   selectAreas(){
     return this.clientService.get<any[]>(this.API+"?selectArea")
   }
+
+  listarInventariosalida(): Observable<PeriodicElement2[]> {
+    return this.clientService.get<PeriodicElement2[]>(this.API+"?InventarioS=1");
+  }
+
 }
+
+

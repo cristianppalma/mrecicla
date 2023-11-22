@@ -1,11 +1,12 @@
 <div class="container">
-  <div class="cabecera"><h1 class="Title">INVENTARIO</h1></div>
+  <div class="cabecera"><h1 class="Title">INVENTARIO DE ENTRADA 
+  </h1></div>
     <div class="Filter"  >
       <mat-form-field>
         <mat-label>Producto</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Borra" #input>
       </mat-form-field>
-      <button mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;">BUSCAR</button>  
+      <button (click)="inventarioSalida();" mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;">INVENTARIO SALIDA</button>  
       <button  (click)="inventario();" mat-button style="background-color: #d6e44b; margin-left: 1rem; color: white">AGREGAR</button>
     </div>
     <div class="table">

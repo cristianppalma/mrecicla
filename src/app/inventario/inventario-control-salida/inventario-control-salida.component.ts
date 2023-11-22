@@ -1,27 +1,28 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component,OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { PeriodicElement } from '../PeriodicElement';
 import { MatDialog } from '@angular/material/dialog';
 import { InventarioService } from '../inventario.service';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
+import { PeriodicElement2 } from '../PeriodicElement2';
 
 interface Food {
   value: string;
   viewValue: string;
 }
 
+
 @Component({
-  selector: 'app-inventario-control',
-  templateUrl: './inventario-control.component.html',
-  styleUrls: ['./inventario-control.component.css'],
+  selector: 'app-inventario-control-salida',
+  templateUrl: './inventario-control-salida.component.html',
+  styleUrls: ['./inventario-control-salida.component.css']
 })
+export class InventarioControlSalidaComponent  {
 
-export class InventarioControlComponent implements OnInit {
-
-  Producto:PeriodicElement[] = [];
-  displayedColumns:string[] = ['idproducto','Producto','Peso','Dimensiones','FechaCreacion','Clibre','Porcentaje','AreasDesignadas','action']
-  dataSource: MatTableDataSource<PeriodicElement>;
+  Producto:PeriodicElement2[] = [];
+  displayedColumns:string[] = ['idproductosalida','nombreProducto','Peso','FechaRegistro','Calibre','areaSalida']
+  dataSource: MatTableDataSource<PeriodicElement2>;
 
   formatDateWithLeadingZeros(date: Date): string {
     const day = ('0' + date.getDate()).slice(-2);
@@ -42,10 +43,10 @@ export class InventarioControlComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  verDetalles(element: PeriodicElement) {
+  verDetalles(element: PeriodicElement2) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
-    const idproducto = element.idproducto;
+    const idproducto = element.idproductosalida;
     // Puedes abrir un modal, mostrar información adicional, etc.
     this.router.navigateByUrl(`/dashboard/inventario/inventarioEdit/${idproducto}`)
   }
@@ -55,7 +56,7 @@ export class InventarioControlComponent implements OnInit {
     private InventarioService:InventarioService
     
     ) {
-      this.dataSource=new MatTableDataSource<PeriodicElement>([]);
+      this.dataSource=new MatTableDataSource<PeriodicElement2>([]);
     }
     inventario(){
       this.router.navigateByUrl('/dashboard/inventario/inventarioCrear');
@@ -63,8 +64,11 @@ export class InventarioControlComponent implements OnInit {
     inventarioSalida(){
       this.router.navigateByUrl('/dashboard/inventario/inventarioSalida');
     }
+    inventarioEntrada(){
+      this.router.navigateByUrl('/dashboard/inventario/inventarios')
+    }
 
-    eliminarInventario(element:PeriodicElement): void{
+    eliminarInventario(element:PeriodicElement2): void{
       const index =this.dataSource.data.indexOf(element);
 
       if(index >=0){
@@ -72,17 +76,17 @@ export class InventarioControlComponent implements OnInit {
         this.dataSource._updateChangeSubscription();
       }
     }
-    eliminarInventario2(element:PeriodicElement): void{
+    eliminarInventario2(element:PeriodicElement2): void{
       const index =this.dataSource.data.indexOf(element);
 
       if(index >=0){
-        const idproducto = element.idproducto;
+        const idproducto = element.idproductosalida;
         this.dataSource.data.splice(index,1);
         this.InventarioService.borrarInventario(idproducto).subscribe();
         this.dataSource._updateChangeSubscription();
       }
     }
-    mostrarDialogoDeConfirmacion(element: PeriodicElement): void {
+    mostrarDialogoDeConfirmacion(element: PeriodicElement2): void {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
       });
@@ -93,7 +97,7 @@ export class InventarioControlComponent implements OnInit {
         }
       });
     }
-    mostrarDialogoDeConfirmacion2(element: PeriodicElement): void {
+    mostrarDialogoDeConfirmacion2(element: PeriodicElement2): void {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
       });
@@ -106,7 +110,7 @@ export class InventarioControlComponent implements OnInit {
     }
   
   ngOnInit(): void {
-    this.InventarioService.listarInventario().subscribe((respuesta: PeriodicElement[]) => {
+    this.InventarioService.listarInventariosalida().subscribe((respuesta: PeriodicElement2[]) => {
       console.log(respuesta);
       this.Producto = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
@@ -120,7 +124,3 @@ export class InventarioControlComponent implements OnInit {
 
 
 }
-
-
-
-  
