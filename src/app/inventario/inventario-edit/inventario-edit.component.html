@@ -49,8 +49,7 @@
             <mat-label>Área</mat-label>
             <mat-select  formControlName="AreasDesignadas">
               <mat-option value="0"> </mat-option>
-              <mat-option value="Telares">Telares</mat-option>
-              <mat-option value="Hilado">Hilado</mat-option>
+              <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
             </mat-select>
           </mat-form-field>
 

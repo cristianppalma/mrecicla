@@ -50,13 +50,12 @@
             <input formControlName="Calibre" matInput>
           </mat-form-field>
 
-          <label>Area designada</label>
+          <label>Proveedor</label>
           <mat-form-field>
-            <mat-label>Área</mat-label>
-            <mat-select  formControlName="AreaDesignada">
+            <mat-label>Proveedor</mat-label>
+            <mat-select  formControlName="idProveedor">
               <mat-option value="0"> </mat-option>
-              <mat-option value="Telares">Telares</mat-option>
-              <mat-option value="Hilado">Hilado</mat-option>
+              <mat-option *ngFor="let proveedor of proveedor" [value]="proveedor.idProveedor">{{proveedor.NombreProveedor}}</mat-option>
             </mat-select>
           </mat-form-field>
 

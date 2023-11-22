@@ -20,7 +20,7 @@ interface Food {
 export class SolicitudesControlComponent implements OnInit{
 
   Solicitud:PeriodicElement[] = [];
-  displayedColumns:string[] = ['idSolicitud','nombreProducto','Peso','Dimensiones','FechaPeticion','Calibre','AreaDesignada','Composicion','FechaRecepcion','action']
+  displayedColumns:string[] = ['idSolicitud','nombreProducto','Peso','Dimensiones','FechaPeticion','Calibre','idProveedor','Composicion','FechaRecepcion','action']
   dataSource: MatTableDataSource<PeriodicElement>;
 
   foods: Food[] = [

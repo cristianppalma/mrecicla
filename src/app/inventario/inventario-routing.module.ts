@@ -4,6 +4,8 @@ import { InventarioControlComponent } from './inventario-control/inventario-cont
 import { InventarioCrearComponent } from './inventario-crear/inventario-crear.component';
 import { InventarioEditComponent } from './inventario-edit/inventario-edit.component';
 import { authGuard } from '../guards/auth.guard';
+import { InventarioControlSalidaComponent } from './inventario-control-salida/inventario-control-salida.component';
+
 
 const routes: Routes = [
   {
@@ -21,6 +23,7 @@ const routes: Routes = [
     component: InventarioEditComponent,
     // canActivate: [authGuard]
   },
+  {path:'inventarioSalida',component:InventarioControlSalidaComponent}
 ]
 
 @NgModule({

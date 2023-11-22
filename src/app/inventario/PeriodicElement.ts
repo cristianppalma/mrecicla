@@ -6,5 +6,5 @@ export interface PeriodicElement {
     FechaCreacion: string;
     Clibre: string;
     Porcentaje: string;
-    AreasDesignadas: string;
+    IdArea: string;
   }

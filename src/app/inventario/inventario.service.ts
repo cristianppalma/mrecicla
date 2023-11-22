@@ -3,13 +3,14 @@ import{HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { producto } from './producto';
 import { PeriodicElement } from './PeriodicElement';
+import { PeriodicElement2 } from './PeriodicElement2';
 @Injectable({
   providedIn: 'root'
 })
 export class InventarioService {
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
 
-  // API: string = 'http://localhost/PhpAngular/inventario/';
+   API: string = 'http://localhost/PhpAngular/inventario/';
 
   constructor( private clientService:HttpClient) { }
 
@@ -36,4 +37,14 @@ export class InventarioService {
 
   }
 
+  selectAreas(){
+    return this.clientService.get<any[]>(this.API+"?selectArea")
+  }
+
+  listarInventariosalida(): Observable<PeriodicElement2[]> {
+    return this.clientService.get<PeriodicElement2[]>(this.API+"?InventarioS=1");
+  }
+
 }
+
+

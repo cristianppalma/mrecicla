@@ -24,13 +24,10 @@ interface Area {
 })
 export class InventarioEditComponent implements OnInit{
   //valores prueba
+  areas : any[]=[];
   formularioEditarInventario:FormGroup;
   idproducto:any;
-  Areas: Area[] = [
-    {value: 'area1', viewValue: 'telares'},
-    {value: 'area2', viewValue: 'hilado'},
-    {value: 'area3', viewValue: 'otro'},
-  ];
+
    
 
   constructor(private router:Router, 
@@ -62,7 +59,7 @@ export class InventarioEditComponent implements OnInit{
           FechaCreacion: respuesta.FechaCreacion,
           Clibre: respuesta.Clibre,
           Porcentaje: respuesta.Porcentaje,
-          AreasDesignadas: respuesta.AreasDesignadas
+          areas: respuesta.IdArea.toString()
         });
       }))
     })
@@ -107,6 +104,10 @@ export class InventarioEditComponent implements OnInit{
   }
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
+
+    this.InventarioService.selectAreas().subscribe((data)=>{
+      this.areas=data;
+    })
   }
 }
 

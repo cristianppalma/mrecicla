@@ -17,11 +17,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { InventarioControlSalidaComponent } from './inventario-control-salida/inventario-control-salida.component';
 @NgModule({
   declarations: [
     InventarioControlComponent,
     InventarioEditComponent,
-    InventarioCrearComponent
+    InventarioCrearComponent,
+    InventarioControlSalidaComponent
   ],
   imports: [
     CommonModule,
