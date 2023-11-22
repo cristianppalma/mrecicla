@@ -44,10 +44,10 @@ export class ProduccionEmpleadoService {
     return this.clientService.get<any[]>(this.API+"?selectArea");
   }
 
-  // // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
-  // selectInventarioSalida(){
-  //   return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
-  // }
+  // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
+  selectSalida(){
+    return this.clientService.get<any[]>(this.API+"?selectSalida");
+  }
 
 
 

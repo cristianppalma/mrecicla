@@ -21,7 +21,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
   usuarioNombre: string | null;
   maquinarias: any[];
   areas: any[];
-  // inventariosSalidas: any [];
+  inventariosSalidas: any [];
   formularioProduccionArea: FormGroup;
 
   constructor(
@@ -40,7 +40,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       KgProduccion: [''],
       idMaquinaria: [''],
       idArea: [''],
-      // idproducto: [''],
+      idproducto: [''],
       // idEmpleado: [''],
     });
   }
@@ -99,10 +99,10 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       this.areas=data;
     });
 
-    // //
-    // this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
-    //   this.inventariosSalidas=data;
-    // });
+    //
+    this.produccionEmpleadoService.selectSalida().subscribe((data)=>{
+      this.inventariosSalidas=data;
+    });
 
   }
 

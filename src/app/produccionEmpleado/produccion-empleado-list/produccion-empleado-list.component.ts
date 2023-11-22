@@ -31,9 +31,9 @@ export class ProduccionEmpleadoListComponent implements OnInit {
                                   'HoraInicio',
                                   'HoraFin',
                                   // 'Turno',
-                                  'productoInsumo',
+                                  'idproducto',
                                   'UnidadesInsumo',
-                                  'productoProduccion',
+                                  // 'productoProduccion',
                                   'KgProduccion',
                                   // 'idMaquina',
                                   'action'];
