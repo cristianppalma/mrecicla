@@ -22,6 +22,7 @@ import { PeriodicElement } from '../PeriodicElement';
 })
 export class ProduccionEmpleadoListComponent implements OnInit {
 
+  inventariosSalida: any[];
   Produccion: PeriodicElement[] = [];
   displayedColumns: string[] = [
                                   //'idEmpleado',
@@ -31,7 +32,7 @@ export class ProduccionEmpleadoListComponent implements OnInit {
                                   'HoraInicio',
                                   'HoraFin',
                                   // 'Turno',
-                                  'idproducto',
+                                  'idInventarioFabrica',
                                   'UnidadesInsumo',
                                   // 'productoProduccion',
                                   'KgProduccion',
@@ -103,6 +104,17 @@ export class ProduccionEmpleadoListComponent implements OnInit {
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
 
+
+    //
+    this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
+      this.inventariosSalida=data;
+    })
+
+  }
+
+  obtenerNombreInsumo(idInventarioFabrica: number): string {
+    const inventario = this.inventariosSalida.find(item => item.idInventarioFabrica === idInventarioFabrica);
+    return inventario ? inventario.NombreInsumo : '';
   }
 
 }

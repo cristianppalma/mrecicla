@@ -18,10 +18,12 @@ import { Dialog } from '@angular/cdk/dialog';
 })
 export class ProduccionEmpleadoCreateComponent implements OnInit {
 
+  usuario: string | null;
   usuarioNombre: string | null;
   maquinarias: any[];
   areas: any[];
-  inventariosSalidas: any [];
+  // inventarios: any [];
+  inventariosSalida: any[];
   formularioProduccionArea: FormGroup;
 
   constructor(
@@ -30,6 +32,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     private produccionEmpleadoService: ProduccionEmpleadoService,
     private dialog: MatDialog
   ) {
+    const idUserSave = this.produccionEmpleadoService.getId();
     this.formularioProduccionArea = this.formBuilder.group({
       FechaInicio: [''],
       FechaFin: [''],
@@ -40,8 +43,9 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       KgProduccion: [''],
       idMaquinaria: [''],
       idArea: [''],
-      idproducto: [''],
-      // idEmpleado: [''],
+      // idproducto: [''],
+      idInventarioFabrica: [''],
+      idEmpleado: [idUserSave],
     });
   }
 
@@ -83,8 +87,13 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const usuario = localStorage.getItem("id_user");
-    console.log('ID: ', usuario);
+    console.log('AQUI MOSTRARIAMOS EL ID TRAIDO DESDE EL SERVICE');
+    const idUserSave = this.produccionEmpleadoService.getId();
+    console.log('ID del Usuario desde el service: ', idUserSave);
+
+
+    this.usuario = localStorage.getItem("id_user");
+    console.log('ID: ', this.usuario);
 
     this.usuarioNombre = localStorage.getItem("Nombre");
     console.log('Nombre', this.usuarioNombre);
@@ -99,10 +108,15 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       this.areas=data;
     });
 
+    // //
+    // this.produccionEmpleadoService.selectSalida().subscribe((data)=>{
+    //   this.inventariosSalidas=data;
+    // });
+
     //
-    this.produccionEmpleadoService.selectSalida().subscribe((data)=>{
-      this.inventariosSalidas=data;
-    });
+    this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
+      this.inventariosSalida=data;
+    })
 
   }
 

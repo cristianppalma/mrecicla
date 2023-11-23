@@ -11,6 +11,7 @@ export class ProduccionEmpleadoService {
 
   private correo: string;
   private nombre: string;
+  private iduser: string;
 
   API: string = 'http://localhost/PhpAngular/produccionarea/';
 
@@ -44,12 +45,22 @@ export class ProduccionEmpleadoService {
     return this.clientService.get<any[]>(this.API+"?selectArea");
   }
 
+  // // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
+  // selectSalida(){
+  //   return this.clientService.get<any[]>(this.API+"?selectSalida");
+  // }
+
   // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
-  selectSalida(){
-    return this.clientService.get<any[]>(this.API+"?selectSalida");
+  selectInventarioSalida(){
+    return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
   }
 
 
+
+  // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  getId(): string {
+    return this.iduser = localStorage.getItem("id_user") || '';
+  }
 
   // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
   getCorreo(): string {
@@ -60,10 +71,5 @@ export class ProduccionEmpleadoService {
   getNombre(): string {
     return this.nombre = localStorage.getItem("Nombre") || '';
   }
-
-  // setCorreo(nuevoCorreo: string): void{
-  //   this.correo = nuevoCorreo;
-  //   localStorage.setItem("Correo", nuevoCorreo);
-  // }
 
 }

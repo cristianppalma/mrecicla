@@ -21,7 +21,7 @@ interface Food {
 export class InventarioControlSalidaComponent  {
 
   Producto:PeriodicElement2[] = [];
-  displayedColumns:string[] = ['idproductosalida','nombreProducto','Peso','FechaRegistro','Calibre','areaSalida']
+  displayedColumns:string[] = ['idProductosalida','nombreProducto','peso','fechaRegistro','calibre','areaSalida']
   dataSource: MatTableDataSource<PeriodicElement2>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -54,7 +54,7 @@ export class InventarioControlSalidaComponent  {
   constructor(private router:Router,
     private dialog:MatDialog,
     private InventarioService:InventarioService
-    
+
     ) {
       this.dataSource=new MatTableDataSource<PeriodicElement2>([]);
     }
@@ -90,7 +90,7 @@ export class InventarioControlSalidaComponent  {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
       });
-    
+
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.eliminarInventario(element);
@@ -101,14 +101,14 @@ export class InventarioControlSalidaComponent  {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
       });
-    
+
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.eliminarInventario2(element);
         }
       });
     }
-  
+
   ngOnInit(): void {
     this.InventarioService.listarInventariosalida().subscribe((respuesta: PeriodicElement2[]) => {
       console.log(respuesta);
@@ -117,8 +117,8 @@ export class InventarioControlSalidaComponent  {
     });
   }
 
-  
- 
+
+
 
 
 

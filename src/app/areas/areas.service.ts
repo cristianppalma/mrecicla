@@ -8,8 +8,8 @@ import { areasList } from './areasList';
   providedIn: 'root'
 })
 export class AreasService {
-   API: string = 'https://recicladora.arvispace.com/PhpAngular/'
- // API: string = 'http://localhost/PhpAngular/';
+  // API: string = 'https://recicladora.arvispace.com/PhpAngular/'
+ API: string = 'http://localhost/PhpAngular/';
   constructor( private clientService:HttpClient) { }
 
   agregarArea(datosArea:Areas):Observable<any>{
