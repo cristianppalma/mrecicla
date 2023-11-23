@@ -8,31 +8,38 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class ProveedorService {
+  // URL DE LA LLAMADA A LA API
   // API: string = 'https://recicladora.arvispace.com/PhpAngular/proveedores/'
 
   API: string = 'http://localhost/recicla/proveedores/';
 
+  // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;
   private nombre: string;
 
   constructor( private clientService:HttpClient) { }
 
+  // AGREGAMOS UN NUEVO REGISTRO EN LA TABLA PROVEEDORES
   agregarProveedor(datosProveedor:Proveedor):Observable<any>{
     return this.clientService.post(this.API+"?insertar=1",datosProveedor);
   }
 
+  // OBTENEMOS TODOS LOS REGISTROS DE LA TABLA PROVEEDORES
   listarProveedor(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API);
   }
 
-  borrarProveedor(idProveedor:any):Observable<any>{
-    return this.clientService.get(this.API+"?borrar="+idProveedor);
+  // ELIMINAMOS LOS DATOS DEL REGISTRO DE ACUERDO AL ID
+  borrarProveedor(idProveedor:any, usuarioEliminador: any):Observable<any>{
+    return this.clientService.get(`${this.API}?borrar=${idProveedor}&UsuarioEliminador=${usuarioEliminador}`);
   }
 
+  // OBTENEMOS LOS DATOS DEL REGISTRO POR EL ID
   obtenerProveedor(idProveedor:string):Observable<any>{
     return this.clientService.get(this.API+"?consultar="+idProveedor);
   }
 
+  // SE ACTUALIZAN TODOS LOS DATOS DEL REGISTRO OBTENIDO
   editarProveedor(idProveedor:any, datosProveedor:Proveedor):Observable<any>{
     return this.clientService.post(this.API+"?actualizar="+idProveedor,datosProveedor);
   }

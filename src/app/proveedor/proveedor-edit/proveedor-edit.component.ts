@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProveedorService } from '../proveedor.service';
 import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.component';
 
 @Component({
   selector: 'app-proveedor-edit',
@@ -22,7 +23,7 @@ export class ProveedorEditComponent implements OnInit {
     private proveedorService:ProveedorService,
     private dialog: MatDialog
   ) {
-
+    const correoSave = this.proveedorService.getCorreo();
     this.formularioProveedorEdit=this.formBuilder.group({
       NombreProveedor:[''],
       ProductoProveedor:[''],
@@ -32,18 +33,28 @@ export class ProveedorEditComponent implements OnInit {
       RFCProveedor:[''],
       DescripcionProveedor:[''],
       EstatusProveedor: [''],
+      UsuarioActualizador: [correoSave],
     });
     }
 
     ngOnInit(): any {
 
+      console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
+      const correoSave = this.proveedorService.getCorreo();
+      console.log('Correo desde el localStorage: ', correoSave);
+
+      console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
+      const nombreSave = this.proveedorService.getNombre();
+      console.log('Nombre desde el localStorage: ', nombreSave);
+
+
       this.elID=this.activatedRoute.snapshot.paramMap.get('id');
       console.log('OBTENEMOS EL ID: ', this.elID);
       this.proveedorService.obtenerProveedor(this.elID).subscribe(
         respuesta => {
-          console.log('respuesta de la API',respuesta);
-            const proveedor = respuesta[0];
-            console.log('datos del proveedor ', proveedor);
+          console.log('Respuesta del servicio',respuesta);
+          const proveedor = respuesta[0];
+          console.log('datos del proveedor ', proveedor);
 
             this.formularioProveedorEdit.setValue({
               NombreProveedor: proveedor.NombreProveedor,
@@ -53,7 +64,8 @@ export class ProveedorEditComponent implements OnInit {
               Correo: proveedor.Correo,
               RFCProveedor: proveedor.RFCProveedor,
               DescripcionProveedor: proveedor.DescripcionProveedor,
-              EstatusProveedor:proveedor.EstatusProveedor
+              EstatusProveedor:proveedor.EstatusProveedor,
+              UsuarioActualizador: proveedor.UsuarioActualizador || correoSave,
             });
 
         }, error => {
@@ -68,23 +80,33 @@ export class ProveedorEditComponent implements OnInit {
 
     enviarDatos(): void {
       if (this.formularioProveedorEdit.valid) {
-        console.log(this.elID);
-        console.log('Se presionó el botón');
-        console.log(this.formularioProveedorEdit.value);
+        console.log('Id recibido: ', this.elID);
+        console.log('Datos que se enviaran: ', this.formularioProveedorEdit.value);
+
         this.proveedorService.editarProveedor(this.elID, this.formularioProveedorEdit.value).subscribe(
           (respuesta)=> {
-            console.log('SALIO BIEN');
-            this.mostratDialogoAviso();
+            console.log('Respuesta del servidor: ', respuesta);
+
+            if (respuesta.success === 1) {
+              console.log('La actualización fue exitosa');
+              // Accede a los datos actualizados
+              const proveedorActualizado = respuesta.data;
+              console.log('Datos del proveedor actualizado: ', proveedorActualizado);
+              this.mostrarDialogoAviso();
+            } else {
+              console.error('Error al actualizar el proveedor: ', respuesta.error);
+              // Manejar errores del servicio aquí
+            }
 
           },
           (error) => {
-            console.log('SALIO UN ERROR');
+            console.error('Error al actualizar el proveedor con error: ', error);
           }
         );
       }
     }
 
-    mostratDialogoAviso():void{
+    mostrarDialogoAviso():void{
       const dialogAviso = this.dialog.open(AvisoDialogComponent,{
         data: {message: 'Se actualizo correctamente en la Base de Datos'}
       });

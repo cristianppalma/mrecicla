@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProveedorService } from '../proveedor.service';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
+import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.component';
 
 @Component({
   selector: 'app-proveedor-create',
@@ -26,12 +23,12 @@ export class ProveedorCreateComponent implements OnInit {
     const correoSave = this.proveedorService.getCorreo();
     this.formularioProveedor = this.formBuilder.group({
       NombreProveedor: ['', [Validators.required]],
-      ProductoProveedor: [''],
-      DireccionProveedor: [''],
-      Telefono: [''],
-      Correo: [''],
-      RFCProveedor: [''],
-      DescripcionProveedor: [''],
+      ProductoProveedor: ['', [Validators.required]],
+      DireccionProveedor: ['', [Validators.required]],
+      Telefono: ['', [Validators.required]],
+      Correo: ['', [Validators.required]],
+      RFCProveedor: ['', [Validators.required]],
+      DescripcionProveedor: ['', [Validators.required]],
       EstatusProveedor: ['Activo'],
       UsuarioCreador:[correoSave],
     });
@@ -47,29 +44,37 @@ export class ProveedorCreateComponent implements OnInit {
       console.log(this.formularioProveedor.value);
       this.proveedorService.agregarProveedor(this.formularioProveedor.value).subscribe(
         (response) => {
-         console.log('Se registro correctamente');
-         this.mostratDialogoAviso();
-         console.log('Respuesta del servidor: ', response);
+          console.log('Respuesta del servidor: ', response);
 
-        //  if (response.success === 1){
-        //   console.log('Registro exitoso');
-        //   this.mostratDialogoAviso(response.mensaje);
-        //  } else {
-        //   console.error('Error al registrar en la Base de Datos: ', response.error);
-
-        //  }
+         if (response.success === 1){
+          console.log('Registro exitoso');
+          this.mostratDialogoAviso(response.mensaje);
+         } else {
+          console.error('Error al registrar en la Base de Datos: ', response.error);
+          this.mostrarDialogError();
+         }
 
         },
         (error) => {
           // Manejar errores del servicio aquí
-          console.log('ESTO ES UN ERROR');
-
-
+          this.mostrarDialogError();
         }
       );
     }
   }
-  mostratDialogoAviso():void{
+
+  // mostratDialogoAviso():void{
+  //   const dialogAviso = this.dialog.open(AvisoDialogComponent,{
+  //     data: {message: 'Se registro correctamente en la Base de Datos'}
+  //   });
+  //   dialogAviso.afterClosed().subscribe(result => {
+  //     if (result) {
+  //       this.router.navigateByUrl('/dashboard/proveedor/proveedores');
+  //     }
+  //   });
+  // }
+
+  mostratDialogoAviso(mensaje: string):void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
       data: {message: 'Se registro correctamente en la Base de Datos'}
     });
@@ -78,8 +83,18 @@ export class ProveedorCreateComponent implements OnInit {
         this.router.navigateByUrl('/dashboard/proveedor/proveedores');
       }
     });
-
   }
+
+  mostrarDialogError(): void {
+    const dialogAviso = this.dialog.open(AvisoErrorComponent, {
+        data: { message: 'Hubo un error al registrar en la Base de Datos' }
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+        if (result) {
+            // Puedes realizar alguna acción adicional si es necesario
+        }
+    });
+}
 
   ngOnInit(): void {
      // TRAEMOS EL CORREO DESDE EL SERVICIO

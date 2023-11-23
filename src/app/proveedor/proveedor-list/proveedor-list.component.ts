@@ -63,18 +63,20 @@ export class ProveedorListComponent  implements OnInit {
   }
 
 
-  constructor(private router:Router,
-     private dialog: MatDialog,
-     private proveedorService:ProveedorService
-     ) {
+  constructor(
+    private router:Router,
+    private dialog: MatDialog,
+    private proveedorService:ProveedorService
+  ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
-     }
+    }
+
   crearProveedor(){
     this.router.navigateByUrl('/dashboard/proveedor/proveedorCreate');
   }
+
   eliminarElemento(element: PeriodicElement): void {
     const index = this.dataSource.data.indexOf(element);
-
     if (index >= 0) {
       this.dataSource.data.splice(index, 1);
       this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
@@ -82,12 +84,13 @@ export class ProveedorListComponent  implements OnInit {
   }
 
   eliminarElemento2(element: PeriodicElement): void {
+    const correoSave = this.proveedorService.getCorreo();
     const index = this.dataSource.data.indexOf(element);
-
+    const usuarioElimina=correoSave
     if (index >= 0) {
       const id_proveedor = element.idProveedor;
       this.dataSource.data.splice(index, 1);
-      this.proveedorService.borrarProveedor(id_proveedor).subscribe();
+      this.proveedorService.borrarProveedor(id_proveedor, usuarioElimina).subscribe();
       this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
 
       // Aquí tienes tanto el índice como el idMaquina
@@ -103,13 +106,8 @@ export class ProveedorListComponent  implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('delete');
-        // this.proveedorService.borrarProveedor(element).subscribe((respuesta)=>{
-        //   this.Proveedores.splice();
           this.eliminarElemento(element);
         }
-      //   )
-      // }
     });
   }
 
