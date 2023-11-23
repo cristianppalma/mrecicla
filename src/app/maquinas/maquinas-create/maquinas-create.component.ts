@@ -21,13 +21,15 @@ export class MaquinasCreateComponent implements OnInit {
     private MaquinasService: MaquinasService,
     private dialog: MatDialog
   ) {
+    const correoSave = this.MaquinasService.getCorreo();
     this.formularioMaquina = this.formBuilder.group({
       Numero: ['', [Validators.required]],
       Serie: [''],
-      Modelo: [''],
+      Modelo: ['',[Validators.required]],
       Descripcion: [''],
-      Estado: [''],
-      Area: ['']
+      Estado: ['',[Validators.required]],
+      Area: [''],
+      UsuarioCreador:[correoSave],
     });
   }
 
@@ -41,8 +43,15 @@ export class MaquinasCreateComponent implements OnInit {
       console.log(this.formularioMaquina.value);
       this.MaquinasService.agregarMaquina(this.formularioMaquina.value).subscribe(
         (response) => {
-         console.log('Se registro correctamente');
-         this.mostratDialogoAviso();
+         console.log('Respuesta del servidor',response);
+
+         if (response.success === 1) {
+          console.log('Registro exitoso');
+          this.mostratDialogoAviso(response.mensaje);
+      } else {
+          console.error('Error al registrar en la Base de Datos:', response.error);
+          this.mostrarDialogError();
+      }
         },
         (error) => {
           // Manejar errores del servicio aquí
@@ -52,6 +61,7 @@ export class MaquinasCreateComponent implements OnInit {
     }
   }
   
+  /*
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
       data: {message: 'Se registro correctamente en la Base de Datos'}
@@ -75,12 +85,41 @@ export class MaquinasCreateComponent implements OnInit {
       }
     });
   
-  }
+  }*/
+  mostratDialogoAviso(mensaje: string): void {
+    const dialogAviso = this.dialog.open(AvisoDialogComponent, {
+        data: { message: mensaje }
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+        if (result) {
+            this.router.navigateByUrl('/dashboard/maquinas/maquinas');
+        }
+    });
+}
+
+mostrarDialogError(): void {
+    const dialogAviso = this.dialog.open(AvisoErrorComponent, {
+        data: { message: 'Hubo un error al registrar en la Base de Datos' }
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+        if (result) {
+            // Puedes realizar alguna acción adicional si es necesario
+        }
+    });
+}
 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
     this.MaquinasService.getAreas().subscribe((data) => {
       this.areas = data;
     });
+
+    console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const correoSave = this.MaquinasService.getCorreo();
+    console.log('Correo desde el localStorage: ', correoSave);
+
+    console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const nombreSave = this.MaquinasService.getNombre();
+    console.log('Nombre desde el localStorage: ', nombreSave);
   }
 }

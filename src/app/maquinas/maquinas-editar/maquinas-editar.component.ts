@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MaquinasService } from '../maquinas.service';
 import { MatDialog } from '@angular/material/dialog';
-
 import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component';
+import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.component';
 
 @Component({
   selector: 'app-maquinas-editar',
@@ -15,7 +15,6 @@ export class MaquinasEditarComponent implements OnInit {
   areas: any[]=[];
   formularioMaquina2: FormGroup;
   idRecibido: any;
- 
   
   constructor(
     private activeRoute: ActivatedRoute,
@@ -27,21 +26,20 @@ export class MaquinasEditarComponent implements OnInit {
     this.maquinasService.getAreas().subscribe((data) => {
       this.areas = data;
     });
-  
+    const correoSave = this.maquinasService.getCorreo();
     this.formularioMaquina2 = this.formBuilder.group({
       Numero: [''],
       Serie: [''],
       Modelo: [''],
       Descripcion: [''],
       Estado: [''],
-      Area: ['']
+      Area: [''],
+      UsuarioActualizador: [correoSave],
     });
 
     this.activeRoute.paramMap.subscribe((params) => {
       this.idRecibido = params.get('id');
       console.log('ID Recibido:', this.idRecibido);
-  
-   
       this.maquinasService.consultarmaquina(this.idRecibido).subscribe(respuesta => {
         console.log('Respuesta del servicio:', respuesta);
 
@@ -55,7 +53,8 @@ export class MaquinasEditarComponent implements OnInit {
               Modelo: respuesta.Modelo || '',
               Descripcion: respuesta.Descripcion || '',
               Estado: respuesta.Estado || '',
-              Area: respuesta.Area.toString()
+              Area: respuesta.Area.toString(),
+              UsuarioActualizador: respuesta.UsuarioActualizador || correoSave
             });
 
             
@@ -120,5 +119,11 @@ export class MaquinasEditarComponent implements OnInit {
 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
+    const correoSave = this.maquinasService.getCorreo();
+    console.log('Correo desde el localStorage: ', correoSave);
+
+    console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const nombreSave = this.maquinasService.getNombre();
+    console.log('Nombre desde el localStorage: ', nombreSave);
   }
 }

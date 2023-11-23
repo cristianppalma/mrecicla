@@ -8,7 +8,7 @@
             <div class="formula" style="border:none;" >         
                 <div class="formula1">
                     
-                <label>Numero de maquina</label>
+                <label>Número de máquina</label>
                 <mat-form-field>
                     <mat-label>Numero</mat-label>
                     <input  min="1" type="number" name="Numero" formControlName="Numero" matInput>
@@ -21,6 +21,9 @@
                 <mat-form-field>
                     <mat-label>Modelo</mat-label>
                     <input formControlName="Modelo" matInput>
+                    <mat-error *ngIf="formularioMaquina.get('Modelo')?.hasError('required')">
+                        El Modelo de la máquina es obligatorio.
+                      </mat-error>
                 </mat-form-field>
                 <label>Descripción de maquina</label>
                 <mat-form-field>
@@ -30,22 +33,22 @@
                
                 </div>
                 <div class="formula2">
-                    <label>Serie de maquina</label>
+                    <label>Serie de máquina</label>
                     <mat-form-field>
                     <mat-label>Serie</mat-label>
                     <input formControlName="Serie" matInput>
                     </mat-form-field>
-                    <label>Estado de maquina</label>
+                    <label>Estado de máquina</label>
                     <mat-form-field>
                         <mat-label>Status</mat-label>
-                        <mat-select  formControlName="Estado">
+                        <mat-select  formControlName="Estado" required>
                             <mat-option value="0"> </mat-option>
                         <mat-option value="Activo">Activo</mat-option>
                         <mat-option value="Inactivo">Inactivo</mat-option>
                         <mat-option value="Mantenimiento">Mantenimiento</mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <label>Área de maquina</label>
+                    <label>Área de máquina</label>
                     <mat-form-field>
                         <mat-label>Área</mat-label>
                         <mat-select  formControlName="Area">

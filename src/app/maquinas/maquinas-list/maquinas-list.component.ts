@@ -74,12 +74,13 @@ export class MaquinasListComponent  implements OnInit {
   }
 
   eliminarElemento2(element: PeriodicElement): void {
+    const correoSave = this.MaquinaService.getCorreo();
     const index = this.dataSource.data.indexOf(element);
-  
+  const usuarioElimina=correoSave;
     if (index >= 0) {
       const idMaquina = element.idMaquina;
       this.dataSource.data.splice(index, 1);
-      this.MaquinaService.eliminarMaquina(idMaquina).subscribe();
+      this.MaquinaService.eliminarMaquina(idMaquina, usuarioElimina).subscribe();
       this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
       
       // Aquí tienes tanto el índice como el idMaquina
