@@ -14,7 +14,8 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
   usuarioNombre: string | null;
   maquinarias: any[];
   areas: any[];
-  inventariosSalidas: any[];
+  // inventarios: any[];
+  inventariosSalida: any[];
   formularioProduccionAreaDetails: FormGroup;
   elID:any;
 
@@ -34,7 +35,8 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       KgProduccion: [''],
       idMaquinaria: [''],
       idArea: [''],
-      idproducto: [''],
+      // idproducto: [''],
+      idInventarioFabrica: [''],
       // idEmpleado: [''],
     });
   }
@@ -58,7 +60,8 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
           KgProduccion: produccionArea.KgProduccion,
           idMaquinaria: produccionArea.idMaquinaria.toString(),
           idArea: produccionArea.idArea.toString(),
-          idproducto: produccionArea.idproducto.toString(),
+          // idproducto: produccionArea.idproducto.toString(),
+          idInventarioFabrica: produccionArea.idInventarioFabrica.toString(),
         });
       }, error => {
         console.log('ERRRO DE LA SOLICITUD: ', error);
@@ -79,9 +82,14 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       this.areas=data;
     });
 
-    this.produccionEmpleadoService.selectSalida().subscribe((data)=>{
-      this.inventariosSalidas=data;
-    });
+    // this.produccionEmpleadoService.selectSalida().subscribe((data)=>{
+    //   this.inventarios=data;
+    // });
+
+     //
+     this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
+      this.inventariosSalida=data;
+    })
   }
 
   cancelar() {

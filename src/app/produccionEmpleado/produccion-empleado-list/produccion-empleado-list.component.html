@@ -46,14 +46,9 @@
           <td mat-cell *matCellDef="let element">{{ element.HoraFin }}</td>
         </ng-container>
 
-        <!-- <ng-container matColumnDef="Turno">
-          <th mat-header-cell *matHeaderCellDef> Turno </th>
-          <td mat-cell *matCellDef="let element">{{ element.Turno }}</td>
-        </ng-container> -->
-
-        <ng-container matColumnDef="idproducto">
-          <th mat-header-cell *matHeaderCellDef> ID Producto de Insumo </th>
-          <td mat-cell *matCellDef="let element">{{ element.idproducto }}</td>
+        <ng-container matColumnDef="idInventarioFabrica">
+          <th mat-header-cell *matHeaderCellDef> Insumo </th>
+          <td mat-cell *matCellDef="let element">{{ obtenerNombreInsumo(element.idInventarioFabrica) }}</td>
         </ng-container>
 
         <ng-container matColumnDef="UnidadesInsumo">

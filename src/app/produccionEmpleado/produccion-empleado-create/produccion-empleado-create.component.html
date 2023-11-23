@@ -49,12 +49,21 @@
         </div>
         <div class="formula2">
 
-          <label>Insumos</label>
+          <!-- <label>Insumos</label>
           <mat-form-field>
             <mat-label>Producto</mat-label>
             <mat-select formControlName="idproducto">
               <mat-option value="0"> </mat-option>
-              <mat-option *ngFor="let inventarioSalida of inventariosSalidas" [value]="inventarioSalida.idproducto">{{ inventarioSalida.Producto }}</mat-option>
+              <mat-option *ngFor="let inventario of inventarios" [value]="inventario.idproducto">{{ inventario.Producto }}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+          <label>Insumo</label>
+          <mat-form-field>
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="idInventarioFabrica">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let inventarioSalida of inventariosSalida" [value]="inventarioSalida.idInventarioFabrica">{{ inventarioSalida.NombreInsumo }}</mat-option>
             </mat-select>
           </mat-form-field>
 

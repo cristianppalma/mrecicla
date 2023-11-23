@@ -45,9 +45,14 @@ export class ProduccionEmpleadoService {
     return this.clientService.get<any[]>(this.API+"?selectArea");
   }
 
+  // // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
+  // selectSalida(){
+  //   return this.clientService.get<any[]>(this.API+"?selectSalida");
+  // }
+
   // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
-  selectSalida(){
-    return this.clientService.get<any[]>(this.API+"?selectSalida");
+  selectInventarioSalida(){
+    return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
   }
 
 
@@ -66,10 +71,5 @@ export class ProduccionEmpleadoService {
   getNombre(): string {
     return this.nombre = localStorage.getItem("Nombre") || '';
   }
-
-  // setCorreo(nuevoCorreo: string): void{
-  //   this.correo = nuevoCorreo;
-  //   localStorage.setItem("Correo", nuevoCorreo);
-  // }
 
 }
