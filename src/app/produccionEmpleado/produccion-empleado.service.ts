@@ -11,6 +11,7 @@ export class ProduccionEmpleadoService {
 
   private correo: string;
   private nombre: string;
+  private iduser: string;
 
   API: string = 'http://localhost/PhpAngular/produccionarea/';
 
@@ -50,6 +51,11 @@ export class ProduccionEmpleadoService {
   }
 
 
+
+  // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  getId(): string {
+    return this.iduser = localStorage.getItem("id_user") || '';
+  }
 
   // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
   getCorreo(): string {

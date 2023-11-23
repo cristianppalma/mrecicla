@@ -10,5 +10,5 @@ export class Produccion{
   idMaquinaria    !:String;
   idArea          !:String;
   idproducto !:String;
-  // idEmpleado      !:String;
+  idEmpleado      !:String;
 }

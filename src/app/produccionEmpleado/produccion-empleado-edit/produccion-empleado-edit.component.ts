@@ -10,6 +10,7 @@ import { ProduccionEmpleadoService } from '../produccion-empleado.service';
 })
 export class ProduccionEmpleadoEditComponent implements OnInit {
 
+  usuario: string | null;
   usuarioNombre: string | null;
   maquinarias: any[];
   areas: any[];
@@ -64,6 +65,8 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       }
     );
 
+    this.usuario = localStorage.getItem("id_user");
+    console.log('ID: ', this.usuario);
 
     this.usuarioNombre = localStorage.getItem("Nombre");
     console.log('Nombre', this.usuarioNombre);
