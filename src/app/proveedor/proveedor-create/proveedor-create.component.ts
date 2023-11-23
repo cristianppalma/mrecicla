@@ -47,9 +47,17 @@ export class ProveedorCreateComponent implements OnInit {
       console.log(this.formularioProveedor.value);
       this.proveedorService.agregarProveedor(this.formularioProveedor.value).subscribe(
         (response) => {
-          console.log('Hasta aqui todo bien');
          console.log('Se registro correctamente');
          this.mostratDialogoAviso();
+         console.log('Respuesta del servidor: ', response);
+
+        //  if (response.success === 1){
+        //   console.log('Registro exitoso');
+        //   this.mostratDialogoAviso(response.mensaje);
+        //  } else {
+        //   console.error('Error al registrar en la Base de Datos: ', response.error);
+
+        //  }
 
         },
         (error) => {

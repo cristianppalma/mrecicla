@@ -8,6 +8,7 @@ export class Proveedor{
   DescripcionProveedor!:String;
   EstatusProveedor!:String;
   UsuarioCreador!:String;
+  UsuarioActualizador!:String;
 }
 
 // export class Proveedor{
