@@ -11,6 +11,9 @@ export class MaquinasService {
  // API: string = 'https://recicladora.arvispace.com/PhpAngular/'
 
    API: string = 'http://localhost/PhpAngular/';
+   private correo: string;
+   private nombre: string;
+
   constructor( private clientService:HttpClient) { }
   
   getAreas(){
@@ -42,9 +45,14 @@ export class MaquinasService {
   }*/
 
   //Eliminar maquinas con procedimientos almacenados 
-  eliminarMaquina(id: any): Observable<any> {
-    return this.clientService.delete(this.API + "?borrarMaquina=" + id);
+ /* eliminarMaquina(id: any,usuarioEliminador: string): Observable<any> {
+    return this.clientService.delete(this.API + "?borrarMaquina=" + id+usuarioEliminador);
+  }*/
+
+  eliminarMaquina(id: any, usuarioEliminador: any): Observable<any> {
+    return this.clientService.delete(`${this.API}?borrarMaquina=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
+  
 
   /*consultarmaquina(id: any):Observable<any>{
     return this.clientService.get(this.API + "?consultarmaquina=" + id);
@@ -55,13 +63,22 @@ export class MaquinasService {
     return this.clientService.get(this.API + "?consultarmaquinaPro=" + id);
   }
 
-   actualizarMaquina(id: any, datosMaquina: Maquina): Observable<any> {
+   /*actualizarMaquina(id: any, datosMaquina: Maquina): Observable<any> {
     return this.clientService.post(this.API + "?actualizarv2=" + id, datosMaquina);
-  }
-
-  //Editar maquina por id con procedimiento
-/* actualizarMaquina(id: any, datosMaquina: Maquina): Observable<any> {
-    return this.clientService.post(this.API + "?actualizarMaquina=" + id, datosMaquina);
   }*/
 
+  //Editar maquina por id con procedimiento
+ actualizarMaquina(id: any, datosMaquina: Maquina): Observable<any> {
+    return this.clientService.post(this.API + "?actualizarMaquina=" + id, datosMaquina);
+  }
+
+   // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  getCorreo(): string {
+    return this.correo = localStorage.getItem("Correo") || '';
+  }
+
+  // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  getNombre(): string {
+    return this.nombre = localStorage.getItem("Nombre") || '';
+  }
 }

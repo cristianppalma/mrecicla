@@ -6,4 +6,7 @@ export interface PeriodicElement {
     Descripcion: string;
     Estado: string;
     Area: string;
+    UsuarioCreador:String;
+    UsuarioActualizador:String;
+    UsarioEliminador:String;
   }

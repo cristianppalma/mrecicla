@@ -5,4 +5,6 @@ export class Maquina{
     Descripcion!:String;
     Estado!:String;
     Area!:String;
+    UsuarioCreador!:String;
+    UsuarioActualizador!:String;
 }
