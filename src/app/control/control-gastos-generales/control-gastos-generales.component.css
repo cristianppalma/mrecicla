@@ -1,3 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column; /* Apila elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
+
+  margin-left: 19%;
+}
+
 .btn_int {
   background: #80a943;
   color: white;
@@ -16,7 +28,7 @@
 
 .Title{
   color: black;
-  margin-left: 450px;
+  text-align: center;
   font-size: larger;
 }
 .table-container {
@@ -24,7 +36,7 @@
   width: 1200px;
   margin: 10px; /* Ajusta según sea necesario */
   display: flex;
-  
+
   text-align: center;
   /* Estilos para la tabla si es necesario */
 

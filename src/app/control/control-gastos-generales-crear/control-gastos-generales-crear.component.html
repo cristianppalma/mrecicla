@@ -1,3 +1,4 @@
+<div class="container">
 <H1 class="Title">REGISTRAR NUEVO GASTO</H1>
 <br>
   <div class="centrar-columnas">
@@ -9,7 +10,7 @@
               <mat-label>Concepto</mat-label>
                 <input placeholder="Ej. Luz" formControlName="Concepto" matInput >
             </mat-form-field>
-          
+
               <label>Descripcion</label>
                 <mat-form-field>
                   <mat-label>Descripcion</mat-label>
@@ -22,11 +23,11 @@
                       <input placeholder="Ej. Enero - Febrero" formControlName="Periodo" matInput>
                   </mat-form-field>
 
-                  
+
 
         </div>
         <div class="formula2">
-          
+
 
               <label>Monto</label>
                 <mat-form-field>
@@ -36,25 +37,26 @@
                       El monto del gasto es obligatorio.
                     </mat-error>
                 </mat-form-field>
-          
+
                 <label>Tipo de Gasto</label>
                   <mat-form-field>
                     <mat-label>Tipo de Gasto</mat-label>
                       <mat-select formControlName="Tipo">
                         <mat-option value="0"> </mat-option>
-                        <mat-option value="gastoGeneral">Gasto General</mat-option>
-                        <mat-option value="gastoMaquinaria">Gasto Maquinaria</mat-option>
-                        <mat-option value="gastoNomina">Gasto Nomina</mat-option>
-                        <mat-option value="gastoMateriaPrima">Gasto Materia Prima</mat-option>
-                        <mat-option value="gastoServicios">Gasto Servicios</mat-option>
-                        <mat-option value="gastoViaticos">Gasto Viaticos </mat-option>
+                        <mat-option value="Gasto General">Gasto General</mat-option>
+                        <mat-option value="Gasto Maquinaria">Gasto Maquinaria</mat-option>
+                        <mat-option value="Gasto Nomina">Gasto Nomina</mat-option>
+                        <mat-option value="Gasto Materia Prima">Gasto Materia Prima</mat-option>
+                        <mat-option value="Gasto Servicios">Gasto Servicios</mat-option>
+                        <mat-option value="Gasto Viaticos">Gasto Viaticos </mat-option>
                       </mat-select>
                   </mat-form-field>
         </div>
       </div>
       <div class="botones">
         <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
-        <button (click)="mostrarDialogDeConfirmacion3();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
+        <button type="button" (click)="mostrarDialogDeConfirmacion3();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
       </div>
     </form>
   </div>
+</div>

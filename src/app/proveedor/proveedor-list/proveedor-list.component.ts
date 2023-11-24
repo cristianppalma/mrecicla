@@ -19,6 +19,7 @@ interface Food {
 
 
 export class ProveedorListComponent  implements OnInit {
+
   Proveedor: PeriodicElement[] = [];
   displayedColumns: string[] = ['idProveedor','NombreProveedor', 'ProductoProveedor', 'DireccionProveedor','Telefono','Correo','EstatusProveedor', 'action'];
   dataSource: MatTableDataSource<PeriodicElement>;
