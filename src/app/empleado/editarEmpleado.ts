@@ -1,5 +1,4 @@
 export class editarEmpleado {
-
     idUsuario           !:string;
     Nombre              !:string;
     ApellidoPaterno     !:string;
@@ -8,8 +7,8 @@ export class editarEmpleado {
     ApellidoMaterno     !:string;
     Turno               !:string;
     Sueldo              !:string;
-    Area                !:string;
-    Puesto              !:string;
+    // Area                !:string;
+    // Puesto              !:string;
     Domicilio           !:string;
     Practicante         !:string;
     idAsignacion        !:string;

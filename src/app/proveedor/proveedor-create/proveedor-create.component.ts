@@ -22,15 +22,15 @@ export class ProveedorCreateComponent implements OnInit {
   ) {
     const correoSave = this.proveedorService.getCorreo();
     this.formularioProveedor = this.formBuilder.group({
-      NombreProveedor: ['', [Validators.required]],
-      ProductoProveedor: ['', [Validators.required]],
-      DireccionProveedor: ['', [Validators.required]],
-      Telefono: ['', [Validators.required]],
-      Correo: ['', [Validators.required]],
-      RFCProveedor: ['', [Validators.required]],
-      DescripcionProveedor: ['', [Validators.required]],
+      NombreProveedor: [''],
+      ProductoProveedor: [''],
+      DireccionProveedor: [''],
+      Telefono: [''],
+      Correo: [''],
+      RFCProveedor: [''],
+      DescripcionProveedor: [''],
       EstatusProveedor: ['Activo'],
-      UsuarioCreador:[correoSave],
+      UsuarioCreador: [correoSave],
     });
   }
 

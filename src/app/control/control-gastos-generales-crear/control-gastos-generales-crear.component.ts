@@ -35,6 +35,7 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
   CancelarGastosGeneralesCrear(){
     this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
   }
+
   mostrarDialogDeConfirmacion3(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
     data: { message: '¿Estás seguro de que deseas cancelar este registro?' }
@@ -72,6 +73,7 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
       );
     }
   }
+
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
       data: {message: 'Se registro correctamente en la Base de Datos'}
@@ -93,9 +95,7 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
             // Puedes realizar alguna acción adicional si es necesario
         }
     });
-}
-
-
+  }
 
   ngOnInit(): void {
     // TRAEMOS EL CORREO DESDE EL SERVICIO

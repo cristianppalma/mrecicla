@@ -8,12 +8,14 @@ import { Produccion } from './produccion';
   providedIn: 'root'
 })
 export class ProduccionEmpleadoService {
+  // URL DE LA LLAMADA A LA API
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
+
+  API: string = 'http://localhost/PhpAngular/produccionarea/';
 
   private correo: string;
   private nombre: string;
   private iduser: string;
-
-  API: string = 'http://localhost/PhpAngular/produccionarea/';
 
   constructor(
     private clientService: HttpClient

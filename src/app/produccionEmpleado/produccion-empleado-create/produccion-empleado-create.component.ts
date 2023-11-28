@@ -33,6 +33,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     private dialog: MatDialog
   ) {
     const idUserSave = this.produccionEmpleadoService.getId();
+    const correoSave = this.produccionEmpleadoService.getCorreo();
     this.formularioProduccionArea = this.formBuilder.group({
       FechaInicio: [''],
       FechaFin: [''],
@@ -46,6 +47,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       // idproducto: [''],
       idInventarioFabrica: [''],
       idEmpleado: [idUserSave],
+      UsuarioCreador : [correoSave]
     });
   }
 

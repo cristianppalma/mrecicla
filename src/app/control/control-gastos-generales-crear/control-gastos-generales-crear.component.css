@@ -6,14 +6,10 @@
   min-height: 10vh;
   min-width: 70vh;
   max-width: 100vh;
-
   margin-left: 18%;
-
 }
-
 .Title{
   color: black;
-  /* margin-left: 400px; */
   text-align: center;
   font-size: larger;
 }
@@ -25,13 +21,13 @@
   margin: 8px;
   border-radius: 5px;
   margin-left: 600px;
-  }
-  .example-form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Distribuye uniformemente los campos */
-  }
-  /* Estilos para los campos individuales */
+}
+.example-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Distribuye uniformemente los campos */
+}
+/* Estilos para los campos individuales */
 .example-form mat-form-field {
   flex: 1; /* Ocupa todo el espacio disponible en el contenedor */
   margin: 10px; /* Agrega espaciado entre los campos */

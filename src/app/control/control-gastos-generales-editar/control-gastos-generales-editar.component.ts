@@ -43,7 +43,7 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
                     Periodo: respuesta.Periodo,
                     Monto: respuesta.Monto,
                     Tipo: respuesta.Tipo,
-                    UsuarioActualizador: respuesta.UsuarioActualizador ||correoSave,
+                    UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
                   });
                 }))
                 //this.ControlService.obtenerGasto(this.idControl).subscribe(gasto => {
@@ -94,6 +94,7 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
       );
     }
   }
+
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
       data: {message: 'Se actualizo correctamente en la Base de Datos'}
@@ -105,7 +106,6 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
     });
 
   }
-
 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
@@ -119,5 +119,3 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
   }
 
 }
-
-

@@ -6,10 +6,10 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 import { ProveedorService } from '../proveedor.service';
 import { PeriodicElement } from '../PeriodicElement';
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
+// interface Food {
+//   value: string;
+//   viewValue: string;
+// }
 
 @Component({
   selector: 'app-proveedor-list',
@@ -17,11 +17,17 @@ interface Food {
   styleUrls: ['./proveedor-list.component.css']
 })
 
-
 export class ProveedorListComponent  implements OnInit {
 
   Proveedor: PeriodicElement[] = [];
-  displayedColumns: string[] = ['idProveedor','NombreProveedor', 'ProductoProveedor', 'DireccionProveedor','Telefono','Correo','EstatusProveedor', 'action'];
+  displayedColumns: string[] = [  'idProveedor',
+                                  'NombreProveedor',
+                                  'ProductoProveedor',
+                                  'DireccionProveedor',
+                                  'Telefono',
+                                  'Correo',
+                                  'EstatusProveedor',
+                                  'action'];
   dataSource: MatTableDataSource<PeriodicElement>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -32,13 +38,12 @@ export class ProveedorListComponent  implements OnInit {
     return `${day}/${month}/${year}`;
   }
 
-  foods: Food[] = [
-    {value:'',viewValue:''},
-    {value: 'Hilo', viewValue: 'Hilo'},
-    {value: 'Tela', viewValue: 'Tela'},
-    {value: 'Borra', viewValue: 'Borra'},
-  ];
-
+  // foods: Food[] = [
+  //   {value:'',viewValue:''},
+  //   {value: 'Hilo', viewValue: 'Hilo'},
+  //   {value: 'Tela', viewValue: 'Tela'},
+  //   {value: 'Borra', viewValue: 'Borra'},
+  // ];
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -59,10 +64,9 @@ export class ProveedorListComponent  implements OnInit {
     console.log('ESTATUS: ', element.EstatusProveedor);
 
     // Puedes abrir un modal, mostrar información adicional, etc.
-    const id_proveedor = element.idProveedor; // Obtener el ID de la máquina
-    this.router.navigateByUrl(`/dashboard/proveedor/proveedorEdit/${id_proveedor}`);
+    const idProveedor = element.idProveedor; // Obtener el ID de la máquina
+    this.router.navigateByUrl(`/dashboard/proveedor/proveedorEdit/${idProveedor}`);
   }
-
 
   constructor(
     private router:Router,
@@ -89,16 +93,15 @@ export class ProveedorListComponent  implements OnInit {
     const index = this.dataSource.data.indexOf(element);
     const usuarioElimina=correoSave
     if (index >= 0) {
-      const id_proveedor = element.idProveedor;
+      const idProveedor = element.idProveedor;
       this.dataSource.data.splice(index, 1);
-      this.proveedorService.borrarProveedor(id_proveedor, usuarioElimina).subscribe();
+      this.proveedorService.borrarProveedor(idProveedor, usuarioElimina).subscribe();
       this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
 
       // Aquí tienes tanto el índice como el idMaquina
-      console.log(`Elemento eliminado en el índice ${index}, ID del Proveedor: ${id_proveedor}`);
+      console.log(`Elemento eliminado en el índice ${index}, ID del Proveedor: ${idProveedor}`);
     }
   }
-
 
   mostrarDialogoDeConfirmacion(element: PeriodicElement): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -125,7 +128,6 @@ export class ProveedorListComponent  implements OnInit {
       }
     });
   }
-
 
   ngOnInit(): void {
     this.proveedorService.listarProveedor().subscribe((respuesta: PeriodicElement[]) => {

@@ -45,7 +45,7 @@ export class ControlGastosGeneralesComponent  implements OnInit {
 
   verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
-    console.log('Detalles de:');
+    console.log('Detalles de:', element);
     const idGastosFabrica = element.idGastosFabrica;
     // Puedes abrir un modal, mostrar información adicional, etc.
     this.router.navigateByUrl(`/dashboard/control/controlGastosGeneralesEditar/${idGastosFabrica}`);

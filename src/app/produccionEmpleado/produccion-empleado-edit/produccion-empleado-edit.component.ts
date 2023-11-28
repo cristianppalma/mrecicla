@@ -25,6 +25,7 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private produccionEmpleadoService: ProduccionEmpleadoService,
   ){
+    const correoSave = this.produccionEmpleadoService.getCorreo();
     this.formularioProduccionAreaDetails = this.formBuilder.group({
       FechaInicio: [''],
       FechaFin: [''],
@@ -38,10 +39,20 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       // idproducto: [''],
       idInventarioFabrica: [''],
       // idEmpleado: [''],
+      UsuarioActualizador : [correoSave]
     });
   }
 
   ngOnInit(): any {
+
+    console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
+      const correoSave = this.produccionEmpleadoService.getCorreo();
+      console.log('Correo desde el localStorage: ', correoSave);
+
+      console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
+      const nombreSave = this.produccionEmpleadoService.getNombre();
+      console.log('Nombre desde el localStorage: ', nombreSave);
+
 
     this.elID=this.activatedRoute.snapshot.paramMap.get('id');
     console.log('OBTENEMOS EL ID: ', this.elID);
@@ -62,6 +73,7 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
           idArea: produccionArea.idArea.toString(),
           // idproducto: produccionArea.idproducto.toString(),
           idInventarioFabrica: produccionArea.idInventarioFabrica.toString(),
+          UsuarioActualizador: produccionArea.UsuarioActualizador || correoSave,
         });
       }, error => {
         console.log('ERRRO DE LA SOLICITUD: ', error);

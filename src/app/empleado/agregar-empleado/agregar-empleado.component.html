@@ -8,7 +8,7 @@
 </div>
 <form [formGroup]="formularioEmpleado" (ngSubmit)="enviarDatos()">
   <div class="contenedor">
-  
+
       <div class="izquierda">
           <br>
           <mat-form-field class="example-full-width custom-width">
@@ -36,7 +36,7 @@
               <input formControlName ='Domicilio' matInput placeholder="Ex. 1000" >
             </mat-form-field>
             <br>
-           
+
 
             <mat-form-field>
               <mat-label>Tipo de Usuario </mat-label>
@@ -46,7 +46,7 @@
          <!--   <mat-option value="1">Hilos</mat-option>
             <mat-option value="2">Telas</mat-option>
             <mat-option value="3">Bordado</mat-option>-->
-            </mat-select>  
+            </mat-select>
           </mat-form-field>
       </div>
       <div class="derecha">
@@ -57,29 +57,29 @@
             </mat-form-field>
             <br>
             <mat-label style="font-size: medium;">practicante?</mat-label>
-            
+
             <label style="font-size: medium; margin-left: 10px;">
-            <input type="radio" value="Si" formControlName ="practicante" />
+            <input type="radio" value="Si" formControlName ="Practicante" />
               si
           </label>
           <label style="font-size: medium; margin-left: 50px;">
-           <input type="radio" value="No" formControlName ="practicante" />
-            no   
-          </label> 
+           <input type="radio" value="No" formControlName ="Practicante" />
+            no
+          </label>
            <br>
            <br>
 
            <mat-form-field>
             <mat-label>Puesto </mat-label>
-           <mat-select formControlName="Puesto">
+           <mat-select formControlName="idAsignacion">
             <mat-option value="0"> </mat-option>
-            <mat-option *ngFor="let puestos of puestos" [value]="puestos.idAsignacion">{{ puestos.Puesto}}</mat-option>
+            <mat-option *ngFor="let puesto of puestos" [value]="puesto.idAsignacion">{{ puesto.Puesto}}</mat-option>
      <!--   <mat-option value="1">Hilos</mat-option>
         <mat-option value="2">Telas</mat-option>
         <mat-option value="3">Bordado</mat-option>-->
-        </mat-select>  
+        </mat-select>
       </mat-form-field>
-           
+
       <br>
             <mat-form-field class="example-full-width custom-width">
               <mat-label>Sueldo</mat-label>
@@ -90,15 +90,15 @@
               <mat-label>Turno </mat-label>
              <mat-select formControlName="Turno">
               <mat-option value="sin turno">Sin turno</mat-option>
-          <mat-option value="M">Matutino</mat-option>
-          <mat-option value="B">Bespertino</mat-option>
-          <mat-option value="N">Nocturno</mat-option>
-          </mat-select>  
+          <mat-option value="Matutino">Matutino</mat-option>
+          <mat-option value="Vespertino">Vespertino</mat-option>
+          <mat-option value="Nocturno">Nocturno</mat-option>
+          </mat-select>
         </mat-form-field>
             <br>
             <mat-form-field>
               <mat-label>Area</mat-label>
-              <mat-select formControlName="Area">
+              <mat-select formControlName="idArea">
                   <mat-option value="0"> </mat-option>
                   <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
            <!--   <mat-option value="1">Hilos</mat-option>
@@ -114,4 +114,3 @@
       </div>
     </div>
   </form>
-  

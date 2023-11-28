@@ -1,19 +1,24 @@
 <div class="container">
-<H1 class="Title">EDITAR GASTO</H1>
+
+  <H1 class="Title">EDITAR GASTO</H1>
+
   <div class="centrar-columnas">
     <form [formGroup]="formularioEditarGastos" (ngSubmit)="enviarDatosActualizarGastos()">
       <div class="formula" style="border:none;" >
+
         <div class="formula1">
           <label>Concepto</label>
           <mat-form-field >
             <mat-label>Concepto</mat-label>
               <input placeholder="Ej. Luz" formControlName="Concepto" matInput >
           </mat-form-field>
+
           <label>Descripcion</label>
           <mat-form-field>
             <mat-label>Descripcion</mat-label>
               <input placeholder="Ej. Pago de Servicio" formControlName="Descripcion" matInput >
           </mat-form-field>
+
           <label>Periodo</label>
           <mat-form-field>
             <mat-label>Periodo</mat-label>
@@ -21,13 +26,14 @@
           </mat-form-field>
 
         </div>
-        <div class="formula2">
 
+        <div class="formula2">
           <label>Monto</label>
           <mat-form-field>
             <mat-label>Monto</mat-label>
               <input placeholder="2500" formControlName="Monto" matInput>
           </mat-form-field>
+
           <label>Tipo de Gasto</label>
           <mat-form-field>
             <mat-label>Tipo de Gasto</mat-label>
@@ -42,12 +48,15 @@
               </mat-select>
           </mat-form-field>
         </div>
+
       </div>
+
       <div class="botones">
         <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">EDITAR</button>
         <button (click)="mostrarDialogDeConfirmacion2();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
       </div>
+
     </form>
   </div>
-<br>
+  <br>
 </div>
