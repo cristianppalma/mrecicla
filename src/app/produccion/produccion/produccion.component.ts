@@ -12,10 +12,10 @@ export class ProduccionComponent implements OnInit {
   ngOnInit(): void {7
 
     const data = {
-      labels:['January', 'February', 'March', 'April', 'May', 'June','July'],
+      labels:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
       datasets:[{
-        label: 'My First Dataset',
-        data:[65,59,80,81,56,55,40],
+        label: 'KG',
+        data:[65,59,80,81,56,55,40,50,55,50,55,50],
         fill: false,
         borderColor: 'rgba(75,192,192,)',
         tension: 0.1

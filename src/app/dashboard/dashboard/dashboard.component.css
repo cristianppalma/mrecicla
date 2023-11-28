@@ -77,3 +77,7 @@ body{
 a {
   text-decoration: none;
 }
+
+.title-card {
+  line-height: 40px;
+}
