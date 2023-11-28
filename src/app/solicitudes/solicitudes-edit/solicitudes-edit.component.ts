@@ -47,6 +47,7 @@ export class SolicitudesEditComponent implements OnInit{
        private activateRoute: ActivatedRoute
      
      ) {
+      const correoSave =this.SolicitudesService.getCorreo();
       this.formularioEditarSolicitud =this.formBuilder.group({
         nombreProducto:[''],
         Peso: [''],
@@ -55,13 +56,15 @@ export class SolicitudesEditComponent implements OnInit{
         Calibre: [''],
         idProveedor:[''],
         Composicion:[''],
-        FechaRecepcion:['']
+        FechaRecepcion:[''],
+        UsuarioActualizador: [correoSave]
         
       });
       this.activateRoute.paramMap.subscribe(params =>{
         this.idsolicitud=params.get('id');
-
+        console.log('ID recibido:', this.idsolicitud);
         this.SolicitudesService.consultarSolicitudes(this.idsolicitud).subscribe((respuesta=>{
+         console.log('Respuesta del servicio:', respuesta);
           this.formularioEditarSolicitud.setValue({
             nombreProducto: respuesta.nombreProducto,
             Peso: respuesta.Peso,
@@ -69,8 +72,10 @@ export class SolicitudesEditComponent implements OnInit{
             FechaPeticion: respuesta.FechaPeticion,
             Calibre: respuesta.Calibre,
             idProveedor: respuesta.idProveedor.toString(),
+             //idProveedor: respuesta.Proveedor.toString(),
             Composicion: respuesta.Composicion,
-            FechaRecepcion: respuesta.FechaRecepcion
+            FechaRecepcion: respuesta.FechaRecepcion,
+            UsuarioActualizador:respuesta.UsuarioActualizador || correoSave
           });
         }))
       })

@@ -13,6 +13,8 @@ import { MatTableModule } from '@angular/material/table';import { MatTableDataSo
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { Proveedor } from 'src/app/proveedor/proveedor';
+import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.component';
+
 
 interface Area {
   value: string;
@@ -33,12 +35,14 @@ export class SolicitudesCrearComponent implements OnInit{
   ];
   proveedor: any[];
   formularioSolicitud: FormGroup;
-  constructor(private router:Router,
- private _bottomSheet: MatBottomSheet,
- private formBuilder :FormBuilder,
- private SolicitudesService:SolicitudesService,
- private dialog:MatDialog
+  constructor(
+    private router:Router,
+    private _bottomSheet: MatBottomSheet,
+    private formBuilder :FormBuilder,
+    private SolicitudesService:SolicitudesService,
+    private dialog:MatDialog
  ) {
+  const correoSave=this.SolicitudesService.getCorreo();
   this.formularioSolicitud = this.formBuilder.group({
     //ID: ['', [Validators.required]],
     nombreProducto: ['', [Validators.required]],
@@ -48,8 +52,8 @@ export class SolicitudesCrearComponent implements OnInit{
     Calibre: ['', [Validators.required]],
     idProveedor:['', [Validators.required]],
     Composicion:['', [Validators.required]],
-    FechaRecepcion: ['', [Validators.required]]
-   
+    FechaRecepcion: ['', [Validators.required]],
+    UsuarioCreador:[correoSave],
   });
  }
 
@@ -72,18 +76,22 @@ export class SolicitudesCrearComponent implements OnInit{
       console.log(this.formularioSolicitud.value);
       this.SolicitudesService.agregarSolicitud(this.formularioSolicitud.value).subscribe(
         (response) => {
-         console.log('Se registro correctamente');
-         this.mostratDialogoAviso();
-         
-        
-        },
-        (error) => {
-           //Manejar errores del servicio aquí
-        }
+          if (response.success === 1) {
+           console.log('Registro exitoso');
+           this.mostratDialogoAviso(response.mensaje);
+       } else {
+           console.error('Error al registrar en la Base de Datos:', response.error);
+           this.mostrarDialogError();
+       }
+         },
+         (error) => {
+           // Manejar errores del servicio aquí
+           this.mostrarDialogError();
+         }
       );
     }
   }
-  mostratDialogoAviso():void{
+/*  mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
       data: {message: 'Se registro correctamente en la Base de Datos'}
     });
@@ -93,16 +101,47 @@ export class SolicitudesCrearComponent implements OnInit{
       }
     });
   
-  }
+  }*/
+
+  mostratDialogoAviso(mensaje: string): void {
+    const dialogAviso = this.dialog.open(AvisoDialogComponent, {
+        data: { message: mensaje }
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+        if (result) {
+            this.router.navigateByUrl('/dashboard/solicitudes/solicitudes');
+        }
+    });
+}
+
+mostrarDialogError(): void {
+    const dialogAviso = this.dialog.open(AvisoErrorComponent, {
+        data: { message: 'Hubo un error al registrar en la Base de Datos' }
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+        if (result) {
+            // Puedes realizar alguna acción adicional si es necesario
+        }
+    });
+}
 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
     this.SolicitudesService.selectProveedor().subscribe((data)=>{
       this.proveedor=data;
     });
+    console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const correoSave = this.SolicitudesService.getCorreo();
+    console.log('Correo desde el localStorage: ', correoSave);
+
+    console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const nombreSave = this.SolicitudesService.getNombre();
+    console.log('Nombre desde el localStorage: ', nombreSave);
+  }
+
 
   }
-}
+
 
 
 

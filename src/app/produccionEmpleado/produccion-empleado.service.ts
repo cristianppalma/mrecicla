@@ -21,9 +21,16 @@ export class ProduccionEmpleadoService {
 
   // CONEXION DE FRONTEND CON BACKEND
   // SERVICIO PARA TRAER TODOS LOS REGISTROS
-  listarProduccionArea(): Observable<PeriodicElement[]> {
+  /*listarProduccionArea(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API);
+  }*/
+
+  //Con procedimiento almacenado
+  listarProduccionArea(id:any): Observable<PeriodicElement[]> {
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProduccionArea="+id);
   }
+  
+
 
   // SERVICIO PARA AGREGAR UN REGISTRO
   agregarProduccionArea(datosProduccionArea:Produccion):Observable<any>{

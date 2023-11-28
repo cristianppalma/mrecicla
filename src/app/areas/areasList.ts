@@ -1,7 +1,8 @@
-export class areasList{
-  idArea!:String;
-  NombreArea!:String;
-  DescripcionArea!:String;
-  EstadoArea!:String;
-  
+export interface areasList{
+  idArea:String;
+  NombreArea:String;
+  DescripcionArea:String;
+  EstadoArea:String;
+  UsuarioCreador:String;
+  UsuarioEliminador:String;
 }
