@@ -16,6 +16,8 @@ import { Areas } from 'src/app/areas/areas';
 })
 export class PerfilAdminComponent implements OnInit {
 
+  // nombreUsuario: string | null;
+
   areas : any[];
   puestos : any[];
   tipoUsuarios : any[];
@@ -51,6 +53,7 @@ export class PerfilAdminComponent implements OnInit {
       Turno : [''],
       Domicilio : [''],
       idTipoUsuario : [''],
+      // idTipoUsuario : [this.nombreUsuario],
       idAsignacion : [''],
       idArea : [''],
       UsuarioActualizador:[correoSave]
@@ -58,6 +61,10 @@ export class PerfilAdminComponent implements OnInit {
      }
 
      ngOnInit(): void {
+
+      // this.nombreUsuario = localStorage.getItem("NombreTipoUser");
+      // console.log('NombreTipoUser', this.nombreUsuario);
+
 
       console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
       const correoSave = this.editarEmpleado.getCorreo();
