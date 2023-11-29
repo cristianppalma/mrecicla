@@ -26,7 +26,6 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class InventarioCrearComponent implements OnInit{
   formularioProducto: FormGroup;
-  idUsuario:any;
   areas:any[];
 
   constructor(private router:Router, 
@@ -43,10 +42,9 @@ export class InventarioCrearComponent implements OnInit{
       Dimension: ['', [Validators.required]],  
       Fecha: ['', [Validators.required]],
       Calibre: ['', [Validators.required]],
-      areas: ['', [Validators.required]],
       Composicion:['', [Validators.required]],
       AreasDesignadas:['', [Validators.required]],
-      UsuaroCreador:[correSave]
+      UsuarioCreador:[correSave]
     });
   }
   
