@@ -11,6 +11,8 @@ export class InventarioService {
   //API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
 
    API: string = 'http://localhost/PhpAngular/inventario/';
+   API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
+   
 
   constructor( private clientService:HttpClient) { }
 
@@ -28,7 +30,7 @@ export class InventarioService {
 
   //Actualizar y consultar
   consultarInventario(id:any): Observable<PeriodicElement> {
-    return this.clientService.get<PeriodicElement>(this.API+"?consultarInventario="+id);
+    return this.clientService.get<PeriodicElement>(this.API+"?ObtenerInventario="+id);
 
   }
 
@@ -42,7 +44,7 @@ export class InventarioService {
   }
 
   listarInventariosalida(): Observable<PeriodicElement2[]> {
-    return this.clientService.get<PeriodicElement2[]>(this.API+"?InventarioS=1");
+    return this.clientService.get<PeriodicElement2[]>(this.API2+"?ObtenerProductos=1");
   }
 
 }

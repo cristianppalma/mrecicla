@@ -3,6 +3,6 @@ export interface PeriodicElement2 {
     nombreProducto: string;
     Peso: string;
     FechaRegistro: string;
-    Calibre: string;
-    areaSalida: string;
+    calibre: string;
+    idArea: string;
   }

@@ -20,7 +20,7 @@ interface Food {
 export class InventarioControlComponent implements OnInit {
 
   Producto:PeriodicElement[] = [];
-  displayedColumns:string[] = ['idproducto','Producto','Peso','Dimensiones','FechaCreacion','Clibre','Porcentaje','AreasDesignadas','action']
+  displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Peso','Fecha','Dimension','Composicion','Calibre','idArea','action']
   dataSource: MatTableDataSource<PeriodicElement>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -45,7 +45,7 @@ export class InventarioControlComponent implements OnInit {
   verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
-    const idproducto = element.idproducto;
+    const idproducto = element.idInventarioFabrica;
     // Puedes abrir un modal, mostrar información adicional, etc.
     this.router.navigateByUrl(`/dashboard/inventario/inventarioEdit/${idproducto}`)
   }
@@ -76,7 +76,7 @@ export class InventarioControlComponent implements OnInit {
       const index =this.dataSource.data.indexOf(element);
 
       if(index >=0){
-        const idproducto = element.idproducto;
+        const idproducto = element.idInventarioFabrica;
         this.dataSource.data.splice(index,1);
         this.InventarioService.borrarInventario(idproducto).subscribe();
         this.dataSource._updateChangeSubscription();

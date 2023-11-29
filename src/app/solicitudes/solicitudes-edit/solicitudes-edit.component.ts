@@ -32,6 +32,7 @@ export class SolicitudesEditComponent implements OnInit{
   proveedor: any[];
   formularioEditarSolicitud:FormGroup;
   idsolicitud:any;
+  Estado:any;
   Areas: Area[] = [
     {value: 'area1', viewValue: 'telares'},
     {value: 'area2', viewValue: 'hilado'},
@@ -116,6 +117,26 @@ export class SolicitudesEditComponent implements OnInit{
   {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
+
+
+  redirigirSiCondicion() {
+    this.SolicitudesService.enviarSolicitud(this.Estado).subscribe(
+      (producto) => {
+        // Supongamos que el campo que determina la condición es 'campoCondicion'
+        if (producto.campoCondicion === '1') {
+          this.router.navigate(['/dashboard/solicitudes/SolicitudesCrear']);
+        } else {
+          // Puedes hacer algo diferente o simplemente no redirigir
+          console.log('No cumple la condición para redirigir.');
+        }
+      },
+      (error) => {
+        console.error('Error al obtener la información del producto', error);
+      }
+    );
+    }
+
+
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
     this.SolicitudesService.selectProveedor().subscribe((data)=>{

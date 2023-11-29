@@ -21,7 +21,7 @@ interface Food {
 export class InventarioControlSalidaComponent  {
 
   Producto:PeriodicElement2[] = [];
-  displayedColumns:string[] = ['idproductosalida','nombreProducto','Peso','FechaRegistro','Calibre','areaSalida']
+  displayedColumns:string[] = ['idproductosalida','nombreProducto','Peso','FechaRegistro','Calibre','idArea','action']
   dataSource: MatTableDataSource<PeriodicElement2>;
 
   formatDateWithLeadingZeros(date: Date): string {

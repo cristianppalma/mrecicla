@@ -18,12 +18,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { InventarioControlSalidaComponent } from './inventario-control-salida/inventario-control-salida.component';
+import { InventarioRestaComponent } from './inventario-resta/inventario-resta.component';
 @NgModule({
   declarations: [
     InventarioControlComponent,
     InventarioEditComponent,
     InventarioCrearComponent,
-    InventarioControlSalidaComponent
+    InventarioControlSalidaComponent,
+    InventarioRestaComponent
   ],
   imports: [
     CommonModule,
