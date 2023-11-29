@@ -12,6 +12,8 @@ export class PagesComponent implements OnInit {
   usuarioTienePermiso: boolean;
   //
   nombreUsuario: string | null;
+  idUsuario: string | null;
+
 
 
   constructor(
@@ -21,15 +23,16 @@ export class PagesComponent implements OnInit {
     this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
   }
 
-  ngOnInit(): void {
-
-    this.nombreUsuario = localStorage.getItem("NombreTipoUser");
-    console.log('NombreTipoUser', this.nombreUsuario);
+  editarAdmin(){
+    this.idUsuario = localStorage.getItem("id_user");
+    const idUser =localStorage.getItem("id_user");
+    //this.router.navigateByUrl('empleado/adminProfile');
+    this.router.navigateByUrl(`dashboard/empleado/adminProfile/${idUser}`);
 
   }
 
-  // Visualizar de acuerdo al rol
-  private verificarPermisosDelUsuario(): boolean {
+   // Visualizar de acuerdo al rol
+   private verificarPermisosDelUsuario(): boolean {
     const nombreUsuario = localStorage.getItem("NombreTipoUser");
     const puesto = localStorage.getItem("Puesto");
     // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
@@ -50,5 +53,15 @@ export class PagesComponent implements OnInit {
     console.log('Se elimino el token');
     this.router.navigate(['/login'])
   }
+
+
+  ngOnInit(): void {
+
+    this.nombreUsuario = localStorage.getItem("NombreTipoUser");
+    console.log('NombreTipoUser', this.nombreUsuario);
+
+  }
+
+ 
 
 }

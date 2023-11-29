@@ -8,9 +8,9 @@
     <!-- <span style="color: #000;">
       Admin
     </span> -->
-    <button mat-button class="" style="color:#000;">
-      <span style="color: #000;" [routerLink]="['empleado/adminProfile']">
-        <a style="color: #000;" [routerLink]="['empleado/adminProfile']">{{nombreUsuario}}</a>
+    <button (click)="editarAdmin();" mat-button class="" style="color:#000;">
+      <span style="color: #000;" >
+        <a style="color: #000;" >{{nombreUsuario}}</a>
       </span>
     </button>
     <button mat-button class="" style="color:#000;">
