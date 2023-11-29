@@ -37,13 +37,13 @@ export class InventarioCrearComponent implements OnInit{
   ) {
     this.formularioProducto = this.formBuilder.group({
       //ID: ['', [Validators.required]],
-      Producto: ['', [Validators.required]],
+      NombreInsumo: ['', [Validators.required]],
       Peso: ['', [Validators.required]],
-      Dimensiones: ['', [Validators.required]],  
-      FechaCreacion: ['', [Validators.required]],
-      Clibre: ['', [Validators.required]],
+      Dimension: ['', [Validators.required]],  
+      Fecha: ['', [Validators.required]],
+      Calibre: ['', [Validators.required]],
       areas: ['', [Validators.required]],
-      Porcentaje:['', [Validators.required]],
+      Composicion:['', [Validators.required]],
       AreasDesignadas:['', [Validators.required]]
     });
   }

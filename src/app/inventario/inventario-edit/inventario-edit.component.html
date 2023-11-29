@@ -12,7 +12,7 @@
         <label>Nombre del producto</label>
         <mat-form-field class="derecha">
           <mat-label>Producto</mat-label>
-          <input formControlName="Producto" matInput>
+          <input formControlName="NombreInsumo"matInput>
         </mat-form-field>
 
         <label>Peso</label>
@@ -27,7 +27,7 @@
           <mat-form-field class="example-full-width">
             
             <mat-label>Dimensiones </mat-label>
-            <input formControlName="Dimensiones" matInput>
+            <input formControlName="Dimension" matInput>
           </mat-form-field> 
 
 
@@ -40,14 +40,14 @@
           <label>FechaCreacion</label>
           <mat-form-field class="example-full-width">
             <mat-label>FechaCreacion</mat-label>
-            <input formControlName="FechaCreacion" matInput>
+            <input formControlName="Fecha" matInput>
           </mat-form-field>
         
 
           <label>Area designada</label>
           <mat-form-field>
             <mat-label>Área</mat-label>
-            <mat-select  formControlName="AreasDesignadas">
+            <mat-select  formControlName="idArea">
               <mat-option value="0"> </mat-option>
               <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
             </mat-select>
@@ -56,13 +56,13 @@
           <label>Porcentaje</label>
           <mat-form-field class="example-full-width">
             <mat-label>Porcentaje</mat-label>
-            <input formControlName="Porcentaje" matInput>
+            <input formControlName="Composicion" matInput>
           </mat-form-field>
 
           <label>Calibre</label>
           <mat-form-field class="example-full-width">
             <mat-label>Calibre</mat-label>
-            <input formControlName="Clibre" matInput>
+            <input formControlName="Calibre" matInput>
           </mat-form-field>
         
         </div>

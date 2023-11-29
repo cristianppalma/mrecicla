@@ -40,25 +40,25 @@ export class InventarioEditComponent implements OnInit{
  
   ) {
     this.formularioEditarInventario = this.formBuilder.group({
-      Producto: [''],
+      NombreInsumo: [''],
       Peso: [''],
-      Dimensiones: [''],  
-      FechaCreacion: [''],
-      Clibre: [''],
-      Porcentaje:[''],
-      AreasDesignadas:['']
+      Dimension: [''],  
+      Fecha: [''],
+      Calibre: [''],
+      Composicion:[''],
+      idArea:['']
     });
     this.activateRoute.paramMap.subscribe(params => {
       this.idproducto = params.get('id');
 
       this.InventarioService.consultarInventario(this.idproducto).subscribe((respuesta=>{
         this.formularioEditarInventario.setValue({
-          Producto: respuesta.Producto,
+          nombreInsumo: respuesta.NombreInsumo,
           Peso: respuesta.Peso,
-          Dimensiones:  respuesta.Dimensiones,
-          FechaCreacion: respuesta.FechaCreacion,
-          Clibre: respuesta.Clibre,
-          Porcentaje: respuesta.Porcentaje,
+          Dimension:  respuesta.Dimension,
+          Fecha: respuesta.Fecha,
+          Calibre: respuesta.Calibre,
+          Composicion: respuesta.Composicion,
           areas: respuesta.IdArea.toString()
         });
       }))
