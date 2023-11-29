@@ -46,7 +46,7 @@ export class InventarioService {
   listarInventariosalida(): Observable<PeriodicElement2[]> {
     return this.clientService.get<PeriodicElement2[]>(this.API2+"?ObtenerProductos=1");
   }
-
+  
 }
 
 

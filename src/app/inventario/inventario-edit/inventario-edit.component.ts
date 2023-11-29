@@ -59,7 +59,7 @@ export class InventarioEditComponent implements OnInit{
           Fecha: respuesta.Fecha,
           Calibre: respuesta.Calibre,
           Composicion: respuesta.Composicion,
-          areas: respuesta.IdArea.toString()
+          areas: respuesta.AreaDesignada.toString()
         });
       }))
     })

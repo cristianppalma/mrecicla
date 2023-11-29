@@ -20,7 +20,7 @@ interface Food {
 export class InventarioControlComponent implements OnInit {
 
   Producto:PeriodicElement[] = [];
-  displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Peso','Fecha','Dimension','Composicion','Calibre','idArea','action']
+  displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Peso','Fecha','Dimension','Composicion','Calibre','AreaDesignada','action']
   dataSource: MatTableDataSource<PeriodicElement>;
 
   formatDateWithLeadingZeros(date: Date): string {

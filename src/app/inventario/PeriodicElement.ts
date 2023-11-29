@@ -6,5 +6,6 @@ export interface PeriodicElement {
     Fecha: string;
     Calibre: string;
     Composicion: string;
-    IdArea: string;
+    AreaDesignada: string;
+    UsuarioCreador: string;
   }
