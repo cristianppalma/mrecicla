@@ -55,6 +55,7 @@ export class InventarioControlComponent implements OnInit {
     private InventarioService:InventarioService
     
     ) {
+     
       this.dataSource=new MatTableDataSource<PeriodicElement>([]);
     }
     inventario(){
@@ -76,9 +77,10 @@ export class InventarioControlComponent implements OnInit {
       const index =this.dataSource.data.indexOf(element);
 
       if(index >=0){
+        const correoSave = this.InventarioService.getCorreo();
         const idproducto = element.idInventarioFabrica;
         this.dataSource.data.splice(index,1);
-        this.InventarioService.borrarInventario(idproducto).subscribe();
+        this.InventarioService.borrarInventario(idproducto,correoSave).subscribe();
         this.dataSource._updateChangeSubscription();
       }
     }

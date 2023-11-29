@@ -25,10 +25,15 @@ export class InventarioService {
     return this.clientService.get<PeriodicElement[]>(this.API+"?Inventario=1");
   }
 
-  borrarInventario(id:any):Observable<any>{
+/*  borrarInventario(id:any):Observable<any>{
     return this.clientService.delete(this.API+"?borrarInventario="+id);
-  }
+  }*/
 
+  //Borrar con procedimientos curi
+  
+  borrarInventario(id:any,usuarioEliminador: any):Observable<any>{
+    return this.clientService.delete(`${this.API}?borrarInventario=${id}&UsuarioEliminador=${usuarioEliminador}`);
+  }
   //Actualizar y consultar
   consultarInventario(id:any): Observable<PeriodicElement> {
     return this.clientService.get<PeriodicElement>(this.API+"?ObtenerInventario="+id);

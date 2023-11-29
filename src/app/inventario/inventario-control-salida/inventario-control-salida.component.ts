@@ -82,7 +82,7 @@ export class InventarioControlSalidaComponent  {
       if(index >=0){
         const idproducto = element.idproductosalida;
         this.dataSource.data.splice(index,1);
-        this.InventarioService.borrarInventario(idproducto).subscribe();
+        //this.InventarioService.borrarInventario(idproducto).subscribe();
         this.dataSource._updateChangeSubscription();
       }
     }

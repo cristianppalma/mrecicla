@@ -8,4 +8,5 @@ export interface PeriodicElement {
     Composicion: string;
     AreaDesignada: string;
     UsuarioCreador: string;
+    UsuarioActualizador: string;
   }

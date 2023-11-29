@@ -39,6 +39,7 @@ export class InventarioEditComponent implements OnInit{
 //traer servicios
  
   ) {
+    const correoSave = this.InventarioService.getCorreo();
     this.formularioEditarInventario = this.formBuilder.group({
       NombreInsumo: [''],
       Peso: [''],
@@ -46,20 +47,23 @@ export class InventarioEditComponent implements OnInit{
       Fecha: [''],
       Calibre: [''],
       Composicion:[''],
-      idArea:['']
+      idArea:[''],
+      UsuarioActualizador:[correoSave]
     });
     this.activateRoute.paramMap.subscribe(params => {
       this.idproducto = params.get('id');
 
       this.InventarioService.consultarInventario(this.idproducto).subscribe((respuesta=>{
         this.formularioEditarInventario.setValue({
-          nombreInsumo: respuesta.NombreInsumo,
+          NombreInsumo: respuesta.NombreInsumo,
           Peso: respuesta.Peso,
           Dimension:  respuesta.Dimension,
           Fecha: respuesta.Fecha,
           Calibre: respuesta.Calibre,
           Composicion: respuesta.Composicion,
-          areas: respuesta.AreaDesignada.toString()
+          idArea: respuesta.AreaDesignada.toString(),
+          UsuarioActualizador: respuesta.UsuarioActualizador || correoSave
+
         });
       }))
     })
