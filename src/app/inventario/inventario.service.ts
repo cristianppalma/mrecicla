@@ -9,7 +9,8 @@ import { PeriodicElement2 } from './PeriodicElement2';
 })
 export class InventarioService {
   //API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
-
+  private correo: string;
+  private nombre: string;
    API: string = 'http://localhost/PhpAngular/inventario/';
    API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
    
@@ -46,7 +47,15 @@ export class InventarioService {
   listarInventariosalida(): Observable<PeriodicElement2[]> {
     return this.clientService.get<PeriodicElement2[]>(this.API2+"?ObtenerProductos=1");
   }
+    // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+    getCorreo(): string {
+      return this.correo = localStorage.getItem("Correo") || '';
+    }
   
+    // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+    getNombre(): string {
+      return this.nombre = localStorage.getItem("Nombre") || '';
+    }
 }
 
 

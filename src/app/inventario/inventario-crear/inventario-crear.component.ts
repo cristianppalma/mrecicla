@@ -35,7 +35,7 @@ export class InventarioCrearComponent implements OnInit{
     private InventarioService: InventarioService,
     private dialog:MatDialog
   ) {
-   // const correSave = this.
+    const correSave = this.InventarioService.getCorreo();
     this.formularioProducto = this.formBuilder.group({
       //ID: ['', [Validators.required]],
       NombreInsumo: ['', [Validators.required]],
@@ -45,7 +45,8 @@ export class InventarioCrearComponent implements OnInit{
       Calibre: ['', [Validators.required]],
       areas: ['', [Validators.required]],
       Composicion:['', [Validators.required]],
-      AreasDesignadas:['', [Validators.required]]
+      AreasDesignadas:['', [Validators.required]],
+      UsuaroCreador:[correSave]
     });
   }
   
@@ -62,6 +63,7 @@ export class InventarioCrearComponent implements OnInit{
   
 
   enviarDatos(): void {
+    console.log('se preciona aqui ')
     if (this.formularioProducto.valid) 
     {
       console.log('Se presionó el botón');

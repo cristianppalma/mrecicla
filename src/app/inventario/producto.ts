@@ -4,7 +4,8 @@ export class producto{
     Peso!:String;
     Dimensiones!:String;
     FechaCreacion!:String;
-    Clibre!:String;
+    Calibre!:String;
     Porcentaje!:String;
     IdArea!:String;
+    UsuarioCreador!:String;
 }
