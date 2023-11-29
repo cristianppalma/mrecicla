@@ -2,12 +2,12 @@
   <div class="cabecera">
     <H1 >EDITAR PRODUCTO</H1>
   </div >
-    
-    
-  <form [formGroup]="formularioEditarInventario"(ngSubmit)="enviarDatosActualizar()" >
+
+
+  <form [formGroup]="formularioEditarInventario" (ngSubmit)="enviarDatosActualizar()" >
     <div class="formula" style="border:none;" >
       <div class="formula1">
-        
+
 
         <label>Nombre del producto</label>
         <mat-form-field class="derecha">
@@ -25,31 +25,31 @@
 
           <label>Dimensiones</label>
           <mat-form-field class="example-full-width">
-            
+
             <mat-label>Dimensiones </mat-label>
             <input formControlName="Dimension" matInput>
-          </mat-form-field> 
+          </mat-form-field>
 
 
-          <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
+          <!-- <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button> -->
         </div>
 
         <div class="formula2">
-          
+
 
           <label>FechaCreacion</label>
           <mat-form-field class="example-full-width">
             <mat-label>FechaCreacion</mat-label>
             <input formControlName="Fecha" matInput>
           </mat-form-field>
-        
+
 
           <label>Area designada</label>
           <mat-form-field>
             <mat-label>Área</mat-label>
             <mat-select  formControlName="idArea">
               <mat-option value="0"> </mat-option>
-              <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
+              <mat-option *ngFor="let area of areas" [value]="area.idArea">{{area.NombreArea}}</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -64,7 +64,7 @@
             <mat-label>Calibre</mat-label>
             <input formControlName="Calibre" matInput>
           </mat-form-field>
-        
+
         </div>
       </div>
       <div class="botones">
@@ -73,5 +73,5 @@
 
       </div>
       </form>
-     
+
 </div>

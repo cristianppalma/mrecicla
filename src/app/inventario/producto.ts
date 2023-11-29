@@ -1,10 +1,13 @@
-export class producto{
+export class Producto{
     //ID!:String;
-    Producto!:String;
-    Peso!:String;
-    Dimensiones!:String;
-    FechaCreacion!:String;
-    Clibre!:String;
-    Porcentaje!:String;
-    IdArea!:String;
+    NombreInsumo!:        String;
+    Peso!:                String;
+    Fecha!:               String;
+    Dimension!:           String;
+    Composicion!:         String;
+    Calibre!:             String;
+    idArea!:              String;
+    UsuarioCreador!:      String;
+    UsuarioActualizador!: String;
+    idFabrica!:String;
 }

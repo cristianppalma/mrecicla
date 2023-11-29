@@ -2,42 +2,42 @@
   <div class="cabecera">
     <H1 >REGISTRAR NUEVO PRODUCTO</H1>
   </div >
-  
+
     <form [formGroup]="formularioProducto" (ngSubmit)="enviarDatos()" >
-      <div class="formula" style="border:none;" > 
+      <div class="formula" style="border:none;" >
         <div class="formula1">
 
-          <!--<label>ID</label> 
+          <!--<label>ID</label>
           <mat-form-field>
             <mat-label>ID</mat-label>
             <input formControlName="ID" matInput>
           </mat-form-field>-->
 
-        <label>Nombre del producto</label> 
+        <label>Nombre del producto</label>
           <mat-form-field>
             <mat-label>Producto</mat-label>
             <input formControlName="NombreInsumo" matInput>
           </mat-form-field>
-          
 
-          <label>Fecha</label> 
+
+          <label>Fecha</label>
           <mat-form-field >
             <mat-label>Fecha</mat-label>
             <input formControlName="Fecha" matInput type="date">
           </mat-form-field>
 
-          <label>Composicion</label> 
+          <label>Composicion</label>
           <mat-form-field >
             <mat-label>Composicion</mat-label>
             <input formControlName="Composicion" matInput>
           </mat-form-field>
-         
-        <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
+
+        <!-- <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button> -->
 
         </div>
 
         <div class="formula2">
-          <label>Peso</label> 
+          <label>Peso</label>
           <mat-form-field >
             <mat-label>Peso</mat-label>
             <input formControlName="Peso" matInput>
@@ -45,9 +45,9 @@
           <label>Area designada</label>
         <mat-form-field>
           <mat-label>Área</mat-label>
-          <mat-select  formControlName="AreasDesignadas">
+          <mat-select  formControlName="idArea">
             <mat-option value="0"> </mat-option>
-            <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
+            <mat-option *ngFor="let area of areas" [value]="area.idArea">{{area.NombreArea}}</mat-option>
           </mat-select>
         </mat-form-field>
           <label>Dimensiones</label>
@@ -68,7 +68,6 @@
 
       </div>
     </form>
-    
+
 </div>
 
-        

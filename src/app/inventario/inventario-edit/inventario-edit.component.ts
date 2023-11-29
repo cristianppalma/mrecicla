@@ -24,61 +24,65 @@ interface Area {
 })
 export class InventarioEditComponent implements OnInit{
   //valores prueba
-  areas : any[]=[];
+  areas : any[];
   formularioEditarInventario:FormGroup;
   idproducto:any;
 
-   
 
-  constructor(private router:Router, 
+
+  constructor(private router:Router,
   private _bottomSheet: MatBottomSheet,
   private formBuilder :FormBuilder,
     private InventarioService: InventarioService,
     private dialog:MatDialog,
     private activateRoute: ActivatedRoute
 //traer servicios
- 
+
   ) {
+    const correoSave = this.InventarioService.getCorreo();
     this.formularioEditarInventario = this.formBuilder.group({
       NombreInsumo: [''],
       Peso: [''],
-      Dimension: [''],  
       Fecha: [''],
-      Calibre: [''],
+      Dimension: [''],
       Composicion:[''],
-      idArea:['']
+      Calibre: [''],
+      idArea:[''],
+      UsuarioActualizador : [correoSave]
     });
     this.activateRoute.paramMap.subscribe(params => {
       this.idproducto = params.get('id');
 
       this.InventarioService.consultarInventario(this.idproducto).subscribe((respuesta=>{
         this.formularioEditarInventario.setValue({
-          nombreInsumo: respuesta.NombreInsumo,
+          NombreInsumo: respuesta.NombreInsumo,
           Peso: respuesta.Peso,
-          Dimension:  respuesta.Dimension,
           Fecha: respuesta.Fecha,
-          Calibre: respuesta.Calibre,
+          Dimension:  respuesta.Dimension,
           Composicion: respuesta.Composicion,
-          areas: respuesta.IdArea.toString()
+          Calibre: respuesta.Calibre,
+          idArea: respuesta.idArea.toString(),
+          UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
         });
       }))
     })
   }
 
   enviarDatosActualizar(): void {
-    if (this.formularioEditarInventario.valid) 
+    if (this.formularioEditarInventario.valid)
     {
       console.log('Se presionó el botón');
       console.log(this.formularioEditarInventario.value);
       this.InventarioService.editarproducto(this.idproducto,this.formularioEditarInventario.value).subscribe(
         (response) => {
-         console.log('Se actualizo correctamente');
+         console.log('Se actualizo correctamente: ', response);
          this.mostratDialogoAviso();
-         
-        
+
+
         },
         (error) => {
            //Manejar errores del servicio aquí
+           console.error('Error al actualizar el gasto: ', error);
         }
       );
     }
@@ -92,17 +96,26 @@ export class InventarioEditComponent implements OnInit{
         this.router.navigateByUrl('/dashboard/inventario/inventarios');
       }
     });
-  
+
   }
 
   Cancelar(){
     this.router.navigateByUrl('/dashboard/inventario/inventarios');
   }
 
-  openBottomSheet(): void {
-    this._bottomSheet.open(BottomSheetOverviewExampleSheet);
-  }
+  // openBottomSheet(): void {
+  //   this._bottomSheet.open(BottomSheetOverviewExampleSheet);
+  // }
   ngOnInit(): void {
+    // Puedes realizar alguna inicialización adicional aquí si es necesario.
+    console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const correoSave = this.InventarioService.getCorreo();
+    console.log('Correo desde el localStorage: ', correoSave);
+
+    console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const nombreSave = this.InventarioService.getNombre();
+    console.log('Nombre desde el localStorage: ', nombreSave);
+
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
 
     this.InventarioService.selectAreas().subscribe((data)=>{
@@ -112,12 +125,12 @@ export class InventarioEditComponent implements OnInit{
 }
 
 
-export class BottomSheetOverviewExampleSheet {
-  constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
+// export class BottomSheetOverviewExampleSheet {
+//   constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
 
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
-}
-}
+//   openLink(event: MouseEvent): void {
+//     this._bottomSheetRef.dismiss();
+//     event.preventDefault();
+// }
+// }
 

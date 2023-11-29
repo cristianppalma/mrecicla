@@ -19,6 +19,7 @@ interface Food {
 
 export class InventarioControlComponent implements OnInit {
 
+  areas: any[];
   Producto:PeriodicElement[] = [];
   displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Peso','Fecha','Dimension','Composicion','Calibre','idArea','action']
   dataSource: MatTableDataSource<PeriodicElement>;
@@ -53,7 +54,7 @@ export class InventarioControlComponent implements OnInit {
   constructor(private router:Router,
     private dialog:MatDialog,
     private InventarioService:InventarioService
-    
+
     ) {
       this.dataSource=new MatTableDataSource<PeriodicElement>([]);
     }
@@ -73,12 +74,13 @@ export class InventarioControlComponent implements OnInit {
       }
     }
     eliminarInventario2(element:PeriodicElement): void{
+      const correoSave = this.InventarioService.getCorreo();
       const index =this.dataSource.data.indexOf(element);
-
+      const usuarioElimina=correoSave;
       if(index >=0){
-        const idproducto = element.idInventarioFabrica;
+        const idInventarioFabrica = element.idInventarioFabrica;
         this.dataSource.data.splice(index,1);
-        this.InventarioService.borrarInventario(idproducto).subscribe();
+        this.InventarioService.borrarInventario(idInventarioFabrica, usuarioElimina).subscribe();
         this.dataSource._updateChangeSubscription();
       }
     }
@@ -86,7 +88,7 @@ export class InventarioControlComponent implements OnInit {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
       });
-    
+
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.eliminarInventario(element);
@@ -97,24 +99,31 @@ export class InventarioControlComponent implements OnInit {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
       });
-    
+
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.eliminarInventario2(element);
         }
       });
     }
-  
+
   ngOnInit(): void {
     this.InventarioService.listarInventario().subscribe((respuesta: PeriodicElement[]) => {
       console.log(respuesta);
       this.Producto = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
+
+    this.InventarioService.selectAreas().subscribe((data)=>{
+      this.areas=data;
+    });
   }
 
-  
- 
+  obtenerNombreArea(idArea: number): string {
+    const area = this.areas.find(item => item.idArea === idArea);
+    return area ? area.NombreArea : '';
+  }
+
 
 
 
@@ -123,4 +132,4 @@ export class InventarioControlComponent implements OnInit {
 
 
 
-  
+

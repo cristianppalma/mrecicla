@@ -77,12 +77,13 @@ export class InventarioControlSalidaComponent  {
       }
     }
     eliminarInventario2(element:PeriodicElement2): void{
+      const correoSave = this.InventarioService.getCorreo();
       const index =this.dataSource.data.indexOf(element);
-
+      const usuarioElimina=correoSave;
       if(index >=0){
         const idproducto = element.idproductosalida;
         this.dataSource.data.splice(index,1);
-        this.InventarioService.borrarInventario(idproducto).subscribe();
+        this.InventarioService.borrarInventario(idproducto, usuarioElimina).subscribe();
         this.dataSource._updateChangeSubscription();
       }
     }
