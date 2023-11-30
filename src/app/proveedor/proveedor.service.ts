@@ -19,29 +19,37 @@ export class ProveedorService {
 
   constructor( private clientService:HttpClient) { }
 
+  getProveedores(){
+    return this.clientService.get<any[]>(this.API+"?selectProveedor=1");
+  }
+
   // AGREGAMOS UN NUEVO REGISTRO EN LA TABLA PROVEEDORES
   agregarProveedor(datosProveedor:Proveedor):Observable<any>{
-    return this.clientService.post(this.API+"?insertar=1",datosProveedor);
+    return this.clientService.post(this.API+"?insertarProvedoresPro=1",datosProveedor);
   }
 
   // OBTENEMOS TODOS LOS REGISTROS DE LA TABLA PROVEEDORES
+  // listarProveedor(): Observable<PeriodicElement[]> {
+  //   return this.clientService.get<PeriodicElement[]>(this.API);
+  // }
+
   listarProveedor(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API);
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProvedores=1");
   }
 
   // ELIMINAMOS LOS DATOS DEL REGISTRO DE ACUERDO AL ID
   borrarProveedor(idProveedor:any, usuarioEliminador: any):Observable<any>{
-    return this.clientService.get(`${this.API}?borrar=${idProveedor}&UsuarioEliminador=${usuarioEliminador}`);
+    return this.clientService.get(`${this.API}?borrarProveedor=${idProveedor}&UsuarioEliminador=${usuarioEliminador}`);
   }
 
   // OBTENEMOS LOS DATOS DEL REGISTRO POR EL ID
   obtenerProveedor(idProveedor:string):Observable<any>{
-    return this.clientService.get(this.API+"?consultar="+idProveedor);
+    return this.clientService.get(this.API+"?consultarProveedor="+idProveedor);
   }
 
   // SE ACTUALIZAN TODOS LOS DATOS DEL REGISTRO OBTENIDO
   editarProveedor(idProveedor:any, datosProveedor:Proveedor):Observable<any>{
-    return this.clientService.post(this.API+"?actualizar="+idProveedor,datosProveedor);
+    return this.clientService.post(this.API+"?actualizarProvedores="+idProveedor,datosProveedor);
   }
 
   // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS

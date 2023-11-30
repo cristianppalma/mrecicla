@@ -28,12 +28,12 @@ export class EmpleadoService {
 
   // AGREGAMOS UN NUEVO REGISTRO EN LA TABLA
   AgregarUsuartio(datosEmpleado:Empleado):Observable<any>{
-    return this.clientService.post(this.API+"?insertarUsuario=1",datosEmpleado);
+    return this.clientService.post(this.API+"?insertarUsuarioPro=1",datosEmpleado);
   }
 
   // OBTENEMOS TODOS LOS REGISTROS DE LA TABLA
   listaEmpleado(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?seleccionarEmpleado=1");
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerUsuarios=1");
   }
 
   // ELIMINAMOS UN REGISTRO DE LA TABLA
@@ -43,7 +43,7 @@ export class EmpleadoService {
 
   // ELIMINAMOS UN REGISTRO DE LA TABLA
   eliminarUsuario(id:any, usuarioEliminador: any): Observable<any> {
-    return this.clientService.get(`${this.API}?eliminarUsuario=${id}&UsuarioEliminador=${usuarioEliminador}`);
+    return this.clientService.get(`${this.API}?borrarUsuario=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
 
   // OBTENEMOS UN REGISTRO DE LA TABLA
@@ -53,7 +53,7 @@ export class EmpleadoService {
 
   // OBTENEMOS UN REGISTRO DE LA TABLA
   EditarEmpleado(idUsuario:string): Observable<any> {
-    return this.clientService.get(this.API+"?consultarUsuario="+idUsuario);
+    return this.clientService.get(this.API+"?editarEmpleado="+idUsuario);
   }
 
   // ACTUALIZAMOS UN REGISTRO DE LA TABLA
@@ -63,7 +63,7 @@ export class EmpleadoService {
 
   // ACTUALIZAMOS UN REGISTRO DE LA TABLA
   UpdateEmpleado(id:any, UpdateEmpleado:Empleado):Observable<any>{
-    return this.clientService.post(this.API+"?actualizarUsuario="+id,UpdateEmpleado);
+    return this.clientService.post(this.API+"?updateEmpleado="+id,UpdateEmpleado);
   }
 
   // OBTENEMOS LOS REGISTROS DE AREAS

@@ -53,19 +53,19 @@ export class ProveedorEditComponent implements OnInit {
       this.proveedorService.obtenerProveedor(this.elID).subscribe(
         respuesta => {
           console.log('Respuesta del servicio',respuesta);
-          const proveedor = respuesta[0];
-          console.log('datos del proveedor ', proveedor);
+          // const proveedor = respuesta[0];
+          // console.log('datos del proveedor ', proveedor);
 
             this.formularioProveedorEdit.setValue({
-              NombreProveedor: proveedor.NombreProveedor,
-              ProductoProveedor: proveedor.ProductoProveedor,
-              DireccionProveedor: proveedor.DireccionProveedor,
-              Telefono: proveedor.Telefono,
-              Correo: proveedor.Correo,
-              RFCProveedor: proveedor.RFCProveedor,
-              DescripcionProveedor: proveedor.DescripcionProveedor,
-              EstatusProveedor:proveedor.EstatusProveedor,
-              UsuarioActualizador: proveedor.UsuarioActualizador || correoSave,
+              NombreProveedor: respuesta.NombreProveedor,
+              ProductoProveedor: respuesta.ProductoProveedor,
+              DireccionProveedor: respuesta.DireccionProveedor,
+              Telefono: respuesta.Telefono,
+              Correo: respuesta.Correo,
+              RFCProveedor: respuesta.RFCProveedor,
+              DescripcionProveedor: respuesta.DescripcionProveedor,
+              EstatusProveedor:respuesta.EstatusProveedor,
+              UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
             });
 
         }, error => {

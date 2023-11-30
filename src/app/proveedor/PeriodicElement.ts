@@ -9,6 +9,5 @@ export interface PeriodicElement {
   DescripcionProveedor: String;
   EstatusProveedor:     String;
   UsuarioCreador:       String;
-  UsuarioActualizador:  String;
   UsuarioEliminador:    String;
 }

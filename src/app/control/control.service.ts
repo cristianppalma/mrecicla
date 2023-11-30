@@ -18,31 +18,35 @@ export class ControlService {
 
   constructor( private clientService:HttpClient) {}
 
+  getGastos(){
+    return this.clientService.get<any[]>(this.API+"?selectGasto=1");
+  }
+
     // AGREGAMOS UN NUEVO REGISTRO EN LA TABLA DE CONTROL DE GASTOS
     agregargasto(datosGasto:Gastos):Observable<any>{
-      return this.clientService.post(this.API+"?insertarGastos=1",datosGasto);
+      return this.clientService.post(this.API+"?insertarGastosPro=1",datosGasto);
     }
 
    // OBTENEMOS TODOS LOS REGISTROS DE LA TABLA CONTROL DE GASTOS
    listarGastos(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?seleccionarGastos=1");
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerGastos=1");
   }
 
   // ELIMINAMOS LOS DATOS DEL REGISTRO DE ACUERDO AL ID
   eliminargasto(id: any, usuarioEliminador: any): Observable<any> {
-  return this.clientService.delete(`${this.API}?eliminargasto=${id}&UsuarioEliminador=${usuarioEliminador}`);
+  return this.clientService.delete(`${this.API}?borrarGasto=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
 
   // OBTENEMOS LOS DATOS DEL REGISTRO POR EL ID
-  consultargasto(id: any): Observable<PeriodicElement> {
+  consultargasto(id: any): Observable<any> {
     //return this.clientService.get<PeriodicElement>(`${this.API}?idControl=${id}`);
-    return this.clientService.get<PeriodicElement>(this.API+"?consultargasto="+id);
+    return this.clientService.get(this.API+"?consultarGasto="+id);
     // Reemplaza "?id=${id}" por la ruta correcta en tu API para obtener un registro por su ID.
   }
 
   // SE ACTUALIZAN TODOS LOS DATOS DEL REGISTRO OBTENIDO
   editargasto(id: any, datosGasto: Gastos): Observable<any> {
-    return this.clientService.post(this.API+"?editargasto="+id, datosGasto);
+    return this.clientService.post(this.API+"?actualizarProvedores="+id, datosGasto);
     // Reemplaza "?editargasto=${id}" por la ruta correcta en tu API para editar un registro por su ID.
   }
 
