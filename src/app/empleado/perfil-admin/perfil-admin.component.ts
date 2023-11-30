@@ -39,6 +39,7 @@ export class PerfilAdminComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
 
+
     ) {
       const correoSave = this.editarEmpleado.getCorreo();
       this.formularioEditarEmpleado = this.formbuilder.group({
@@ -77,27 +78,27 @@ export class PerfilAdminComponent implements OnInit {
         this.editarEmpleado.EditarEmpleado(this.idEmpleado).subscribe(
           respuesta => {
           console.log('Respuesta del servicio', respuesta);
-            const empleado = respuesta [0];
-            console.log('datos del registro: ', empleado);
+            // const empleado = respuesta [0];
+            // console.log('datos del registro: ', empleado);
             // Asegúrate de que respuesta sea un objeto JSON válido
         if (respuesta && typeof respuesta === 'object') {
           // Asegúrate de que los datos se serialicen como JSON válido
           try {
 
           this.formularioEditarEmpleado.setValue({
-            Nombre: empleado.Nombre,
-            ApellidoPaterno: empleado.ApellidoPaterno,
-            ApellidoMaterno: empleado.ApellidoMaterno,
-            Correo: empleado.Correo,
-            Pass: empleado.Pass,
-            Practicante: empleado.Practicante,
-            Sueldo: empleado.Sueldo,
-            Turno: empleado.Turno,
-            Domicilio: empleado.Domicilio,
-            idTipoUsuario: empleado.idTipoUsuario.toString(),
-            idAsignacion: empleado.idAsignacion.toString(),
-            idArea: empleado.idArea.toString(),
-            UsuarioActualizador: empleado.UsuarioActualizador || correoSave,
+            Nombre: respuesta.Nombre,
+            ApellidoPaterno: respuesta.ApellidoPaterno,
+            ApellidoMaterno: respuesta.ApellidoMaterno,
+            Correo: respuesta.Correo,
+            Pass: respuesta.Pass,
+            Practicante: respuesta.Practicante,
+            Sueldo: respuesta.Sueldo,
+            Turno: respuesta.Turno,
+            Domicilio: respuesta.Domicilio,
+            idTipoUsuario: respuesta.idTipoUsuario.toString(),
+            idAsignacion: respuesta.idAsignacion.toString(),
+            idArea: respuesta.idArea.toString(),
+            UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
           });
 
         } catch (error) {
@@ -130,7 +131,7 @@ export class PerfilAdminComponent implements OnInit {
           }
         }
 
-      );
+        );
 
       this.editarEmpleado.SelectAreas().subscribe((data) => {
         this.areas=data;
@@ -171,7 +172,6 @@ export class PerfilAdminComponent implements OnInit {
         );
       }
     }
-
     mostratDialogoAviso():void{
       console.log('Tumadre');
       const dialogAviso = this.dialog.open(AvisoDialogComponent,{
