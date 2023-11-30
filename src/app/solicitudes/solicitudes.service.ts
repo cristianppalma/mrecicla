@@ -35,6 +35,10 @@ export class SolicitudesService {
     return this.clientService.post(this.API+"?editarSolicitud="+id,datosSolicitud);
 
   }
+  enviarSolicitud(Estado:any):Observable<any>{
+    return this.clientService.get(this.API+"?editarSolicitud="+Estado);
+
+  }
   selectProveedor(){
     return this.clientService.get<any[]>(this.API+"?selectProveedor")
   }

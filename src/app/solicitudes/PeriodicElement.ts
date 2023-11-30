@@ -8,4 +8,5 @@ export interface PeriodicElement {
     idProveedor: string;
     Composicion: string;
     FechaRecepcion: string;
+    Estado:string;
   }

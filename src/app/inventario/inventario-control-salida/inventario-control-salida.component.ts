@@ -21,7 +21,7 @@ interface Food {
 export class InventarioControlSalidaComponent  {
 
   Producto:PeriodicElement2[] = [];
-  displayedColumns:string[] = ['idProductosalida','nombreProducto','peso','fechaRegistro','calibre','areaSalida']
+  displayedColumns:string[] = ['idproductosalida','nombreProducto','Peso','FechaRegistro','Calibre','idArea','action']
   dataSource: MatTableDataSource<PeriodicElement2>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -82,7 +82,7 @@ export class InventarioControlSalidaComponent  {
       if(index >=0){
         const idproducto = element.idproductosalida;
         this.dataSource.data.splice(index,1);
-        this.InventarioService.borrarInventario(idproducto).subscribe();
+        //this.InventarioService.borrarInventario(idproducto).subscribe();
         this.dataSource._updateChangeSubscription();
       }
     }

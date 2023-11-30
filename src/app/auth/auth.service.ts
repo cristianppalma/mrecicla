@@ -7,13 +7,9 @@ import { usuario } from './auth';
   providedIn: 'root'
 })
 export class AuthService {
- // API: string = 'https://recicladora.arvispace.com/PhpAngular/'
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/'
 
-   API: string = 'http://localhost/PhpAngular/'
-
-  // OBTENER rol de usuario
-  // private isAuthenticate = false;
-  // private userRole: string | null = null;
+   API: string = 'http://localhost/PhpAngular/';
 
   constructor( private clientService:HttpClient) { }
 

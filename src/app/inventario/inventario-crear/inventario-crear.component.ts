@@ -26,7 +26,6 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class InventarioCrearComponent implements OnInit{
   formularioProducto: FormGroup;
-
   areas:any[];
 
   constructor(private router:Router, 
@@ -35,16 +34,17 @@ export class InventarioCrearComponent implements OnInit{
     private InventarioService: InventarioService,
     private dialog:MatDialog
   ) {
+    const correSave = this.InventarioService.getCorreo();
     this.formularioProducto = this.formBuilder.group({
       //ID: ['', [Validators.required]],
-      Producto: ['', [Validators.required]],
+      NombreInsumo: ['', [Validators.required]],
       Peso: ['', [Validators.required]],
-      Dimensiones: ['', [Validators.required]],  
-      FechaCreacion: ['', [Validators.required]],
-      Clibre: ['', [Validators.required]],
-      areas: ['', [Validators.required]],
-      Porcentaje:['', [Validators.required]],
-      AreasDesignadas:['', [Validators.required]]
+      Dimension: ['', [Validators.required]],  
+      Fecha: ['', [Validators.required]],
+      Calibre: ['', [Validators.required]],
+      Composicion:['', [Validators.required]],
+      AreasDesignadas:['', [Validators.required]],
+      UsuarioCreador:[correSave]
     });
   }
   
@@ -61,6 +61,7 @@ export class InventarioCrearComponent implements OnInit{
   
 
   enviarDatos(): void {
+    console.log('se preciona aqui ')
     if (this.formularioProducto.valid) 
     {
       console.log('Se presionó el botón');

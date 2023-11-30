@@ -2,7 +2,6 @@
   <div class="cabecera">
     <H1 >REGISTRAR NUEVO PRODUCTO</H1>
   </div >
-  
     <form [formGroup]="formularioProducto" (ngSubmit)="enviarDatos()" >
       <div class="formula" style="border:none;" > 
         <div class="formula1">
@@ -16,20 +15,20 @@
         <label>Nombre del producto</label> 
           <mat-form-field>
             <mat-label>Producto</mat-label>
-            <input formControlName="Producto" matInput>
+            <input formControlName="NombreInsumo" matInput>
           </mat-form-field>
           
 
           <label>Fecha</label> 
           <mat-form-field >
             <mat-label>Fecha</mat-label>
-            <input formControlName="FechaCreacion" matInput type="date">
+            <input formControlName="Fecha" matInput type="date">
           </mat-form-field>
 
           <label>Composicion</label> 
           <mat-form-field >
             <mat-label>Composicion</mat-label>
-            <input formControlName="Porcentaje" matInput>
+            <input formControlName="Composicion" matInput>
           </mat-form-field>
          
         <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
@@ -53,12 +52,12 @@
           <label>Dimensiones</label>
           <mat-form-field class="example-full-width">
             <mat-label>Dimensiones</mat-label>
-            <input formControlName="Dimensiones" matInput>
+            <input formControlName="Dimension" matInput>
           </mat-form-field>
           <label>Calibre</label>
           <mat-form-field class="example-full-width">
             <mat-label>Calibre</mat-label>
-            <input formControlName="Clibre" matInput>
+            <input formControlName="Calibre" matInput>
           </mat-form-field>
         </div>
       </div>

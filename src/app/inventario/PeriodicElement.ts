@@ -1,10 +1,12 @@
 export interface PeriodicElement {
-    idproducto: string;
-    Producto: string;
+    idInventarioFabrica: string;
+    NombreInsumo: string;
     Peso: string;
-    Dimensiones: string;
-    FechaCreacion: string;
-    Clibre: string;
-    Porcentaje: string;
-    IdArea: string;
+    Dimension: string;
+    Fecha: string;
+    Calibre: string;
+    Composicion: string;
+    AreaDesignada: string;
+    UsuarioCreador: string;
+    UsuarioActualizador: string;
   }

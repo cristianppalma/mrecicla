@@ -39,27 +39,31 @@ export class InventarioEditComponent implements OnInit{
 //traer servicios
  
   ) {
+    const correoSave = this.InventarioService.getCorreo();
     this.formularioEditarInventario = this.formBuilder.group({
-      Producto: [''],
+      NombreInsumo: [''],
       Peso: [''],
-      Dimensiones: [''],  
-      FechaCreacion: [''],
-      Clibre: [''],
-      Porcentaje:[''],
-      AreasDesignadas:['']
+      Dimension: [''],  
+      Fecha: [''],
+      Calibre: [''],
+      Composicion:[''],
+      idArea:[''],
+      UsuarioActualizador:[correoSave]
     });
     this.activateRoute.paramMap.subscribe(params => {
       this.idproducto = params.get('id');
 
       this.InventarioService.consultarInventario(this.idproducto).subscribe((respuesta=>{
         this.formularioEditarInventario.setValue({
-          Producto: respuesta.Producto,
+          NombreInsumo: respuesta.NombreInsumo,
           Peso: respuesta.Peso,
-          Dimensiones:  respuesta.Dimensiones,
-          FechaCreacion: respuesta.FechaCreacion,
-          Clibre: respuesta.Clibre,
-          Porcentaje: respuesta.Porcentaje,
-          areas: respuesta.IdArea.toString()
+          Dimension:  respuesta.Dimension,
+          Fecha: respuesta.Fecha,
+          Calibre: respuesta.Calibre,
+          Composicion: respuesta.Composicion,
+          idArea: respuesta.AreaDesignada.toString(),
+          UsuarioActualizador: respuesta.UsuarioActualizador || correoSave
+
         });
       }))
     })
