@@ -6,7 +6,10 @@ export interface PeriodicElement {
     FechaPeticion: string;
     Calibre: string;
     idProveedor: string;
+    Proveedor: string;
     Composicion: string;
     FechaRecepcion: string;
-    Estado:string;
+    UsuarioCreador:String;
+    UsuarioActualizador:String;
+    UsuarioEliminador:String;
   }

@@ -22,10 +22,12 @@ export class AreasEditComponent  implements OnInit{
               private areasService: AreasService,
               private dialog: MatDialog
             ) {
+              const correoSave=this.areasService.getCorreo();
               this.formularioAreas = this.formBuilder.group({
                 NombreArea: [''],
                 DescripcionArea: [''],
-                EstadoArea: ['']
+                EstadoArea: [''],
+                UsuarioActualizador: [correoSave],
             });
 
             this.activeRoute.paramMap.subscribe((params) => {
@@ -41,7 +43,8 @@ export class AreasEditComponent  implements OnInit{
                     this.formularioAreas.setValue({
                       NombreArea: respuesta.NombreArea || '',
                       DescripcionArea: respuesta.DescripcionArea || '',
-                      EstadoArea: respuesta.EstadoArea ||''
+                      EstadoArea: respuesta.EstadoArea ||'',
+                      UsuarioActualizador: respuesta.UsuarioActualizador || correoSave
                     });
                   } catch (error) {
                     console.error('Error al asignar los datos JSON:', error);
@@ -67,12 +70,12 @@ export class AreasEditComponent  implements OnInit{
         if (response.success === 1) {
             console.log('La actualización fue exitosa');
             // Accede a los datos actualizados
-            const maquinaActualizada = response.data;
-            console.log('Datos de la máquina actualizada:', maquinaActualizada);
+            const areaActualizada = response.data;
+            console.log('Datos del área actualizada:', areaActualizada);
 
             this.mostrarDialogoAviso();
         } else {
-            console.error('Error al actualizar la máquina:', response.error);
+            console.error('Error al actualizar la área:', response.error);
             // Manejar errores del servicio aquí
         }
     },

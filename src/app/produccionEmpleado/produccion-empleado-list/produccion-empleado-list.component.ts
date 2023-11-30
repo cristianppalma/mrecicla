@@ -31,13 +31,14 @@ export class ProduccionEmpleadoListComponent implements OnInit {
                                   'FechaFin',
                                   'HoraInicio',
                                   'HoraFin',
+                                  'NombreInsumo',
                                   // 'Turno',
-                                  'idInventarioFabrica',
+                                  //'idInventarioFabrica',
                                   'UnidadesInsumo',
                                   // 'productoProduccion',
                                   'KgProduccion',
                                   // 'idMaquina',
-                                  'action'];
+                                  'action' ];
   dataSource: MatTableDataSource<PeriodicElement>
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -95,8 +96,12 @@ export class ProduccionEmpleadoListComponent implements OnInit {
     const nombreSave = this.produccionEmpleadoService.getNombre();
     console.log('Nombre desde el localStorage: ', nombreSave);
 
+    console.log('AQUI ABAJO SE MOSTRARIA EL id QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const idEmpleado = this.produccionEmpleadoService.getId();
+    console.log('ID desde el localStorage: ', idEmpleado);
 
-    this.produccionEmpleadoService.listarProduccionArea().subscribe((respuesta: PeriodicElement[]) => {
+
+    this.produccionEmpleadoService.listarProduccionArea(idEmpleado).subscribe((respuesta: PeriodicElement[]) => {
       console.log(respuesta);
       console.log('Obtenemos todos los registros');
 

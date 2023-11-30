@@ -8,5 +8,6 @@ export class solicitud{
     AreaDesignada!:String;
     Composicion!:String;
     FechaRecepcion!:String;
-    Estado!:string;
+     UsuarioCreador!:String;
+    UsuarioActualizador!:String;
 }

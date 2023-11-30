@@ -59,12 +59,13 @@ export class AreasListComponent implements OnInit {
     this.router.navigateByUrl('/dashboard/areas/areascreate');
   }
   eliminarElemento(element: areasList): void {
+   const correoSave = this.areasService.getCorreo();
     const index = this.dataSource.data.indexOf(element);
   
     if (index >= 0) {
       const idArea = element.idArea;
       this.dataSource.data.splice(index, 1);
-      this.areasService.eliminarArea(idArea).subscribe();
+      this.areasService.eliminarArea(idArea,correoSave).subscribe();
       this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
       
       // Aquí tienes tanto el índice como el idMaquina

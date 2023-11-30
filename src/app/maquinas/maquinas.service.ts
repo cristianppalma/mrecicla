@@ -34,7 +34,7 @@ export class MaquinasService {
    /*listarMaquina(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API+"?seleccionar=1");
   }*/
-
+  
   //Este metodo lista las maquinas con procedimientos almacenados
   listarMaquina(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerMaquinas=1");
@@ -45,9 +45,6 @@ export class MaquinasService {
   }*/
 
   //Eliminar maquinas con procedimientos almacenados 
- /* eliminarMaquina(id: any,usuarioEliminador: string): Observable<any> {
-    return this.clientService.delete(this.API + "?borrarMaquina=" + id+usuarioEliminador);
-  }*/
 
   eliminarMaquina(id: any, usuarioEliminador: any): Observable<any> {
     return this.clientService.delete(`${this.API}?borrarMaquina=${id}&UsuarioEliminador=${usuarioEliminador}`);

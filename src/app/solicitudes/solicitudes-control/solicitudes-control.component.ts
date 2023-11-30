@@ -61,12 +61,13 @@ borrarSolicitud(element:PeriodicElement): void{
   }
 }
 BorrarSolicitud2(element:PeriodicElement): void{
+  const correoSave = this.SolicitudesService.getCorreo();
   const index =this.dataSource.data.indexOf(element);
 
   if(index >=0){
     const idsolicitud = element.idSolicitud;
     this.dataSource.data.splice(index,1);
-    this.SolicitudesService.borrarSolicitud(idsolicitud).subscribe();
+    this.SolicitudesService.borrarSolicitud(idsolicitud,correoSave).subscribe();
     this.dataSource._updateChangeSubscription();
   }
 }
