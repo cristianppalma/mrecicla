@@ -10,7 +10,7 @@ import { PeriodicElement } from './PeriodicElement';
 export class MaquinasService {
  // API: string = 'https://recicladora.arvispace.com/PhpAngular/'
 
-   API: string = 'http://localhost/PhpAngular/';
+   API: string = 'http://localhost/PhpAngular/maquinas/';
    private correo: string;
    private nombre: string;
 
