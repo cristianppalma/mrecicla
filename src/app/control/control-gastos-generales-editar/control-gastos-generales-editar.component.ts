@@ -18,38 +18,38 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
   formularioEditarGastos: FormGroup;
   idControl: any; // ID del registro a editar
 
-  constructor(private router:Router,
-              private dialog: MatDialog,
-              private activatedRoute: ActivatedRoute,
-              private formBuilder: FormBuilder,
-              private ControlService: ControlService,) {
-                const correoSave = this.ControlService.getCorreo();
-                this.formularioEditarGastos = this.formBuilder.group({
-                  Concepto: [''],
-                  Descripcion: [''],
-                  Periodo: [''],
-                  Monto:['', [Validators.required]],
-                  Tipo:[''],
-                  UsuarioActualizador:[correoSave],
-                });
-                // Obtener el ID del registro a editar desde la URL
-                this.activatedRoute.paramMap.subscribe(params => {
-                this.idControl = params.get('id'); // Supongamos que el parámetro en la URL se llama 'id'
-                // Luego, con el ID, podrías obtener los datos actuales del registro desde tu servicio y cargarlos en el formulario
-                this.ControlService.consultargasto(this.idControl).subscribe((respuesta=>{
-                  this.formularioEditarGastos.setValue({
-                    Concepto: respuesta.Concepto,
-                    Descripcion: respuesta.Descripcion,
-                    Periodo: respuesta.Periodo,
-                    Monto: respuesta.Monto,
-                    Tipo: respuesta.Tipo,
-                    UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
-                  });
-                }))
-                //this.ControlService.obtenerGasto(this.idControl).subscribe(gasto => {
-                //this.formularioEditarGastos.patchValue(gasto);
-        })
-      }
+  constructor(
+    private router:Router,
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private ControlService: ControlService,)
+    {
+      const correoSave = this.ControlService.getCorreo();
+      this.formularioEditarGastos = this.formBuilder.group({
+        Concepto: [''],
+        Descripcion: [''],
+        Periodo: [''],
+        Monto:['', [Validators.required]],
+        Tipo:[''],
+        UsuarioActualizador:[correoSave],
+      });
+      // Obtener el ID del registro a editar desde la URL
+      this.activatedRoute.paramMap.subscribe(params => {
+        this.idControl = params.get('id'); // Supongamos que el parámetro en la URL se llama 'id'
+        // Luego, con el ID, podrías obtener los datos actuales del registro desde tu servicio y cargarlos en el formulario
+        this.ControlService.consultargasto(this.idControl).subscribe((respuesta=>{
+          this.formularioEditarGastos.setValue({
+            Concepto: respuesta.Concepto,
+            Descripcion: respuesta.Descripcion,
+            Periodo: respuesta.Periodo,
+            Monto: respuesta.Monto,
+            Tipo: respuesta.Tipo,
+            UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
+          });
+        }))
+      })
+    }
 
   CancelarGastosGeneralesEditar(){
     this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
@@ -57,7 +57,7 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
 
   mostrarDialogDeConfirmacion2(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-    data: { message: '¿Estás seguro de que deseas cancelar este registro?' }
+      data: { message: '¿Estás seguro de que deseas cancelar este registro?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -73,7 +73,7 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
       console.log(this.formularioEditarGastos.value);
       this.ControlService.editargasto(this.idControl,this.formularioEditarGastos.value).subscribe(
         (response) => {
-         console.log('Respuesta del servidor: ', response);
+          console.log('Respuesta del servidor: ', response);
 
          if (response.success === 1) {
           console.log('Se actualizo correctamente');
@@ -82,6 +82,7 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
           console.log('Datos del gasto actualizado: ', controlActualizado);
 
           this.mostratDialogoAviso();
+
          } else {
           console.error('Error al actualizar el gasto: ', response.error);
          }
@@ -108,7 +109,7 @@ export class ControlGastosGeneralesEditarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Puedes realizar alguna inicialización adicional aquí si es necesario.
+    // Traemos el correo y el nombre desde el servicio
     console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
     const correoSave = this.ControlService.getCorreo();
     console.log('Correo desde el localStorage: ', correoSave);

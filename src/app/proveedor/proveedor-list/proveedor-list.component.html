@@ -63,9 +63,6 @@
         <th mat-header-cell *matHeaderCellDef>Accion</th>
         <td mat-cell *matCellDef="let element">
           <button class="btn-edit" mat-button routerLink="/dashboard/proveedor/proveedorEdit/{{ element.idProveedor}}">Editar</button>
-          <!-- <button mat-button (click)="verDetalles(element.id_proveedor)">Editar</button> -->
-          <!-- <button class="btn-delete" mat-button (click)="cambiarEstadoRegistro(element.id_proveedor)">Eliminar</button> -->
-          <!-- BOTON ELIMINAR SE OCULTA DE MOMENTO -->
           <button class="btn-delete" mat-button (click)="mostrarDialogoDeConfirmacion2(element)">Eliminar</button>
         </td>
       </ng-container>
@@ -78,49 +75,3 @@
     </table>
   </div>
 </div>
-
-
-
-<!-- SEPARACION ENTRE LOS DIFERENTES ESTILOS-->
-
-<!-- <div class="container">
-
-  <div class="cabecera">
-    <h1>PROVEEDORES</h1>
-  </div>
-  <br>
-
-  <div class="btn-asistence-title">
-    <input type="text" class="form-control" placeholder="Buscar ... " name="filtrarTabla" [(ngModel)]="filtrarTabla">
-    <button routerLink="/dashboard/proveedor/proveedorCreate/" mat-button style="background-color: #d6e44b; margin-left: 1rem; width: 300px;">AGREGAR NUEVO PROVEEDOR</button>
-  </div>
-
-  <br>
-
-  <div class="card-body">
-    <div class="table-responsive">
-      <table class="table" border="0">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Producto</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="" *ngFor="let proveedor of Proveedores | filter:filtrarTabla ; let iControl=index">
-            <td scope="row">{{ proveedor.id_proveedor }}</td>
-            <td scope="row">{{ proveedor.name_proveedor }}</td>
-            <td scope="row">{{ proveedor.producto_proveedor }}</td>
-            <td scope="row">
-              <a class="btn-actions btn-edit btn-info" routerLink="/dashboard/proveedor/proveedorEdit/{{ proveedor.id_proveedor }}"> Editar </a>
-              <a class="btn-actions btn-delete btn-danger" (click)="openDialog('500ms', '500ms', proveedor.id_proveedor)" role="button">Eliminar</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-</div> -->

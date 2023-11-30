@@ -80,14 +80,6 @@ export class ProveedorListComponent  implements OnInit {
     this.router.navigateByUrl('/dashboard/proveedor/proveedorCreate');
   }
 
-  eliminarElemento(element: PeriodicElement): void {
-    const index = this.dataSource.data.indexOf(element);
-    if (index >= 0) {
-      this.dataSource.data.splice(index, 1);
-      this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
-    }
-  }
-
   eliminarElemento2(element: PeriodicElement): void {
     const correoSave = this.proveedorService.getCorreo();
     const index = this.dataSource.data.indexOf(element);
@@ -101,18 +93,6 @@ export class ProveedorListComponent  implements OnInit {
       // Aquí tienes tanto el índice como el idMaquina
       console.log(`Elemento eliminado en el índice ${index}, ID del Proveedor: ${idProveedor}`);
     }
-  }
-
-  mostrarDialogoDeConfirmacion(element: PeriodicElement): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-          this.eliminarElemento(element);
-        }
-    });
   }
 
   mostrarDialogoDeConfirmacion2(element: PeriodicElement): void {
@@ -140,57 +120,3 @@ export class ProveedorListComponent  implements OnInit {
   }
 
 }
-
-// SEPARACION ENTRE LA LOGICA DEL COMPONENTE
-
-// import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { ProveedorService } from '../proveedor.service';
-// import { MatDialog} from '@angular/material/dialog';
-// import { ModalDeleteComponent } from '../modal-delete/modal-delete.component';
-
-// @Component({
-//   selector: 'app-proveedor-list',
-//   templateUrl: './proveedor-list.component.html',
-//   styleUrls: ['./proveedor-list.component.css']
-// })
-// export class ProveedorListComponent implements OnInit {
-
-//   Proveedores:any;
-
-//   filtrarTabla = '';
-
-//   constructor(
-//     private router:Router,
-//     private proveedorService:ProveedorService,
-//     public modal:MatDialog
-//   ) {}
-
-//   ngOnInit(): void {
-//     this.proveedorService.obtenerProveedores().subscribe(respuesta=>{
-//       console.log(respuesta);
-
-//       this.Proveedores=respuesta;
-//     });
-//   }
-
-//   // Modal para eliminar un registro
-//   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, id_proveedor: string){
-//     const dialogRef = this.modal.open(ModalDeleteComponent, {
-//       width: '550px',
-//       enterAnimationDuration,
-//       exitAnimationDuration,
-//     });
-//     dialogRef.afterClosed().subscribe(res => {
-//       console.log(res);
-//       if (res){
-//         console.log('delete');
-//         this.proveedorService.borrarProveedor(id_proveedor).subscribe((respuesta)=>{
-//           this.Proveedores.splice();
-//           window.location.reload();
-//         });
-//       }
-//     })
-//   }
-
-// }

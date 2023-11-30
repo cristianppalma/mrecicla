@@ -8,7 +8,6 @@ export class Produccion{
   KgProduccion        !:String;
   idMaquinaria        !:String;
   idArea              !:String;
-  // idproducto          !:String;
   idInventarioFabrica !:String;
   idEmpleado          !:String;
   UsuarioCreador      !:String;

@@ -9,7 +9,7 @@ import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component'
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
-import {listaEmpleado} from '../listaEmpleado';
+import { listaEmpleado } from '../listaEmpleado';
 import { EmpleadoService } from '../empleado.service';
 
 import { PeriodicElement } from '../PeriodicElement';
@@ -109,7 +109,6 @@ export class UsuarioTableComponent implements OnInit {
         }
       });
     }
-
 
     ngOnInit(): void {
       this.EmpleadoService.listaEmpleado().subscribe((respuesta: PeriodicElement[]) => {

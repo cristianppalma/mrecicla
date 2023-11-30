@@ -31,8 +31,6 @@ export class ProduccionEmpleadoService {
   listarProduccionArea(id:any): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProduccionArea="+id);
   }
-  
-
 
   // SERVICIO PARA AGREGAR UN REGISTRO
   agregarProduccionArea(datosProduccionArea:Produccion):Observable<any>{
@@ -54,17 +52,10 @@ export class ProduccionEmpleadoService {
     return this.clientService.get<any[]>(this.API+"?selectArea");
   }
 
-  // // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
-  // selectSalida(){
-  //   return this.clientService.get<any[]>(this.API+"?selectSalida");
-  // }
-
   // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
   selectInventarioSalida(){
     return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
   }
-
-
 
   // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
   getId(): string {
