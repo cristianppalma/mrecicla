@@ -11,9 +11,9 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class EmpleadoService {
   // URL DE LA LLAMADA A LA API
-  //API: string = 'https://recicladora.arvispace.com/PhpAngular/'
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/'
 
-  API: string = 'http://localhost/PhpAngular/';
+  //API: string = 'http://localhost/PhpAngular/';
 
   // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;

@@ -9,14 +9,15 @@ import { PeriodicElement2 } from './PeriodicElement2';
   providedIn: 'root'
 })
 export class InventarioService {
-  //API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
+  API2: string = 'https://recicladora.arvispace.com/PhpAngular/inventarioSalida/'
   private correo: string;
   private nombre: string;
-   API: string = 'http://localhost/PhpAngular/inventario/';
-   API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
-   
+  //API: string = 'http://localhost/PhpAngular/inventario/';
+  //API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
 
-  constructor( private clientService:HttpClient) { }    
+
+  constructor( private clientService:HttpClient) { }
 
   agregarProducto(datosProducto:producto):Observable<any>{
     return this.clientService.post(this.API+"?insertarProducto=1",datosProducto);
@@ -31,7 +32,7 @@ export class InventarioService {
   }*/
 
   //Borrar con procedimientos curi
-  
+
   borrarInventario(id:any,usuarioEliminador: any):Observable<any>{
     return this.clientService.delete(`${this.API}?BorrarInventario=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
@@ -75,7 +76,7 @@ export class InventarioService {
     getCorreo(): string {
       return this.correo = localStorage.getItem("Correo") || '';
     }
-  
+
     // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
     getNombre(): string {
       return this.nombre = localStorage.getItem("Nombre") || '';

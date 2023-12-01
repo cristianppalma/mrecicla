@@ -8,9 +8,9 @@ import { areasList } from './areasList';
   providedIn: 'root'
 })
 export class AreasService {
-  // API: string = 'https://recicladora.arvispace.com/PhpAngular/'
- 
-  API: string = 'http://localhost/PhpAngular/areas/';
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/areas/'
+
+  //API: string = 'http://localhost/PhpAngular/areas/';
  private correo: string;
  private nombre: string;
 
@@ -20,7 +20,7 @@ export class AreasService {
     return this.clientService.get<any[]>(this.API+"?selectArea=1");
   }
 
-  
+
   //Agregar areas
   /*agregarArea(datosArea:Areas):Observable<any>{
     return this.clientService.post(this.API+"?insertarAreas=1",datosArea);
@@ -31,7 +31,7 @@ export class AreasService {
   }
 
 
-  //Listar areas 
+  //Listar areas
   /*listarAreas(): Observable<areasList[]> {
     return this.clientService.get<areasList[]>(this.API+"?seleccionarAreas=1");
   }*/

@@ -8,9 +8,9 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class ControlService {
   // URL DE LA LLAMADA A LA API
-  //API: string = 'https://recicladora.arvispace.com/PhpAngular/controlgastos/'
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/controlgastos/'
 
-  API: string = 'http://localhost/PhpAngular/controlgastos/';
+  //API: string = 'http://localhost/PhpAngular/controlgastos/';
 
   // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;
