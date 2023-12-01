@@ -57,10 +57,6 @@ export class ProduccionEmpleadoService {
     return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
   }
 
-  selectUsuarios(){
-    return this.clientService.get<any[]>(this.API+"?selectUsuarios");
-  }
-
   // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
   getId(): string {
     return this.iduser = localStorage.getItem("id_user") || '';

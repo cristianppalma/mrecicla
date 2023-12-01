@@ -27,14 +27,13 @@ export class ProduccionEmpleadoListComponent implements OnInit {
   displayedColumns: string[] = [
                                   //'idEmpleado',
                                   'idProduccionArea',
-                                  'idEmpleado',
                                   'FechaInicio',
                                   'FechaFin',
                                   'HoraInicio',
                                   'HoraFin',
-                                  // 'NombreInsumo',
+                                  'NombreInsumo',
                                   // 'Turno',
-                                  'idInventarioFabrica',
+                                  //'idInventarioFabrica',
                                   'UnidadesInsumo',
                                   // 'productoProduccion',
                                   'KgProduccion',
@@ -116,22 +115,11 @@ export class ProduccionEmpleadoListComponent implements OnInit {
       this.inventariosSalida=data;
     })
 
-
-    //
-    this.produccionEmpleadoService.selectUsuarios().subscribe((data)=>{
-      this.inventariosSalida=data;
-    })
-
   }
 
   obtenerNombreInsumo(idInventarioFabrica: number): string {
     const inventario = this.inventariosSalida.find(item => item.idInventarioFabrica === idInventarioFabrica);
     return inventario ? inventario.NombreInsumo : '';
-  }
-
-  obtenerNombreUsuario(idUsuario: number): string {
-    const nombreUser = this.inventariosSalida.find(item => item.idUsuario === idUsuario);
-    return nombreUser ? nombreUser.Nombre : '';
   }
 
 }

@@ -29,22 +29,20 @@
             <input required type="time" formControlName="HoraFin" matInput readonly="">
           </mat-form-field>
 
+          <label>Turno</label>
+          <mat-form-field>
+            <mat-select required formControlName="Turno" [disabled]="true">
+              <mat-option value="0" disabled=""> </mat-option>
+              <mat-option value="Matutino">Matutino</mat-option>
+              <mat-option value="Vespertino">Vespertino</mat-option>
+              <mat-option value="Nocturno">Nocturno</mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <label>ID Usuario</label>
           <mat-form-field>
             <!-- <mat-label>Nombre del usuario</mat-label> -->
-            <input type="text" matInput formControlName="idEmpleado">
-          </mat-form-field>
-
-          <label>Nombre Usuario</label>
-          <mat-form-field>
-            <!-- <mat-label>Nombre del usuario</mat-label> -->
-            <input disabled="" type="text" matInput value="{{usuarioNombre}}">
-          </mat-form-field>
-
-          <label>Correo Usuario</label>
-          <mat-form-field>
-            <!-- <mat-label>Nombre del usuario</mat-label> -->
-            <input disabled="" type="text" matInput value="{{usuarioCorreo}}">
+            <input disabled="" type="text" matInput value="{{usuario}}">
           </mat-form-field>
 
         </div>
@@ -69,16 +67,6 @@
             <input required type="number" step="0.01" formControlName="KgProduccion" matInput readonly="">
           </mat-form-field>
 
-          <label>Turno</label>
-          <mat-form-field>
-            <mat-select required formControlName="Turno" [disabled]="true">
-              <mat-option value="0" disabled=""> </mat-option>
-              <mat-option value="Matutino">Matutino</mat-option>
-              <mat-option value="Vespertino">Vespertino</mat-option>
-              <mat-option value="Nocturno">Nocturno</mat-option>
-            </mat-select>
-          </mat-form-field>
-
           <label>Maquina</label>
           <mat-form-field>
             <mat-label>Maquina</mat-label>
@@ -95,6 +83,12 @@
               <mat-option value="0"> </mat-option>
               <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
             </mat-select>
+          </mat-form-field>
+
+          <label>Nombre Usuario</label>
+          <mat-form-field>
+            <!-- <mat-label>Nombre del usuario</mat-label> -->
+            <input disabled="" type="text" matInput value="{{usuarioNombre}}">
           </mat-form-field>
 
         </div>
