@@ -5,6 +5,7 @@ import { InventarioCrearComponent } from './inventario-crear/inventario-crear.co
 import { InventarioEditComponent } from './inventario-edit/inventario-edit.component';
 import { authGuard } from '../guards/auth.guard';
 import { InventarioControlSalidaComponent } from './inventario-control-salida/inventario-control-salida.component';
+import { InventarioEditSalidaComponent } from './inventario-edit-salida/inventario-edit-salida.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,13 @@ const routes: Routes = [
     component: InventarioEditComponent,
     // canActivate: [authGuard]
   },
-  {path:'inventarioSalida',component:InventarioControlSalidaComponent}
+  {path:'inventarioSalida',component:InventarioControlSalidaComponent},
+  {
+    path: 'inventarioEditSalida/:id',
+    component : InventarioEditSalidaComponent,
+    // canActivate: [authGuard]
+  }
+
 ]
 
 @NgModule({

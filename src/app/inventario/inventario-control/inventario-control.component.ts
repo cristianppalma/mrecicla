@@ -74,13 +74,13 @@ export class InventarioControlComponent implements OnInit {
       }
     }
     eliminarInventario2(element:PeriodicElement): void{
+      const correoSave = this.InventarioService.getCorreo();
       const index =this.dataSource.data.indexOf(element);
-
+      const usuarioElimina=correoSave;
       if(index >=0){
-        const correoSave = this.InventarioService.getCorreo();
         const idproducto = element.idInventarioFabrica;
         this.dataSource.data.splice(index,1);
-        this.InventarioService.borrarInventario(idproducto,correoSave).subscribe();
+        this.InventarioService.borrarInventario(idproducto,usuarioElimina).subscribe();
         this.dataSource._updateChangeSubscription();
       }
     }
