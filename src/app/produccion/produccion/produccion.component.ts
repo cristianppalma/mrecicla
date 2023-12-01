@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-produccion',
   templateUrl: './produccion.component.html',
@@ -8,9 +9,10 @@ import { Router } from '@angular/router';
 })
 
 export class ProduccionComponent implements OnInit {
-  public chart: Chart;
-  ngOnInit(): void {7
 
+  public chart: Chart;
+
+  ngOnInit(): void {
     const data = {
       labels:['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
       datasets:[{
@@ -29,7 +31,7 @@ export class ProduccionComponent implements OnInit {
 
   constructor(private router:Router) {}
 
-  VerGastosGenerales(){
+  verGastosGenerales(){
     this.router.navigateByUrl('/dashboard/produccion/produccionList');
   }
 }

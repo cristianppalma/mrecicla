@@ -1,60 +1,77 @@
-.button-container {
-    margin-bottom: 20px;
-    margin: 8px;
-    border-radius: 5px;
+.container {
+  margin-bottom: 0;
+  margin-left: -20px;
+  padding-left: 0;
+  padding-right: 0;
+
+  /* display: flex; */
+  /*flex-direction: column;*/ /* Apila elementos verticalmente */
+  /*align-items: center;*/ /* Centra los elementos horizontalmente */
+  /*justify-content: center;*/ /* Centra los elementos verticalmente */
+  /* min-height: 10vh;
+  min-width: 70vh;
+  max-width: 100vh;
+  margin-left: 18%; */
 }
+
+.cabecera {
+  text-align: center;
+  border: 0px solid red;
+  margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
+}
+
+h1 {
+  font-size: larger;
+}
+
+.filter {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.button-container {
+  margin-bottom: 20px;
+  margin: 8px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+/* .btn_int {
+  background: #80a943;
+  color: white;
+  width: 250px;
+  height: 50px;
+  font-size: large;
+  margin: 8px;
+} */
+
 .btn_int {
-    background: #80a943;
-    color: white;
-    width: 250px;
-    height: 50px;
-    font-size: large;
-    margin: 8px;
-  }
-  .btn_int {
-    background: #80a943;
-    color: white;
-    width: 150px;
-    height: 50px;
-    font-size: large;
-    margin: 8px;
-    border-radius: 5px;
-  }
-  
-  .button-container-regresar {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .Title{
-    color: black;
-    margin-left: 450px;
-    font-size: larger;
-  }
-  .table-container {
-    display: flex;
-    width: 1200px;
-    margin: 10px; /* Ajusta según sea necesario */
-    display: flex;
-    
-    text-align: center;
-    /* Estilos para la tabla si es necesario */
-  
-  
-    max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
-    overflow-y: auto;
-  }
-  .formula {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .formula-container {
-    display: flex;
-  }
-  
-  .formula1,
-  .formula2 {
-    margin: 0 10px; /* Espacio entre las dos secciones */
-  }
+  background: #80a943;
+  color: white;
+  width: 150px;
+  height: 50px;
+  font-size: large;
+  margin: 8px;
+  border-radius: 5px;
+}
+
+.button-container-regresar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.table-container {
+  display: flex;
+  width: 1200px;
+  margin: 10px; /* Ajusta según sea necesario */
+  display: flex;
+  text-align: center;
+  /* Estilos para la tabla si es necesario */
+  max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
+  overflow-y: auto;
+}
+
+.btn-details{
+  color: green;
+}
