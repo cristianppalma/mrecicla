@@ -6,6 +6,6 @@ export class producto{
     FechaCreacion!:String;
     Calibre!:String;
     Porcentaje!:String;
-    IdArea!:String;
+    AreaDesignada!:String;
     UsuarioCreador!:String;
 }

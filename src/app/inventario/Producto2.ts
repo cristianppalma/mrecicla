@@ -5,4 +5,5 @@ export class producto2{
     FechaRegistro!:String;
     Calibre!:String;
     idArea!:String;
+    UsuarioCreador!:String;
 }

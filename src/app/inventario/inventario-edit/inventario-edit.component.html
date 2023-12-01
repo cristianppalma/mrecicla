@@ -4,7 +4,7 @@
   </div >
     
     
-  <form [formGroup]="formularioEditarInventario"(ngSubmit)="enviarDatosActualizar()" >
+  <form [formGroup]="formularioEditarInventario"(ngSubmit)="enviarDatos()" >
     <div class="formula" style="border:none;" >
       <div class="formula1">
         
@@ -47,7 +47,7 @@
           <label>Area designada</label>
           <mat-form-field>
             <mat-label>Área</mat-label>
-            <mat-select  formControlName="idArea">
+            <mat-select  formControlName="AreaDesignada">
               <mat-option value="0"> </mat-option>
               <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
             </mat-select>

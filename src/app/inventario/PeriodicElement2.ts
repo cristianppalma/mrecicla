@@ -1,8 +1,11 @@
 export interface PeriodicElement2 {
-    idproductosalida: string;
+    idProductosalida: string;
     nombreProducto: string;
     Peso: string;
     FechaRegistro: string;
-    calibre: string;
+    Calibre: string;
     idArea: string;
+    UsuarioCreador:String;
+    UsuarioActualizador:String;
+    UsarioEliminador:String;
   }
