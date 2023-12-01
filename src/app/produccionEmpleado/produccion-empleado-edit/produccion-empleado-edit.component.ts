@@ -10,8 +10,10 @@ import { ProduccionEmpleadoService } from '../produccion-empleado.service';
 })
 export class ProduccionEmpleadoEditComponent implements OnInit {
 
-  usuario: string | null;
+  usuarioId: string | null;
   usuarioNombre: string | null;
+  usuarioCorreo: string | null;
+
   maquinarias: any[];
   areas: any[];
   inventariosSalida: any[];
@@ -24,6 +26,7 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private produccionEmpleadoService: ProduccionEmpleadoService,
   ){
+    const idUserSave = this.produccionEmpleadoService.getId();
     const correoSave = this.produccionEmpleadoService.getCorreo();
     this.formularioProduccionAreaDetails = this.formBuilder.group({
       FechaInicio: [''],
@@ -36,8 +39,8 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       idMaquinaria: [''],
       idArea: [''],
       idInventarioFabrica: [''],
-      // idEmpleado: [''],
-      UsuarioActualizador : [correoSave]
+      idEmpleado: [''],
+      UsuarioActualizador : ['']
     });
   }
 
@@ -50,6 +53,10 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
       const nombreSave = this.produccionEmpleadoService.getNombre();
       console.log('Nombre desde el localStorage: ', nombreSave);
+
+      console.log('AQUI ABAJO SE MOSTRARIA EL ID QUE SE TRAE DESDE EL LOCALSTORAGE');
+      const idUserSave = this.produccionEmpleadoService.getId();
+      console.log('ID desde el localStorage: ', idUserSave);
 
 
     this.elID=this.activatedRoute.snapshot.paramMap.get('id');
@@ -70,18 +77,23 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
           idMaquinaria: produccionArea.idMaquinaria.toString(),
           idArea: produccionArea.idArea.toString(),
           idInventarioFabrica: produccionArea.idInventarioFabrica.toString(),
-          UsuarioActualizador: produccionArea.UsuarioActualizador || correoSave,
+          idEmpleado: produccionArea.idEmpleado,
+          UsuarioActualizador: produccionArea.UsuarioActualizador,
         });
       }, error => {
         console.log('ERRRO DE LA SOLICITUD: ', error);
       }
     );
 
-    this.usuario = localStorage.getItem("id_user");
-    console.log('ID: ', this.usuario);
+    this.usuarioId = localStorage.getItem("id_user");
+    console.log('ID: ', this.usuarioId);
 
     this.usuarioNombre = localStorage.getItem("Nombre");
     console.log('Nombre', this.usuarioNombre);
+
+    this.usuarioCorreo = localStorage.getItem("Correo");
+    console.log('Correo', this.usuarioCorreo);
+
 
     this.produccionEmpleadoService.selectMaquinaria().subscribe((data)=>{
       this.maquinarias=data;

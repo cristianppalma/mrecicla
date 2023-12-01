@@ -17,6 +17,7 @@ export class ProduccionListComponent implements OnInit {
   Produccion: PeriodicElement[] = [];
   displayedColumns: string[] = [
                                   'idProduccionArea',
+                                  'idEmpleado',
                                   'FechaInicio',
                                   'FechaFin',
                                   'HoraInicio',
@@ -88,6 +89,11 @@ export class ProduccionListComponent implements OnInit {
       this.inventariosSalida=data;
      })
 
+     //
+    this.produccionEmpleadoService.selectUsuarios().subscribe((data)=>{
+      this.inventariosSalida=data;
+    })
+
   }
 
   //Funcion para obtener nombre de inventarioFabrica en lugar de solo el id
@@ -95,6 +101,12 @@ export class ProduccionListComponent implements OnInit {
     const inventario = this.inventariosSalida.find(item => item.idInventarioFabrica === idInventarioFabrica);
     return inventario ? inventario.NombreInsumo : '';
   }
+
+  obtenerNombreUsuario(idUsuario: number): string {
+    const nombreUser = this.inventariosSalida.find(item => item.idUsuario === idUsuario);
+    return nombreUser ? nombreUser.Nombre : '';
+  }
+
 
   //Funcion para ir a la vista produccionCreate
   crearProduccion (){

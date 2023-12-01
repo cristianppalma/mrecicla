@@ -11,5 +11,5 @@ export class Produccion{
   idInventarioFabrica !:String;
   idEmpleado          !:String;
   UsuarioCreador      !:String;
-  UsuarioActualizador !:String;
+  //UsuarioActualizador !:String;
 }
