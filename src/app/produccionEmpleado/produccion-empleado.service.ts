@@ -9,9 +9,9 @@ import { Produccion } from './produccion';
 })
 export class ProduccionEmpleadoService {
   // URL DE LA LLAMADA A LA API
-  //API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
 
-  API: string = 'http://localhost/PhpAngular/produccionarea/';
+  //API: string = 'http://localhost/PhpAngular/produccionarea/';
 
   private correo: string;
   private nombre: string;
@@ -23,16 +23,14 @@ export class ProduccionEmpleadoService {
 
   // CONEXION DE FRONTEND CON BACKEND
   // SERVICIO PARA TRAER TODOS LOS REGISTROS
-  /*listarProduccionArea(): Observable<PeriodicElement[]> {
+  listarProduccionGeneral(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API);
-  }*/
+  }
 
   //Con procedimiento almacenado
   listarProduccionArea(id:any): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProduccionArea="+id);
   }
-  
-
 
   // SERVICIO PARA AGREGAR UN REGISTRO
   agregarProduccionArea(datosProduccionArea:Produccion):Observable<any>{
@@ -54,17 +52,10 @@ export class ProduccionEmpleadoService {
     return this.clientService.get<any[]>(this.API+"?selectArea");
   }
 
-  // // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
-  // selectSalida(){
-  //   return this.clientService.get<any[]>(this.API+"?selectSalida");
-  // }
-
   // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
   selectInventarioSalida(){
     return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
   }
-
-
 
   // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
   getId(): string {

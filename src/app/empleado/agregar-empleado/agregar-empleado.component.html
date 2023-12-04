@@ -1,5 +1,3 @@
-
-
 <img src="assets/img/Icons/User2.png">
 
 <div class="Titulo">
@@ -43,9 +41,6 @@
               <mat-select formControlName="idTipoUsuario">
                 <mat-option value="0"> </mat-option>
                 <mat-option *ngFor="let tipoUsuarios of tipoUsuarios" [value]="tipoUsuarios.idTipoUsuario">{{ tipoUsuarios.NombreTipoUser}}</mat-option>
-         <!--   <mat-option value="1">Hilos</mat-option>
-            <mat-option value="2">Telas</mat-option>
-            <mat-option value="3">Bordado</mat-option>-->
             </mat-select>
           </mat-form-field>
       </div>
@@ -74,9 +69,6 @@
            <mat-select formControlName="idAsignacion">
             <mat-option value="0"> </mat-option>
             <mat-option *ngFor="let puesto of puestos" [value]="puesto.idAsignacion">{{ puesto.Puesto}}</mat-option>
-     <!--   <mat-option value="1">Hilos</mat-option>
-        <mat-option value="2">Telas</mat-option>
-        <mat-option value="3">Bordado</mat-option>-->
         </mat-select>
       </mat-form-field>
 
@@ -101,9 +93,6 @@
               <mat-select formControlName="idArea">
                   <mat-option value="0"> </mat-option>
                   <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
-           <!--   <mat-option value="1">Hilos</mat-option>
-              <mat-option value="2">Telas</mat-option>
-              <mat-option value="3">Bordado</mat-option>-->
               </mat-select>
           </mat-form-field>
             <br>

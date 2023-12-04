@@ -39,6 +39,7 @@ export class ProveedorEditComponent implements OnInit {
 
     ngOnInit(): any {
 
+      //Traemos el correo y nombre desde el servicio
       console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
       const correoSave = this.proveedorService.getCorreo();
       console.log('Correo desde el localStorage: ', correoSave);
@@ -48,25 +49,24 @@ export class ProveedorEditComponent implements OnInit {
       console.log('Nombre desde el localStorage: ', nombreSave);
 
 
+      //Obtenemos el id y desde el servicio obtenemos los campos
       this.elID=this.activatedRoute.snapshot.paramMap.get('id');
       console.log('OBTENEMOS EL ID: ', this.elID);
       this.proveedorService.obtenerProveedor(this.elID).subscribe(
         respuesta => {
           console.log('Respuesta del servicio',respuesta);
-          const proveedor = respuesta[0];
-          console.log('datos del proveedor ', proveedor);
 
-            this.formularioProveedorEdit.setValue({
-              NombreProveedor: proveedor.NombreProveedor,
-              ProductoProveedor: proveedor.ProductoProveedor,
-              DireccionProveedor: proveedor.DireccionProveedor,
-              Telefono: proveedor.Telefono,
-              Correo: proveedor.Correo,
-              RFCProveedor: proveedor.RFCProveedor,
-              DescripcionProveedor: proveedor.DescripcionProveedor,
-              EstatusProveedor:proveedor.EstatusProveedor,
-              UsuarioActualizador: proveedor.UsuarioActualizador || correoSave,
-            });
+          this.formularioProveedorEdit.setValue({
+            NombreProveedor: respuesta.NombreProveedor,
+            ProductoProveedor: respuesta.ProductoProveedor,
+            DireccionProveedor: respuesta.DireccionProveedor,
+            Telefono: respuesta.Telefono,
+            Correo: respuesta.Correo,
+            RFCProveedor: respuesta.RFCProveedor,
+            DescripcionProveedor: respuesta.DescripcionProveedor,
+            EstatusProveedor:respuesta.EstatusProveedor,
+            UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
+          });
 
         }, error => {
           console.error('ERROR DE LA SOLICITUD: ',error);
@@ -119,65 +119,3 @@ export class ProveedorEditComponent implements OnInit {
     }
 
 }
-
-
-// SEPARACION DE LA LOGICA
-
-// import { Component } from '@angular/core';
-// import { Router, ActivatedRoute } from '@angular/router';
-// import { FormGroup, FormBuilder} from '@angular/forms';
-// import { ProveedorService } from '../proveedor.service';
-
-// @Component({
-//   selector: 'app-proveedor-edit',
-//   templateUrl: './proveedor-edit.component.html',
-//   styleUrls: ['./proveedor-edit.component.css']
-// })
-// export class ProveedorEditComponent {
-
-//   formularioDeProveedores:FormGroup;
-//   elID:any;
-
-//   constructor(
-//     private activatedRoute:ActivatedRoute,
-//     private router: Router,
-//     private proveedorService:ProveedorService,
-//     public formulario:FormBuilder
-//     ) {
-//       this.elID=this.activatedRoute.snapshot.paramMap.get('id');
-//     console.log(this.elID);
-//     this.proveedorService.obtenerProveedor(this.elID).subscribe(
-//       respuesta=> {
-//         console.log(respuesta);
-//         this.formularioDeProveedores.setValue({
-//           name_proveedor:respuesta[0]['name_proveedor'],
-//           producto_proveedor:respuesta[0]['producto_proveedor'],
-//           direccion_proveedor:respuesta[0]['direccion_proveedor'],
-//           rfc_proveedor:respuesta[0]['rfc_proveedor'],
-//           description_proveedor:respuesta[0]['description_proveedor']
-//         })
-//       }
-//     );
-//     this.formularioDeProveedores=this.formulario.group({
-//       name_proveedor:[''],
-//       producto_proveedor:[''],
-//       direccion_proveedor:[''],
-//       rfc_proveedor:[''],
-//       description_proveedor:['']
-//     });
-//     }
-
-//     enviarDatos():any {
-//       console.log(this.elID);
-//       console.log(this.formularioDeProveedores.value);
-
-//       this.proveedorService.editarProveedor(this.elID, this.formularioDeProveedores.value).subscribe(()=>{
-//         this.router.navigateByUrl('/dashboard/proveedor/proveedores');
-//       });
-//     }
-
-//   proveedores(){
-//     this.router.navigateByUrl('/dashboard/proveedor/proveedores');
-//   }
-
-// }

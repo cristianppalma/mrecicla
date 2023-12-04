@@ -13,6 +13,5 @@ export interface PeriodicElement {
   idAsignacion        :String;
   idArea              :String;
   UsuarioCreador      :String;
-  UsuarioActualizador :String;
   UsuarioEliminador   :String;
 }

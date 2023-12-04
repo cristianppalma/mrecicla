@@ -18,10 +18,10 @@ interface Food {
   templateUrl: './inventario-control-salida.component.html',
   styleUrls: ['./inventario-control-salida.component.css']
 })
-export class InventarioControlSalidaComponent  {
-
+export class InventarioControlSalidaComponent implements OnInit {
+  areas : any[]=[];
   Producto:PeriodicElement2[] = [];
-  displayedColumns:string[] = ['idproductosalida','nombreProducto','Peso','FechaRegistro','Calibre','idArea','action']
+  displayedColumns:string[] = ['idproductosalida','nombreProducto','Peso','FechaRegistro','Calibre','area','action']
   dataSource: MatTableDataSource<PeriodicElement2>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -46,9 +46,9 @@ export class InventarioControlSalidaComponent  {
   verDetalles(element: PeriodicElement2) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
-    const idproducto = element.idproductosalida;
+    const idproductoSalida = element.idProductosalida;
     // Puedes abrir un modal, mostrar información adicional, etc.
-    this.router.navigateByUrl(`/dashboard/inventario/inventarioEdit/${idproducto}`)
+    this.router.navigateByUrl(`/dashboard/inventario/inventarioEditSalida/${idproductoSalida}`)
   }
 
   constructor(private router:Router,
@@ -68,7 +68,7 @@ export class InventarioControlSalidaComponent  {
       this.router.navigateByUrl('/dashboard/inventario/inventarios')
     }
 
-    eliminarInventario(element:PeriodicElement2): void{
+    borrarInventarioSalida(element:PeriodicElement2): void{
       const index =this.dataSource.data.indexOf(element);
 
       if(index >=0){
@@ -76,14 +76,18 @@ export class InventarioControlSalidaComponent  {
         this.dataSource._updateChangeSubscription();
       }
     }
-    eliminarInventario2(element:PeriodicElement2): void{
+    borrarInventarioSalida2(element:PeriodicElement2): void{
+      const correoSave = this.InventarioService.getCorreo();
       const index =this.dataSource.data.indexOf(element);
-
+      const usuarioElimina=correoSave;
       if(index >=0){
-        const idproducto = element.idproductosalida;
+        const idproductosalida = element.idProductosalida;
         this.dataSource.data.splice(index,1);
-        //this.InventarioService.borrarInventario(idproducto).subscribe();
+        this.InventarioService.borrarInventario(idproductosalida,usuarioElimina).subscribe();
         this.dataSource._updateChangeSubscription();
+
+         // Aquí tienes tanto el índice como el idMaquina
+      console.log(`Elemento eliminado en el índice ${index}, ID del producto: ${idproductosalida}`);
       }
     }
     mostrarDialogoDeConfirmacion(element: PeriodicElement2): void {
@@ -93,7 +97,7 @@ export class InventarioControlSalidaComponent  {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.eliminarInventario(element);
+          this.borrarInventarioSalida(element);
         }
       });
     }
@@ -104,7 +108,7 @@ export class InventarioControlSalidaComponent  {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.eliminarInventario2(element);
+          this.borrarInventarioSalida2(element);
         }
       });
     }
@@ -115,7 +119,11 @@ export class InventarioControlSalidaComponent  {
       this.Producto = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
-  }
+    this.InventarioService.selectAreas().subscribe((data)=>{
+      this.areas=data;
+    })
+    
+  } 
 
 
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Empleado} from './Empleado' ;
 import { listaEmpleado } from './listaEmpleado';
-import {editarEmpleado} from './editarEmpleado';
+import { editarEmpleado } from './editarEmpleado';
 import { PeriodicElement } from './PeriodicElement';
 
 @Injectable({
@@ -11,59 +11,39 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class EmpleadoService {
   // URL DE LA LLAMADA A LA API
-  //API: string = 'https://recicladora.arvispace.com/PhpAngular/'
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/'
 
-   API: string = 'http://localhost/PhpAngular/';
+  //API: string = 'http://localhost/PhpAngular/';
 
   // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;
   private nombre: string;
 
-   constructor( private clientService:HttpClient) { }
-
-  // AGREGAMOS UN NUEVO REGISTRO EN LA TABLA
-  // AgregarUsuartio(datosEmpleado:Empleado):Observable<any>{
-  //   return this.clientService.post(this.API+"?insertarEmpleado=",datosEmpleado);
-  // }
+  constructor( private clientService:HttpClient) { }
 
   // AGREGAMOS UN NUEVO REGISTRO EN LA TABLA
   AgregarUsuartio(datosEmpleado:Empleado):Observable<any>{
-    return this.clientService.post(this.API+"?insertarUsuario=1",datosEmpleado);
+    return this.clientService.post(this.API+"?insertarUsuarioPro=1",datosEmpleado);
   }
 
   // OBTENEMOS TODOS LOS REGISTROS DE LA TABLA
   listaEmpleado(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?seleccionarEmpleado=1");
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerUsuarios=1");
   }
-
-  // ELIMINAMOS UN REGISTRO DE LA TABLA
-  // eliminarUsuario(id:any): Observable<any> {
-  //   return this.clientService.get(this.API+"?borrarEmpleado="+id);
-  // }
 
   // ELIMINAMOS UN REGISTRO DE LA TABLA
   eliminarUsuario(id:any, usuarioEliminador: any): Observable<any> {
-    return this.clientService.get(`${this.API}?eliminarUsuario=${id}&UsuarioEliminador=${usuarioEliminador}`);
+    return this.clientService.get(`${this.API}?borrarUsuario=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
-
-  // OBTENEMOS UN REGISTRO DE LA TABLA
-  // EditarEmpleado2(id:string): Observable<any> {
-  //   return this.clientService.get(this.API+"?editarEmpleado="+id);
-  // }
 
   // OBTENEMOS UN REGISTRO DE LA TABLA
   EditarEmpleado(idUsuario:string): Observable<any> {
-    return this.clientService.get(this.API+"?consultarUsuario="+idUsuario);
+    return this.clientService.get(this.API+"?editarEmpleado="+idUsuario);
   }
 
   // ACTUALIZAMOS UN REGISTRO DE LA TABLA
-  // UpdateEmpleado(id:any, UpdateEmpleado:Empleado):Observable<any>{
-  //   return this.clientService.post(this.API+"?updateEmpleado="+id,UpdateEmpleado);
-  // }
-
-  // ACTUALIZAMOS UN REGISTRO DE LA TABLA
   UpdateEmpleado(id:any, UpdateEmpleado:Empleado):Observable<any>{
-    return this.clientService.post(this.API+"?actualizarUsuario="+id,UpdateEmpleado);
+    return this.clientService.post(this.API+"?updateEmpleado="+id,UpdateEmpleado);
   }
 
   // OBTENEMOS LOS REGISTROS DE AREAS
@@ -92,5 +72,3 @@ export class EmpleadoService {
   }
 
 }
-
-

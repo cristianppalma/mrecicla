@@ -5,12 +5,12 @@ import { ProveedorListComponent } from './proveedor-list/proveedor-list.componen
 import { ProveedorEditComponent } from './proveedor-edit/proveedor-edit.component';
 import { ProveedorRoutingModule } from './proveedor-routing.module';
 
-import { MatTableModule} from '@angular/material/table';
-import { MatInputModule} from '@angular/material/input';
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { MatSelectModule} from '@angular/material/select';
-import { MatButtonModule} from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';

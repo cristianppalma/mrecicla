@@ -38,7 +38,7 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
 
   mostrarDialogDeConfirmacion3(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-    data: { message: '¿Estás seguro de que deseas cancelar este registro?' }
+      data: { message: '¿Estás seguro de que deseas cancelar este registro?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -68,7 +68,6 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
         (error) => {
           // Manejar errores del servicio aquí
           this.mostrarDialogError();
-
         }
       );
     }

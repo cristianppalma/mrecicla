@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProduccionEmpleadoService } from '../produccion-empleado.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component';
-
 import { inject } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -22,7 +21,6 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
   usuarioNombre: string | null;
   maquinarias: any[];
   areas: any[];
-  // inventarios: any [];
   inventariosSalida: any[];
   formularioProduccionArea: FormGroup;
 
@@ -44,7 +42,6 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       KgProduccion: [''],
       idMaquinaria: [''],
       idArea: [''],
-      // idproducto: [''],
       idInventarioFabrica: [''],
       idEmpleado: [idUserSave],
       UsuarioCreador : [correoSave]
@@ -70,7 +67,6 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
           console.log('Hubo un error al insertar');
           console.log(this.formularioProduccionArea.value);
           console.log('Error en la solicitud:', error);
-          //this.mostrarDialogoAviso();
         }
       );
     }
@@ -109,11 +105,6 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     this.produccionEmpleadoService.selectAreas().subscribe((data)=>{
       this.areas=data;
     });
-
-    // //
-    // this.produccionEmpleadoService.selectSalida().subscribe((data)=>{
-    //   this.inventariosSalidas=data;
-    // });
 
     //
     this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{

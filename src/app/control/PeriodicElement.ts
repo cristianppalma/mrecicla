@@ -1,11 +1,10 @@
 export interface PeriodicElement {
-    idGastosFabrica:      string;
-    Concepto:             string;
-    Descripcion:          string;
-    Periodo:              string;
-    Monto:                string;
-    Tipo:                 string;
-    UsuarioCreador:       string;
-    UsuarioActualizador:  string;
-    UsuarioEliminador:    string;
+    idGastosFabrica:      String;
+    Concepto:             String;
+    Descripcion:          String;
+    Periodo:              String;
+    Monto:                String;
+    Tipo:                 String;
+    UsuarioCreador:       String;
+    UsuarioEliminador:    String;
   }

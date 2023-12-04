@@ -26,7 +26,7 @@ export class InventarioEditComponent implements OnInit{
   //valores prueba
   areas : any[]=[];
   formularioEditarInventario:FormGroup;
-  idproducto:any;
+  idInventarioFabrica:any;
 
    
 
@@ -39,6 +39,9 @@ export class InventarioEditComponent implements OnInit{
 //traer servicios
  
   ) {
+    this.InventarioService.selectAreas().subscribe((data) => {
+      this.areas = data;
+    });
     const correoSave = this.InventarioService.getCorreo();
     this.formularioEditarInventario = this.formBuilder.group({
       NombreInsumo: [''],
@@ -47,13 +50,13 @@ export class InventarioEditComponent implements OnInit{
       Fecha: [''],
       Calibre: [''],
       Composicion:[''],
-      idArea:[''],
+      AreaDesignada:[''],
       UsuarioActualizador:[correoSave]
     });
     this.activateRoute.paramMap.subscribe(params => {
-      this.idproducto = params.get('id');
+      this.idInventarioFabrica = params.get('id');
 
-      this.InventarioService.consultarInventario(this.idproducto).subscribe((respuesta=>{
+      this.InventarioService.consultarInventario(this.idInventarioFabrica).subscribe((respuesta=>{
         this.formularioEditarInventario.setValue({
           NombreInsumo: respuesta.NombreInsumo,
           Peso: respuesta.Peso,
@@ -61,7 +64,7 @@ export class InventarioEditComponent implements OnInit{
           Fecha: respuesta.Fecha,
           Calibre: respuesta.Calibre,
           Composicion: respuesta.Composicion,
-          idArea: respuesta.AreaDesignada.toString(),
+          AreaDesignada: respuesta.AreaDesignada.toString(),
           UsuarioActualizador: respuesta.UsuarioActualizador || correoSave
 
         });
@@ -69,23 +72,35 @@ export class InventarioEditComponent implements OnInit{
     })
   }
 
-  enviarDatosActualizar(): void {
-    if (this.formularioEditarInventario.valid) 
-    {
-      console.log('Se presionó el botón');
-      console.log(this.formularioEditarInventario.value);
-      this.InventarioService.editarproducto(this.idproducto,this.formularioEditarInventario.value).subscribe(
-        (response) => {
-         console.log('Se actualizo correctamente');
-         this.mostratDialogoAviso();
-         
-        
-        },
-        (error) => {
-           //Manejar errores del servicio aquí
+  enviarDatos() {
+    if (this.formularioEditarInventario.valid) {
+      console.log('Formulario:', this.formularioEditarInventario.value);
+      console.log('id rec', this.idInventarioFabrica);
+      console.log('Datos que se enviarán:', this.formularioEditarInventario.value);
+
+     this.InventarioService.editarproducto(this.idInventarioFabrica, this.formularioEditarInventario.value).subscribe(
+    (response) => {
+        console.log('Respuesta del servidor:', response);
+
+        if (response.success === 1) {
+            console.log('La actualización fue exitosa');
+            // Accede a los datos actualizados
+            const maquinaActualizada = response.data;
+            console.log('Datos de la máquina actualizada:', maquinaActualizada);
+
+            this.mostratDialogoAviso();
+        } else {
+            console.error('Error al actualizar la máquina:', response.error);
+            // Manejar errores del servicio aquí
         }
-      );
+    },
+    (error) => {
+        console.error('Error al actualizar la máquina con error:', error);
     }
+);
+
+    }
+    
   }
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{

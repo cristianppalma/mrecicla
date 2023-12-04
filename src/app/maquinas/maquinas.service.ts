@@ -8,14 +8,18 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class MaquinasService {
- // API: string = 'https://recicladora.arvispace.com/PhpAngular/'
+ API: string = 'https://recicladora.arvispace.com/PhpAngular/maquinas/'
 
+<<<<<<< HEAD
    API: string = 'http://localhost/PhpAngular/maquinas/';
+=======
+   //API: string = 'http://localhost/PhpAngular/maquinas/';
+>>>>>>> 6ed121e46463972bf9716410863a785ca7d9b41b
    private correo: string;
    private nombre: string;
 
   constructor( private clientService:HttpClient) { }
-  
+
   getAreas(){
     return this.clientService.get<any[]>(this.API+"?selectArea=1");
   }
@@ -29,27 +33,27 @@ export class MaquinasService {
   agregarMaquina(datosMaquina:Maquina):Observable<any>{
     return this.clientService.post(this.API+"?insertarMaquinasv2=1",datosMaquina);
   }
-  
+
 
    /*listarMaquina(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API+"?seleccionar=1");
   }*/
-  
+
   //Este metodo lista las maquinas con procedimientos almacenados
   listarMaquina(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerMaquinas=1");
   }
-  
+
   /*eliminarMaquina(id: any): Observable<any> {
     return this.clientService.delete(this.API + "?borrar=" + id);
   }*/
 
-  //Eliminar maquinas con procedimientos almacenados 
+  //Eliminar maquinas con procedimientos almacenados
 
   eliminarMaquina(id: any, usuarioEliminador: any): Observable<any> {
     return this.clientService.delete(`${this.API}?borrarMaquina=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
-  
+
 
   /*consultarmaquina(id: any):Observable<any>{
     return this.clientService.get(this.API + "?consultarmaquina=" + id);

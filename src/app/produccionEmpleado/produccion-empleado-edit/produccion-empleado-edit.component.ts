@@ -14,7 +14,6 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
   usuarioNombre: string | null;
   maquinarias: any[];
   areas: any[];
-  // inventarios: any[];
   inventariosSalida: any[];
   formularioProduccionAreaDetails: FormGroup;
   elID:any;
@@ -36,7 +35,6 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       KgProduccion: [''],
       idMaquinaria: [''],
       idArea: [''],
-      // idproducto: [''],
       idInventarioFabrica: [''],
       // idEmpleado: [''],
       UsuarioActualizador : [correoSave]
@@ -71,7 +69,6 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
           KgProduccion: produccionArea.KgProduccion,
           idMaquinaria: produccionArea.idMaquinaria.toString(),
           idArea: produccionArea.idArea.toString(),
-          // idproducto: produccionArea.idproducto.toString(),
           idInventarioFabrica: produccionArea.idInventarioFabrica.toString(),
           UsuarioActualizador: produccionArea.UsuarioActualizador || correoSave,
         });
@@ -94,18 +91,24 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       this.areas=data;
     });
 
-    // this.produccionEmpleadoService.selectSalida().subscribe((data)=>{
-    //   this.inventarios=data;
-    // });
-
      //
      this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
       this.inventariosSalida=data;
     })
   }
 
+  //Funcion para ir a la pagina anterior
   cancelar() {
-    this.router.navigateByUrl('/dashboard/produccion-empleado/produccionEmpleado');
+    // this.router.navigateByUrl('/dashboard/produccion-empleado/produccionEmpleado');
+    if (window.history.length > 1) {
+      // Si hay más de una página en el historial, regresa a la página anterior
+      window.history.back();
+    } else {
+      // Si no hay más páginas en el historial, puedes redirigir a una página específica
+      // o realizar alguna otra acción en su lugar.
+      console.warn('No hay páginas anteriores en el historial.');
+      // Puedes redirigir a otra página o realizar otra acción aquí
+    }
   }
 
 }

@@ -36,79 +36,20 @@ export class EditarEmpleadoComponent implements OnInit {
       const correoSave = this.editarEmpleado.getCorreo();
       this.formularioEditarEmpleado = this.formbuilder.group({
         Nombre: [''],
-      ApellidoPaterno: [''],
-      ApellidoMaterno: [''],
-      Correo: [''],
-      Pass: [''],
-      Practicante: [''],
-      Sueldo : [''],
-      Turno : [''],
-      Domicilio : [''],
-      idTipoUsuario : [''],
-      idAsignacion : [''],
-      idArea : [''],
-      UsuarioActualizador:[correoSave]
+        ApellidoPaterno: [''],
+        ApellidoMaterno: [''],
+        Correo: [''],
+        Pass: [''],
+        Practicante: [''],
+        Sueldo : [''],
+        Turno : [''],
+        Domicilio : [''],
+        idTipoUsuario : [''],
+        idAsignacion : [''],
+        idArea : [''],
+        UsuarioActualizador:[correoSave]
       });
 
-      // this.formularioEditarEmpleado = new FormGroup({
-      //   Practicante: new FormControl(''),
-      //   Nombre: new FormControl('', [Validators.required]),
-      //   ApellidoPaterno: new FormControl('', [Validators.required]),
-      //   ApellidoMaterno: new FormControl('', [Validators.required]),
-      //   Pass: new FormControl('', [Validators.required]),
-      //   idAsignacion : new FormControl(''),
-      //   // Puesto: new FormControl(''),
-      //   Correo: new FormControl('', [Validators.required]),
-      //   Turno : new FormControl(''),
-      //   idArea : new FormControl (''),
-      //   Sueldo : new FormControl (''),
-      //   Domicilio : new FormControl('', [Validators.required]),
-      //   idTipoUsuario : new FormControl('')
-
-      // });
-
-      // this.activateRoute.paramMap.subscribe((params) => {
-      //   this.idEmpleado = params.get('id');
-      //   this.editarEmpleado.EditarEmpleado(this.idEmpleado).subscribe((respuesta) => {
-      //     console.log('Respuesta del servicio', respuesta);
-
-      //       // Asegúrate de que respuesta sea un objeto JSON válido
-      //   if (respuesta && typeof respuesta === 'object') {
-      //     // Asegúrate de que los datos se serialicen como JSON válido
-      //     try {
-
-      //     this.formularioEditarEmpleado.setValue({
-      //       Nombre: respuesta.Nombre,
-      //       ApellidoPaterno: respuesta.ApellidoPaterno,
-      //       ApellidoMaterno: respuesta.ApellidoMaterno,
-      //       Correo: respuesta.Correo,
-      //       Pass: respuesta.Pass,
-      //                   // Practicante: respuesta.Practicante,
-      //       Sueldo: respuesta.Sueldo,
-      //       Turno: respuesta.Turno,
-      //       Domicilio: respuesta.Domicilio,
-      //        // idTipoUsuario : respuesta.idTipoUsuario.toString(),
-      //        idTipoUsuario: respuesta.idTipoUsuario.toString(),
-      //       // idAsignacion: respuesta.idAsignacion.toString(),
-      //       idAsignacion: respuesta.idAsignacion.toString(),
-      //       // idArea: respuesta.idArea.toString(),
-      //       idArea: respuesta.idAres.toString(),
-      //       // Puesto: respuesta.idAsignacion.toString(),
-
-
-      //     });
-      //     this.formularioEditarEmpleado.controls['Practicante'].setValue(respuesta.Practicante);
-
-      //   } catch (error) {
-      //     console.error('Error al deserializar los datos JSON:', error);
-      //   }
-      // } else {
-      //   console.error('No se encontraron datos válidos para el ID proporcionado.');
-      //   // Aquí puedes mostrar un mensaje de error al usuario o redirigir a una página de error.
-      // }
-
-      //   });
-      // });
      }
 
      ngOnInit(): void {
@@ -127,31 +68,26 @@ export class EditarEmpleadoComponent implements OnInit {
         this.editarEmpleado.EditarEmpleado(this.idEmpleado).subscribe(
           respuesta => {
           console.log('Respuesta del servicio', respuesta);
-            const empleado = respuesta [0];
-            console.log('datos del registro: ', empleado);
+
             // Asegúrate de que respuesta sea un objeto JSON válido
         if (respuesta && typeof respuesta === 'object') {
           // Asegúrate de que los datos se serialicen como JSON válido
           try {
 
           this.formularioEditarEmpleado.setValue({
-            Nombre: empleado.Nombre,
-            ApellidoPaterno: empleado.ApellidoPaterno,
-            ApellidoMaterno: empleado.ApellidoMaterno,
-            Correo: empleado.Correo,
-            Pass: empleado.Pass,
-            Practicante: empleado.Practicante,
-            Sueldo: empleado.Sueldo,
-            Turno: empleado.Turno,
-            Domicilio: empleado.Domicilio,
-             // idTipoUsuario : respuesta.idTipoUsuario.toString(),
-             idTipoUsuario: empleado.idTipoUsuario.toString(),
-            // idAsignacion: respuesta.idAsignacion.toString(),
-            idAsignacion: empleado.idAsignacion.toString(),
-            // idArea: respuesta.idArea.toString(),
-            idArea: empleado.idArea.toString(),
-            // Puesto: respuesta.idAsignacion.toString(),
-            UsuarioActualizador: empleado.UsuarioActualizador || correoSave,
+            Nombre: respuesta.Nombre,
+            ApellidoPaterno: respuesta.ApellidoPaterno,
+            ApellidoMaterno: respuesta.ApellidoMaterno,
+            Correo: respuesta.Correo,
+            Pass: respuesta.Pass,
+            Practicante: respuesta.Practicante,
+            Sueldo: respuesta.Sueldo,
+            Turno: respuesta.Turno,
+            Domicilio: respuesta.Domicilio,
+            idTipoUsuario: respuesta.idTipoUsuario.toString(),
+            idAsignacion: respuesta.idAsignacion.toString(),
+            idArea: respuesta.idArea.toString(),
+            UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
           });
           // this.formularioEditarEmpleado.controls['Practicante'].setValue(respuesta.Practicante);
 
@@ -168,28 +104,21 @@ export class EditarEmpleadoComponent implements OnInit {
       this.formularioEditarEmpleado.controls['Practicante'].valueChanges.subscribe(
         (Practicante) => {
           if (Practicante === 'No') {
-            // this.formularioEditarEmpleado.controls['Puesto'].enable();
             this.formularioEditarEmpleado.controls['idAsignacion'].enable();
             this.formularioEditarEmpleado.controls['Turno'].enable();
-            // this.formularioEditarEmpleado.controls['Area'].enable();
             this.formularioEditarEmpleado.controls['idArea'].enable();
             this.formularioEditarEmpleado.controls['Sueldo'].enable();
 
           } else {
-            // this.formularioEditarEmpleado.controls['Puesto'].disable();
             this.formularioEditarEmpleado.controls['idAsignacion'].disable();
             this.formularioEditarEmpleado.controls['Turno'].disable();
-            // this.formularioEditarEmpleado.controls['Area'].disable();
             this.formularioEditarEmpleado.controls['idArea'].disable();
             this.formularioEditarEmpleado.controls['Sueldo'].disable();
 
-            // this.formularioEditarEmpleado.controls['Puesto'].reset();
             this.formularioEditarEmpleado.controls['idAsignacion'].reset();
             this.formularioEditarEmpleado.controls['Turno'].reset();
-            // this.formularioEditarEmpleado.controls['Area'].reset();
             this.formularioEditarEmpleado.controls['idArea'].reset();
             this.formularioEditarEmpleado.controls['Sueldo'].reset();
-
 
           }
         }
@@ -210,8 +139,6 @@ export class EditarEmpleadoComponent implements OnInit {
       });
     }
 
-
-
      enviarDatos(): void {
       if (this.formularioEditarEmpleado.valid) {
         console.log('Id recibido: ', this.idEmpleado);
@@ -228,9 +155,7 @@ export class EditarEmpleadoComponent implements OnInit {
            this.mostratDialogoAviso();
            } else {
             console.error('Error al actualizar el usuario: ', response.error);
-
            }
-
 
           },
           (error) => {
@@ -254,10 +179,4 @@ export class EditarEmpleadoComponent implements OnInit {
 
     }
 
-
-
-
 }
-
-
-

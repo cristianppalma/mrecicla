@@ -7,14 +7,29 @@ import { ProduccionCreateComponent } from './produccion-create/produccion-create
 import { ProduccionEditarComponent } from './produccion-editar/produccion-editar.component';
 
 const routes: Routes = [
-  {path: 'produccion', component:ProduccionComponent},
-  {path: 'produccionList', component:ProduccionListComponent},
-  {path: 'produccionCreate', component:ProduccionCreateComponent},
-  {path: 'produccionEditar/:id', component:ProduccionEditarComponent}
+  {
+    path: 'produccion',
+    component:ProduccionComponent
+  },
+  {
+    path: 'produccionList',
+    component:ProduccionListComponent
+  },
+  {
+    path: 'produccionCreate',
+    component:ProduccionCreateComponent
+  },
+  {
+    path: 'produccionEditar/:id',
+    component:ProduccionEditarComponent
+  }
  ];
- 
+
  @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes)
+  ],
   exports: [RouterModule]
 })
 export class ProduccionRoutingModule { }
