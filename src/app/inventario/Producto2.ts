@@ -4,6 +4,6 @@ export class producto2{
     Peso!:String;
     FechaRegistro!:String;
     Calibre!:String;
-    idArea!:String;
+    NombreArea!:String;
     UsuarioCreador!:String;
 }

@@ -59,7 +59,7 @@ export class InventarioService {
   }
 
   consultarInventarioSalida(id:any): Observable<PeriodicElement2> {
-    return this.clientService.get<PeriodicElement2>(this.API2+"?ObtenerProductosPorID="+id);
+    return this.clientService.get<PeriodicElement2>(this.API2+"?ObtenerProductosPor="+id);
 
   }
 
