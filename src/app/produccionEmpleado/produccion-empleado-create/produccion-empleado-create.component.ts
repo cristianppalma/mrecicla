@@ -53,6 +53,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
   }
 
   enviarDatos(): void{
+    const correoSave2 = this.produccionEmpleadoService.getCorreo();
     if (this.formularioProduccionArea.valid){
       console.log('Se presiono el boton de registrar');
       console.log(this.formularioProduccionArea.value);

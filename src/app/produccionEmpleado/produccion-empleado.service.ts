@@ -9,9 +9,9 @@ import { Produccion } from './produccion';
 })
 export class ProduccionEmpleadoService {
   // URL DE LA LLAMADA A LA API
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
+ // API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
 
-  //API: string = 'http://localhost/PhpAngular/produccionarea/';
+  API: string = 'http://localhost/PhpAngular/produccionarea/';
 
   private correo: string;
   private nombre: string;
@@ -33,7 +33,7 @@ export class ProduccionEmpleadoService {
   }
 
   // SERVICIO PARA AGREGAR UN REGISTRO
-  agregarProduccionArea(datosProduccionArea:Produccion):Observable<any>{
+  agregarProduccionArea(datosProduccionArea:Produccion,):Observable<any>{
     return this.clientService.post(this.API+"?insertarProduccionArea=1",datosProduccionArea);
   }
 

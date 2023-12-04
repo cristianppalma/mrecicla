@@ -9,11 +9,11 @@ import { PeriodicElement2 } from './PeriodicElement2';
   providedIn: 'root'
 })
 export class InventarioService {
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
   API2: string = 'https://recicladora.arvispace.com/PhpAngular/inventarioSalida/'
   private correo: string;
   private nombre: string;
-  //API: string = 'http://localhost/PhpAngular/inventario/';
+  API: string = 'http://localhost/PhpAngular/inventario/';
   //API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
 
 
@@ -24,7 +24,7 @@ export class InventarioService {
   }
 
   listarInventario(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?ObtenerInventario=1");
+    return this.clientService.get<PeriodicElement[]>(this.API+"?Inventario=1");
   }
 
 /*  borrarInventario(id:any):Observable<any>{
