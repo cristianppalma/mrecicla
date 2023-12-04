@@ -39,13 +39,16 @@ export class InventarioEditSalidaComponent implements OnInit {
       private activateRoute: ActivatedRoute
   //traer servicios
   ) {
+    this.InventarioService.selectAreas().subscribe((data) => {
+      this.areas = data;
+    });
     const correoSave = this.InventarioService.getCorreo();
     this.formularioEditarInventarioSalida = this.formBuilder.group({
       nombreProducto: [''],
       Peso: [''], 
       FechaRegistro: [''],
       Calibre: [''],
-      idArea:[''],
+      NombreArea:[''],
       UsuarioActualizador:[correoSave]
     });
     this.activateRoute.paramMap.subscribe(params => {
@@ -53,35 +56,47 @@ export class InventarioEditSalidaComponent implements OnInit {
 
       this.InventarioService.consultarInventarioSalida(this.idProductosalida).subscribe((respuesta=>{
         this.formularioEditarInventarioSalida.setValue({
-          nombreProducto: respuesta.nombreProducto,
+          nombreProducto: respuesta.nombreProducto || '',
           Peso: respuesta.Peso,
           FechaRegistro: respuesta.FechaRegistro,
           Calibre: respuesta.Calibre,
-          idArea: respuesta.idArea.toString(),
+          NombreArea: respuesta.NombreArea.toString() || '',
           UsuarioActualizador: respuesta.UsuarioActualizador || correoSave
-
+          
         });
       }))
     })
   }
 
-  enviarDatosActualizar(): void {
-    if (this.formularioEditarInventarioSalida.valid) 
-    {
-      console.log('Se presionó el botón');
-      console.log(this.formularioEditarInventarioSalida.value);
-      this.InventarioService.editarproductoSalida(this.idProductosalida,this.formularioEditarInventarioSalida.value).subscribe(
-        (response) => {
-         console.log('Se actualizo correctamente');
-         this.mostratDialogoAviso();
-         
-        
-        },
-        (error) => {
-           //Manejar errores del servicio aquí
+  enviarDatosActualizar(){
+    if (this.formularioEditarInventarioSalida.valid) {
+      console.log('Formulario:', this.formularioEditarInventarioSalida.value);
+      console.log('id rec', this.idProductosalida);
+      console.log('Datos que se enviarán:', this.formularioEditarInventarioSalida.value);
+
+     this.InventarioService.editarproducto(this.idProductosalida, this.formularioEditarInventarioSalida.value).subscribe(
+    (response) => {
+        console.log('Respuesta del servidor:', response);
+
+        if (response.success === 1) {
+            console.log('La actualización fue exitosa');
+            // Accede a los datos actualizados
+            const InventarioSActualiado = response.data;
+            console.log('Datos del inventario actualizados:', InventarioSActualiado);
+
+            this.mostratDialogoAviso();
+        } else {
+            console.error('Error al actualizar el inventario:', response.error);
+            // Manejar errores del servicio aquí
         }
-      );
+    },
+    (error) => {
+        console.error('Error al actualizar el inventario:', error);
     }
+);
+
+    }
+    
   }
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{

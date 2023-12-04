@@ -46,7 +46,7 @@ export class InventarioControlSalidaComponent implements OnInit {
   verDetalles(element: PeriodicElement2) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
-    const idproductoSalida = element.idProductosalida;
+    const idproductoSalida = element.idProductoSalida;
     // Puedes abrir un modal, mostrar información adicional, etc.
     this.router.navigateByUrl(`/dashboard/inventario/inventarioEditSalida/${idproductoSalida}`)
   }
@@ -81,7 +81,7 @@ export class InventarioControlSalidaComponent implements OnInit {
       const index =this.dataSource.data.indexOf(element);
       const usuarioElimina=correoSave;
       if(index >=0){
-        const idproductosalida = element.idProductosalida;
+        const idproductosalida = element.idProductoSalida;
         this.dataSource.data.splice(index,1);
         this.InventarioService.borrarInventario(idproductosalida,usuarioElimina).subscribe();
         this.dataSource._updateChangeSubscription();

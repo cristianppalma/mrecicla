@@ -33,7 +33,7 @@
             <label>Area designada</label>
             <mat-form-field>
               <mat-label>Área</mat-label>
-              <mat-select  formControlName="idArea">
+              <mat-select  formControlName="NombreArea">
                 <mat-option value="0"> </mat-option>
                 <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
               </mat-select>
