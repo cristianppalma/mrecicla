@@ -9,9 +9,9 @@ import { Produccion } from './produccion';
 })
 export class ProduccionEmpleadoService {
   // URL DE LA LLAMADA A LA API
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
 
-  //API: string = 'http://localhost/PhpAngular/produccionarea/';
+  API: string = 'http://localhost/PhpAngular/produccionarea/';
 
   private correo: string;
   private nombre: string;
@@ -29,7 +29,7 @@ export class ProduccionEmpleadoService {
 
   //Con procedimiento almacenado
   listarProduccionArea(id:any): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProduccionArea="+id);
+    return this.clientService.get<PeriodicElement[]>(this.API+"?consultarPorIdUsuario="+id);
   }
 
   // SERVICIO PARA AGREGAR UN REGISTRO
@@ -55,6 +55,10 @@ export class ProduccionEmpleadoService {
   // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
   selectInventarioSalida(){
     return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
+  }
+
+  selectUsuarios(){
+    return this.clientService.get<any[]>(this.API+"?selectUsuarios");
   }
 
   // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
