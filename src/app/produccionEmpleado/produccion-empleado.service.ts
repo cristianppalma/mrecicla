@@ -24,7 +24,7 @@ export class ProduccionEmpleadoService {
   // CONEXION DE FRONTEND CON BACKEND
   // SERVICIO PARA TRAER TODOS LOS REGISTROS
   listarProduccionGeneral(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API);
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProduccionAdmin=1");
   }
 
   //Con procedimiento almacenado
@@ -33,12 +33,12 @@ export class ProduccionEmpleadoService {
   }
 
   // SERVICIO PARA AGREGAR UN REGISTRO
-  agregarProduccionArea(datosProduccionArea:Produccion,):Observable<any>{
+  agregarProduccionArea(datosProduccionArea:Produccion):Observable<any>{
     return this.clientService.post(this.API+"?insertarProduccionArea=1",datosProduccionArea);
   }
 
   // SERVICIO PARA VER LOS DETALLES DE UN REGISTRO
-  verDetallesProduccionArea(idProduccionArea:string): Observable<any> {
+  verDetallesProduccionArea(idProduccionArea:any): Observable<any> {
     return this.clientService.get(this.API+"?consultarProduccionArea="+idProduccionArea);
   }
 

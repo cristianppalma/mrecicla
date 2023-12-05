@@ -42,7 +42,7 @@
           <label>ID Usuario</label>
           <mat-form-field>
             <!-- <mat-label>Nombre del usuario</mat-label> -->
-            <input disabled="" type="text" matInput value="{{usuario}}">
+            <input formControlName="idUser" type="text" readonly matInput value="{{usuario}}">
           </mat-form-field>
 
         </div>
@@ -88,7 +88,7 @@
           <label>Nombre Usuario</label>
           <mat-form-field>
             <!-- <mat-label>Nombre del usuario</mat-label> -->
-            <input disabled="" type="text" matInput value="{{usuarioNombre}}">
+            <input  formControlName="UsuarioCreador" readonly  matInput >
           </mat-form-field>
 
         </div>
