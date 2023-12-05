@@ -17,8 +17,10 @@ import { Dialog } from '@angular/cdk/dialog';
 })
 export class ProduccionEmpleadoCreateComponent implements OnInit {
 
-  usuario: string | null;
+  usuarioId: string | null;
   usuarioNombre: string | null;
+  usuarioCorreo: string | null;
+
   maquinarias: any[];
   areas: any[];
   inventariosSalida: any[];
@@ -31,6 +33,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     private dialog: MatDialog
   ) {
     const idUserSave = this.produccionEmpleadoService.getId();
+    const nombreSave = this.produccionEmpleadoService.getNombre();
     const correoSave = this.produccionEmpleadoService.getCorreo();
     this.formularioProduccionArea = this.formBuilder.group({
       FechaInicio: [''],
@@ -43,8 +46,9 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       idMaquinaria: [''],
       idArea: [''],
       idInventarioFabrica: [''],
-      idEmpleado: [idUserSave],
-      UsuarioCreador : [correoSave]
+      idUsuario: [idUserSave],
+      UsuarioCreador : [correoSave],
+      UsuarioCreadorNombre: [nombreSave],
     });
   }
 
@@ -85,16 +89,29 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // TRAEMOS EL ID
     console.log('AQUI MOSTRARIAMOS EL ID TRAIDO DESDE EL SERVICE');
     const idUserSave = this.produccionEmpleadoService.getId();
     console.log('ID del Usuario desde el service: ', idUserSave);
 
+    this.usuarioId = localStorage.getItem("id_user");
+    console.log('ID: ', this.usuarioId);
 
-    this.usuario = localStorage.getItem("id_user");
-    console.log('ID: ', this.usuario);
+    // TRAEMOS EL NOMBRE
+    console.log('AQUI MOSTRARIAMOS EL NOMBRE TRAIDO DESDE EL SERVICE');
+    const nombreUserSave = this.produccionEmpleadoService.getNombre();
+    console.log('Nombre del Usuario desde el service: ', nombreUserSave);
 
     this.usuarioNombre = localStorage.getItem("Nombre");
     console.log('Nombre', this.usuarioNombre);
+
+    // TRAEMOS EL CORREO
+    console.log('AQUI MOSTRARIAMOS EL COOREO TRAIDO DESDE EL SERVICE');
+    const correoUserSave = this.produccionEmpleadoService.getCorreo();
+    console.log('Correo del Usuario desde el service: ', correoUserSave);
+
+    this.usuarioCorreo = localStorage.getItem("Correo");
+    console.log('Correo', this.usuarioCorreo);
 
     //
     this.produccionEmpleadoService.selectMaquinaria().subscribe((data)=>{

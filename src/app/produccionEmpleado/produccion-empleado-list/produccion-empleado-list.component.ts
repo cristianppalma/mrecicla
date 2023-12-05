@@ -27,13 +27,14 @@ export class ProduccionEmpleadoListComponent implements OnInit {
   displayedColumns: string[] = [
                                   //'idEmpleado',
                                   'idProduccionArea',
+                                  'UsuarioCreadorNombre',
                                   'FechaInicio',
                                   'FechaFin',
                                   'HoraInicio',
                                   'HoraFin',
-                                  'NombreInsumo',
+                                  //'NombreInsumo',
                                   // 'Turno',
-                                  //'idInventarioFabrica',
+                                  'idInventarioFabrica',
                                   'UnidadesInsumo',
                                   // 'productoProduccion',
                                   'KgProduccion',
@@ -97,11 +98,11 @@ export class ProduccionEmpleadoListComponent implements OnInit {
     console.log('Nombre desde el localStorage: ', nombreSave);
 
     console.log('AQUI ABAJO SE MOSTRARIA EL id QUE SE TRAE DESDE EL LOCALSTORAGE');
-    const idEmpleado = this.produccionEmpleadoService.getId();
-    console.log('ID desde el localStorage: ', idEmpleado);
+    const idUsuario = this.produccionEmpleadoService.getId();
+    console.log('ID desde el localStorage: ', idUsuario);
 
 
-    this.produccionEmpleadoService.listarProduccionArea(idEmpleado).subscribe((respuesta: PeriodicElement[]) => {
+    this.produccionEmpleadoService.listarProduccionArea(idUsuario).subscribe((respuesta: PeriodicElement[]) => {
       console.log(respuesta);
       console.log('Obtenemos todos los registros');
 
@@ -115,11 +116,22 @@ export class ProduccionEmpleadoListComponent implements OnInit {
       this.inventariosSalida=data;
     })
 
+
+    // //
+    // this.produccionEmpleadoService.selectUsuarios().subscribe((data)=>{
+    //   this.inventariosSalida=data;
+    // })
+
   }
 
   obtenerNombreInsumo(idInventarioFabrica: number): string {
     const inventario = this.inventariosSalida.find(item => item.idInventarioFabrica === idInventarioFabrica);
     return inventario ? inventario.NombreInsumo : '';
   }
+
+  // obtenerNombreUsuario(idUsuario: number): string {
+  //   const nombreUser = this.inventariosSalida.find(item => item.idUsuario === idUsuario);
+  //   return nombreUser ? nombreUser.Nombre : '';
+  // }
 
 }
