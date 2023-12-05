@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { InventarioService } from '../inventario.service';
+import { InventarioSalidaService } from '../inventario-salida.service';
 import {
   MatBottomSheet,
   MatBottomSheetRef,
@@ -31,38 +32,38 @@ export class InventarioEditSalidaComponent implements OnInit {
   formularioEditarInventarioSalida:FormGroup;
   idProductosalida:any;
 
-  constructor(private router:Router, 
+  constructor(private router:Router,
     private _bottomSheet: MatBottomSheet,
     private formBuilder :FormBuilder,
-      private InventarioService: InventarioService,
+      private InventarioServiceSalida: InventarioSalidaService,
       private dialog:MatDialog,
       private activateRoute: ActivatedRoute
   //traer servicios
   ) {
-    this.InventarioService.selectAreas().subscribe((data) => {
+    this.InventarioServiceSalida.selectAreas().subscribe((data) => {
       this.areas = data;
     });
-    const correoSave = this.InventarioService.getCorreo();
+    const correoSave = this.InventarioServiceSalida.getCorreo();
     this.formularioEditarInventarioSalida = this.formBuilder.group({
       nombreProducto: [''],
-      Peso: [''], 
-      FechaRegistro: [''],
-      Calibre: [''],
-      NombreArea:[''],
+      peso: [''],
+      fechaRegistro: [''],
+      calibre: [''],
+      idArea:[''],
       UsuarioActualizador:[correoSave]
     });
     this.activateRoute.paramMap.subscribe(params => {
       this.idProductosalida = params.get('id');
 
-      this.InventarioService.consultarInventarioSalida(this.idProductosalida).subscribe((respuesta=>{
+      this.InventarioServiceSalida.consultarInventarioSalida(this.idProductosalida).subscribe((respuesta=>{
         this.formularioEditarInventarioSalida.setValue({
           nombreProducto: respuesta.nombreProducto || '',
-          Peso: respuesta.Peso,
-          FechaRegistro: respuesta.FechaRegistro,
-          Calibre: respuesta.Calibre,
-          NombreArea: respuesta.NombreArea.toString() || '',
-          UsuarioActualizador: respuesta.UsuarioActualizador || correoSave
-          
+          peso: respuesta.peso,
+          fechaRegistro: respuesta.fechaRegistro,
+          calibre: respuesta.calibre,
+          idArea: respuesta.idArea.toString(),
+          UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
+
         });
       }))
     })
@@ -74,7 +75,7 @@ export class InventarioEditSalidaComponent implements OnInit {
       console.log('id rec', this.idProductosalida);
       console.log('Datos que se enviarán:', this.formularioEditarInventarioSalida.value);
 
-     this.InventarioService.editarproducto(this.idProductosalida, this.formularioEditarInventarioSalida.value).subscribe(
+     this.InventarioServiceSalida.editarproductoSalida(this.idProductosalida, this.formularioEditarInventarioSalida.value).subscribe(
     (response) => {
         console.log('Respuesta del servidor:', response);
 
@@ -96,7 +97,7 @@ export class InventarioEditSalidaComponent implements OnInit {
 );
 
     }
-    
+
   }
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
@@ -107,7 +108,7 @@ export class InventarioEditSalidaComponent implements OnInit {
         this.router.navigateByUrl('/dashboard/inventario/inventarioSalida');
       }
     });
-  
+
   }
 
   Cancelar(){
@@ -120,7 +121,7 @@ export class InventarioEditSalidaComponent implements OnInit {
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
 
-    this.InventarioService.selectAreas().subscribe((data)=>{
+    this.InventarioServiceSalida.selectAreas().subscribe((data)=>{
       this.areas=data;
     })
   }

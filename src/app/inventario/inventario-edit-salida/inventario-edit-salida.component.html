@@ -2,56 +2,56 @@
     <div class="cabecera">
       <H1 >EDITAR PRODUCTO</H1>
     </div >
-      
-      
+
+
     <form [formGroup]="formularioEditarInventarioSalida"(ngSubmit)="enviarDatosActualizar()" >
       <div class="formula" style="border:none;" >
         <div class="formula1">
-          
-  
+
+
           <label>Nombre del producto</label>
           <mat-form-field class="derecha">
             <mat-label>Producto</mat-label>
             <input formControlName="nombreProducto"matInput>
           </mat-form-field>
-  
+
           <label>Peso</label>
             <mat-form-field class="example-full-width">
               <mat-label>Peso</mat-label>
-              <input formControlName="Peso" matInput>
+              <input formControlName="peso" matInput>
             </mat-form-field>
             <label>Image</label>
-            
-  
+
+
             <label>FechaCreacion</label>
             <mat-form-field class="example-full-width">
               <mat-label>FechaCreacion</mat-label>
-              <input formControlName="FechaRegistro" matInput>
+              <input formControlName="fechaRegistro" matInput>
             </mat-form-field>
-          
-  
+
+
             <label>Area designada</label>
             <mat-form-field>
               <mat-label>Área</mat-label>
-              <mat-select  formControlName="NombreArea">
+              <mat-select  formControlName="idArea">
                 <mat-option value="0"> </mat-option>
-                <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
+                <mat-option *ngFor="let area of areas" [value]="area.idArea">{{area.NombreArea}}</mat-option>
               </mat-select>
             </mat-form-field>
-  
+
             <label>Calibre</label>
             <mat-form-field class="example-full-width">
               <mat-label>Calibre</mat-label>
-              <input formControlName="Calibre" matInput>
+              <input formControlName="calibre" matInput>
             </mat-form-field>
-          
+
           </div>
         </div>
         <div class="botones">
           <button type="submit" class="left" mat-button style="background-color: #d6e44b; margin-left: 1rem;">ACTUALIZAR</button>
         <button  (click)="Cancelar();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
-  
+
         </div>
         </form>
-       
+
   </div>

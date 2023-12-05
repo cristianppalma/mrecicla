@@ -4,6 +4,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { PeriodicElement } from '../PeriodicElement';
 import { MatDialog } from '@angular/material/dialog';
 import { InventarioService } from '../inventario.service';
+import { InventarioSalidaService } from '../inventario-salida.service';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
 import { PeriodicElement2 } from '../PeriodicElement2';
 
@@ -21,7 +22,7 @@ interface Food {
 export class InventarioControlSalidaComponent implements OnInit {
   areas : any[]=[];
   Producto:PeriodicElement2[] = [];
-  displayedColumns:string[] = ['idproductosalida','nombreProducto','Peso','FechaRegistro','Calibre','area','action']
+  displayedColumns:string[] = ['idProductosalida','nombreProducto','peso','fechaRegistro','calibre','idArea','action']
   dataSource: MatTableDataSource<PeriodicElement2>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -46,14 +47,14 @@ export class InventarioControlSalidaComponent implements OnInit {
   verDetalles(element: PeriodicElement2) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
-    const idproductoSalida = element.idProductoSalida;
+    const idProductosalida = element.idProductosalida;
     // Puedes abrir un modal, mostrar información adicional, etc.
-    this.router.navigateByUrl(`/dashboard/inventario/inventarioEditSalida/${idproductoSalida}`)
+    this.router.navigateByUrl(`/dashboard/inventario/inventarioEditSalida/${idProductosalida}`)
   }
 
   constructor(private router:Router,
     private dialog:MatDialog,
-    private InventarioService:InventarioService
+    private InventarioServiceSalida:InventarioSalidaService
 
     ) {
       this.dataSource=new MatTableDataSource<PeriodicElement2>([]);
@@ -68,39 +69,22 @@ export class InventarioControlSalidaComponent implements OnInit {
       this.router.navigateByUrl('/dashboard/inventario/inventarios')
     }
 
-    borrarInventarioSalida(element:PeriodicElement2): void{
-      const index =this.dataSource.data.indexOf(element);
 
-      if(index >=0){
-        this.dataSource.data.splice(index,1);
-        this.dataSource._updateChangeSubscription();
-      }
-    }
     borrarInventarioSalida2(element:PeriodicElement2): void{
-      const correoSave = this.InventarioService.getCorreo();
+      const correoSave = this.InventarioServiceSalida.getCorreo();
       const index =this.dataSource.data.indexOf(element);
       const usuarioElimina=correoSave;
       if(index >=0){
-        const idproductosalida = element.idProductoSalida;
+        const idProductosalida = element.idProductosalida;
         this.dataSource.data.splice(index,1);
-        this.InventarioService.borrarInventario(idproductosalida,usuarioElimina).subscribe();
+        this.InventarioServiceSalida.borrarInventarioSalida(idProductosalida,usuarioElimina).subscribe();
         this.dataSource._updateChangeSubscription();
 
          // Aquí tienes tanto el índice como el idMaquina
-      console.log(`Elemento eliminado en el índice ${index}, ID del producto: ${idproductosalida}`);
+      console.log(`Elemento eliminado en el índice ${index}, ID del producto: ${idProductosalida}`);
       }
     }
-    mostrarDialogoDeConfirmacion(element: PeriodicElement2): void {
-      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-        data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
-      });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.borrarInventarioSalida(element);
-        }
-      });
-    }
     mostrarDialogoDeConfirmacion2(element: PeriodicElement2): void {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
@@ -114,19 +98,23 @@ export class InventarioControlSalidaComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.InventarioService.listarInventariosalida().subscribe((respuesta: PeriodicElement2[]) => {
-      console.log(respuesta);
+    this.InventarioServiceSalida.listarInventariosalida().subscribe((respuesta: PeriodicElement2[]) => {
+      console.log('LISTA DE PRODUCTOS: ', respuesta);
       this.Producto = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
-    this.InventarioService.selectAreas().subscribe((data)=>{
+
+    this.InventarioServiceSalida.selectAreas().subscribe((data)=>{
       this.areas=data;
     })
-    
-  } 
+
+  }
 
 
-
+obtenerNombreArea(idArea: number): string {
+    const area = this.areas.find(item => item.idArea === idArea);
+    return area ? area.NombreArea : '';
+  }
 
 
 

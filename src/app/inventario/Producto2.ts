@@ -1,9 +1,11 @@
 export class producto2{
     //ID!:String;
     nombreProducto!:String;
-    Peso!:String;
-    FechaRegistro!:String;
-    Calibre!:String;
-    NombreArea!:String;
+    peso!:String;
+    fechaRegistro!:String;
+    calibre!:String;
+    idArea!:String;
+    // idArea!:String;
     UsuarioCreador!:String;
+    UsuarioActualizador!:String;
 }

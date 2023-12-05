@@ -10,7 +10,7 @@ import { PeriodicElement2 } from './PeriodicElement2';
 })
 export class InventarioService {
   API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
-  API2: string = 'https://recicladora.arvispace.com/PhpAngular/inventarioSalida/'
+  //API2: string = 'https://recicladora.arvispace.com/PhpAngular/inventarioSalida/'
   private correo: string;
   private nombre: string;
   //API: string = 'http://localhost/PhpAngular/inventario/';
@@ -55,23 +55,23 @@ export class InventarioService {
 
   //Actualizar y consultar
 
-  listarInventariosalida(): Observable<PeriodicElement2[]> {
-    return this.clientService.get<PeriodicElement2[]>(this.API2+"?ObtenerProductos=1");
-  }
+  // listarInventariosalida(): Observable<PeriodicElement2[]> {
+  //   return this.clientService.get<PeriodicElement2[]>(this.API2+"?obtenerProductosSalida=1");
+  // }
 
-  consultarInventarioSalida(id:any): Observable<PeriodicElement2> {
-    return this.clientService.get<PeriodicElement2>(this.API2+"?ObtenerProductosPor="+id);
+  // consultarInventarioSalida(id:any): Observable<any> {
+  //   return this.clientService.get<PeriodicElement2>(this.API2+"?obtenerProductosSalidaPorID="+id);
 
-  }
+  // }
 
-  editarproductoSalida(id:any, datosProducto:producto2):Observable<any>{
-    return this.clientService.post(this.API+"?ActualizarProductos="+id,datosProducto);
+  // editarproductoSalida(id:any, datosProducto:producto2):Observable<any>{
+  //   return this.clientService.post(this.API2+"?actualizarProductos="+id,datosProducto);
 
-  }
+  // }
 
-  borrarInventarioSalida(id:any,usuarioEliminador: any):Observable<any>{
-    return this.clientService.delete(`${this.API}?borrarInventarioSalida=${id}&UsuarioEliminador=${usuarioEliminador}`);
-  }
+  // borrarInventarioSalida(id:any,usuarioEliminador: any):Observable<any>{
+  //   return this.clientService.get(`${this.API2}?borrarInventarioSalida=${id}&UsuarioEliminador=${usuarioEliminador}`);
+  // }
     // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
     getCorreo(): string {
       return this.correo = localStorage.getItem("Correo") || '';
