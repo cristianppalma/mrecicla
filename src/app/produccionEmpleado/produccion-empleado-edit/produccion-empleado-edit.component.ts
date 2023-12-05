@@ -10,7 +10,7 @@ import { ProduccionEmpleadoService } from '../produccion-empleado.service';
 })
 export class ProduccionEmpleadoEditComponent implements OnInit {
 
-  usuarioId: string | null;
+  usuario: string | null;
   usuarioNombre: string | null;
   usuarioCorreo: string | null;
 
@@ -40,9 +40,11 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       idMaquinaria: [''],
       idArea: [''],
       idInventarioFabrica: [''],
-      idUsuario: [''],
-      UsuarioCreador : [''],
-      UsuarioCreadorNombre: [''],
+      UsuarioCreador:[''],
+      idUser : [''],
+      // idEmpleado: [''],
+      UsuarioActualizador : [correoSave],
+
     });
   }
 
@@ -62,14 +64,15 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
 
 
     this.elID=this.activatedRoute.snapshot.paramMap.get('id');
+
     console.log('OBTENEMOS EL ID: ', this.elID);
-    this.produccionEmpleadoService.verDetallesProduccionArea(this.elID).subscribe(
-      respuesta => {
+
+    this.produccionEmpleadoService.verDetallesProduccionArea(this.elID).subscribe(respuesta => /*{
         console.log('Respuesta de la API: ', respuesta);
         const produccionArea = respuesta [0];
         console.log('datos del registro: ', produccionArea);
         this.formularioProduccionAreaDetails.setValue({
-          FechaInicio: produccionArea.FechaInicio,
+          FechaInicio: produccionArea.FechaInicio.toString() || '',
           FechaFin: produccionArea.FechaFin,
           HoraInicio: produccionArea.HoraInicio,
           HoraFin: produccionArea.HoraFin,
@@ -79,20 +82,56 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
           idMaquinaria: produccionArea.idMaquinaria.toString(),
           idArea: produccionArea.idArea.toString(),
           idInventarioFabrica: produccionArea.idInventarioFabrica.toString(),
-          idUsuario: produccionArea.idUsuario,
-          UsuarioCreador: produccionArea.UsuarioCreador,
-          UsuarioCreadorNombre: produccionArea.UsuarioCreadorNombre,
+          UsuarioCreador:produccionArea.UsuarioCreador.toString() || 'na',
+          idUser : produccionArea.idEmpleado,
+          UsuarioActualizador: produccionArea.UsuarioActualizador || correoSave,
+
         });
-      }, error => {
+      }*/
+
+      {
+        console.log('Respuesta del servicio:', respuesta);
+
+        // Asegúrate de que respuesta sea un objeto JSON válido
+        if (respuesta && typeof respuesta === 'object') {
+          // Asegúrate de que los datos se serialicen como JSON válido
+          try {
+            this.formularioProduccionAreaDetails.setValue({
+              FechaInicio: respuesta.FechaInicio.toString() || '',
+              FechaFin: respuesta.FechaFin,
+          HoraInicio: respuesta.HoraInicio,
+          HoraFin: respuesta.HoraFin,
+          Turno: respuesta.Turno,
+          UnidadesInsumo: respuesta.UnidadesInsumo,
+          KgProduccion: respuesta.KgProduccion,
+          idMaquinaria: respuesta.idMaquinaria.toString(),
+          idArea: respuesta.idArea.toString(),
+          idInventarioFabrica: respuesta.idInventarioFabrica.toString(),
+          UsuarioCreador:respuesta.Nombre.toString() || 'na',
+          idUser : respuesta.idEmpleado,
+          UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
+            });
+
+
+          } catch (error) {
+            console.error('Error al deserializar los datos JSON:', error);
+          }
+        } else {
+          console.error('No se encontraron datos válidos para el ID proporcionado.');
+          // Aquí puedes mostrar un mensaje de error al usuario o redirigir a una página de error.
+        }
+
+      }
+      , error => {
         console.log('ERRRO DE LA SOLICITUD: ', error);
       }
     );
 
-    this.usuarioId = localStorage.getItem("id_user");
-    console.log('ID: ', this.usuarioId);
+    this.usuario = localStorage.getItem("id_user");
+    console.log('ID: ', this.usuario);
 
-    this.usuarioNombre = localStorage.getItem("Nombre");
-    console.log('Nombre', this.usuarioNombre);
+   /* this.usuarioNombre = localStorage.getItem("Nombre");
+    console.log('Nombre', this.usuarioNombre);*/
 
     this.usuarioCorreo = localStorage.getItem("Correo");
     console.log('Correo', this.usuarioCorreo);

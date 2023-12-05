@@ -32,7 +32,7 @@
           <label>ID Usuario</label>
           <mat-form-field>
             <!-- <mat-label>Nombre del usuario</mat-label> -->
-            <input type="text" matInput formControlName="idUsuario">
+            <input formControlName="idUser" type="text" readonly matInput value="{{usuario}}">
           </mat-form-field>
 
           <label>Nombre Usuario</label>
@@ -95,6 +95,12 @@
               <mat-option value="0"> </mat-option>
               <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
             </mat-select>
+          </mat-form-field>
+
+          <label>Nombre Usuario</label>
+          <mat-form-field>
+            <!-- <mat-label>Nombre del usuario</mat-label> -->
+            <input  formControlName="UsuarioCreador" readonly  matInput >
           </mat-form-field>
 
         </div>

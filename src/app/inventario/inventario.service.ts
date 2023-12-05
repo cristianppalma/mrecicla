@@ -24,7 +24,7 @@ export class InventarioService {
   }
 
   listarInventario(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?ObtenerInventario=1");
+    return this.clientService.get<PeriodicElement[]>(this.API+"?Inventario=1");
   }
 
 /*  borrarInventario(id:any):Observable<any>{
