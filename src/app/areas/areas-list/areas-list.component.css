@@ -58,3 +58,19 @@
   h1{
     font-size: 48px;
   }
+
+  .estatus{
+    background-color: green;
+    padding: 5px;
+    color: white;
+  }
+  .activo{
+    background-color: green;
+    padding: 5px;
+    color: white;
+  }
+  .inactivo{
+    background-color: red;
+    padding: 5px;
+    color: white;
+  }

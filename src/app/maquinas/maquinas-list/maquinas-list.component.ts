@@ -5,12 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component'
 import { MaquinasService } from '../maquinas.service';
 import { PeriodicElement } from '../PeriodicElement';
-
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-maquinas-list',
@@ -18,50 +13,60 @@ interface Food {
   styleUrls: ['./maquinas-list.component.css']
 })
 
-
 export class MaquinasListComponent  implements OnInit {
   Maquina: PeriodicElement[] = [];
+  areas: any[]=[];
   displayedColumns: string[] = ['idMaquina','Serie', 'Numero', 'Modelo', 'Descripcion', 'Estado','Area','action'];
   dataSource: MatTableDataSource<PeriodicElement>;
+  filterForm: FormGroup;  // Declara un FormGroup
 
-  formatDateWithLeadingZeros(date: Date): string {
-    const day = ('0' + date.getDate()).slice(-2);
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const year = date.getFullYear();
-
-    return `${day}/${month}/${year}`;
+  constructor(private router:Router,
+              private dialog: MatDialog,
+              private MaquinaService:MaquinasService,
+              private fb: FormBuilder
+     ) {
+      this.dataSource = new MatTableDataSource<PeriodicElement>([]);
+      this.filterForm = this.fb.group({
+        Area: [''] 
+      });
+     }
+  crearMaquina(){
+    this.router.navigateByUrl('/dashboard/maquinas/maquinascreate');
   }
 
-  foods: Food[] = [
-    {value:'',viewValue:''},
-    {value: 'Hilos', viewValue: 'Hilos'},
-    {value: 'Telar', viewValue: 'Telar'},
-    {value: 'Bordado', viewValue: 'Bordado'},
-  ];
- 
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    //this.filtrarPorArea();
   }
 
- 
+  filtrarPorArea() {
+    console.log('entro');
+    if (this.filterForm && this.filterForm.get('Area')) {
+      console.log('segundo nivel');
+      const areaControl = this.filterForm.get('Area');
+      if (areaControl) {
+        console.log('tercer nivel');
+        const areaValue = areaControl.value;
+  
+        if (areaValue && areaValue !== '0') {
+          this.dataSource.filter = areaValue.toString();
+        } else {
+          // Si el valor es '0' o nulo, quitar el filtro
+          this.dataSource.filter = '';
+        }
+      }
+    }
+  }
+  
+  
   verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
     // Puedes abrir un modal, mostrar información adicional, etc.
     const idMaquina = element.idMaquina; // Obtener el ID de la máquina
     this.router.navigateByUrl(`/dashboard/maquinas/maquinaseditar/${idMaquina}`);
-  }
-
-  constructor(private router:Router,
-              private dialog: MatDialog,
-              private MaquinaService:MaquinasService
-     ) {
-      this.dataSource = new MatTableDataSource<PeriodicElement>([]);
-     }
-  crearMaquina(){
-    this.router.navigateByUrl('/dashboard/maquinas/maquinascreate');
   }
 
 
@@ -82,13 +87,10 @@ export class MaquinasListComponent  implements OnInit {
       this.dataSource.data.splice(index, 1);
       this.MaquinaService.eliminarMaquina(idMaquina, usuarioElimina).subscribe();
       this.dataSource._updateChangeSubscription(); // Actualizar la vista de la tabla
-      
       // Aquí tienes tanto el índice como el idMaquina
       console.log(`Elemento eliminado en el índice ${index}, ID de la máquina: ${idMaquina}`);
     }
   }
-  
-  
 
   mostrarDialogoDeConfirmacion(element: PeriodicElement): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -115,13 +117,15 @@ export class MaquinasListComponent  implements OnInit {
   }
   
   ngOnInit(): void {
+   
+    this.MaquinaService.getAreas().subscribe((data) => {
+      this.areas = data;
+    });
     this.MaquinaService.listarMaquina().subscribe((respuesta: PeriodicElement[]) => {
       console.log(respuesta);
       this.Maquina = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
+   
   }
-
-
-
 }
