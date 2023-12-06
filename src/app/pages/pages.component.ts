@@ -10,6 +10,7 @@ export class PagesComponent implements OnInit {
 
   // Visualizar de acuerdo al rol
   usuarioTienePermiso: boolean;
+  usuarioTienePermisoSuper: boolean;
   //
   nombreUsuario: string | null;
   idUsuario: string | null;
@@ -21,6 +22,8 @@ export class PagesComponent implements OnInit {
   ) {
     // Visualizar de acuerdo al rol
     this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
+
+    this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
   }
 
   editarAdmin(){
@@ -40,6 +43,14 @@ export class PagesComponent implements OnInit {
   }
 
 
+  private verificarPermisosDelUsuarioSuper(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    const puesto = localStorage.getItem("Puesto");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+  }
+
+
   // Se termina la sesion y eliminamos el token del localStorage
   logout(){
     // Para borrar el token del Local Storage
@@ -48,6 +59,8 @@ export class PagesComponent implements OnInit {
     localStorage.removeItem('NombreTipoUser');
     localStorage.removeItem('Nombre');
     localStorage.removeItem('Correo');
+    localStorage.removeItem('NombreFabrica');
+    localStorage.removeItem('idFabrica');
     // Para borrar todos los elementos del Local Storage
     // localStorage.clear();
     console.log('Se elimino el token');
@@ -62,6 +75,6 @@ export class PagesComponent implements OnInit {
 
   }
 
- 
+
 
 }

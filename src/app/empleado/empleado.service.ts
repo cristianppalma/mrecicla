@@ -11,13 +11,15 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class EmpleadoService {
   // URL DE LA LLAMADA A LA API
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/'
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/'
 
-  //API: string = 'http://localhost/PhpAngular/';
+  API: string = 'http://localhost/PhpAngular/';
 
   // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;
   private nombre: string;
+  private tipoUsuario: string;
+  private idFabricaUsuario: string;
 
   constructor( private clientService:HttpClient) { }
 
@@ -61,6 +63,12 @@ export class EmpleadoService {
     return this.clientService.get<any[]>(this.API+"?selectTipoUsuario");
   }
 
+   // OBTENEMOS LOS REGISTROS DE TIPOS DE USUARIOS
+   SelectFabricas (){
+    return this.clientService.get<any[]>(this.API+"?selectFabrica");
+  }
+
+
    // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
    getCorreo(): string {
     return this.correo = localStorage.getItem("Correo") || '';
@@ -69,6 +77,14 @@ export class EmpleadoService {
   // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
   getNombre(): string {
     return this.nombre = localStorage.getItem("Nombre") || '';
+  }
+
+  getTipoUsuario(): string {
+    return this.tipoUsuario = localStorage.getItem("NombreTipoUser") || '';
+  }
+
+  getIdFabricaUsuario(): string {
+    return this.idFabricaUsuario = localStorage.getItem("idFabrica") || '';
   }
 
 }

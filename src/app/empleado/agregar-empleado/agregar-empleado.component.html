@@ -1,7 +1,8 @@
 <img src="assets/img/Icons/User2.png">
 
 <div class="Titulo">
-<h1>Agregar empleado</h1>
+<h1 *ngIf="usuarioTienePermiso">Agregar empleado</h1>
+<h1 *ngIf="usuarioTienePermisoSuper">Agregar Administrador</h1>
 
 </div>
 <form [formGroup]="formularioEmpleado" (ngSubmit)="enviarDatos()">
@@ -36,35 +37,45 @@
             <br>
 
 
-            <mat-form-field>
+            <!-- <mat-form-field *ngIf="usuarioTienePermiso">
               <mat-label>Tipo de Usuario </mat-label>
               <mat-select formControlName="idTipoUsuario">
                 <mat-option value="0"> </mat-option>
                 <mat-option *ngFor="let tipoUsuarios of tipoUsuarios" [value]="tipoUsuarios.idTipoUsuario">{{ tipoUsuarios.NombreTipoUser}}</mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field> -->
       </div>
       <div class="derecha">
           <br>
+
           <mat-form-field class="example-full-width custom-width">
               <mat-label>contraseña</mat-label>
               <input formControlName ='Pass' matInput placeholder="">
             </mat-form-field>
-            <br>
-            <mat-label style="font-size: medium;">practicante?</mat-label>
+            <br *ngIf="usuarioTienePermiso">
 
-            <label style="font-size: medium; margin-left: 10px;">
-            <input type="radio" value="Si" formControlName ="Practicante" />
+            <mat-label style="font-size: medium;" *ngIf="usuarioTienePermiso">practicante?</mat-label>
+
+            <label style="font-size: medium; margin-left: 10px;" *ngIf="usuarioTienePermiso">
+            <input type="radio" value="Si" formControlName ="Practicante" *ngIf="usuarioTienePermiso"/>
               si
           </label>
-          <label style="font-size: medium; margin-left: 50px;">
-           <input type="radio" value="No" formControlName ="Practicante" />
+          <label style="font-size: medium; margin-left: 50px;" *ngIf="usuarioTienePermiso">
+           <input type="radio" value="No" formControlName ="Practicante" *ngIf="usuarioTienePermiso"/>
             no
           </label>
-           <br>
+           <br *ngIf="usuarioTienePermiso">
            <br>
 
-           <mat-form-field>
+           <mat-form-field *ngIf="usuarioTienePermisoSuper">
+            <mat-label>Fabrica Asignada </mat-label>
+           <mat-select formControlName="idFabrica">
+            <mat-option value="0"> </mat-option>
+            <mat-option *ngFor="let fabrica of fabricas" [value]="fabrica.idFabrica">{{ fabrica.NombreFabrica}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+           <mat-form-field *ngIf="usuarioTienePermiso">
             <mat-label>Puesto </mat-label>
            <mat-select formControlName="idAsignacion">
             <mat-option value="0"> </mat-option>
@@ -78,7 +89,8 @@
               <input formControlName ='Sueldo' matInput placeholder="Ex. 1000">
             </mat-form-field>
             <br>
-            <mat-form-field class="example-full-width custom-width">
+
+            <mat-form-field class="example-full-width custom-width"  *ngIf="usuarioTienePermiso">
               <mat-label>Turno </mat-label>
              <mat-select formControlName="Turno">
               <mat-option value="sin turno">Sin turno</mat-option>
@@ -88,7 +100,8 @@
           </mat-select>
         </mat-form-field>
             <br>
-            <mat-form-field>
+
+            <mat-form-field *ngIf="usuarioTienePermiso">
               <mat-label>Area</mat-label>
               <mat-select formControlName="idArea">
                   <mat-option value="0"> </mat-option>
@@ -97,8 +110,8 @@
           </mat-form-field>
             <br>
             <button type=submit mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
-            <button mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
-              <a style="color: white;" [routerLink]="['/dashboard/empleado/listEmp']"> Cancelar </a>
+            <button mat-raised-button (click)="cancelar();" class="btn-eliminar custom-buton2" style="margin-left: 25px;">
+              <a style="color: white;"> Cancelar </a>
             </button>
       </div>
     </div>

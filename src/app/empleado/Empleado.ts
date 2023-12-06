@@ -8,6 +8,7 @@ export class Empleado {
   Sueldo              !:String;
   Turno               !:String;
   Domicilio           !:String;
+  idFabrica           !:String;
   idTipoUsuario       !:String;
   idAsignacion        !:String;
   idArea              !:String;
