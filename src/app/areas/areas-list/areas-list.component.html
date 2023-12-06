@@ -41,7 +41,10 @@
                 <!-- Weight Column -->
                 <ng-container matColumnDef="EstadoArea">
                   <th mat-header-cell *matHeaderCellDef> Estado Area </th>
-                  <td mat-cell *matCellDef="let element">{{ (element.EstadoArea) }}</td>
+                  <td mat-cell *matCellDef="let element">
+                    <span [ngClass]="element.EstadoArea === 'Activo' ? 'activo' : 'inactivo'">{{ (element.EstadoArea) }}</span>
+                  </td>
+                
                 </ng-container>
                 <!-- Symbol Column -->
           

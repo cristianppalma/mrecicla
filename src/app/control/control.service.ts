@@ -8,15 +8,26 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class ControlService {
   // URL DE LA LLAMADA A LA API
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/controlgastos/'
+ // API: string = 'https://recicladora.arvispace.com/PhpAngular/controlgastos/'
 
-  //API: string = 'http://localhost/PhpAngular/controlgastos/';
+  API: string = 'http://localhost/PhpAngular/controlgastos/';
 
   // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;
   private nombre: string;
+  private area: string;
 
   constructor( private clientService:HttpClient) {}
+
+
+  getAreas(){
+    return this.clientService.get<any[]>(this.API+"?selectArea=1");
+  }
+
+  getMaquinas(id:any){
+    return this.clientService.get<any[]>(this.API+"?selectMaquina="+id);
+  }
+
 
   getGastos(){
     return this.clientService.get<any[]>(this.API+"?selectGasto=1");
@@ -58,6 +69,10 @@ export class ControlService {
   // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
   getNombre(): string {
     return this.nombre = localStorage.getItem("Nombre") || '';
+  }
+
+  getidArea(): string{
+    return this.area = localStorage.getItem("idArea") || '';
   }
 
 }

@@ -9,12 +9,12 @@ import { PeriodicElement2 } from './PeriodicElement2';
   providedIn: 'root'
 })
 export class InventarioService {
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
   //API2: string = 'https://recicladora.arvispace.com/PhpAngular/inventarioSalida/'
   private correo: string;
   private nombre: string;
-  //API: string = 'http://localhost/PhpAngular/inventario/';
-  //API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
+  API: string = 'http://localhost/PhpAngular/inventario/';
+  API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
 
 
   constructor( private clientService:HttpClient) { }
@@ -55,9 +55,9 @@ export class InventarioService {
 
   //Actualizar y consultar
 
-  // listarInventariosalida(): Observable<PeriodicElement2[]> {
-  //   return this.clientService.get<PeriodicElement2[]>(this.API2+"?obtenerProductosSalida=1");
-  // }
+   listarInventariosalida(): Observable<PeriodicElement2[]> {
+     return this.clientService.get<PeriodicElement2[]>(this.API2+"?obtenerProductosSalida=1");
+   }
 
   // consultarInventarioSalida(id:any): Observable<any> {
   //   return this.clientService.get<PeriodicElement2>(this.API2+"?obtenerProductosSalidaPorID="+id);

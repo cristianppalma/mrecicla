@@ -29,7 +29,7 @@ export class ProduccionEmpleadoService {
 
   //Con procedimiento almacenado
   listarProduccionArea(id:any): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?consultarPorIdUsuario="+id);
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProduccionArea="+id);
   }
 
   // SERVICIO PARA AGREGAR UN REGISTRO

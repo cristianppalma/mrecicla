@@ -64,12 +64,19 @@ export class AuthComponent  implements OnInit {
             // Obtenemos el tipo del usuario
             let nombreUsuario = response.NombreTipoUser;
             localStorage.setItem("NombreTipoUser", nombreUsuario);
-            // Obtenemos la fabrica del usuario
-            let fabricaUsuario = response.NombreFabrica;
-            localStorage.setItem("NombreFabrica", fabricaUsuario);
+            // Obtenemos el nombre del area del usuario
+            let NombreArea = response.NombreArea;
+            localStorage.setItem("NombreArea",NombreArea);
+            // Obtenemos el id del area del usuario
+            let idArea = response.idArea;
+            localStorage.setItem("idArea",idArea);
+            // Obtenemos el nombre de la fabrica del usuario
+            let NombreFabrica = response.NombreFabrica;
+            localStorage.setItem("NombreFabrica", NombreFabrica);
             // Obtenemos el id de la fabrica del usuario
-            let fabricaIdUsuario = response.idFabrica;
-            localStorage.setItem("idFabrica", fabricaIdUsuario);
+            let idFabrica = response.idFabrica;
+            localStorage.setItem("idFabrica",idFabrica);
+
 
           }
         },
