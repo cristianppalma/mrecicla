@@ -79,3 +79,19 @@ mat-form-field {
   color: white;
 }
 
+.button-container {
+  margin-bottom: 20px;
+  margin: 8px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.btn_int {
+  background: #80a943;
+  color: white;
+  width: 150px;
+  height: 50px;
+  font-size: large;
+  margin: 8px;
+  border-radius: 5px;
+}

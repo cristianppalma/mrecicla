@@ -113,7 +113,7 @@ export class ProduccionListComponent implements OnInit {
   }
 
   //Funcion para ir a la pagina anterior
-  regresarProduccion (){
+  regresar (){
     if (window.history.length > 1) {
       // Si hay más de una página en el historial, regresa a la página anterior
       window.history.back();

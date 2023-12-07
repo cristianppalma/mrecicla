@@ -33,7 +33,7 @@ export class SolicitudesControlComponent implements OnInit{
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
+
   verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
@@ -100,6 +100,18 @@ ngOnInit(): void {
     this.Solicitud = respuesta;
     this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
   });
+}
+
+regresar (){
+  if (window.history.length > 1) {
+    // Si hay más de una página en el historial, regresa a la página anterior
+    window.history.back();
+} else {
+    // Si no hay más páginas en el historial, puedes redirigir a una página específica
+    // o realizar alguna otra acción en su lugar.
+    console.warn('No hay páginas anteriores en el historial.');
+    // Puedes redirigir a otra página o realizar otra acción aquí
+}
 }
 
 }

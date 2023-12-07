@@ -7,7 +7,7 @@
     min-width: 70vh;
     max-width: 100vh;
   }
-  
+
   .cabecera {
     text-align: center;
     border: 0px solid red;
@@ -19,7 +19,7 @@
     text-align: center;
     width: 1300px;
     padding-right: 13rem;
-    max-height: 400px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */ 
+    max-height: 400px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
   }
 
   .Filter {
@@ -73,4 +73,21 @@
     background-color: red;
     padding: 5px;
     color: white;
+  }
+
+  .button-container {
+    margin-bottom: 20px;
+    margin: 8px;
+    text-align: left;
+    border-radius: 5px;
+  }
+
+  .btn_int {
+    background: #80a943;
+    color: white;
+    width: 150px;
+    height: 50px;
+    font-size: large;
+    margin: 8px;
+    border-radius: 5px;
   }

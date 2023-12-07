@@ -79,121 +79,19 @@ mat-form-field {
   color: white;
 }
 
-/* ESPACIO ENTRE LOS DIFERENTES ESTILOS */
-
-/* .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 10vh;
-  min-width: 70vh;
-  max-width: 100vh;
-}
-
-.cabecera {
-  text-align: center;
-  border: 0px solid red;
+.button-container {
   margin-bottom: 20px;
-  margin-left: 2rem;
-}
-
-.table {
+  margin: 8px;
   text-align: left;
-  border: 1px solid blue;
-  border-bottom: 1px solid blue;
-  border-collapse: collapse;
-  width: 999px;
-  margin-left: 0rem;
-  -webkit-box-shadow: 2px 5px 15px #999;
- -moz-box-shadow: 2px 2px 5px #999;
+  border-radius: 5px;
 }
 
-th, td {
-  border-bottom: 1px solid #e0e0e0;
-}
-
-th {
-  color:#000000;
+.btn_int {
+  background: #80a943;
+  color: white;
+  width: 150px;
   height: 50px;
-  vertical-align: middle;
-  font-weight: 500;
-  font-size: 14px;
+  font-size: large;
+  margin: 8px;
+  border-radius: 5px;
 }
-
-td {
-  background-color:#ffffff;
-  height: 50px;
-  vertical-align: middle;
-  font-size: 14px;
-}
-
-.Filter {
-  margin-left: 3rem;
-}
-
-.mat-form-field {
-  display: flex;
-  align-items: center;
-}
-
-button.mat-button {
-  background-color: #d6e44b;
-  margin-left: 10rem;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 10vh;
-  min-width: 70vh;
-  max-width: 100vh;
-}
-
-.cabecera {
-  text-align: center;
-  border: 0px solid red;
-  margin-bottom: 20px;
-  margin-left: 2rem;
-}
-
-.Filter {
-  display: flex;
-  align-items: center;
-  margin-left: 2rem;
-}
-
-button.mat-button {
-  background-color: #d6e44b;
-  margin-left: 10rem;
-}
-
-h1{
-  font-size: 48px;
-}
-
-.btn-actions{
-  margin: 0 5px;
-  width: 100px;
-  height: 30px;
-  font-size: 20px;
-  padding: 0 5px;
-  border: 0px;
-  color: black;
-  text-decoration: none;
-}
-
-.btn-edit:hover {
-  background: #e0e0e0;
-}
-
-.btn-delete:hover{
-  background: #e0e0e0;
-}
-
-.btn-asistence-title {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-} */

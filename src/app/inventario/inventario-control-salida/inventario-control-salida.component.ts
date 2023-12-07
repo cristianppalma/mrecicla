@@ -116,7 +116,17 @@ obtenerNombreArea(idArea: number): string {
     return area ? area.NombreArea : '';
   }
 
-
+  regresar (){
+    if (window.history.length > 1) {
+      // Si hay más de una página en el historial, regresa a la página anterior
+      window.history.back();
+  } else {
+      // Si no hay más páginas en el historial, puedes redirigir a una página específica
+      // o realizar alguna otra acción en su lugar.
+      console.warn('No hay páginas anteriores en el historial.');
+      // Puedes redirigir a otra página o realizar otra acción aquí
+  }
+  }
 
 
 }

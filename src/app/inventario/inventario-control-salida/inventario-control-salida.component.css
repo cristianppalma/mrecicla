@@ -7,21 +7,21 @@
     min-width: 70vh;
     max-width: 100vh;
   }
-  
+
   .cabecera {
     text-align: center;
     border: 0px solid red;
     margin-bottom: 20px; /* Agrega un espacio entre el título y la tabla */
     margin-left: 0rem;
   }
-  
+
   .table {
     text-align: center;
     /* Estilos para la tabla si es necesario */
-   
+
     width: 1100px;
     margin-right: 10rem;
-  
+
     max-height: 450px; /* Establece la altura máxima deseada para que aparezca la barra de desplazamiento */
     max-width: 1350px;
     overflow-y: auto;
@@ -30,13 +30,13 @@
   .Filter {
     margin-right: 13rem;
   }
-  
+
   /* Estilo para los botones BUSCAR y AGREGAR */
   .mat-form-field {
     display: flex;
     align-items: center;
   }
-  
+
   button.mat-button {
     background-color: #d6e44b;
     margin-left: 1rem; /* Agrega espacio entre los botones */
@@ -50,20 +50,20 @@
     min-width: 70vh;
     max-width: 100vh;
   }
-  
+
   .cabecera { /*Label de Maquinas*/
     text-align: center;
     border: 0px solid red;
     margin-bottom: 20px;
     margin-right: 10rem;
   }
-  
+
   .Filter {
     display: flex;
     align-items: center;
     margin-left: 4rem;
   }
-  
+
   button.mat-button {
     background-color: #d6e44b;
     margin-left: 1rem;
@@ -71,9 +71,20 @@
   h1{
     font-size: 48px;
   }
-  
-  
-  h2{
-  
+
+  .button-container {
+    margin-bottom: 20px;
+    margin: 8px;
+    text-align: left;
+    border-radius: 5px;
   }
-  
+
+  .btn_int {
+    background: #80a943;
+    color: white;
+    width: 150px;
+    height: 50px;
+    font-size: large;
+    margin: 8px;
+    border-radius: 5px;
+  }

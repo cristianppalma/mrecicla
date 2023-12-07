@@ -27,7 +27,7 @@ export class MaquinasListComponent  implements OnInit {
      ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
       this.filterForm = this.fb.group({
-        Area: [''] 
+        Area: ['']
       });
      }
   crearMaquina(){
@@ -49,7 +49,7 @@ export class MaquinasListComponent  implements OnInit {
       if (areaControl) {
         console.log('tercer nivel');
         const areaValue = areaControl.value;
-  
+
         if (areaValue && areaValue !== '0') {
           this.dataSource.filter = areaValue.toString();
         } else {
@@ -59,8 +59,8 @@ export class MaquinasListComponent  implements OnInit {
       }
     }
   }
-  
-  
+
+
   verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
@@ -96,7 +96,7 @@ export class MaquinasListComponent  implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.eliminarElemento(element);
@@ -108,16 +108,16 @@ export class MaquinasListComponent  implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.eliminarElemento2(element);
       }
     });
   }
-  
+
   ngOnInit(): void {
-   
+
     this.MaquinaService.getAreas().subscribe((data) => {
       this.areas = data;
     });
@@ -126,6 +126,19 @@ export class MaquinasListComponent  implements OnInit {
       this.Maquina = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
-   
+
   }
+
+  regresar (){
+    if (window.history.length > 1) {
+      // Si hay más de una página en el historial, regresa a la página anterior
+      window.history.back();
+  } else {
+      // Si no hay más páginas en el historial, puedes redirigir a una página específica
+      // o realizar alguna otra acción en su lugar.
+      console.warn('No hay páginas anteriores en el historial.');
+      // Puedes redirigir a otra página o realizar otra acción aquí
+  }
+  }
+
 }

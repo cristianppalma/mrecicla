@@ -36,7 +36,7 @@
           <br>
 
 
-          <mat-form-field *ngIf="usuarioTienePermiso">
+          <mat-form-field >
             <mat-label>Tipo de Usuario </mat-label>
             <mat-select formControlName="idTipoUsuario">
               <mat-option value="0"> </mat-option>
@@ -50,18 +50,18 @@
             <mat-label>Contraseña</mat-label>
             <input formControlName ='Pass' matInput placeholder="">
           </mat-form-field>
-          <br *ngIf="usuarioTienePermiso">
-          <mat-label style="font-size: medium;" *ngIf="usuarioTienePermiso">Practicante?</mat-label>
+          <br>
+          <mat-label style="font-size: medium;">Practicante?</mat-label>
 
-          <label style="font-size: medium; margin-left: 10px;" *ngIf="usuarioTienePermiso">
-          <input type="radio" value="Si" formControlName ="Practicante" *ngIf="usuarioTienePermiso"/>
+          <label style="font-size: medium; margin-left: 10px;">
+          <input type="radio" value="Si" formControlName ="Practicante"/>
             si
         </label>
-        <label style="font-size: medium; margin-left: 50px;" *ngIf="usuarioTienePermiso">
-         <input type="radio" value="No" formControlName ="Practicante" *ngIf="usuarioTienePermiso"/>
+        <label style="font-size: medium; margin-left: 50px;">
+         <input type="radio" value="No" formControlName ="Practicante"/>
           no
         </label>
-         <br *ngIf="usuarioTienePermiso">
+         <br >
          <br>
 
          <mat-form-field *ngIf="usuarioTienePermisoSuper">
@@ -71,8 +71,9 @@
           <mat-option *ngFor="let fabrica of fabricas" [value]="fabrica.idFabrica">{{ fabrica.NombreFabrica}}</mat-option>
       </mat-select>
     </mat-form-field>
+    <br>
 
-         <mat-form-field *ngIf="usuarioTienePermiso">
+         <mat-form-field>
           <mat-label>Puesto </mat-label>
          <mat-select formControlName="idAsignacion">
           <mat-option value="0"> </mat-option>
@@ -86,7 +87,7 @@
           </mat-form-field>
           <br>
 
-          <mat-form-field class="example-full-width custom-width" *ngIf="usuarioTienePermiso">
+          <mat-form-field class="example-full-width custom-width">
             <mat-label>Turno </mat-label>
            <mat-select formControlName="Turno">
             <mat-option value="sin turno">Sin turno</mat-option>
@@ -97,7 +98,7 @@
       </mat-form-field>
 
           <br>
-          <mat-form-field *ngIf="usuarioTienePermiso">
+          <mat-form-field>
             <mat-label>Area</mat-label>
             <mat-select formControlName="idArea">
                 <mat-option value="0"> </mat-option>
@@ -105,9 +106,9 @@
             </mat-select>
         </mat-form-field>
           <br>
-          <button type=submit mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
+          <button type="submit" mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
 
-          <button (click)="cancelar();" mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
+          <button type="button" (click)="cancelar();" mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
             <a style="color: white;"> Cancelar </a>
           </button>
     </div>
