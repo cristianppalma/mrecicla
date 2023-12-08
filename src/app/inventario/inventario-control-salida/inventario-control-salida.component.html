@@ -5,6 +5,13 @@
           <mat-label>Producto</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Borra" #input>
         </mat-form-field>
+        <mat-form-field style="margin-left: 1rem;">
+          <mat-label>Área</mat-label>
+          <mat-select (keyup)="applyFilter($event)" formControlName="idArea">
+            <mat-option value="0"> </mat-option>
+            <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
+          </mat-select>
+        </mat-form-field>
         <button (click)="inventarioEntrada();" mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;">INVENTARIO ENTRADA</button>
         <!---<button  (click)="inventario();" mat-button style="background-color: #d6e44b; margin-left: 1rem; color: white">AGREGAR</button>-->
       </div>

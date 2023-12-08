@@ -11,11 +11,13 @@
             <mat-label>ID</mat-label>
             <input formControlName="ID" matInput>
           </mat-form-field>-->
-
-        <label>Nombre del producto</label> 
+          <label>Nombre Producto</label>
           <mat-form-field>
-            <mat-label>Producto</mat-label>
-            <input formControlName="NombreInsumo" matInput>
+            <mat-label>Nombre Producto</mat-label>
+            <mat-select  formControlName="NombreInsumo">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let producto of productos" [value]="producto.idInventarioFabrica">{{producto.nombreInsumo}}</mat-option>
+            </mat-select>
           </mat-form-field>
           
 

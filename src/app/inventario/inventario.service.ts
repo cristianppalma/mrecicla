@@ -14,7 +14,7 @@ export class InventarioService {
   private correo: string;
   private nombre: string;
   API: string = 'http://localhost/PhpAngular/inventario/';
-  API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
+  //API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
 
 
   constructor( private clientService:HttpClient) { }
@@ -51,13 +51,17 @@ export class InventarioService {
     return this.clientService.get<any[]>(this.API+"?selectArea")
   }
 
+ selectProductos(){
+ return this.clientService.get<any[]>(this.API+"?SelectProducto")
+ }
+
   //inventario salida
 
   //Actualizar y consultar
 
-   listarInventariosalida(): Observable<PeriodicElement2[]> {
-     return this.clientService.get<PeriodicElement2[]>(this.API2+"?obtenerProductosSalida=1");
-   }
+  //  listarInventariosalida(): Observable<PeriodicElement2[]> {
+  //    return this.clientService.get<PeriodicElement2[]>(this.API2+"?obtenerProductosSalida=1");
+  //  }
 
   // consultarInventarioSalida(id:any): Observable<any> {
   //   return this.clientService.get<PeriodicElement2>(this.API2+"?obtenerProductosSalidaPorID="+id);

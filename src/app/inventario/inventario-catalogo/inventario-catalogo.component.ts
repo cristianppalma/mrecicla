@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { PeriodicElement } from '../PeriodicElement';
@@ -11,18 +11,17 @@ interface Food {
   viewValue: string;
 }
 
-@Component({
-  selector: 'app-inventario-control',
-  templateUrl: './inventario-control.component.html',
-  styleUrls: ['./inventario-control.component.css'],
-})
 
-export class InventarioControlComponent implements OnInit {
+@Component({
+  selector: 'app-inventario-catalogo',
+  templateUrl: './inventario-catalogo.component.html',
+  styleUrls: ['./inventario-catalogo.component.css']
+})
+export class InventarioCatalogoComponent implements OnInit {
   areas:any[];
   Producto:PeriodicElement[] = [];
-  displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Peso','Fecha','Dimension','Composicion','Calibre','AreaDesignada','action']
+  displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Composicion','Calibre']
   dataSource: MatTableDataSource<PeriodicElement>;
-
   formatDateWithLeadingZeros(date: Date): string {
     const day = ('0' + date.getDate()).slice(-2);
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -63,6 +62,9 @@ export class InventarioControlComponent implements OnInit {
     }
     inventario(){
       this.router.navigateByUrl('/dashboard/inventario/inventarioCrear');
+    }
+    inventarioS(){
+      this.router.navigateByUrl('/dashboard/inventario/inventarios');
     }
     inventarioSalida(){
       this.router.navigateByUrl('/dashboard/inventario/inventarioSalida');
@@ -129,7 +131,3 @@ export class InventarioControlComponent implements OnInit {
 
 
 }
-
-
-
-  

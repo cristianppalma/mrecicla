@@ -27,6 +27,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class InventarioCrearComponent implements OnInit{
   formularioProducto: FormGroup;
   areas:any[];
+  productos:any[];
 
   constructor(private router:Router, 
     private _bottomSheet: MatBottomSheet,
@@ -96,6 +97,10 @@ export class InventarioCrearComponent implements OnInit{
 
     this.InventarioService.selectAreas().subscribe((data)=>{
       this.areas=data;
+    });
+
+    this.InventarioService.selectProductos().subscribe((data)=>{
+      this.productos=data;
     });
   }
 }
