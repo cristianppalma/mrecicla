@@ -6,9 +6,16 @@ import { InventarioEditComponent } from './inventario-edit/inventario-edit.compo
 import { authGuard } from '../guards/auth.guard';
 import { InventarioControlSalidaComponent } from './inventario-control-salida/inventario-control-salida.component';
 import { InventarioEditSalidaComponent } from './inventario-edit-salida/inventario-edit-salida.component';
+import { InventarioSumaComponent } from './inventario-suma/inventario-suma.component';
+import { InventarioCatalogoComponent } from './inventario-catalogo/inventario-catalogo.component';
 
 
 const routes: Routes = [
+  {
+    path: 'inventarioCatalogo',
+    component: InventarioCatalogoComponent,
+    // canActivate: [authGuard]
+  },
   {
     path: 'inventarios',
     component: InventarioControlComponent,
@@ -29,8 +36,13 @@ const routes: Routes = [
     path: 'inventarioEditSalida/:id',
     component : InventarioEditSalidaComponent,
     // canActivate: [authGuard]
-  }
+  },
 
+  {
+    path:'inventarioSuma',
+    component: InventarioSumaComponent
+
+  }
 ]
 
 @NgModule({
