@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProveedorListComponent } from './proveedor-list/proveedor-list.component';
 import { ProveedorCreateComponent } from './proveedor-create/proveedor-create.component';
 import { ProveedorEditComponent } from './proveedor-edit/proveedor-edit.component';
-import { ProveedorDetailsComponent } from './proveedor-details/proveedor-details.component';
 import { authGuard } from '../guards/auth.guard';
 import { rolesGuard } from '../guards/roles.guard';
 

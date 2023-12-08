@@ -1,12 +1,12 @@
 export class Proveedor{
   NombreProveedor!:       String;
-  ProductoProveedor!:     String;
   DireccionProveedor!:    String;
   Telefono!:              String;
   Correo!:                String;
   RFCProveedor!:          String;
   DescripcionProveedor!:  String;
   EstatusProveedor!:      String;
+  idInventarioFabrica!:   String;
   UsuarioCreador!:        String;
   UsuarioActualizador!:   String;
 }

@@ -58,13 +58,6 @@
         <td mat-cell *matCellDef="let element">{{ element.UsuarioCreador }}</td>
       </ng-container>
 
-      <!-- <ng-container matColumnDef="EstatusProveedor">
-        <th mat-header-cell *matHeaderCellDef> Estatus </th>
-        <td mat-cell *matCellDef="let element">
-          <span [ngClass]="element.EstatusProveedor === 'Activo' ? 'activo' : 'inactivo'">{{ element.EstatusProveedor }}</span>
-        </td>
-      </ng-container> -->
-
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Accion</th>
         <td mat-cell *matCellDef="let element">

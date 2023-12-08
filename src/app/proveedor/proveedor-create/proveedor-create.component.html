@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="cabecera">
-    <h1>REGISTRAR NUEVO PROVEEDOR</h1>
+    <h1>AGREGAR NUEVO PROVEEDOR</h1>
   </div>
 
   <form ngNativeValidate [formGroup]="formularioProveedor" (ngSubmit)="enviarDatos()">
@@ -40,7 +40,7 @@
 
       <div class="formula2">
 
-        <label>Producto</label>
+        <!-- <label>Producto</label>
         <mat-form-field>
           <mat-label>Producto</mat-label>
           <mat-select required formControlName="ProductoProveedor">
@@ -48,6 +48,14 @@
             <mat-option value="Hilo">Hilo Importado</mat-option>
             <mat-option value="Tela">Tela reciclada</mat-option>
             <mat-option value="Borra">Borra</mat-option>
+          </mat-select>
+        </mat-form-field> -->
+        <label>Producto</label>
+        <mat-form-field>
+          <mat-label>Producto</mat-label>
+          <mat-select formControlName="idInventarioFabrica">
+            <mat-option value="0"> </mat-option>
+            <mat-option *ngFor="let inventarioFabrica of inventarioFabrica" [value]="inventarioFabrica.idInventarioFabrica">{{ inventarioFabrica.NombreInsumo }}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -74,4 +82,3 @@
 
   </form>
 </div>
-

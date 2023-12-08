@@ -40,8 +40,6 @@ export class PerfilAdminComponent implements OnInit {
     private activateRoute : ActivatedRoute,
     private dialog: MatDialog,
     private router: Router,
-
-
     ) {
       const correoSave = this.editarEmpleado.getCorreo();
       this.formularioEditarEmpleado = this.formbuilder.group({
@@ -56,7 +54,6 @@ export class PerfilAdminComponent implements OnInit {
         Domicilio : [''],
         idFabrica: [''],
         idTipoUsuario : [''],
-        // idTipoUsuario : [this.nombreUsuario],
         idAsignacion : [''],
         idArea : [''],
         UsuarioActualizador:[correoSave]
@@ -64,12 +61,9 @@ export class PerfilAdminComponent implements OnInit {
 
       this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
 
-
       this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
 
-
      }
-
 
      private verificarPermisosDelUsuario(): boolean {
       const nombreUsuario = localStorage.getItem("NombreTipoUser");
@@ -78,14 +72,12 @@ export class PerfilAdminComponent implements OnInit {
       return ((nombreUsuario === "Administrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
     }
 
-
     private verificarPermisosDelUsuarioSuper(): boolean {
       const nombreUsuario = localStorage.getItem("NombreTipoUser");
       const puesto = localStorage.getItem("Puesto");
       // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
       return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
     }
-
 
     cancelar() {
       if (window.history.length > 1) {

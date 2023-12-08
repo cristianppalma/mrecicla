@@ -13,10 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AgregarEmpleadoComponent implements OnInit{
 
-
   usuarioTienePermiso: boolean;
   usuarioTienePermisoSuper: boolean;
-
 
   formularioEmpleado: FormGroup;
   areas : any[]= [];
@@ -69,15 +67,11 @@ export class AgregarEmpleadoComponent implements OnInit{
       });
     }
 
-
     this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
-
 
     this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
 
-
   }
-
 
   private verificarPermisosDelUsuario(): boolean {
     const nombreUsuario = localStorage.getItem("NombreTipoUser");
@@ -86,14 +80,12 @@ export class AgregarEmpleadoComponent implements OnInit{
     return ((nombreUsuario === "Administrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
   }
 
-
   private verificarPermisosDelUsuarioSuper(): boolean {
     const nombreUsuario = localStorage.getItem("NombreTipoUser");
     const puesto = localStorage.getItem("Puesto");
     // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
     return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
   }
-
 
   cancelar() {
     if (window.history.length > 1) {
@@ -125,6 +117,7 @@ export class AgregarEmpleadoComponent implements OnInit{
       );
     }
   }
+
   mostratDialogoAviso():void{
     console.log('Tumadre');
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
