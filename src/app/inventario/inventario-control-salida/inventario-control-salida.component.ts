@@ -66,7 +66,11 @@ export class InventarioControlSalidaComponent implements OnInit {
       this.router.navigateByUrl('/dashboard/inventario/inventarioSalida');
     }
     inventarioEntrada(){
-      this.router.navigateByUrl('/dashboard/inventario/inventarios')
+      this.router.navigateByUrl('/dashboard/inventario/inventarios');
+    }
+
+    agregarInventarioSalida(){
+      this.router.navigateByUrl('/dashboard/inventario/suma-a-inventario-salida');
     }
 
 

@@ -21,6 +21,14 @@ import { InventarioControlSalidaComponent } from './inventario-control-salida/in
 import { InventarioEditSalidaComponent } from './inventario-edit-salida/inventario-edit-salida.component';
 import { InventarioSumaComponent } from './inventario-suma/inventario-suma.component';
 import { InventarioCatalogoComponent } from './inventario-catalogo/inventario-catalogo.component';
+import { InventarioSalidaCatalogoComponent } from './inventario-salida-catalogo/inventario-salida-catalogo.component';
+import { InventarioCrearSalidaComponent } from './inventario-crear-salida/inventario-crear-salida.component';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { InventarioSalidaSumaComponent } from './inventario-salida-suma/inventario-salida-suma.component';
+
 @NgModule({
   declarations: [
     InventarioControlComponent,
@@ -29,7 +37,10 @@ import { InventarioCatalogoComponent } from './inventario-catalogo/inventario-ca
     InventarioControlSalidaComponent,
     InventarioEditSalidaComponent,
     InventarioSumaComponent,
-    InventarioCatalogoComponent
+    InventarioCatalogoComponent,
+    InventarioSalidaCatalogoComponent,
+    InventarioCrearSalidaComponent,
+    InventarioSalidaSumaComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +58,10 @@ import { InventarioCatalogoComponent } from './inventario-catalogo/inventario-ca
     MatIconModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ]
 })
 export class InventarioModule { }
