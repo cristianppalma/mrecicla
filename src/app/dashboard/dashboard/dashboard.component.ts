@@ -26,5 +26,4 @@ export class DashboardComponent {
     return ((nombreUsuario === "Administrador") || (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
   }
 
-
 }

@@ -3,22 +3,18 @@
   position: relative;
   min-height: 100vh;
 }
-
 .navbar {
   -webkit-box-shadow: 2px 5px 15px #999;
  -moz-box-shadow: 2px 2px 5px #999;
  background: #ffffff;
 }
-
 .title-navbar {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-
 .navbar-brand{
   padding-left: 20px;
 }
-
 .btn{
   margin-left: 500px;
   margin-top: 30px;
@@ -31,32 +27,26 @@
   line-height: 35px;
   align-items: center;
 }
-
 .content_grid_padre {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 80vh;
 }
-
 .content_grid_h1 {
   margin: auto;
 }
-
 .title_page{
   text-align: left;
 }
-
 h1{
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 50px;
 }
-
 .registrate {
   padding: 40px 0;
   text-align: left;
 }
-
 .btn_int {
   background: #80a943;
   color: white;
@@ -66,7 +56,6 @@ h1{
   border: 0px;
   border-radius: 10px;
 }
-
 .content_grid_h2 {
   width: 80%;
   height: 80%;

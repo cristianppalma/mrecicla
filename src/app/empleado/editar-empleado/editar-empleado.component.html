@@ -1,116 +1,122 @@
 <img src="assets/img/Icons/User2.png">
 
 <div class="Titulo">
-<h1 *ngIf="usuarioTienePermiso">Editar empleado</h1>
-<h1 *ngIf="usuarioTienePermisoSuper">Editar Administrador</h1>
-
+  <h1 *ngIf="usuarioTienePermiso">Editar empleado</h1>
+  <h1 *ngIf="usuarioTienePermisoSuper">Editar Administrador</h1>
 </div>
+
 <form [formGroup]="formularioEditarEmpleado" (ngSubmit)="enviarDatos()">
   <div class="contenedor">
+
     <div class="izquierda">
-        <br>
-        <mat-form-field class="example-full-width custom-width">
-            <mat-label>Nombre</mat-label>
-            <input formControlName ='Nombre' matInput placeholder="EX. juan" >
-          </mat-form-field>
-            <br>
-          <mat-form-field class="example-full-width custom-width">
-            <mat-label>Apellido Paterno</mat-label>
-            <input formControlName ='ApellidoPaterno' matInput placeholder="Ex. 1000" >
-          </mat-form-field>
-            <br>
-          <mat-form-field class="example-full-width custom-width">
-            <mat-label>Apellido Materno</mat-label>
-            <input formControlName ='ApellidoMaterno' matInput placeholder="Ex. 1000" >
-          </mat-form-field>
-          <br>
-          <mat-form-field class="example-full-width custom-width">
-            <mat-label>correo E</mat-label>
-            <input formControlName ='Correo' matInput placeholder="Ex. 1000" >
-          </mat-form-field>
-          <br>
-          <mat-form-field class="example-full-width custom-width">
-            <mat-label>Domicilio</mat-label>
-            <input formControlName ='Domicilio' matInput placeholder="Ex. 1000" >
-          </mat-form-field>
-          <br>
+      <br>
+      <mat-form-field class="example-full-width custom-width">
+        <mat-label>Nombre</mat-label>
+        <input formControlName ='Nombre' matInput placeholder="EX. juan" >
+      </mat-form-field>
+      <br>
 
+      <mat-form-field class="example-full-width custom-width">
+        <mat-label>Apellido Paterno</mat-label>
+        <input formControlName ='ApellidoPaterno' matInput placeholder="Ex. 1000" >
+      </mat-form-field>
+      <br>
 
-          <mat-form-field >
-            <mat-label>Tipo de Usuario </mat-label>
-            <mat-select formControlName="idTipoUsuario">
-              <mat-option value="0"> </mat-option>
-              <mat-option *ngFor="let tipoUsuario of tipoUsuarios" [value]="tipoUsuario.idTipoUsuario">{{ tipoUsuario.NombreTipoUser}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <mat-form-field class="example-full-width custom-width">
+        <mat-label>Apellido Materno</mat-label>
+        <input formControlName ='ApellidoMaterno' matInput placeholder="Ex. 1000" >
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width custom-width">
+        <mat-label>Correo Electronico</mat-label>
+        <input formControlName ='Correo' matInput placeholder="Ex. 1000" >
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width custom-width">
+        <mat-label>Domicilio</mat-label>
+        <input formControlName ='Domicilio' matInput placeholder="Ex. 1000" >
+      </mat-form-field>
+      <br>
+
+      <mat-form-field >
+        <mat-label>Tipo de Usuario </mat-label>
+        <mat-select formControlName="idTipoUsuario">
+          <mat-option value="0"> </mat-option>
+          <mat-option *ngFor="let tipoUsuario of tipoUsuarios" [value]="tipoUsuario.idTipoUsuario">{{ tipoUsuario.NombreTipoUser}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
+
     <div class="derecha">
-        <br>
-        <mat-form-field class="example-full-width custom-width">
-            <mat-label>Contraseña</mat-label>
-            <input formControlName ='Pass' matInput placeholder="">
-          </mat-form-field>
-          <br>
-          <mat-label style="font-size: medium;">Practicante?</mat-label>
+      <br>
+      <mat-form-field class="example-full-width custom-width">
+        <mat-label>Contraseña</mat-label>
+        <input formControlName ='Pass' matInput placeholder="">
+      </mat-form-field>
+      <br>
 
-          <label style="font-size: medium; margin-left: 10px;">
-          <input type="radio" value="Si" formControlName ="Practicante"/>
-            si
-        </label>
-        <label style="font-size: medium; margin-left: 50px;">
-         <input type="radio" value="No" formControlName ="Practicante"/>
+      <mat-label style="font-size: medium;">Practicante?</mat-label>
+      <label style="font-size: medium; margin-left: 10px;">
+        <input type="radio" value="Si" formControlName ="Practicante"/>
+          si
+      </label>
+      <label style="font-size: medium; margin-left: 50px;">
+        <input type="radio" value="No" formControlName ="Practicante"/>
           no
-        </label>
-         <br >
-         <br>
+      </label>
+      <br >
+      <br>
 
-         <mat-form-field *ngIf="usuarioTienePermisoSuper">
-          <mat-label>Fabrica Asignada </mat-label>
-         <mat-select formControlName="idFabrica">
+      <mat-form-field *ngIf="usuarioTienePermisoSuper">
+        <mat-label>Fabrica Asignada </mat-label>
+        <mat-select formControlName="idFabrica">
           <mat-option value="0"> </mat-option>
           <mat-option *ngFor="let fabrica of fabricas" [value]="fabrica.idFabrica">{{ fabrica.NombreFabrica}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
+        </mat-select>
+      </mat-form-field>
+      <br>
 
-         <mat-form-field>
-          <mat-label>Puesto </mat-label>
-         <mat-select formControlName="idAsignacion">
+      <mat-form-field>
+        <mat-label>Puesto </mat-label>
+        <mat-select formControlName="idAsignacion">
           <mat-option value="0"> </mat-option>
           <mat-option *ngFor="let puesto of puestos" [value]="puesto.idAsignacion">{{ puesto.Puesto}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-          <mat-form-field class="example-full-width custom-width">
-            <mat-label>Sueldo</mat-label>
-            <input formControlName ='Sueldo' matInput placeholder="Ex. 1000">
-          </mat-form-field>
-          <br>
+        </mat-select>
+      </mat-form-field>
+      <br>
 
-          <mat-form-field class="example-full-width custom-width">
-            <mat-label>Turno </mat-label>
-           <mat-select formControlName="Turno">
-            <mat-option value="sin turno">Sin turno</mat-option>
-        <mat-option value="Matutino">Matutino</mat-option>
-        <mat-option value="Vespertino">Vespertino</mat-option>
-        <mat-option value="Nocturno">Nocturno</mat-option>
+      <mat-form-field class="example-full-width custom-width">
+        <mat-label>Sueldo</mat-label>
+        <input formControlName ='Sueldo' matInput placeholder="Ex. 1000">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width custom-width">
+        <mat-label>Turno </mat-label>
+        <mat-select formControlName="Turno">
+          <mat-option value="sin turno">Sin turno</mat-option>
+          <mat-option value="Matutino">Matutino</mat-option>
+          <mat-option value="Vespertino">Vespertino</mat-option>
+          <mat-option value="Nocturno">Nocturno</mat-option>
         </mat-select>
       </mat-form-field>
 
-          <br>
-          <mat-form-field>
-            <mat-label>Area</mat-label>
-            <mat-select formControlName="idArea">
-                <mat-option value="0"> </mat-option>
-                <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-          <br>
-          <button type="submit" mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
+      <br>
+      <mat-form-field>
+        <mat-label>Area</mat-label>
+        <mat-select formControlName="idArea">
+          <mat-option value="0"> </mat-option>
+          <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
 
-          <button type="button" (click)="cancelar();" mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
-            <a style="color: white;"> Cancelar </a>
-          </button>
+      <button type="submit" mat-raised-button class="btn-editar custom-buton" style="color: white;">Guardar</button>
+      <button type="button" (click)="cancelar();" mat-raised-button class="btn-eliminar custom-buton2" style="margin-left: 25px;">
+        <a style="color: white;"> Cancelar </a>
+      </button>
     </div>
   </div>
 </form>

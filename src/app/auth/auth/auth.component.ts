@@ -6,12 +6,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
 import { AvisoLoginComponent } from '../aviso-login/aviso-login.component';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent  implements OnInit {
+
   formularioLogin: FormGroup;
 
   login(){
@@ -77,7 +79,6 @@ export class AuthComponent  implements OnInit {
             let idFabrica = response.idFabrica;
             localStorage.setItem("idFabrica",idFabrica);
 
-
           }
         },
         (error) => {
@@ -100,6 +101,7 @@ export class AuthComponent  implements OnInit {
     });
 
   }
+
   mostrarDialogoLoginError(errorMsg: string): void {
     const dialogRef = this.dialog.open(AvisoLoginComponent, {
       data: { message: errorMsg },

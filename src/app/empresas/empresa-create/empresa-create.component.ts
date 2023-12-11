@@ -84,7 +84,7 @@ export class EmpresaCreateComponent implements OnInit {
             // Puedes realizar alguna acción adicional si es necesario
         }
     });
-}
+  }
 
   ngOnInit(): void {
     // TRAEMOS EL CORREO DESDE EL SERVICIO

@@ -19,42 +19,9 @@
   border: 1px solid blue;
   width: 999px;
 }
-.Filter {
-  margin-left: 3rem;
-}
-/* Estilo para los botones BUSCAR y AGREGAR */
-.mat-form-field {
-  display: flex;
-  align-items: center;
-}
 button.mat-button {
   background-color: #d6e44b;
   margin-left: 1rem; /* Agrega espacio entre los botones */
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 10vh;
-  min-width: 70vh;
-  max-width: 100vh;
-}
-.cabecera {
-  text-align: center;
-  border: 0px solid red;
-  margin-bottom: 20px;
-  /* margin-left: 28rem; */
-  width: 80REM;
-}
-.Filter {
-  display: flex;
-  align-items: center;
-  margin-left: 10rem;
-}
-button.mat-button {
-  background-color: #d6e44b;
-  margin-left: 1rem;
 }
 h1{
   font-size: 48px;
@@ -85,54 +52,3 @@ h1{
 label{
   font-size: 17px;
 }
-
-/* SEPARACION DE LOS ESTILOS*/
-
-/* .conten_inputs {
-  align-items:flex-start;
-  text-align: left;
-  justify-content: center;
-}
-
-.btn-asistence{
-  text-align: left;
-  align-items: flex-start;
-  justify-content: left;
-}
-
-h1{
-  font-size: 48px;
-  margin-bottom: 50px;
-  text-align: center;
-  padding-left: 50px;
-  padding-bottom: 7px;
-  padding-top: 10px;
-}
-
-.row{
-  width: 99%;
-}
-
-label {
-  font-size: 20px;
-}
-
-input{
-  width: 500px;
-}
-
-select {
-  width: 500px;
-}
-
-.btn{
-  margin-top: 50px;
-  width: 200px;
-  height: 50px;
-  border: 0px;
-  border-radius: 10px;
-}
-
-.btn-primary{
-  margin-right: 50px;
-} */

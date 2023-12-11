@@ -17,11 +17,8 @@ import { Areas } from 'src/app/areas/areas';
 })
 export class EditarEmpleadoComponent implements OnInit {
 
-
   usuarioTienePermiso: boolean;
   usuarioTienePermisoSuper: boolean;
-
-
 
   areas : any[];
   puestos : any[];
@@ -37,12 +34,9 @@ export class EditarEmpleadoComponent implements OnInit {
     private activateRoute : ActivatedRoute,
     private dialog: MatDialog,
     private router: Router,
-
-
     ) {
       const correoSave = this.editarEmpleado.getCorreo();
       const nombreUsuario = this.editarEmpleado.getTipoUsuario();
-
       this.formularioEditarEmpleado = this.formbuilder.group({
         Nombre: [''],
         ApellidoPaterno: [''],
@@ -60,15 +54,11 @@ export class EditarEmpleadoComponent implements OnInit {
         UsuarioActualizador:[correoSave]
       });
 
-
       this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
-
 
       this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
 
-
      }
-
 
      private verificarPermisosDelUsuario(): boolean {
       const nombreUsuario = localStorage.getItem("NombreTipoUser");
@@ -76,7 +66,6 @@ export class EditarEmpleadoComponent implements OnInit {
       // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
       return ((nombreUsuario === "Administrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
     }
-
 
     private verificarPermisosDelUsuarioSuper(): boolean {
       const nombreUsuario = localStorage.getItem("NombreTipoUser");
@@ -96,7 +85,6 @@ export class EditarEmpleadoComponent implements OnInit {
         // Puedes redirigir a otra página o realizar otra acción aquí
       }
     }
-
 
      ngOnInit(): void {
 

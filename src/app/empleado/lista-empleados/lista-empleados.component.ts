@@ -11,7 +11,6 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { listaEmpleado } from '../listaEmpleado';
 import { EmpleadoService } from '../empleado.service';
-
 import { PeriodicElement } from '../PeriodicElement';
 
 // export interface Usuario {
@@ -38,7 +37,6 @@ export class UsuarioTableComponent implements OnInit {
                                   'ApellidoPaterno',
                                   'ApellidoMaterno',
                                   'Correo',
-                                  // 'idAsignacion',
                                   'action'];
   dataSource: MatTableDataSource<PeriodicElement>
 

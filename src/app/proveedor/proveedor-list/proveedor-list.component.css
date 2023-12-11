@@ -28,27 +28,9 @@ button.mat-button {
   background-color: #d6e44b;
   margin-left: 1rem; /* Agrega espacio entre los botones */
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 10vh;
-  min-width: 70vh;
-  max-width: 100vh;
-}
-.cabecera {
-  text-align: center;
-  border: 0px solid red;
-  margin-bottom: 20px;
-}
 .Filter {
   display: flex;
   align-items: center;
-}
-button.mat-button {
-  background-color: #d6e44b;
-  margin-left: 1rem;
 }
 h1{
   margin-top: 20px;
@@ -78,14 +60,12 @@ mat-form-field {
   padding: 5px;
   color: white;
 }
-
 .button-container {
   margin-bottom: 20px;
   margin: 8px;
   text-align: left;
   border-radius: 5px;
 }
-
 .btn_int {
   background: #80a943;
   color: white;

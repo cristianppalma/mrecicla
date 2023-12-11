@@ -13,6 +13,7 @@ import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.co
 })
 export class ProveedorEditComponent implements OnInit {
 
+  inventarioFabrica: any[];
   formularioProveedorEdit: FormGroup;
   elID:any;
 
@@ -26,13 +27,14 @@ export class ProveedorEditComponent implements OnInit {
     const correoSave = this.proveedorService.getCorreo();
     this.formularioProveedorEdit=this.formBuilder.group({
       NombreProveedor:[''],
-      ProductoProveedor:[''],
+      // ProductoProveedor:[''],
       DireccionProveedor:[''],
       Telefono:[''],
       Correo:[''],
       RFCProveedor:[''],
       DescripcionProveedor:[''],
       EstatusProveedor: [''],
+      idInventarioFabrica: [''],
       UsuarioActualizador: [correoSave],
     });
     }
@@ -58,13 +60,14 @@ export class ProveedorEditComponent implements OnInit {
 
           this.formularioProveedorEdit.setValue({
             NombreProveedor: respuesta.NombreProveedor,
-            ProductoProveedor: respuesta.ProductoProveedor,
+            // ProductoProveedor: respuesta.ProductoProveedor,
             DireccionProveedor: respuesta.DireccionProveedor,
             Telefono: respuesta.Telefono,
             Correo: respuesta.Correo,
             RFCProveedor: respuesta.RFCProveedor,
             DescripcionProveedor: respuesta.DescripcionProveedor,
             EstatusProveedor:respuesta.EstatusProveedor,
+            idInventarioFabrica: respuesta.idInventarioFabrica.toString(),
             UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
           });
 
@@ -72,6 +75,13 @@ export class ProveedorEditComponent implements OnInit {
           console.error('ERROR DE LA SOLICITUD: ',error);
         }
       );
+
+
+       //
+     this.proveedorService.selectInventarioFabrica().subscribe((data)=>{
+      this.inventarioFabrica=data;
+    })
+
     }
 
     CANCELAR() {
