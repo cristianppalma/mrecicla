@@ -5,6 +5,7 @@ export interface PeriodicElement {
     Periodo:              String;
     Monto:                String;
     Tipo:                 String;
+    Maquina:           String;
     UsuarioCreador:       String;
     UsuarioEliminador:    String;
   }

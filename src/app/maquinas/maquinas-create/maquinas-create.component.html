@@ -54,10 +54,6 @@
                         <mat-select  formControlName="Area">
                         <mat-option value="0"> </mat-option>
                         <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
-                        <!--
-                        <mat-option value="Hilos">Hilos</mat-option>
-                        <mat-option value="Telar">Telar</mat-option>
-                        <mat-option value="bordado">bordado</mat-option>--->
                         </mat-select>
                     </mat-form-field>
 

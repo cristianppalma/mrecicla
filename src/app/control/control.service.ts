@@ -16,6 +16,7 @@ export class ControlService {
   private correo: string;
   private nombre: string;
   private area: string;
+  private fabrica: string;
 
   constructor( private clientService:HttpClient) {}
 
@@ -25,9 +26,14 @@ export class ControlService {
   }
 
   getMaquinas(id:any){
-    return this.clientService.get<any[]>(this.API+"?selectMaquina="+id);
+    const url = this.API + "?selectMaquina=" + id;
+  
+  return this.clientService.get<any[]>(url);
   }
 
+  getmaquinaria(){
+    return this.clientService.get<any[]>(this.API+"?selectmaqui=1");
+  }
 
   getGastos(){
     return this.clientService.get<any[]>(this.API+"?selectGasto=1");
@@ -73,6 +79,10 @@ export class ControlService {
 
   getidArea(): string{
     return this.area = localStorage.getItem("idArea") || '';
+  }
+  
+  getidFabrica(): string{
+    return this.fabrica = localStorage.getItem("idFabrica") || '';
   }
 
 }

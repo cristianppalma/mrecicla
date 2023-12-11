@@ -24,9 +24,15 @@
             <mat-label>Periodo</mat-label>
               <input placeholder="Ej. Enero - Febrero" formControlName="Periodo" matInput>
           </mat-form-field>
-
+          <label>Maquina Afectada</label>
+          <mat-form-field>
+            <mat-label>Maquina</mat-label>
+            <mat-select formControlName="Maquina">
+              <mat-option *ngFor="let maquina of maquinas" [value]="maquina.idMaquinaria">{{ maquina.Modelo }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
         </div>
-
         <div class="formula2">
           <label>Monto</label>
           <mat-form-field>
@@ -47,15 +53,19 @@
                 <mat-option value="Gasto Viaticos">Gasto Viaticos </mat-option>
               </mat-select>
           </mat-form-field>
+          <label>Área</label>
+          <mat-form-field>
+            <!-- <mat-label>Nombre del usuario</mat-label> -->
+            <input  type="text" [disabled]="true" readonly matInput value="{{areaNombre}}">
+          </mat-form-field>
         </div>
 
       </div>
 
       <div class="botones">
         <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">EDITAR</button>
-        <button (click)="mostrarDialogDeConfirmacion2();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
+        <button (click)="CancelarGastosGeneralesEditar();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
       </div>
-
     </form>
   </div>
   <br>

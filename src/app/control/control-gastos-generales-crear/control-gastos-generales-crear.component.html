@@ -4,7 +4,6 @@
   <br>
 
   <div class="centrar-columnas">
-
     <form [formGroup]="formularioGastos" (ngSubmit)="enviarDatos()">
       <div class="formula">
 
@@ -61,17 +60,11 @@
               <mat-option value="Gasto Viaticos">Gasto Viaticos </mat-option>
             </mat-select>
           </mat-form-field>
-
-         
-          
-           
           <label>Área</label>
           <mat-form-field>
             <!-- <mat-label>Nombre del usuario</mat-label> -->
             <input formControlName="areaNombre" type="text" [disabled]="true" readonly matInput value="{{areaNombre}}">
           </mat-form-field>
-
-
         </div>
 
       </div>
