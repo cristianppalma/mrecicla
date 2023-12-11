@@ -4,4 +4,5 @@ export class Areas{
     EstadoArea!:String;
     UsuarioCreador!:String;
     UsuarioActualizador!:String;
+    Fabrica!:             String;
 }

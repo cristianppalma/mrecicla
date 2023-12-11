@@ -21,12 +21,15 @@ export class AreasCreateComponent implements OnInit {
     private dialog: MatDialog,
      private areasService: AreasService
     ) {
+      const idFabrica = this.areasService.getidFabrica();
       const correoSave = this.areasService.getCorreo();
       this.formularioAreas = this.formBuilder.group({
         NombreArea: ['', [Validators.required]],
         DescripcionArea: [''],
         EstadoArea: [''],
         UsuarioCreador:[correoSave],
+        Fabrica: [idFabrica]
+        
       });
     }
 
@@ -83,11 +86,8 @@ mostrarDialogError(): void {
     console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
     const correoSave = this.areasService.getCorreo();
     console.log('Correo desde el localStorage: ', correoSave);
-
     console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
     const nombreSave = this.areasService.getNombre();
     console.log('Nombre desde el localStorage: ', nombreSave);
   }
-
-
 }

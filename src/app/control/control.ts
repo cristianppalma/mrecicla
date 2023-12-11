@@ -5,7 +5,8 @@ export class Gastos{
     Monto!:               String;
     Tipo!:                String;
     Area!:                String;
-    Maquinaria!:          String;
+    Maquina!:          String;
     UsuarioCreador!:      String;
     UsuarioActualizador!: String;
+    Fabrica!:             String;
 }
