@@ -23,6 +23,7 @@ export class ProveedorCreateComponent implements OnInit {
     private dialog: MatDialog,
   ) {
     const correoSave = this.proveedorService.getCorreo();
+    const idFabricaUsuario = this.proveedorService.getIdFabricaUsuario();
     this.formularioProveedor = this.formBuilder.group({
       NombreProveedor: [''],
       DireccionProveedor: [''],
@@ -33,6 +34,7 @@ export class ProveedorCreateComponent implements OnInit {
       EstatusProveedor: ['Activo'],
       idInventarioFabrica: [''],
       UsuarioCreador: [correoSave],
+      idFabrica: [idFabricaUsuario]
     });
   }
 

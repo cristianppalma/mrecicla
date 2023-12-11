@@ -57,6 +57,11 @@ export class ProduccionEmpleadoService {
     return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
   }
 
+  // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA PRODUCTOS
+  selectProductoEntrada(){
+    return this.clientService.get<any[]>(this.API+"?selectProductoEntrada");
+  }
+
   selectUsuarios(){
     return this.clientService.get<any[]>(this.API+"?selectUsuarios");
   }

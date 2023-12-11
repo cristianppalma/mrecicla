@@ -37,14 +37,14 @@
               <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
             </mat-select>
           </mat-form-field>
-          
+
           <label>ID Usuario</label>
           <mat-form-field>
             <!-- <mat-label>Nombre del usuario</mat-label> -->
             <input formControlName="idUser" type="text" readonly matInput value="{{usuario}}">
           </mat-form-field>
 
-       
+
 
           <!-- <label>Correo Usuario</label>
           <mat-form-field>
@@ -67,6 +67,15 @@
           <label>Unidades de Insumo Inicial (pz)</label>
           <mat-form-field>
             <input required type="number" formControlName="UnidadesInsumo" matInput readonly="">
+          </mat-form-field>
+
+          <label>Producto Producido</label>
+          <mat-form-field>
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="idProductosalida">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let productoEntrada of productosEntrada" [value]="productoEntrada.idProductosalida">{{ productoEntrada.nombreProducto }}</mat-option>
+            </mat-select>
           </mat-form-field>
 
           <label>Kg Totales de produccion</label>
@@ -93,7 +102,7 @@
             </mat-select>
           </mat-form-field>
 
-        
+
 
           <label>Nombre Usuario</label>
           <mat-form-field>

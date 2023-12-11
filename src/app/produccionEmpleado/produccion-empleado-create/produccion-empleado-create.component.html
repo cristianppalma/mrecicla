@@ -44,7 +44,7 @@
             <input disabled="" type="text" matInput value="{{usuarioId}}">
           </mat-form-field>
 
-        
+
 
           <!-- <label>Correo Usuario</label>
           <mat-form-field>
@@ -67,6 +67,15 @@
           <mat-form-field>
             <mat-label>1</mat-label>
             <input required type="number" formControlName="UnidadesInsumo" matInput>
+          </mat-form-field>
+
+          <label>Producto Producido</label>
+          <mat-form-field>
+            <mat-label>Producto</mat-label>
+            <mat-select formControlName="idProductosalida">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let productoEntrada of productosEntrada" [value]="productoEntrada.idProductosalida">{{ productoEntrada.nombreProducto }}</mat-option>
+            </mat-select>
           </mat-form-field>
 
           <label>Kg Totales de produccion</label>
@@ -99,7 +108,7 @@
             <!-- <mat-label>Nombre del usuario</mat-label> -->
             <input disabled="" type="text" matInput value="{{usuarioNombre}}">
           </mat-form-field>
-     
+
 
         </div>
       </div>

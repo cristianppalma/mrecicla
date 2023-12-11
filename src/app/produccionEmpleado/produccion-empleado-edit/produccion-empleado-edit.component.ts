@@ -17,6 +17,7 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
   maquinarias: any[];
   areas: any[];
   inventariosSalida: any[];
+  productosEntrada: any[]; //Obtenemos los datos de la tabla productos
   formularioProduccionAreaDetails: FormGroup;
   elID:any;
 
@@ -40,6 +41,7 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       idMaquinaria: [''],
       idArea: [''],
       idInventarioFabrica: [''],
+      idProductosalida: [''],
       UsuarioCreador:[''],
       idUser : [''],
       // idEmpleado: [''],
@@ -107,6 +109,7 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
           idMaquinaria: respuesta.idMaquinaria.toString(),
           idArea: respuesta.idArea.toString(),
           idInventarioFabrica: respuesta.idInventarioFabrica.toString(),
+          idProductosalida: respuesta.idProductosalida.toString(),
           UsuarioCreador:respuesta.Nombre.toString() || 'na',
           idUser : respuesta.idEmpleado,
           UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
@@ -147,6 +150,11 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
      //
      this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
       this.inventariosSalida=data;
+    })
+
+    // Obtenemos los nombres de los registros de la tabla productos
+    this.produccionEmpleadoService.selectProductoEntrada().subscribe((data)=>{
+      this.productosEntrada=data;
     })
   }
 
