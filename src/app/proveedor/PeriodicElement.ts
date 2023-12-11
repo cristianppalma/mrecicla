@@ -10,4 +10,5 @@ export interface PeriodicElement {
   EstatusProveedor:     String;
   UsuarioCreador:       String;
   UsuarioEliminador:    String;
+  idFabrica:            String;
 }

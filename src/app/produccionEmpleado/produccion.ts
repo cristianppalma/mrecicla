@@ -10,6 +10,7 @@ export class Produccion{
   idArea              !:String;
   idUsuario           !:String;
   idInventarioFabrica !:String;
+  idProductosalida    !:String;
   UsuarioCreador      !:String;
   UsuarioCreadorNombre  !:String;
   //UsuarioActualizador !:String;

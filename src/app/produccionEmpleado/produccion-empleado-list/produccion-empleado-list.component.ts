@@ -23,6 +23,7 @@ import { PeriodicElement } from '../PeriodicElement';
 export class ProduccionEmpleadoListComponent implements OnInit {
 
   inventariosSalida: any[];
+  productosEntrada: any[]; //Obtenemos los datos de la tabla productos
   Produccion: PeriodicElement[] = [];
   displayedColumns: string[] = [
                                   //'idEmpleado',
@@ -37,6 +38,7 @@ export class ProduccionEmpleadoListComponent implements OnInit {
                                   'idInventarioFabrica',
                                   'UnidadesInsumo',
                                   // 'productoProduccion',
+                                  'idProductosalida',
                                   'KgProduccion',
                                   // 'idMaquina',
                                   'action' ];
@@ -114,7 +116,13 @@ export class ProduccionEmpleadoListComponent implements OnInit {
     //
     this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
       this.inventariosSalida=data;
-    })
+    });
+
+
+    // Obtenemos los nombres de los registros de la tabla productos
+    this.produccionEmpleadoService.selectProductoEntrada().subscribe((data)=>{
+      this.productosEntrada=data;
+    });
 
 
     // //

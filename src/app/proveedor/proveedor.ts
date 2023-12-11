@@ -9,4 +9,5 @@ export class Proveedor{
   EstatusProveedor!:      String;
   UsuarioCreador!:        String;
   UsuarioActualizador!:   String;
+  idFabrica!:             String;
 }

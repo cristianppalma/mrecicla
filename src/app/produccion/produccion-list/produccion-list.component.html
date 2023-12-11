@@ -39,10 +39,10 @@
           <td mat-cell *matCellDef="let element">{{ element.FechaInicio }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="FechaFin">
+        <!-- <ng-container matColumnDef="FechaFin">
           <th mat-header-cell *matHeaderCellDef> Fecha Final </th>
           <td mat-cell *matCellDef="let element">{{ element.FechaFin }}</td>
-        </ng-container>
+        </ng-container> -->
 
         <ng-container matColumnDef="HoraInicio">
           <th mat-header-cell *matHeaderCellDef> Hora de Inicio </th>
@@ -64,10 +64,10 @@
           <td mat-cell *matCellDef="let element">{{ element.UnidadesInsumo }}</td>
         </ng-container>
 
-        <!-- <ng-container matColumnDef="productoProduccion">
-          <th mat-header-cell *matHeaderCellDef> Producto de Producción </th>
-          <td mat-cell *matCellDef="let element"></td>
-        </ng-container> -->
+        <ng-container matColumnDef="idProductosalida">
+          <th mat-header-cell *matHeaderCellDef> Producción </th>
+          <td mat-cell *matCellDef="let element">{{ element.nombreProducto }}</td>
+        </ng-container>
 
         <ng-container matColumnDef="KgProduccion">
           <th mat-header-cell *matHeaderCellDef> Kg de Producción </th>
