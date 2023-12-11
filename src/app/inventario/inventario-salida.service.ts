@@ -13,6 +13,7 @@ export class InventarioSalidaService {
 
   private correo: string;
   private nombre: string;
+  private idFabricaUsuario: string;
 
 
   constructor( private clientService:HttpClient) { }
@@ -22,12 +23,21 @@ export class InventarioSalidaService {
     return this.clientService.get<any[]>(this.API+"?selectArea")
   }
 
+
+  getProductosSalida(){
+    return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
+  }
+
   //inventario salida
 
   //Actualizar y consultar
 
   listarInventariosalida(): Observable<PeriodicElement2[]> {
     return this.clientService.get<PeriodicElement2[]>(this.API+"?obtenerProductosSalida=1");
+  }
+
+  agregarInventarioSalida(datosProducto:producto2):Observable<any>{
+    return this.clientService.post(this.API+"?insertarInventarioSalidaPro=1",datosProducto);
   }
 
   consultarInventarioSalida(id:any): Observable<any> {
@@ -51,5 +61,10 @@ export class InventarioSalidaService {
     // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
     getNombre(): string {
       return this.nombre = localStorage.getItem("Nombre") || '';
+    }
+
+        // OBTENEMOS idfabrica del usuario por LOCALSTORAGE
+    getIdFabricaUsuario(): string {
+      return this.idFabricaUsuario = localStorage.getItem("idFabrica") || '';
     }
 }
