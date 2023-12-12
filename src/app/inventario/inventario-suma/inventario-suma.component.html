@@ -7,50 +7,35 @@
   <form [formGroup]="formularioEditarInventario"(ngSubmit)="enviarDatos()" >
     <div class="formula" style="border:none;" >
       <div class="formula1">
-        
-        <label for="productos">Selecciona un producto</label>
-<select formControlName="NombreInsumo" (change)="selectProductos()">
-  <option value="" disabled>Selecciona un producto</option>
-  <option *ngFor="let producto of productos" [value]="producto.idInventarioFabrica">{{ producto.nombreInsumo }}</option>
-</select>
 
         <label>Nombre Producto</label>
           <mat-form-field>
             <mat-label>Nombre Producto</mat-label>
-            <mat-select  formControlName="NombreInsumo">
+            <mat-select  id="NombreInsumo" formControlName="NombreInsumo"  
+            (selectionChange)="validateDataInventory($event)">
               <mat-option value="0"> </mat-option>
-              <mat-option  *ngFor="let producto of productos" [value]="producto.idInventarioFabrica">{{producto.nombreInsumo}}</mat-option>
+              <mat-option  *ngFor="let producto of productos" [value]="producto.idInventarioFabrica">{{producto.NombreInsumo}}</mat-option>
             </mat-select>
           </mat-form-field>
 
         <label>Peso</label>
           <mat-form-field class="example-full-width">
             <mat-label>Peso</mat-label>
-            <input formControlName="Peso" type="text" id="peso" [value]="formularioEditarInventario.get('Peso')?.value"  matInput>
+            <input formControlName="Peso" type="text" id="Peso" matInput>
           </mat-form-field>
           
 
           <label>FechaCreacion</label>
-          <mat-form-field class="example-full-width">
-            <mat-label>FechaCreacion</mat-label>
-            <input formControlName="Fecha" matInput>
+          <mat-form-field class="example-full-width"  >
+            <input  type="text" formControlName="Fecha" matInput>
           </mat-form-field>
-        
-
-          <label>Area designada</label>
-          <mat-form-field>
-            <mat-label>Área</mat-label>
-            <mat-select  formControlName="AreaDesignada">
-              <mat-option value="0"> </mat-option>
-              <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+      
 
 
           <label>Calibre</label>
           <mat-form-field class="example-full-width">
             <mat-label>Calibre</mat-label>
-            <input formControlName="Calibre" matInput>
+            <input  formControlName="Calibre" matInput >
           </mat-form-field>
         
         </div>

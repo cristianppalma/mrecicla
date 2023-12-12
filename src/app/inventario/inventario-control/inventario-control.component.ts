@@ -122,7 +122,10 @@ export class InventarioControlComponent implements OnInit {
     });
   }
 
-  
+  obtenerNombreArea(idArea: number): string {
+    const area = this.areas.find(item => item.idArea === idArea);
+    return area ? area.NombreArea : '';
+  }
  
 
 
