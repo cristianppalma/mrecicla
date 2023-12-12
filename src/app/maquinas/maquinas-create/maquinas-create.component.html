@@ -1,13 +1,13 @@
 <div class="container">
     <div class="cabecera">
-        <h1>REGISTRAR NUEVA MAQUINA</h1>
+        <h1>Registrar nueva maquina</h1>
     </div>
-  
-        
+
+
         <form [formGroup]="formularioMaquina" (ngSubmit)="enviarDatos()">
-            <div class="formula" style="border:none;" >         
+            <div class="formula" style="border:none;" >
                 <div class="formula1">
-                    
+
                 <label>Número de máquina</label>
                 <mat-form-field>
                     <mat-label>Numero</mat-label>
@@ -15,7 +15,7 @@
                     <mat-error *ngIf="formularioMaquina.get('Numero')?.hasError('required')">
                         El número de la máquina es obligatorio.
                       </mat-error>
-                      
+
                 </mat-form-field>
                 <label>Modelo de maquina</label>
                 <mat-form-field>
@@ -30,7 +30,7 @@
                     <mat-label>Descripción</mat-label>
                     <textarea formControlName="Descripcion" matInput></textarea>
                 </mat-form-field>
-               
+
                 </div>
                 <div class="formula2">
                     <label>Serie de máquina</label>
@@ -63,7 +63,7 @@
                 <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
                 <button  (click)="CANCELAR();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
             </div>
-            
+
 </form>
 </div>
 

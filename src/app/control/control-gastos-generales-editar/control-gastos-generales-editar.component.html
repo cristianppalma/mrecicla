@@ -1,6 +1,6 @@
 <div class="container">
 
-  <H1 class="Title">EDITAR GASTO</H1>
+  <H1 class="Title">Editar gasto</H1>
 
   <div class="centrar-columnas">
     <form [formGroup]="formularioEditarGastos" (ngSubmit)="enviarDatosActualizarGastos()">
@@ -31,7 +31,7 @@
               <mat-option *ngFor="let maquina of maquinas" [value]="maquina.idMaquinaria">{{ maquina.Modelo }}</mat-option>
             </mat-select>
           </mat-form-field>
-          
+
         </div>
         <div class="formula2">
           <label>Monto</label>

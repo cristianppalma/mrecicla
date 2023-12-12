@@ -56,6 +56,8 @@ export class PagesComponent implements OnInit {
     localStorage.removeItem('Correo');
     localStorage.removeItem('NombreFabrica');
     localStorage.removeItem('idFabrica');
+    localStorage.removeItem('NombreArea');
+    localStorage.removeItem('idArea');
     // Para borrar todos los elementos del Local Storage
     // localStorage.clear();
     console.log('Se elimino el token');
