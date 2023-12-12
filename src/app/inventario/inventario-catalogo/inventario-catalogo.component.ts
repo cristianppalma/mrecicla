@@ -5,6 +5,7 @@ import { PeriodicElement } from '../PeriodicElement';
 import { MatDialog } from '@angular/material/dialog';
 import { InventarioService } from '../inventario.service';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
+import { FormGroup } from '@angular/forms';
 
 interface Food {
   value: string;
@@ -22,6 +23,7 @@ export class InventarioCatalogoComponent implements OnInit {
   Producto:PeriodicElement[] = [];
   displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Composicion','Calibre']
   dataSource: MatTableDataSource<PeriodicElement>;
+  filterForm: FormGroup;
   formatDateWithLeadingZeros(date: Date): string {
     const day = ('0' + date.getDate()).slice(-2);
     const month = ('0' + (date.getMonth() + 1)).slice(-2);

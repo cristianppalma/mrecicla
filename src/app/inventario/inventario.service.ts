@@ -14,6 +14,7 @@ export class InventarioService {
   private correo: string;
   private nombre: string;
   API: string = 'http://localhost/PhpAngular/inventario/';
+  URL: string = 'http://localhost/PhpAngular/inventario/';
   //API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
 
 
@@ -38,13 +39,11 @@ export class InventarioService {
   }
   //Actualizar y consultar
   consultarInventario(id:any): Observable<PeriodicElement> {
-    return this.clientService.get<PeriodicElement>(this.API+"?consultarinventarioPro="+id);
-
+    return this.clientService.get<PeriodicElement>(this.API+"?=consultarinventarioPro"+id);
   }
 
   editarproducto(id:any, datosProducto:producto):Observable<any>{
     return this.clientService.post(this.API+"?ActualizarInventario="+id,datosProducto);
-
   }
 
   selectAreas(){
@@ -55,27 +54,11 @@ export class InventarioService {
  return this.clientService.get<any[]>(this.API+"?SelectProducto")
  }
 
-  //inventario salida
+ getProductIds(): Observable<number[]> {
+  // Haz una solicitud HTTP para obtener solo los IDs de los productos desde la base de datos
+  return this.clientService.get<any[]>(this.API+"?SelectId");
+}
 
-  //Actualizar y consultar
-
-  // listarInventariosalida(): Observable<PeriodicElement2[]> {
-  //   return this.clientService.get<PeriodicElement2[]>(this.API2+"?obtenerProductosSalida=1");
-  // }
-
-  // consultarInventarioSalida(id:any): Observable<any> {
-  //   return this.clientService.get<PeriodicElement2>(this.API2+"?obtenerProductosSalidaPorID="+id);
-
-  // }
-
-  // editarproductoSalida(id:any, datosProducto:producto2):Observable<any>{
-  //   return this.clientService.post(this.API2+"?actualizarProductos="+id,datosProducto);
-
-  // }
-
-  // borrarInventarioSalida(id:any,usuarioEliminador: any):Observable<any>{
-  //   return this.clientService.get(`${this.API2}?borrarInventarioSalida=${id}&UsuarioEliminador=${usuarioEliminador}`);
-  // }
     // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
     getCorreo(): string {
       return this.correo = localStorage.getItem("Correo") || '';
@@ -84,6 +67,19 @@ export class InventarioService {
     // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
     getNombre(): string {
       return this.nombre = localStorage.getItem("Nombre") || '';
+    }
+
+    ConsultarInvent(p_idInventario: any) {
+      let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+      let params = 'p_idInventario=' + p_idInventario
+      return this.clientService.post(this.URL + 'MostrarInventario.php', params, { headers });
+    }
+
+    actualizarPesoInv(Peso: any , idFabrica: any) {
+      let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+      let params = 'Peso=' + Peso +
+                   '&idFabrica=' + idFabrica;
+      return this.clientService.post(this.URL + 'ActualizarPesoInv.php', params, { headers });
     }
 }
 
