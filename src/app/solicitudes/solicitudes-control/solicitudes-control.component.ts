@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { SolicitudesService } from '../solicitudes.service';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 interface Food {
   value: string;
   viewValue: string;
@@ -43,7 +45,9 @@ export class SolicitudesControlComponent implements OnInit{
   }
 constructor(private router:Router,
   private dialog:MatDialog,
-  private SolicitudesService:SolicitudesService) {
+  private SolicitudesService:SolicitudesService,
+  private excelService:ExporterService
+  ) {
     this.dataSource=new MatTableDataSource<PeriodicElement>([]);
   }
 
@@ -100,6 +104,16 @@ ngOnInit(): void {
     this.Solicitud = respuesta;
     this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
   });
+}
+
+//Exportar SIN filtros
+exportarXLSX(): void {
+  this.excelService.exportToExcel(this.dataSource.data, 'reporte-solicitudes');
+}
+
+//Exportar CON filtros
+exportarXLSXFilter(): void {
+  this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-solicitudes');
 }
 
 regresar (){

@@ -6,6 +6,8 @@ import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialo
 import { ControlService } from '../control.service';
 import { PeriodicElement } from '../PeriodicElement';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 interface Food {
   value: string;
   viewValue: string;
@@ -54,7 +56,8 @@ export class ControlGastosGeneralesComponent  implements OnInit {
   constructor(
     private router:Router,
     private dialog: MatDialog,
-    private ControlService:ControlService
+    private ControlService:ControlService,
+    private excelService:ExporterService
   ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
     }
@@ -115,6 +118,16 @@ export class ControlGastosGeneralesComponent  implements OnInit {
     this.Gastos = respuesta;
     this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
+  }
+
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-control-de-gastos');
+  }
+
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-control-de-gastos');
   }
 
   RegresarGastosGenerales(){

@@ -6,6 +6,8 @@ import { InventarioSalidaService } from '../inventario-salida.service';
 import { PeriodicElement2 } from '../PeriodicElement2';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 @Component({
   selector: 'app-inventario-salida-catalogo',
   templateUrl: './inventario-salida-catalogo.component.html',
@@ -42,7 +44,8 @@ export class InventarioSalidaCatalogoComponent implements OnInit{
   constructor(
     private router:Router,
     private dialog:MatDialog,
-    private InventarioServiceSalida:InventarioSalidaService
+    private InventarioServiceSalida:InventarioSalidaService,
+    private excelService:ExporterService
   )
   {
     this.dataSource=new MatTableDataSource<PeriodicElement2>([]);
@@ -94,6 +97,16 @@ export class InventarioSalidaCatalogoComponent implements OnInit{
     this.InventarioServiceSalida.selectAreas().subscribe((data)=>{
       this.areas=data;
     })
+  }
+
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-catalogo-inventario-produccion');
+  }
+
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-catalogo-inventario-produccion');
   }
 
   //Obtenemos el nombre del area

@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProduccionEmpleadoService } from 'src/app/produccionEmpleado/produccion-empleado.service';
 import { PeriodicElement } from 'src/app/produccionEmpleado/PeriodicElement';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 @Component({
   selector: 'app-produccion-list',
   templateUrl: './produccion-list.component.html',
@@ -61,6 +63,7 @@ export class ProduccionListComponent implements OnInit {
   constructor(
     private router:Router,
     private produccionEmpleadoService:ProduccionEmpleadoService,
+    private excelService:ExporterService
     ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
     }
@@ -102,6 +105,16 @@ export class ProduccionListComponent implements OnInit {
     //   this.inventariosSalida=data;
     // })
 
+  }
+
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-produccion-general');
+  }
+
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-produccion-general');
   }
 
   //Funcion para obtener nombre de inventarioFabrica en lugar de solo el id

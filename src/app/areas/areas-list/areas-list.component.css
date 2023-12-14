@@ -91,3 +91,17 @@
     margin: 8px;
     border-radius: 5px;
   }
+
+  .agregar {
+    background-color: #d6e44b;
+    margin-left: 1rem;
+  }
+
+.exportar {
+  background: #d6e44b;
+  color: black;
+  width: 150px;
+  margin: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+}

@@ -56,3 +56,19 @@ button.mat-button {
   margin: 8px;
   border-radius: 5px;
 }
+
+.agregar {
+  background-color: #d6e44b;
+  color: white;
+  width: 160px;
+  margin-left: 1rem;
+}
+
+.exportar {
+  background: #d6e44b;
+  color: black;
+  width: 170px;
+  margin: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+}

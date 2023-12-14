@@ -7,6 +7,8 @@ import { InventarioService } from '../inventario.service';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
 import { FormGroup } from '@angular/forms';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 interface Food {
   value: string;
   viewValue: string;
@@ -53,10 +55,11 @@ export class InventarioCatalogoComponent implements OnInit {
 
   constructor(private router:Router,
     private dialog:MatDialog,
-    private InventarioService:InventarioService
-    
+    private InventarioService:InventarioService,
+    private excelService:ExporterService
+
     ) {
-     
+
       this.dataSource=new MatTableDataSource<PeriodicElement>([]);
     }
     inventarioSuma(){
@@ -95,7 +98,7 @@ export class InventarioCatalogoComponent implements OnInit {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
       });
-    
+
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.eliminarInventario(element);
@@ -106,14 +109,14 @@ export class InventarioCatalogoComponent implements OnInit {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         data: { message: '¿Estás seguro de que deseas eliminar este registro?' }
       });
-    
+
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.eliminarInventario2(element);
         }
       });
     }
-  
+
   ngOnInit(): void {
     this.InventarioService.listarInventario().subscribe((respuesta: PeriodicElement[]) => {
       console.log(respuesta);
@@ -126,10 +129,14 @@ export class InventarioCatalogoComponent implements OnInit {
     });
   }
 
-  
- 
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-catalogo-inventario-insumos');
+  }
 
-
-
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-catalogo-inventario-insumos');
+  }
 
 }
