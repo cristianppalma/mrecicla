@@ -5,28 +5,28 @@
   </div>
 
 <div class="centrar-columnas">
-    <form ngNativeValidate [formGroup]="formularioProduccionAreaDetails">
+    <form [formGroup]="formularioProduccionAreaDetails" (ngSubmit)="enviarDatos()">
       <div class="formula">
         <div class="formula1">
 
           <label>Fecha de Inicio</label>
           <mat-form-field>
-            <input required min="1" type="date" name="" formControlName="FechaInicio" matInput readonly="">
+            <input required min="1" type="date" name="" formControlName="FechaInicio" matInput>
           </mat-form-field>
 
           <label>Fecha de Finalización</label>
           <mat-form-field>
-            <input required type="date" formControlName="FechaFin" matInput readonly="">
+            <input required type="date" formControlName="FechaFin" matInput>
           </mat-form-field>
 
           <label>Hora de Inicio</label>
           <mat-form-field>
-            <input required type="time" formControlName="HoraInicio" matInput readonly="">
+            <input required type="time" formControlName="HoraInicio" matInput>
           </mat-form-field>
 
           <label>Hora de Finalización</label>
           <mat-form-field>
-            <input required type="time" formControlName="HoraFin" matInput readonly="">
+            <input required type="time" formControlName="HoraFin" matInput>
           </mat-form-field>
 
           <label>Area</label>
@@ -41,7 +41,7 @@
           <label>ID Usuario</label>
           <mat-form-field>
             <!-- <mat-label>Nombre del usuario</mat-label> -->
-            <input formControlName="idUser" type="text" readonly matInput value="{{usuario}}">
+            <input formControlName="idUsuario" type="text" readonly matInput>
           </mat-form-field>
 
 
@@ -66,7 +66,7 @@
 
           <label>Unidades de Insumo Inicial (pz)</label>
           <mat-form-field>
-            <input required type="number" formControlName="UnidadesInsumo" matInput readonly="">
+            <input required type="number" formControlName="UnidadesInsumo" matInput>
           </mat-form-field>
 
           <label>Producto Producido</label>
@@ -80,7 +80,7 @@
 
           <label>Kg Totales de produccion</label>
           <mat-form-field>
-            <input required type="number" step="0.01" formControlName="KgProduccion" matInput readonly="">
+            <input required type="number" step="0.01" formControlName="KgProduccion" matInput>
           </mat-form-field>
 
           <label>Turno</label>
@@ -114,7 +114,7 @@
       </div>
 
       <div class="botones" role="group">
-        <!-- <button type="submit" class="btn-acep" mat-button>ACTUALIZAR</button> -->
+        <button *ngIf="usuarioTienePermisoAdmin" type="submit" class="btn-acep" mat-button>ACTUALIZAR</button>
         <button type="button" (click)="cancelar()" class="btn-canc" mat-button>REGRESAR</button>
       </div>
 

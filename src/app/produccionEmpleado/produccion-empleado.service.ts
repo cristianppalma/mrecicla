@@ -9,9 +9,9 @@ import { Produccion } from './produccion';
 })
 export class ProduccionEmpleadoService {
   // URL DE LA LLAMADA A LA API
- API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
+ //API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
 
-  //API: string = 'http://localhost/PhpAngular/produccionarea/';
+  API: string = 'http://localhost/PhpAngular/produccionarea/';
 
   private correo: string;
   private nombre: string;
@@ -40,6 +40,11 @@ export class ProduccionEmpleadoService {
   // SERVICIO PARA VER LOS DETALLES DE UN REGISTRO
   verDetallesProduccionArea(idProduccionArea:any): Observable<any> {
     return this.clientService.get(this.API+"?consultarProduccionArea="+idProduccionArea);
+  }
+
+  //SERVICIO PARA ACTUALIZAR EL REGISTRO
+  actualizarProduccionArea(idProduccionArea:any, datosProduccionArea:Produccion):Observable<any>{
+    return this.clientService.post(this.API+"?actualizarProduccionArea="+idProduccionArea,datosProduccionArea);
   }
 
   // SERVICIO PARA TRAER TODOS LOS REGISTROS DE LA TABLA MAQUINARIA

@@ -9,9 +9,9 @@ import { PeriodicElement2 } from './PeriodicElement2';
 })
 export class InventarioSalidaService {
 
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/inventarioSalida/'
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/inventarioSalida/'
 
-  //API: string = 'http://localhost/PhpAngular/inventarioSalida/';
+  API: string = 'http://localhost/PhpAngular/inventarioSalida/';
 
   private correo: string;
   private nombre: string;

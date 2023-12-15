@@ -50,7 +50,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       idProductosalida: [''],
       idUsuario: [idUserSave],
       UsuarioCreador : [correoSave],
-      UsuarioCreadorNombre: [nombreSave],
+      // UsuarioCreadorNombre: [nombreSave + ' ' + apePatSave + ' ' + apeMatSave],
     });
   }
 

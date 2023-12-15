@@ -13,5 +13,5 @@ export class Produccion{
   idProductosalida    !:String;
   UsuarioCreador      !:String;
   UsuarioCreadorNombre  !:String;
-  //UsuarioActualizador !:String;
+  UsuarioActualizador !:String;
 }
