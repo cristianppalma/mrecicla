@@ -43,6 +43,7 @@ export class ProduccionEmpleadoListComponent implements OnInit {
                                   // 'productoProduccion',
                                   'idProductosalida',
                                   'KgProduccion',
+                                  'Area',
                                   // 'idMaquina',
                                   'action' ];
   dataSource: MatTableDataSource<PeriodicElement>

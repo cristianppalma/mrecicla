@@ -73,6 +73,11 @@
           <td mat-cell *matCellDef="let element">{{ element.KgProduccion }}</td>
         </ng-container>
 
+        <ng-container matColumnDef="Area">
+          <th mat-header-cell *matHeaderCellDef> Area </th>
+          <td mat-cell *matCellDef="let element">{{ element.Area }}</td>
+        </ng-container>
+
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Accion</th>
           <td mat-cell *matCellDef="let element">

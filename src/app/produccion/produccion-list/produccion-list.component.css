@@ -76,6 +76,12 @@ h1 {
   color: green;
 }
 
+.filterArea {
+  background-color: #d6e44b;
+  margin-left: 2rem;
+  color: white;
+}
+
 .agregar {
   background-color: #d6e44b;
   margin-left: 1rem;
