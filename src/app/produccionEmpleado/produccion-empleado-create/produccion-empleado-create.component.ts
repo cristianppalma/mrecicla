@@ -16,11 +16,10 @@ import { Dialog } from '@angular/cdk/dialog';
   styleUrls: ['./produccion-empleado-create.component.css']
 })
 export class ProduccionEmpleadoCreateComponent implements OnInit {
-
+  areaNombre: string | null;
   usuarioId: string | null;
   usuarioNombre: string | null;
   usuarioCorreo: string | null;
-
   maquinarias: any[];
   areas: any[];
   inventariosSalida: any[];
@@ -36,6 +35,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     const idUserSave = this.produccionEmpleadoService.getId();
     const nombreSave = this.produccionEmpleadoService.getNombre();
     const correoSave = this.produccionEmpleadoService.getCorreo();
+    const idAreaUser = this.produccionEmpleadoService.getidArea();
     this.formularioProduccionArea = this.formBuilder.group({
       FechaInicio: [''],
       FechaFin: [''],
@@ -45,7 +45,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       UnidadesInsumo: [''],
       KgProduccion: [''],
       idMaquinaria: [''],
-      idArea: [''],
+      idArea: [idAreaUser || ''],
       idInventarioFabrica: [''],
       idProductosalida: [''],
       idUsuario: [idUserSave],
@@ -91,7 +91,9 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.areaNombre = localStorage.getItem("NombreArea");
+    console.log('ID: ', this.areaNombre);
+    const idArea = this.produccionEmpleadoService.getidArea();
     // TRAEMOS EL ID
     console.log('AQUI MOSTRARIAMOS EL ID TRAIDO DESDE EL SERVICE');
     const idUserSave = this.produccionEmpleadoService.getId();
@@ -116,9 +118,13 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     this.usuarioCorreo = localStorage.getItem("Correo");
     console.log('Correo', this.usuarioCorreo);
 
-    //
-    this.produccionEmpleadoService.selectMaquinaria().subscribe((data)=>{
+    //Aqui es lo de maquinas sin filtro
+    /*this.produccionEmpleadoService.selectMaquinaria().subscribe((data)=>{
       this.maquinarias=data;
+    });*/
+
+    this.produccionEmpleadoService.getMaquinas(idArea).subscribe((data2)=>{
+      this.maquinarias = data2
     });
 
     //

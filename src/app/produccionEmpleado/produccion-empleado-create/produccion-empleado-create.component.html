@@ -29,13 +29,19 @@
             <input required type="time" formControlName="HoraFin" matInput>
           </mat-form-field>
 
-          <label>Area</label>
+         <!-- <label>Area</label>
           <mat-form-field>
             <mat-label>Area</mat-label>
             <mat-select formControlName="idArea">
               <mat-option value="0"> </mat-option>
               <mat-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</mat-option>
             </mat-select>
+          </mat-form-field>-->
+
+          <label>Área</label>
+          <mat-form-field>
+            <!-- <mat-label>Nombre del usuario</mat-label> -->
+            <input formControlName="areaNombre" type="text" [disabled]="true" readonly matInput value="{{areaNombre}}">
           </mat-form-field>
 
           <label>ID Usuario</label>

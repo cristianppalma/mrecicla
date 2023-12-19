@@ -16,10 +16,27 @@ export class ProduccionEmpleadoService {
   private correo: string;
   private nombre: string;
   private iduser: string;
+  private area: string;
+  private fabrica: string;
 
   constructor(
     private clientService: HttpClient
   ) { }
+
+    
+  getAreas(){
+    return this.clientService.get<any[]>(this.API+"?selectArea=1");
+  }
+
+  getMaquinas(id:any){
+    const url = this.API + "?selectMaquina=" + id;
+
+  return this.clientService.get<any[]>(url);
+  }
+
+  getmaquinaria(){
+    return this.clientService.get<any[]>(this.API+"?selectmaqui=1");
+  }
 
   // CONEXION DE FRONTEND CON BACKEND
   // SERVICIO PARA TRAER TODOS LOS REGISTROS
@@ -85,5 +102,14 @@ export class ProduccionEmpleadoService {
   getNombre(): string {
     return this.nombre = localStorage.getItem("Nombre") || '';
   }
+  
+  getidArea(): string{
+    return this.area = localStorage.getItem("idArea") || '';
+  }
+
+  getidFabrica(): string{
+    return this.fabrica = localStorage.getItem("idFabrica") || '';
+  }
+
 
 }
