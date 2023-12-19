@@ -8,9 +8,9 @@ import { areasList } from './areasList';
   providedIn: 'root'
 })
 export class AreasService {
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/areas/'
+  // API: string = 'https://recicladora.arvispace.com/PhpAngular/areas/'
 
-  //API: string = 'http://localhost/PhpAngular/areas/';
+  API: string = 'http://localhost/PhpAngular/areas/';
  private correo: string;
  private nombre: string;
  private fabrica: string;

@@ -21,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CatalogosComponent } from './catalogos/catalogos/catalogos.component';
 
+import { ExporterService } from './services/exporter.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,7 @@ import { CatalogosComponent } from './catalogos/catalogos/catalogos.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ExporterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,6 +7,8 @@ import { MaquinasService } from '../maquinas.service';
 import { PeriodicElement } from '../PeriodicElement';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 @Component({
   selector: 'app-maquinas-list',
   templateUrl: './maquinas-list.component.html',
@@ -23,7 +25,8 @@ export class MaquinasListComponent  implements OnInit {
   constructor(private router:Router,
               private dialog: MatDialog,
               private MaquinaService:MaquinasService,
-              private fb: FormBuilder
+              private fb: FormBuilder,
+              private excelService:ExporterService
      ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
       this.filterForm = this.fb.group({
@@ -127,6 +130,16 @@ export class MaquinasListComponent  implements OnInit {
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
 
+  }
+
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-maquinaria');
+  }
+
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-maquinaria');
   }
 
   regresar (){

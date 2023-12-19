@@ -18,7 +18,7 @@
 .table {
   text-align: center;
   /* Estilos para la tabla si es necesario */
- 
+
   width: 1100px;
   margin-right: 10rem;
 
@@ -72,7 +72,23 @@ h1{
   font-size: 48px;
 }
 
+.agregar {
+  background-color: #d6e44b;
+  margin-left: 1rem;
+  color: white;
+}
 
-h2{
+.nuevo {
+  background-color: #d6e44b;
+  margin-left: 1rem;
+  color: white;
+}
 
+.exportar {
+  background: #d6e44b;
+  color: black;
+  width: 180px;
+  margin: 8px;
+  border-radius: 5px;
+  font-size: 14px;
 }

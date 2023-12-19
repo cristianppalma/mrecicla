@@ -6,6 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component'
 import { AreasService } from '../areas.service';
 import { areasList } from '../areasList';
+
+import { ExporterService } from 'src/app/services/exporter.service';
+
 interface Food {
   value: string;
   viewValue: string;
@@ -49,7 +52,8 @@ export class AreasListComponent implements OnInit {
   }
   constructor(private router:Router,
               private dialog: MatDialog,
-              private areasService:AreasService
+              private areasService:AreasService,
+              private excelService:ExporterService
               ) {
                  this.dataSource = new MatTableDataSource<areasList>([]);
                 }
@@ -105,6 +109,16 @@ ngOnInit(): void {
     this.areas = respuesta;
     this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
   });
+}
+
+//Exportar SIN filtros
+exportarXLSX(): void {
+  this.excelService.exportToExcel(this.dataSource.data, 'reporte-areas');
+}
+
+//Exportar CON filtros
+exportarXLSXFilter(): void {
+  this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-areas');
 }
 
 regresar (){

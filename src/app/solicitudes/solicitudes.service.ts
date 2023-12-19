@@ -7,9 +7,9 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class SolicitudesService {
- API: string = 'https://recicladora.arvispace.com/PhpAngular/solicitudes/'
+//  API: string = 'https://recicladora.arvispace.com/PhpAngular/solicitudes/'
 
- // API: string = 'http://localhost/PhpAngular/solicitudes/';
+ API: string = 'http://localhost/PhpAngular/solicitudes/';
   private correo: string;
   private nombre: string;
 

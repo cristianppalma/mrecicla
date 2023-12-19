@@ -9,7 +9,10 @@
       <mat-label>Nombre</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ej.Jeronimo" #input>
     </mat-form-field>
-    <button  (click)="crearProveedor();" mat-button style="background-color: #d6e44b; margin-left: 1rem; width: 250px">AGREGAR NUEVO PROVEEDOR</button>
+    <button class="agregar" (click)="crearProveedor();" mat-button>AGREGAR</button>
+    <button class="exportar" (click)="exportarXLSXFilter();" mat-button>EXPORTAR XLSX
+      <!-- <mat-icon>trending_down</mat-icon> -->
+    </button>
   </div>
 
   <div class="table">
@@ -77,11 +80,12 @@
         <td class="mat-cell" colspan="4">Ningún dato coincide con: "{{ input.value }}"</td>
       </tr>
     </table>
+
   </div>
 </div>
 
-<div class="button-container">
+<!-- <div class="button-container">
   <button type="submit" (click)="regresar();" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
     Regresar
   </button>
-</div>
+</div> -->

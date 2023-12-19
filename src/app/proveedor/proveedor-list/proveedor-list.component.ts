@@ -6,6 +6,8 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 import { ProveedorService } from '../proveedor.service';
 import { PeriodicElement } from '../PeriodicElement';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 // interface Food {
 //   value: string;
 //   viewValue: string;
@@ -73,7 +75,8 @@ export class ProveedorListComponent  implements OnInit {
   constructor(
     private router:Router,
     private dialog: MatDialog,
-    private proveedorService:ProveedorService
+    private proveedorService:ProveedorService,
+    private excelService:ExporterService
   ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
     }
@@ -125,6 +128,16 @@ export class ProveedorListComponent  implements OnInit {
       this.inventarioFabrica=data;
     })
 
+  }
+
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-proveedores');
+  }
+
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-proveedores');
   }
 
   obtenerNombreInsumo(idInventarioFabrica: number): string {

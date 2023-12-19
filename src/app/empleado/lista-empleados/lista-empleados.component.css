@@ -109,3 +109,20 @@ h1{
   margin: 8px;
   border-radius: 5px;
 }
+
+.agregar {
+  margin-left: 650px;
+  position: relative;
+  background-color: #d6e44b;
+  color: black;
+}
+
+.exportar {
+  background: #d6e44b;
+  color: black;
+  position: relative;
+  width: 150px;
+  margin: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+}

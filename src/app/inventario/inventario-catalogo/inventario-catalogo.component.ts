@@ -7,6 +7,8 @@ import { InventarioService } from '../inventario.service';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
 import { FormGroup } from '@angular/forms';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 interface Food {
   value: string;
   viewValue: string;
@@ -53,7 +55,8 @@ export class InventarioCatalogoComponent implements OnInit {
 
   constructor(private router:Router,
     private dialog:MatDialog,
-    private InventarioService:InventarioService
+    private InventarioService:InventarioService,
+    private excelService:ExporterService
 
     ) {
 
@@ -126,10 +129,14 @@ export class InventarioCatalogoComponent implements OnInit {
     });
   }
 
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-catalogo-inventario-insumos');
+  }
 
-
-
-
-
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-catalogo-inventario-insumos');
+  }
 
 }
