@@ -9,7 +9,7 @@ import { Produccion } from './produccion';
 })
 export class ProduccionEmpleadoService {
   // URL DE LA LLAMADA A LA API
- //API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
 
   API: string = 'http://localhost/PhpAngular/produccionarea/';
 
@@ -21,8 +21,7 @@ export class ProduccionEmpleadoService {
     private clientService: HttpClient
   ) { }
 
-  // CONEXION DE FRONTEND CON BACKEND
-  // SERVICIO PARA TRAER TODOS LOS REGISTROS
+  // SERVICIO PARA TRAER TODOS LOS REGISTROS A NIVEL ADMIN
   listarProduccionGeneral(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProduccionAdmin=1");
   }
