@@ -35,7 +35,7 @@ export class InventarioService {
   //Borrar con procedimientos curi
 
   borrarInventario(id:any,usuarioEliminador: any):Observable<any>{
-    return this.clientService.delete(`${this.API}?BorrarInventario=${id}&UsuarioEliminador=${usuarioEliminador}`);
+    return this.clientService.delete(`${this.API}?eliminarInventarioInsumo=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
   //Actualizar y consultar
   consultarInventario(id:any): Observable<any> {
