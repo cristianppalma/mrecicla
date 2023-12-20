@@ -3,73 +3,69 @@
     <H1 >REGISTRAR NUEVO PRODUCTO</H1>
   </div >
     <form [formGroup]="formularioProducto" (ngSubmit)="enviarDatos()" >
-      <div class="formula" style="border:none;" > 
+      <div class="formula" style="border:none;" >
         <div class="formula1">
 
-          <!--<label>ID</label> 
-          <mat-form-field>
-            <mat-label>ID</mat-label>
-            <input formControlName="ID" matInput>
-          </mat-form-field>-->
           <label>Nombre Producto</label>
           <mat-form-field>
             <mat-label>Nombre Producto</mat-label>
-            <mat-select  formControlName="NombreInsumo">
-              <mat-option value="0"> </mat-option>
-              <mat-option *ngFor="let producto of productos" [value]="producto.idInventarioFabrica">{{producto.nombreInsumo}}</mat-option>
-            </mat-select>
+            <input formControlName="NombreInsumo" type="text" matInput>
           </mat-form-field>
-          
 
-          <label>Fecha</label> 
+
+          <label>Fecha</label>
           <mat-form-field >
             <mat-label>Fecha</mat-label>
             <input formControlName="Fecha" matInput type="date">
           </mat-form-field>
 
-          <label>Composicion</label> 
+          <label>Composicion</label>
           <mat-form-field >
             <mat-label>Composicion</mat-label>
             <input formControlName="Composicion" matInput>
           </mat-form-field>
-         
-        <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
+
+        <!-- <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button> -->
 
         </div>
 
         <div class="formula2">
-          <label>Peso</label> 
+
+          <label>Peso</label>
           <mat-form-field >
             <mat-label>Peso</mat-label>
             <input formControlName="Peso" matInput>
           </mat-form-field>
+
           <label>Area designada</label>
-        <mat-form-field>
-          <mat-label>Área</mat-label>
-          <mat-select  formControlName="AreasDesignadas">
-            <mat-option value="0"> </mat-option>
-            <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label>Área</mat-label>
+            <mat-select  formControlName="idArea">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let area of areas" [value]="area.idArea">{{area.NombreArea}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <label>Dimensiones</label>
           <mat-form-field class="example-full-width">
             <mat-label>Dimensiones</mat-label>
             <input formControlName="Dimension" matInput>
           </mat-form-field>
+
           <label>Calibre</label>
           <mat-form-field class="example-full-width">
             <mat-label>Calibre</mat-label>
             <input formControlName="Calibre" matInput>
           </mat-form-field>
+
         </div>
       </div>
       <div class="botones">
         <button type="submit" class="left" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
-      <button  (click)="Cancelar();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
+        <button type="button" (click)="Cancelar();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
 
       </div>
     </form>
-    
+
 </div>
 
-        

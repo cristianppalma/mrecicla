@@ -19,7 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './inventario-crear.component.html',
   styleUrls: ['./inventario-crear.component.css'],
 
-  
+
 })
 
 
@@ -29,7 +29,7 @@ export class InventarioCrearComponent implements OnInit{
   areas:any[];
   productos:any[];
 
-  constructor(private router:Router, 
+  constructor(private router:Router,
     private _bottomSheet: MatBottomSheet,
     private formBuilder :FormBuilder,
     private InventarioService: InventarioService,
@@ -40,30 +40,31 @@ export class InventarioCrearComponent implements OnInit{
       //ID: ['', [Validators.required]],
       NombreInsumo: ['', [Validators.required]],
       Peso: ['', [Validators.required]],
-      Dimension: ['', [Validators.required]],  
+      Dimension: ['', [Validators.required]],
       Fecha: ['', [Validators.required]],
       Calibre: ['', [Validators.required]],
       Composicion:['', [Validators.required]],
-      AreasDesignadas:['', [Validators.required]],
-      UsuarioCreador:[correSave]
+      idArea:['', [Validators.required]],
+      UsuarioCreador:[correSave],
+      idFabrica:[''],
     });
   }
-  
+
   Cancelar(){
     this.router.navigateByUrl('/dashboard/inventario/inventarios');
   }
     /**
     boton de abrir imagen
     */
-  openBottomSheet(): void 
+  openBottomSheet(): void
   {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
-  
+
 
   enviarDatos(): void {
     console.log('se preciona aqui ')
-    if (this.formularioProducto.valid) 
+    if (this.formularioProducto.valid)
     {
       console.log('Se presionó el botón');
       console.log(this.formularioProducto.value);
@@ -71,8 +72,8 @@ export class InventarioCrearComponent implements OnInit{
         (response) => {
          console.log('Se registro correctamente');
          this.mostratDialogoAviso();
-         
-        
+
+
         },
         (error) => {
            //Manejar errores del servicio aquí
@@ -89,7 +90,7 @@ export class InventarioCrearComponent implements OnInit{
         this.router.navigateByUrl('/dashboard/inventario/inventarios');
       }
     });
-  
+
   }
 
   ngOnInit(): void {

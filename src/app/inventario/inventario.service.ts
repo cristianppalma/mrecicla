@@ -21,11 +21,11 @@ export class InventarioService {
   constructor( private clientService:HttpClient) { }
 
   agregarProducto(datosProducto:producto):Observable<any>{
-    return this.clientService.post(this.API+"?insertarProducto=1",datosProducto);
+    return this.clientService.post(this.API+"?insertarInventarioInsumosPro=1",datosProducto);
   }
 
   listarInventario(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?Inventario=1");
+    return this.clientService.get<PeriodicElement[]>(this.API+"?ObtenerInventarioGeneral=1");
   }
 
 /*  borrarInventario(id:any):Observable<any>{

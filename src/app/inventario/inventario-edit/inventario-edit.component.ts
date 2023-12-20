@@ -29,16 +29,16 @@ export class InventarioEditComponent implements OnInit{
   formularioEditarInventario:FormGroup;
   idInventarioFabrica:any;
 
-   
 
-  constructor(private router:Router, 
+
+  constructor(private router:Router,
   private _bottomSheet: MatBottomSheet,
   private formBuilder :FormBuilder,
     private InventarioService: InventarioService,
     private dialog:MatDialog,
     private activateRoute: ActivatedRoute
 //traer servicios
- 
+
   ) {
     this.InventarioService.selectAreas().subscribe((data) => {
       this.areas = data;
@@ -47,11 +47,11 @@ export class InventarioEditComponent implements OnInit{
     this.formularioEditarInventario = this.formBuilder.group({
       NombreInsumo: [''] || '' ,
       Peso: [''],
-      Dimension: [''],  
+      Dimension: [''],
       Fecha: [''],
       Calibre: [''],
       Composicion:[''],
-      AreaDesignada:[''],
+      idArea:[''],
       UsuarioActualizador:[correoSave]
     });
     this.activateRoute.paramMap.subscribe(params => {
@@ -65,7 +65,7 @@ export class InventarioEditComponent implements OnInit{
           Fecha: respuesta.Fecha,
           Calibre: respuesta.Calibre,
           Composicion: respuesta.Composicion,
-          AreaDesignada: respuesta.AreaDesignada.toString(),
+          idArea: respuesta.idArea.toString(),
           UsuarioActualizador: respuesta.UsuarioActualizador || correoSave
 
         });
@@ -101,7 +101,7 @@ export class InventarioEditComponent implements OnInit{
 );
 
     }
-    
+
   }
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
@@ -112,7 +112,7 @@ export class InventarioEditComponent implements OnInit{
         this.router.navigateByUrl('/dashboard/inventario/inventarios');
       }
     });
-  
+
   }
 
   Cancelar(){
@@ -130,14 +130,14 @@ export class InventarioEditComponent implements OnInit{
     //})
 
     this.consultarDatosInventario(this.idInventarioFabrica);
-    
+
   }
 
   consultarDatosInventario(idInventarioFabrica: any){
     alert(idInventarioFabrica);
     this.InventarioService.ConsultarInv(idInventarioFabrica).subscribe((data:any)=>{
       console.log(data);
-      if(data == 201){  
+      if(data == 201){
         alert('no se encontraron datos');
       }
       else{
@@ -162,7 +162,7 @@ export class InventarioEditComponent implements OnInit{
     })
   }
  }
- 
+
 
 export class BottomSheetOverviewExampleSheet {
   constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
