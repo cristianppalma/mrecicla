@@ -10,6 +10,7 @@ export interface PeriodicElement {
   Turno               :String;
   Domicilio           :String;
   idFabrica           :String;
+  Empresa             :String;
   idTipoUsuario       :String;
   idAsignacion        :String;
   idArea              :String;

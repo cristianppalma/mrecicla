@@ -8,4 +8,5 @@ export interface PeriodicElement {
     Maquina:           String;
     UsuarioCreador:       String;
     UsuarioEliminador:    String;
+    Empresa:              String;
   }
