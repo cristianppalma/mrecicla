@@ -10,12 +10,11 @@ import { PeriodicElement2 } from './PeriodicElement2';
 })
 export class InventarioService {
   //API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
-  //API2: string = 'https://recicladora.arvispace.com/PhpAngular/inventarioSalida/'
+  //URL: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
   private correo: string;
   private nombre: string;
   API: string = 'http://localhost/PhpAngular/inventario/';
   URL: string = 'http://localhost/PhpAngular/inventario/';
-  //API2: string = 'http://localhost/PhpAngular/inventarioSalida/';
 
 
   constructor( private clientService:HttpClient) { }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProduccionEmpleadoService } from '../produccion-empleado.service';
+import { AvisoDialogComponent } from '../aviso-dialog/aviso-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-produccion-empleado-edit',
@@ -10,6 +12,8 @@ import { ProduccionEmpleadoService } from '../produccion-empleado.service';
 })
 export class ProduccionEmpleadoEditComponent implements OnInit {
 
+  usuarioTienePermisoAdmin: boolean;
+
   usuario: string | null;
   usuarioNombre: string | null;
   usuarioCorreo: string | null;
@@ -17,6 +21,7 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
   maquinarias: any[];
   areas: any[];
   inventariosSalida: any[];
+  productosEntrada: any[]; //Obtenemos los datos de la tabla productos
   formularioProduccionAreaDetails: FormGroup;
   elID:any;
 
@@ -25,6 +30,7 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private produccionEmpleadoService: ProduccionEmpleadoService,
+    private dialog:MatDialog
   ){
     const idUserSave = this.produccionEmpleadoService.getId();
     const nombreSave = this.produccionEmpleadoService.getNombre();
@@ -40,54 +46,44 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       idMaquinaria: [''],
       idArea: [''],
       idInventarioFabrica: [''],
+      idProductosalida: [''],
       UsuarioCreador:[''],
-      idUser : [''],
+      idUsuario : [''],
       // idEmpleado: [''],
       UsuarioActualizador : [correoSave],
 
     });
+
+    this.usuarioTienePermisoAdmin = this.verificarPermisosUsuarioAdmin();
+
+  }
+
+  private verificarPermisosUsuarioAdmin(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ((nombreUsuario === "Administrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
   }
 
   ngOnInit(): any {
 
-    console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
+    // console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
       const correoSave = this.produccionEmpleadoService.getCorreo();
       console.log('Correo desde el localStorage: ', correoSave);
 
-      console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
+      // console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
       const nombreSave = this.produccionEmpleadoService.getNombre();
       console.log('Nombre desde el localStorage: ', nombreSave);
 
-      console.log('AQUI ABAJO SE MOSTRARIA EL ID QUE SE TRAE DESDE EL LOCALSTORAGE');
+      // console.log('AQUI ABAJO SE MOSTRARIA EL ID QUE SE TRAE DESDE EL LOCALSTORAGE');
       const idUserSave = this.produccionEmpleadoService.getId();
       console.log('ID desde el localStorage: ', idUserSave);
 
 
     this.elID=this.activatedRoute.snapshot.paramMap.get('id');
 
-    console.log('OBTENEMOS EL ID: ', this.elID);
+    console.log('Otenemos el ID de la produccion: ', this.elID);
 
-    this.produccionEmpleadoService.verDetallesProduccionArea(this.elID).subscribe(respuesta => /*{
-        console.log('Respuesta de la API: ', respuesta);
-        const produccionArea = respuesta [0];
-        console.log('datos del registro: ', produccionArea);
-        this.formularioProduccionAreaDetails.setValue({
-          FechaInicio: produccionArea.FechaInicio.toString() || '',
-          FechaFin: produccionArea.FechaFin,
-          HoraInicio: produccionArea.HoraInicio,
-          HoraFin: produccionArea.HoraFin,
-          Turno: produccionArea.Turno,
-          UnidadesInsumo: produccionArea.UnidadesInsumo,
-          KgProduccion: produccionArea.KgProduccion,
-          idMaquinaria: produccionArea.idMaquinaria.toString(),
-          idArea: produccionArea.idArea.toString(),
-          idInventarioFabrica: produccionArea.idInventarioFabrica.toString(),
-          UsuarioCreador:produccionArea.UsuarioCreador.toString() || 'na',
-          idUser : produccionArea.idEmpleado,
-          UsuarioActualizador: produccionArea.UsuarioActualizador || correoSave,
-
-        });
-      }*/
+    this.produccionEmpleadoService.verDetallesProduccionArea(this.elID).subscribe(respuesta =>
 
       {
         console.log('Respuesta del servicio:', respuesta);
@@ -99,17 +95,18 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
             this.formularioProduccionAreaDetails.setValue({
               FechaInicio: respuesta.FechaInicio.toString() || '',
               FechaFin: respuesta.FechaFin,
-          HoraInicio: respuesta.HoraInicio,
-          HoraFin: respuesta.HoraFin,
-          Turno: respuesta.Turno,
-          UnidadesInsumo: respuesta.UnidadesInsumo,
-          KgProduccion: respuesta.KgProduccion,
-          idMaquinaria: respuesta.idMaquinaria.toString(),
-          idArea: respuesta.idArea.toString(),
-          idInventarioFabrica: respuesta.idInventarioFabrica.toString(),
-          UsuarioCreador:respuesta.Nombre.toString() || 'na',
-          idUser : respuesta.idEmpleado,
-          UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
+              HoraInicio: respuesta.HoraInicio,
+              HoraFin: respuesta.HoraFin,
+              Turno: respuesta.Turno,
+              UnidadesInsumo: respuesta.UnidadesInsumo,
+              KgProduccion: respuesta.KgProduccion,
+              idMaquinaria: respuesta.idMaquinaria.toString(),
+              idArea: respuesta.idArea.toString(),
+              idInventarioFabrica: respuesta.idInventarioFabrica.toString(),
+              idProductosalida: respuesta.idProductosalida.toString(),
+              UsuarioCreador:respuesta.Nombre.toString() || 'na',
+              idUsuario : respuesta.idEmpleado,
+              UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
             });
 
 
@@ -120,7 +117,6 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
           console.error('No se encontraron datos válidos para el ID proporcionado.');
           // Aquí puedes mostrar un mensaje de error al usuario o redirigir a una página de error.
         }
-
       }
       , error => {
         console.log('ERRRO DE LA SOLICITUD: ', error);
@@ -128,13 +124,13 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
     );
 
     this.usuario = localStorage.getItem("id_user");
-    console.log('ID: ', this.usuario);
+    console.log('ID del usuario logueado: ', this.usuario);
 
    /* this.usuarioNombre = localStorage.getItem("Nombre");
     console.log('Nombre', this.usuarioNombre);*/
 
     this.usuarioCorreo = localStorage.getItem("Correo");
-    console.log('Correo', this.usuarioCorreo);
+    console.log('Correo del usuario logueado: ', this.usuarioCorreo);
 
 
     this.produccionEmpleadoService.selectMaquinaria().subscribe((data)=>{
@@ -148,6 +144,11 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
      //
      this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
       this.inventariosSalida=data;
+    })
+
+    // Obtenemos los nombres de los registros de la tabla productos
+    this.produccionEmpleadoService.selectProductoEntrada().subscribe((data)=>{
+      this.productosEntrada=data;
     })
   }
 
@@ -163,6 +164,45 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       console.warn('No hay páginas anteriores en el historial.');
       // Puedes redirigir a otra página o realizar otra acción aquí
     }
+  }
+
+  enviarDatos(): void {
+    if (this.formularioProduccionAreaDetails.valid) {
+      console.log('Id recibido: ', this.elID);
+      console.log('Datos que se enviaran: ', this.formularioProduccionAreaDetails.value);
+
+      this.produccionEmpleadoService.actualizarProduccionArea(this.elID, this.formularioProduccionAreaDetails.value).subscribe(
+        (respuesta)=> {
+          console.log('Respuesta del servidor: ', respuesta);
+
+          if (respuesta.success === 1) {
+            console.log('La actualización fue exitosa');
+            // accede a los datos actualizados
+            const produccionAreaActualizado = respuesta.data;
+            console.log('Datos de la produccion area actualizado: ', produccionAreaActualizado);
+            this.mostrarDialogoAviso();
+          } else {
+            console.error('Error al actualizar la produccion area: ', respuesta.error);
+            // Manejar errores del servicio aquí
+          }
+
+        },
+        (error) => {
+          console.error('Erros al actualizar la produccion area con error: ', error);
+        }
+      );
+    }
+  }
+
+  mostrarDialogoAviso():void {
+    const dialogAviso = this.dialog.open(AvisoDialogComponent,{
+      data: {message: 'Se actualizo correctamente en la Base de Datos'}
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigateByUrl('/dashboard/produccion/produccionList');
+      }
+    });
   }
 
 }

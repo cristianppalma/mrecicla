@@ -1,6 +1,6 @@
 <div class="container">
     <div class="cabecera">
-        <h1>REGISTRAR NUEVA ÁREA</h1>
+        <h1>Registrar nueva área</h1>
     </div>
         <br>
         <form [formGroup]="formularioAreas" (ngSubmit)="enviarDatosArea()">
@@ -19,14 +19,14 @@
                 <label>Estado de Área</label>
                 <mat-form-field>
                     <mat-label>Status</mat-label>
-                    <mat-select formControlName="EstadoArea"> 
+                    <mat-select formControlName="EstadoArea">
                         <mat-option value="0"> </mat-option>
                     <mat-option value="Activo">Activo</mat-option>
                     <mat-option value="Inactivo">Inactivo</mat-option>
                     <mat-option value="Mantenimiento">Mantenimiento</mat-option>
                     </mat-select>
                 </mat-form-field>
-               
+
                 </div>
             </div>
             <div class="botones">

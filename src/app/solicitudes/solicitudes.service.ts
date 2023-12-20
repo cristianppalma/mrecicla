@@ -7,12 +7,12 @@ import { PeriodicElement } from './PeriodicElement';
   providedIn: 'root'
 })
 export class SolicitudesService {
- // API: string = 'https://recicladora.arvispace.com/PhpAngular/solicitudes/'
+//  API: string = 'https://recicladora.arvispace.com/PhpAngular/solicitudes/'
 
-  API: string = 'http://localhost/PhpAngular/solicitudes/';
+ API: string = 'http://localhost/PhpAngular/solicitudes/';
   private correo: string;
   private nombre: string;
-  
+
   constructor( private clientService:HttpClient) { }
 
   agregarSolicitud(datosSolicitud:solicitud):Observable<any>{
@@ -30,7 +30,7 @@ export class SolicitudesService {
   borrarSolicitud(id: any, usuarioEliminador: any): Observable<any> {
     return this.clientService.delete(`${this.API}?borrarSolicitud=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
-  
+
 
   //Actualizar y consultar
   consultarSolicitudes(id:any): Observable<PeriodicElement> {
@@ -49,7 +49,7 @@ export class SolicitudesService {
   selectProveedor(){
     return this.clientService.get<any[]>(this.API+"?selectProveedor")
   }
-  
+
    // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
    getCorreo(): string {
     return this.correo = localStorage.getItem("Correo") || '';

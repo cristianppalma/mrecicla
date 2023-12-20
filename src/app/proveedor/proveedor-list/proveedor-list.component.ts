@@ -6,6 +6,8 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 import { ProveedorService } from '../proveedor.service';
 import { PeriodicElement } from '../PeriodicElement';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 // interface Food {
 //   value: string;
 //   viewValue: string;
@@ -19,10 +21,12 @@ import { PeriodicElement } from '../PeriodicElement';
 
 export class ProveedorListComponent  implements OnInit {
 
+  inventarioFabrica: any[];
+
   Proveedor: PeriodicElement[] = [];
   displayedColumns: string[] = [  'idProveedor',
                                   'NombreProveedor',
-                                  'ProductoProveedor',
+                                  'idInventarioFabrica',
                                   'DireccionProveedor',
                                   'Telefono',
                                   'Correo',
@@ -55,7 +59,7 @@ export class ProveedorListComponent  implements OnInit {
     console.log('Detalles de: ', element);
     console.log('ID: ', element.idProveedor);
     console.log('NAME: ', element.NombreProveedor);
-    console.log('PRODUCTO: ', element.ProductoProveedor);
+    console.log('PRODUCTO: ', element.idInventarioFabrica);
     console.log('DIRECCION: ', element.DireccionProveedor);
     console.log('TELEFONO: ', element.Telefono);
     console.log('CORREO: ', element.Correo);
@@ -71,7 +75,8 @@ export class ProveedorListComponent  implements OnInit {
   constructor(
     private router:Router,
     private dialog: MatDialog,
-    private proveedorService:ProveedorService
+    private proveedorService:ProveedorService,
+    private excelService:ExporterService
   ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
     }
@@ -117,6 +122,31 @@ export class ProveedorListComponent  implements OnInit {
       this.Proveedor = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
+
+    //
+    this.proveedorService.selectInventarioFabrica().subscribe((data)=>{
+      this.inventarioFabrica=data;
+    })
+
+  }
+
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-proveedores');
+  }
+
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-proveedores');
+  }
+
+  obtenerNombreInsumo(idInventarioFabrica: number): string {
+    const inventario = this.inventarioFabrica.find(item => item.idInventarioFabrica === idInventarioFabrica);
+    return inventario ? inventario.NombreInsumo : '';
+  }
+
+  regresar (){
+    this.router.navigateByUrl('/dashboard/catalogos');
   }
 
 }

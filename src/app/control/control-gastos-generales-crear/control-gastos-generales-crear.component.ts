@@ -13,23 +13,31 @@ import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.co
   styleUrls: ['./control-gastos-generales-crear.component.css']
 })
 export class ControlGastosGeneralesCrearComponent implements OnInit {
+  areaNombre:  string | null;
   formularioGastos: FormGroup;
-
+  areas:   any[]=[];
+  maquina: any[]=[];
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private ControlService: ControlService,
     private dialog: MatDialog
   ) {
+    const idFabrica = this.ControlService.getidFabrica();
     const correoSave = this.ControlService.getCorreo();
+    const idAreaUser = this.ControlService.getidArea();
     this.formularioGastos = this.formBuilder.group({
       Concepto: ['', [Validators.required]],
       Descripcion: ['', [Validators.required]],
       Periodo: ['', [Validators.required]],
       Monto:['', [Validators.required]],
       Tipo:['', [Validators.required]],
+      Area: [idAreaUser || ''],
+      Maquina:[''],
       UsuarioCreador:[correoSave],
+      Fabrica: [idFabrica],
     });
+    //this.formularioGastos.get('Area')?.disable();
   }
 
   CancelarGastosGeneralesCrear(){
@@ -82,9 +90,8 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
         this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
       }
     });
-
   }
-
+  
   mostrarDialogError(): void {
     const dialogAviso = this.dialog.open(AvisoErrorComponent, {
         data: { message: 'Hubo un error al registrar en la Base de Datos' }
@@ -97,13 +104,27 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.areaNombre = localStorage.getItem("NombreArea");
+    console.log('ID: ', this.areaNombre);
+    console.log('AQUI ABAJO SE MOSTRARIA EL idArea QUE SE TRAE DESDE EL LOCALSTORAGE');
+    const idArea = this.ControlService.getidArea();
+    console.log('Nombre desde el localStorage: ', idArea);
+
+    this.ControlService.getAreas().subscribe((data) => {
+      this.areas = data;
+      //this.formularioGastos.get('Area')?.disable();
+    });
+
+    this.ControlService.getMaquinas(idArea).subscribe((data2)=>{
+      this.maquina = data2
+    });
     // TRAEMOS EL CORREO DESDE EL SERVICIO
     console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
     const correoSave = this.ControlService.getCorreo();
     console.log('Correo desde el localStorage: ', correoSave);
-
     console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
     const nombreSave = this.ControlService.getNombre();
     console.log('Nombre desde el localStorage: ', nombreSave);
+
   }
 }

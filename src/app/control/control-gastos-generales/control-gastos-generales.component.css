@@ -16,6 +16,7 @@
   font-size: large;
   margin: 8px;
   border-radius: 5px;
+  text-align: left;
 }
 .button-container-regresar {
   position: absolute;
@@ -46,4 +47,25 @@
 .formula1,
 .formula2 {
   margin: 0 10px; /* Espacio entre las dos secciones */
+}
+
+.button-container {
+  margin-bottom: 20px;
+  margin: 8px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.agregar {
+  background-color: #d6e44b;
+  margin-left: 1rem;
+}
+
+.exportar {
+  background: #d6e44b;
+  color: black;
+  width: 150px;
+  margin: 8px;
+  border-radius: 5px;
+  font-size: 14px;
 }

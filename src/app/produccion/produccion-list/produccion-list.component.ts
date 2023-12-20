@@ -4,6 +4,10 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { ProduccionEmpleadoService } from 'src/app/produccionEmpleado/produccion-empleado.service';
 import { PeriodicElement } from 'src/app/produccionEmpleado/PeriodicElement';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { startWith, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+import { ExporterService } from 'src/app/services/exporter.service';
 
 @Component({
   selector: 'app-produccion-list',
@@ -13,32 +17,62 @@ import { PeriodicElement } from 'src/app/produccionEmpleado/PeriodicElement';
 
 export class ProduccionListComponent implements OnInit {
 
+  areas: any[] = [];
   inventariosSalida: any[];
+  productosEntrada: any[]; //Obtenemos los datos de la tabla productos
   Produccion: PeriodicElement[] = [];
   displayedColumns: string[] = [
                                   'idProduccionArea',
                                   'UsuarioCreadorNombre',
                                   'FechaInicio',
-                                  'FechaFin',
+                                  // 'FechaFin',
                                   'HoraInicio',
                                   'HoraFin',
                                   'idInventarioFabrica',
                                   'UnidadesInsumo',
+                                  'idProductosalida',
                                   'KgProduccion',
+                                  'Area',
                                   'action' ];
   dataSource: MatTableDataSource<PeriodicElement>;
+  filterForm: FormGroup;  // Declara un FormGroup
 
-  formatDateWithLeadingZeros(date: Date): string {
-    const day = ('0' + date.getDate()).slice(-2);
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const year = date.getFullYear();
+  constructor(
+    private router:Router,
+    private produccionEmpleadoService:ProduccionEmpleadoService,
+    private fb: FormBuilder,
+    private excelService:ExporterService
+    ) {
+      this.dataSource = new MatTableDataSource<PeriodicElement>([]);
+      this.filterForm = this.fb.group({
+        Area: ['']
+      });
 
-    return `${day}/${month}/${year}`;
-  }
+    }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  filtrarPorArea() {
+    console.log('entro');
+    if (this.filterForm && this.filterForm.get('Area')) {
+      console.log('segundo nivel');
+      const areaControl = this.filterForm.get('Area');
+      if (areaControl) {
+        console.log('tercer nivel');
+        const areaValue = areaControl.value;
+
+        if (areaValue && areaValue !== '0') {
+          this.dataSource.filter = areaValue.toString();
+        } else {
+          // Si el valor es '0' o nulo, quitar el filtro
+          this.dataSource.filter = '';
+        }
+
+      }
+    }
   }
 
   verDetalles(element: PeriodicElement) {
@@ -56,13 +90,6 @@ export class ProduccionListComponent implements OnInit {
     this.router.navigateByUrl(`/dashboard/produccion-empleado/produccionEmpleadoDetails/${idProduccionArea}`);
   }
 
-  constructor(
-    private router:Router,
-    private produccionEmpleadoService:ProduccionEmpleadoService,
-    ) {
-      this.dataSource = new MatTableDataSource<PeriodicElement>([]);
-    }
-
   ngOnInit(): void {
      // TRAEMOS EL CORREO DESDE EL SERVICIO
      console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
@@ -77,6 +104,21 @@ export class ProduccionListComponent implements OnInit {
      const idEmpleado = this.produccionEmpleadoService.getId();
      console.log('ID desde el localStorage: ', idEmpleado);
 
+     //Obtenemos los nombres del inventarioFabrica
+     this.produccionEmpleadoService.selectInventarioSalida().subscribe((data) => {
+      this.inventariosSalida=data;
+     });
+
+
+     // Obtenemos los nombres de los registros de la tabla productos
+    this.produccionEmpleadoService.selectProductoEntrada().subscribe((data)=>{
+      this.productosEntrada=data;
+    });
+
+    this.produccionEmpleadoService.selectAreas().subscribe((data) => {
+      this.areas = data;
+    });
+
      this.produccionEmpleadoService.listarProduccionGeneral().subscribe((respuesta: PeriodicElement[]) => {
         console.log(respuesta);
         console.log('Obtenemos todos los registros generales');
@@ -84,16 +126,16 @@ export class ProduccionListComponent implements OnInit {
         this.dataSource.data = respuesta;
      })
 
-     //Obtenemos los nombres del inventarioFabrica
-     this.produccionEmpleadoService.selectInventarioSalida().subscribe((data) => {
-      this.inventariosSalida=data;
-     })
+  }
 
-    // //
-    // this.produccionEmpleadoService.selectUsuarios().subscribe((data)=>{
-    //   this.inventariosSalida=data;
-    // })
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-produccion-general');
+  }
 
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-produccion-general');
   }
 
   //Funcion para obtener nombre de inventarioFabrica en lugar de solo el id
@@ -113,16 +155,8 @@ export class ProduccionListComponent implements OnInit {
   }
 
   //Funcion para ir a la pagina anterior
-  regresarProduccion (){
-    if (window.history.length > 1) {
-      // Si hay más de una página en el historial, regresa a la página anterior
-      window.history.back();
-  } else {
-      // Si no hay más páginas en el historial, puedes redirigir a una página específica
-      // o realizar alguna otra acción en su lugar.
-      console.warn('No hay páginas anteriores en el historial.');
-      // Puedes redirigir a otra página o realizar otra acción aquí
-  }
+  regresar (){
+    this.router.navigateByUrl('/dashboard/tablero');
   }
 
   //Funcion para ir a la vista produccion de la grafica

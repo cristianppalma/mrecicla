@@ -32,59 +32,61 @@
       <span><a [routerLink]="['/dashboard/tablero']">Inicio</a></span>
     </button>
 
+    <button mat-button class="menu-boton" *ngIf="usuarioTienePermisoSuper">
+      <!-- ngIf nos ayuda a verificar que permisos tiene este usuario de ver esas opciones -->
+      <mat-icon>house</mat-icon>
+      <span><a [routerLink]="['empresas/empresas']">Empresas</a></span>
+    </button>
+
     <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
-    <!-- ngIf nos ayuda a verificar si el usuario tiene permiso de ver esas opciones -->
-    <!-- <button mat-button class="menu-boton"> -->
+        <mat-icon>article</mat-icon>
+        <span><a [routerLink]="['/dashboard/catalogos']">Catálogos</a></span>
+      </button>
+
+    <!-- <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
       <mat-icon>inventory</mat-icon>
       <span><a [routerLink]="['inventario/inventarios']">Inventario</a></span>
-    </button>
+    </button> -->
 
-    <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
-    <!-- <button mat-button class="menu-boton"> -->
+    <!-- <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
       <mat-icon>people</mat-icon>
       <span><a [routerLink]="['proveedor/proveedores']">Proveedores</a></span>
-    </button>
+    </button> -->
 
-    <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
-    <!-- <button mat-button class="menu-boton"> -->
+    <!-- <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
       <mat-icon>person</mat-icon>
       <span><a [routerLink]="['empleado/listEmp']"> Empleado </a></span>
-    </button>
+    </button> -->
 
-    <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
-    <!-- <button mat-button class="menu-boton"> -->
+    <!-- <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
       <mat-icon>construction</mat-icon>
       <span><a [routerLink]="['maquinas/maquinas']">Maquinaria</a></span>
-    </button>
+    </button> -->
 
-    <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
-    <!-- <button mat-button class="menu-boton"> -->
+    <!-- <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
       <mat-icon>work</mat-icon>
       <span><a [routerLink]="['areas/areas']">Areas</a></span>
-    </button>
+    </button> -->
 
-    <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
-    <!-- <button mat-button class="menu-boton"> -->
+    <!-- <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
       <mat-icon>article</mat-icon>
       <span><a [routerLink]="['solicitudes/solicitudes']">Solicitudes</a></span>
-    </button>
+    </button> -->
 
-    <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
-    <!-- <button mat-button class="menu-boton"> -->
+    <!-- <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
       <mat-icon>construction</mat-icon>
       <span><a [routerLink]="['produccion/produccionList']">Producción</a></span>
-    </button>
+    </button> -->
 
-    <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
-    <!-- <button mat-button class="menu-boton"> -->
+    <!-- <button mat-button class="menu-boton" *ngIf="usuarioTienePermiso">
       <mat-icon>work</mat-icon>
       <span><a [routerLink]="['control/controlGastosGenerales']">Control Gastos</a></span>
-    </button>
+    </button> -->
 
-    <button mat-button class="menu-boton">
+    <!-- <button mat-button class="menu-boton">
       <mat-icon>alarm</mat-icon>
       <span><a [routerLink]="['produccion-empleado/produccionEmpleado']">Tiempo Prod.</a></span>
-    </button>
+    </button> -->
 
   </mat-sidenav>
 

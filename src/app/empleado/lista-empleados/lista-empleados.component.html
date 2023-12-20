@@ -22,8 +22,11 @@
     <!-- Botones -->
     <div class="botones">
       <!-- <button mat-button style="background-color: #d6e44b; margin-left: 1rem; color: white;">BUSCAR</button> -->
-      <button style="margin-left: 750px; position: relative;  background-color: #d6e44b; color: black;" mat-button >
+      <button class="agregar" mat-button >
         <a [routerLink]="['/dashboard/empleado/addEmp']" style="color: black; text-decoration:none;"> AGREGAR NUEVO USUARIO </a>
+      </button>
+      <button class="exportar" (click)="exportarXLSXFilter();" mat-button>EXPORTAR XLSX
+        <!-- <mat-icon>trending_down</mat-icon> -->
       </button>
     </div>
     <br>
@@ -31,7 +34,7 @@
     <div class="container">
 
       <div class="cabecera" style="margin-left: -170px;">
-        <h1 style="width: 100px;">PERSONAL</h1>
+        <h1 style="width: 100px;">Personal</h1>
       </div>
       <br>
 
@@ -94,3 +97,9 @@
     </div>
   </form>
 </section>
+
+<!-- <div class="button-container">
+  <button type="submit" (click)="regresar();" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
+    Regresar
+  </button>
+</div> -->

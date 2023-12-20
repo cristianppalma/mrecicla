@@ -1,10 +1,10 @@
 <div class="container">
     <div class="cabecera">
-        <h1>ÁREAS</h1>
+        <h1>Áreas</h1>
     </div>
         <br>
         <div   class="Filter"  >
-                
+
             <mat-form-field>
                 <mat-label>Área</mat-label>
                 <mat-select [(value)]="selectedArea">
@@ -16,10 +16,12 @@
                 </mat-select>
               </mat-form-field>
               <button mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;" (click)="aplicarFiltro()">BUSCAR</button>
-                 <button  (click)="crearArea();" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
-
+              <button class="agregar" (click)="crearArea();" mat-button>AGREGAR</button>
+              <button class="exportar" (click)="exportarXLSXFilter();" mat-button>EXPORTAR XLSX
+                <!-- <mat-icon>trending_down</mat-icon> -->
+              </button>
         </div>
-      
+
         <div class="table">
             <table style="width: 800px;" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                 <!-- Position Column -->
@@ -27,7 +29,7 @@
                   <th mat-header-cell *matHeaderCellDef> Área </th>
                   <td mat-cell *matCellDef="let element">{{ element.idArea }}</td>
                 </ng-container>
-          
+
                 <ng-container matColumnDef="NombreArea">
                   <th mat-header-cell *matHeaderCellDef> Nombre Area </th>
                   <td mat-cell *matCellDef="let element">{{ element.NombreArea }}</td>
@@ -37,15 +39,18 @@
                   <th mat-header-cell *matHeaderCellDef> Descripcion Area  </th>
                   <td mat-cell *matCellDef="let element">{{ element.DescripcionArea }}</td>
                 </ng-container>
-          
+
                 <!-- Weight Column -->
                 <ng-container matColumnDef="EstadoArea">
                   <th mat-header-cell *matHeaderCellDef> Estado Area </th>
-                  <td mat-cell *matCellDef="let element">{{ (element.EstadoArea) }}</td>
+                  <td mat-cell *matCellDef="let element">
+                    <span [ngClass]="element.EstadoArea === 'Activo' ? 'activo' : 'inactivo'">{{ (element.EstadoArea) }}</span>
+                  </td>
+
                 </ng-container>
                 <!-- Symbol Column -->
-          
-          
+
+
                 <ng-container matColumnDef="action">
                   <th mat-header-cell *matHeaderCellDef>Accion</th>
                   <td mat-cell *matCellDef="let element">
@@ -61,10 +66,16 @@
                       <td class="mat-cell" colspan="4">Ningún dato coincide con: "{{ selectedArea }}"</td>
                     </tr>
                   </ng-container>
-                  
-                  
-                  
+
+
+
               </table>
         </div>
     </div>
+
+    <!-- <div class="button-container">
+      <button type="submit" (click)="regresar();" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
+        Regresar
+      </button>
+    </div> -->
 

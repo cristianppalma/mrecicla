@@ -7,6 +7,7 @@ import { IndexComponent } from './index/index/index.component';
 import { RecuperarContrasenaComponent } from './auth/recuperar-contrasena/recuperar-contrasena.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { ProduccionComponent } from './produccion/produccion/produccion.component';
+import { CatalogosComponent } from './catalogos/catalogos/catalogos.component';
 import { authGuard } from './guards/auth.guard';
 import { rolesGuard } from './guards/roles.guard';
 
@@ -42,6 +43,10 @@ const routes: Routes = [
         component:DashboardComponent
       },
       {
+        path: 'catalogos',
+        component:CatalogosComponent
+      },
+      {
         path:'produccion',
         loadChildren: () =>
         import('./produccion/produccion.module').then(m => m.ProduccionModule),
@@ -68,7 +73,6 @@ const routes: Routes = [
         path: 'solicitudes',
         loadChildren: () =>
         import('./solicitudes/solicitudes.module').then(m => m.SolicitudesModule),
-        canActivate: [rolesGuard],
       },
       {
         path: 'proveedor',
@@ -92,6 +96,12 @@ const routes: Routes = [
         path: 'areas',
         loadChildren: () =>
         import('./areas/areas.module').then(m => m.AreasModule),
+        canActivate: [rolesGuard],
+      },
+      {
+        path: 'empresas',
+        loadChildren: () =>
+        import('./empresas/empresa.module').then(m => m.EmpresaModule),
         canActivate: [rolesGuard],
       },
     ]

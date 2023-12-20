@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProduccionEmpleadoService } from '../produccion-empleado.service';
 import { PeriodicElement } from '../PeriodicElement';
+
+import { ExporterService } from 'src/app/services/exporter.service';
+
 // import { PeriodicElement } from '../PeriodicElement';
 
 // export interface ProduccionEmpleado {
@@ -23,6 +26,7 @@ import { PeriodicElement } from '../PeriodicElement';
 export class ProduccionEmpleadoListComponent implements OnInit {
 
   inventariosSalida: any[];
+  productosEntrada: any[]; //Obtenemos los datos de la tabla productos
   Produccion: PeriodicElement[] = [];
   displayedColumns: string[] = [
                                   //'idEmpleado',
@@ -37,7 +41,9 @@ export class ProduccionEmpleadoListComponent implements OnInit {
                                   'idInventarioFabrica',
                                   'UnidadesInsumo',
                                   // 'productoProduccion',
+                                  'idProductosalida',
                                   'KgProduccion',
+                                  'Area',
                                   // 'idMaquina',
                                   'action' ];
   dataSource: MatTableDataSource<PeriodicElement>
@@ -78,7 +84,8 @@ export class ProduccionEmpleadoListComponent implements OnInit {
 
   constructor(
     private router:Router,
-    private produccionEmpleadoService:ProduccionEmpleadoService
+    private produccionEmpleadoService:ProduccionEmpleadoService,
+    private excelService:ExporterService
   ) {
     this.dataSource = new MatTableDataSource<PeriodicElement>([]);
   }
@@ -114,7 +121,13 @@ export class ProduccionEmpleadoListComponent implements OnInit {
     //
     this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
       this.inventariosSalida=data;
-    })
+    });
+
+
+    // Obtenemos los nombres de los registros de la tabla productos
+    this.produccionEmpleadoService.selectProductoEntrada().subscribe((data)=>{
+      this.productosEntrada=data;
+    });
 
 
     // //
@@ -122,6 +135,16 @@ export class ProduccionEmpleadoListComponent implements OnInit {
     //   this.inventariosSalida=data;
     // })
 
+  }
+
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-produccion-empleado');
+  }
+
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-produccion-empleado');
   }
 
   obtenerNombreInsumo(idInventarioFabrica: number): string {
@@ -133,5 +156,9 @@ export class ProduccionEmpleadoListComponent implements OnInit {
   //   const nombreUser = this.inventariosSalida.find(item => item.idUsuario === idUsuario);
   //   return nombreUser ? nombreUser.Nombre : '';
   // }
+
+  regresar (){
+    this.router.navigateByUrl('/dashboard/tablero');
+  }
 
 }

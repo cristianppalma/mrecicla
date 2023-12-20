@@ -9,7 +9,7 @@ import { Produccion } from './produccion';
 })
 export class ProduccionEmpleadoService {
   // URL DE LA LLAMADA A LA API
- // API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
+ //API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
 
   API: string = 'http://localhost/PhpAngular/produccionarea/';
 
@@ -29,7 +29,7 @@ export class ProduccionEmpleadoService {
 
   //Con procedimiento almacenado
   listarProduccionArea(id:any): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?consultarPorIdUsuario="+id);
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProduccionArea="+id);
   }
 
   // SERVICIO PARA AGREGAR UN REGISTRO
@@ -40,6 +40,11 @@ export class ProduccionEmpleadoService {
   // SERVICIO PARA VER LOS DETALLES DE UN REGISTRO
   verDetallesProduccionArea(idProduccionArea:any): Observable<any> {
     return this.clientService.get(this.API+"?consultarProduccionArea="+idProduccionArea);
+  }
+
+  //SERVICIO PARA ACTUALIZAR EL REGISTRO
+  actualizarProduccionArea(idProduccionArea:any, datosProduccionArea:Produccion):Observable<any>{
+    return this.clientService.post(this.API+"?actualizarProduccionArea="+idProduccionArea,datosProduccionArea);
   }
 
   // SERVICIO PARA TRAER TODOS LOS REGISTROS DE LA TABLA MAQUINARIA
@@ -55,6 +60,11 @@ export class ProduccionEmpleadoService {
   // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA INVENTARIO SALIDA
   selectInventarioSalida(){
     return this.clientService.get<any[]>(this.API+"?selectInventarioSalida");
+  }
+
+  // SERVICIO PARA TRAER LOS REGISTROS DE LA TABLA PRODUCTOS
+  selectProductoEntrada(){
+    return this.clientService.get<any[]>(this.API+"?selectProductoEntrada");
   }
 
   selectUsuarios(){

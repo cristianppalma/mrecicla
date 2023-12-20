@@ -12,6 +12,8 @@ import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.co
   styleUrls: ['./proveedor-create.component.css'],
 })
 export class ProveedorCreateComponent implements OnInit {
+
+  inventarioFabrica: any[];
   formularioProveedor: FormGroup;
 
   constructor(
@@ -21,16 +23,18 @@ export class ProveedorCreateComponent implements OnInit {
     private dialog: MatDialog,
   ) {
     const correoSave = this.proveedorService.getCorreo();
+    const idFabricaUsuario = this.proveedorService.getIdFabricaUsuario();
     this.formularioProveedor = this.formBuilder.group({
       NombreProveedor: [''],
-      ProductoProveedor: [''],
       DireccionProveedor: [''],
       Telefono: [''],
       Correo: [''],
       RFCProveedor: [''],
       DescripcionProveedor: [''],
       EstatusProveedor: ['Activo'],
+      idInventarioFabrica: [''],
       UsuarioCreador: [correoSave],
+      idFabrica: [idFabricaUsuario]
     });
   }
 
@@ -94,6 +98,11 @@ export class ProveedorCreateComponent implements OnInit {
      console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
      const nombreSave = this.proveedorService.getNombre();
      console.log('Nombre desde el localStorage: ', nombreSave);
+
+     //
+    this.proveedorService.selectInventarioFabrica().subscribe((data)=>{
+      this.inventarioFabrica=data;
+    })
 
   }
 }

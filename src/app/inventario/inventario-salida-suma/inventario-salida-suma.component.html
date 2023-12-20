@@ -1,0 +1,66 @@
+<div class="container">
+
+  <div class="cabecera">
+    <H1 >Agregar stock a inventario de producción</H1>
+  </div >
+
+
+  <form [formGroup]="formularioSumaInventarioSalida" (ngSubmit)="enviarDatos()" >
+
+    <div class="formula" style="border:none;" >
+
+      <div class="formula1">
+
+        <!-- <label for="productos">Selecciona un producto</label>
+        <select formControlName="NombreInsumo" (change)="selectProductos()">
+          <option value="" disabled>Selecciona un producto</option>
+          <option *ngFor="let producto of productos" [value]="producto.idInventarioFabrica">{{ producto.nombreInsumo }}</option>
+        </select> -->
+
+        <label>Selecciona un Producto</label>
+        <mat-form-field>
+          <mat-label>Nombre Producto</mat-label>
+          <mat-select  formControlName="nombreProducto">
+            <mat-option value="0"> </mat-option>
+            <mat-option  *ngFor="let productos of productosSalida" [value]="productos.idProductosalida">{{productos.nombreProducto}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <label>Peso a Agregar</label>
+        <mat-form-field class="example-full-width">
+          <mat-label>Peso</mat-label>
+          <input type="number" formControlName="peso" matInput>
+        </mat-form-field>
+
+        <label>Fecha de Creación</label>
+        <mat-form-field class="example-full-width">
+          <mat-label>Fecha de Creación</mat-label>
+          <input type="date" formControlName="fechaRegistro" matInput>
+        </mat-form-field>
+
+        <!-- <label>Area designada</label>
+        <mat-form-field>
+          <mat-label>Área</mat-label>
+          <mat-select  formControlName="AreaDesignada">
+            <mat-option value="0"> </mat-option>
+            <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+        <!-- <label>Calibre</label>
+        <mat-form-field class="example-full-width">
+          <mat-label>Calibre</mat-label>
+          <input formControlName="Calibre" matInput>
+        </mat-form-field> -->
+
+      </div>
+    </div>
+
+    <div class="botones">
+      <button type="submit" class="left" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
+      <button type="button"  (click)="cancelar();" mat-button style="background-color: #b60000;  color: white; margin-left: 1rem;">CANCELAR</button>
+    </div>
+
+  </form>
+
+</div>

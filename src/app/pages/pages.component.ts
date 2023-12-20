@@ -10,17 +10,18 @@ export class PagesComponent implements OnInit {
 
   // Visualizar de acuerdo al rol
   usuarioTienePermiso: boolean;
+  usuarioTienePermisoSuper: boolean;
   //
   nombreUsuario: string | null;
   idUsuario: string | null;
-
-
 
   constructor(
     private router: Router
   ) {
     // Visualizar de acuerdo al rol
     this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
+
+    this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
   }
 
   editarAdmin(){
@@ -28,7 +29,6 @@ export class PagesComponent implements OnInit {
     const idUser =localStorage.getItem("id_user");
     //this.router.navigateByUrl('empleado/adminProfile');
     this.router.navigateByUrl(`dashboard/empleado/adminProfile/${idUser}`);
-
   }
 
    // Visualizar de acuerdo al rol
@@ -39,6 +39,12 @@ export class PagesComponent implements OnInit {
     return ((nombreUsuario === "Administrador") || (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
   }
 
+  private verificarPermisosDelUsuarioSuper(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    const puesto = localStorage.getItem("Puesto");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+  }
 
   // Se termina la sesion y eliminamos el token del localStorage
   logout(){
@@ -48,12 +54,15 @@ export class PagesComponent implements OnInit {
     localStorage.removeItem('NombreTipoUser');
     localStorage.removeItem('Nombre');
     localStorage.removeItem('Correo');
+    localStorage.removeItem('NombreFabrica');
+    localStorage.removeItem('idFabrica');
+    localStorage.removeItem('NombreArea');
+    localStorage.removeItem('idArea');
     // Para borrar todos los elementos del Local Storage
     // localStorage.clear();
     console.log('Se elimino el token');
     this.router.navigate(['/login'])
   }
-
 
   ngOnInit(): void {
 
@@ -61,7 +70,5 @@ export class PagesComponent implements OnInit {
     console.log('NombreTipoUser', this.nombreUsuario);
 
   }
-
- 
 
 }

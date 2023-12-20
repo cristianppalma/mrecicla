@@ -1,15 +1,24 @@
 <div class="container">
-  <div class="cabecera"><h1 class="Title">INVENTARIO
+  <div class="cabecera"><h1 class="Title">Inventario
   </h1></div>
     <div class="Filter"  >
       <mat-form-field>
         <mat-label>Producto</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Borra" #input>
       </mat-form-field>
-
-      <button (click)="inventarioSalida();" mat-button style="background-color: #d6e44b; margin-left: 1rem; color: white;">INVENTARIO SALIDA</button>
-      <button (click)="inventarioSuma();" mat-button style="background-color: #d6e44b; margin-left: 1rem; color: white;">AGREGAR A INVENTARIO</button>
-      <button  (click)="inventario();" mat-button style="background-color: #d6e44b; margin-left: 1rem; color: white">AGREGAR NUEVO INSUMO</button>
+      <mat-form-field style="margin-left: 1rem;">
+        <mat-label>Área</mat-label>
+        <mat-select (keyup)="applyFilter($event)" formControlName="AreasDesignadas">
+          <mat-option value="0"> </mat-option>
+          <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- <button (click)="inventarioSalida();" mat-button style="background-color: #d6e44b; margin-left: 1rem; color: white;">INVENTARIO SALIDA</button> -->
+      <button class="agregar" (click)="inventarioSuma();" mat-button>AGREGAR A INVENTARIO</button>
+      <button class="nuevo" (click)="inventario();" mat-button>AGREGAR NUEVO INSUMO</button>
+      <button class="exportar" (click)="exportarXLSXFilter();" mat-button>EXPORTAR XLSX
+        <!-- <mat-icon>trending_down</mat-icon> -->
+      </button>
     </div>
     <div class="table">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

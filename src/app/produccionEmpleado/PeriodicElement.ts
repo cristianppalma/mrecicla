@@ -10,9 +10,11 @@ export interface PeriodicElement {
   KgProduccion        :String;
   idMaquinaria        :String;
   idArea              :String;
+  Area                :String;
   idUsuario           :String;
   idInventarioFabrica :String;
+  idProductosalida    :String;
   UsuarioCreador      :String;
-  UsuarioCreadorNombre  :String;
+  // UsuarioCreadorNombre  :String;
   //UsuarioEliminador :String
 }

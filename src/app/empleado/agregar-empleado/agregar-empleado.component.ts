@@ -12,10 +12,15 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./agregar-empleado.component.css']
 })
 export class AgregarEmpleadoComponent implements OnInit{
+
+  usuarioTienePermiso: boolean;
+  usuarioTienePermisoSuper: boolean;
+
   formularioEmpleado: FormGroup;
   areas : any[]= [];
   puestos : any[]= [];
   tipoUsuarios : any[]= [];
+  fabricas : any[]= [];
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -23,6 +28,10 @@ export class AgregarEmpleadoComponent implements OnInit{
     private dialog: MatDialog
   ) {
     const correoSave = this.EmpleadoService.getCorreo();
+    const nombreUsuario = this.EmpleadoService.getTipoUsuario();
+    const idFabricaUsuario = this.EmpleadoService.getIdFabricaUsuario();
+
+    if (nombreUsuario === "SuperAdministrador") {
     this.formularioEmpleado = this.formBuilder.group({
       Nombre: [''],
       ApellidoPaterno: [''],
@@ -31,18 +40,63 @@ export class AgregarEmpleadoComponent implements OnInit{
       Pass: [''],
       Practicante: ['No'],
       Sueldo : [''],
-      Turno : [''],
+      Turno : ['Sin turno'],
       Domicilio : [''],
-      idTipoUsuario : [''],
-      idAsignacion : [''],
-      idArea : [''],
+      idFabrica: [''],
+      idTipoUsuario : [1],
+      idAsignacion : [1],
+      idArea : ['General'],
       UsuarioCreador : [correoSave]
     });
+    } else {
+      this.formularioEmpleado = this.formBuilder.group({
+        Nombre: [''],
+        ApellidoPaterno: [''],
+        ApellidoMaterno: [''],
+        Correo: [''],
+        Pass: [''],
+        Practicante: ['No'],
+        Sueldo : [''],
+        Turno : [''],
+        Domicilio : [''],
+        idFabrica : [idFabricaUsuario],
+        idTipoUsuario : [2],
+        idAsignacion : [''],
+        idArea : [''],
+        UsuarioCreador : [correoSave]
+      });
+    }
+
+    this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
+
+    this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
 
   }
 
-  CANCELAR() {
-    this.router.navigateByUrl('/dashboard/maquinas/maquinas');
+  private verificarPermisosDelUsuario(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    const puesto = localStorage.getItem("Puesto");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ((nombreUsuario === "Administrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+  }
+
+  private verificarPermisosDelUsuarioSuper(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    const puesto = localStorage.getItem("Puesto");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+  }
+
+  cancelar() {
+    if (window.history.length > 1) {
+      // Si hay más de una página en el historial, regresa a la página anterior
+      window.history.back();
+    } else {
+      // Si no hay más páginas en el historial, puedes redirigir a una página específica
+      // o realizar alguna otra acción en su lugar.
+      console.warn('No hay páginas anteriores en el historial.');
+      // Puedes redirigir a otra página o realizar otra acción aquí
+    }
   }
 
   enviarDatos(): void {
@@ -63,6 +117,7 @@ export class AgregarEmpleadoComponent implements OnInit{
       );
     }
   }
+
   mostratDialogoAviso():void{
     console.log('Tumadre');
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
@@ -112,6 +167,10 @@ export class AgregarEmpleadoComponent implements OnInit{
 
     this.EmpleadoService.SelectTipoUsuarios().subscribe((data) => {
       this.tipoUsuarios=data;
+    });
+
+    this.EmpleadoService.SelectFabricas().subscribe((data) => {
+      this.fabricas=data;
     });
 
      // TRAEMOS EL CORREO DESDE EL SERVICIO

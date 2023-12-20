@@ -6,12 +6,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
 import { AvisoLoginComponent } from '../aviso-login/aviso-login.component';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent  implements OnInit {
+
   formularioLogin: FormGroup;
 
   login(){
@@ -52,15 +54,30 @@ export class AuthComponent  implements OnInit {
             localStorage.setItem('token', Math.random().toString());
             this.router.navigateByUrl('/dashboard/tablero');
 
-            // Obtenemos el id y puesto del usuario
+            // Obtenemos el id del usuario
             let usuario = response.idUsuario;
             localStorage.setItem("id_user", usuario );
+            // Obtenemos el nombre del usuario
             let usuarioNombre = response.Nombre;
             localStorage.setItem("Nombre", usuarioNombre );
+            // Obtenemos el correo del usuario
             let usuarioCorreo = response.Correo;
             localStorage.setItem("Correo", usuarioCorreo );
+            // Obtenemos el tipo del usuario
             let nombreUsuario = response.NombreTipoUser;
             localStorage.setItem("NombreTipoUser", nombreUsuario);
+            // Obtenemos el nombre del area del usuario
+            let NombreArea = response.NombreArea;
+            localStorage.setItem("NombreArea",NombreArea);
+            // Obtenemos el id del area del usuario
+            let idArea = response.idArea;
+            localStorage.setItem("idArea",idArea);
+            // Obtenemos el nombre de la fabrica del usuario
+            let NombreFabrica = response.NombreFabrica;
+            localStorage.setItem("NombreFabrica", NombreFabrica);
+            // Obtenemos el id de la fabrica del usuario
+            let idFabrica = response.idFabrica;
+            localStorage.setItem("idFabrica",idFabrica);
 
           }
         },
@@ -84,6 +101,7 @@ export class AuthComponent  implements OnInit {
     });
 
   }
+
   mostrarDialogoLoginError(errorMsg: string): void {
     const dialogRef = this.dialog.open(AvisoLoginComponent, {
       data: { message: errorMsg },

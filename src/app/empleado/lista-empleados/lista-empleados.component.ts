@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, importProvidersFrom } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -11,8 +11,9 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { listaEmpleado } from '../listaEmpleado';
 import { EmpleadoService } from '../empleado.service';
-
 import { PeriodicElement } from '../PeriodicElement';
+
+import { ExporterService } from 'src/app/services/exporter.service';
 
 // export interface Usuario {
 //     Nombre: string;
@@ -38,7 +39,6 @@ export class UsuarioTableComponent implements OnInit {
                                   'ApellidoPaterno',
                                   'ApellidoMaterno',
                                   'Correo',
-                                  // 'idAsignacion',
                                   'action'];
   dataSource: MatTableDataSource<PeriodicElement>
 
@@ -79,7 +79,8 @@ export class UsuarioTableComponent implements OnInit {
   constructor(
     private router:Router,
     private dialog: MatDialog,
-    private EmpleadoService:EmpleadoService
+    private EmpleadoService:EmpleadoService,
+    private excelService:ExporterService
     ) {
      this.dataSource = new MatTableDataSource<PeriodicElement>([]);
     }
@@ -124,10 +125,24 @@ export class UsuarioTableComponent implements OnInit {
       })
     }
 
+    //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-usuarios');
+  }
+
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-usuarios');
+  }
+
     //OBTENEMOS EL NOMBRE DEL PUESTO A PARTIR DEL ID
     obtenerNombrePuesto(idAsignacion: number): string {
       const puesto = this.puestos.find(item => item.idAsignacion === idAsignacion);
       return puesto ? puesto.Puesto : '';
+    }
+
+    regresar (){
+      this.router.navigateByUrl('/dashboard/tablero')
     }
 
   }

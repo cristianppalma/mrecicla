@@ -1,10 +1,9 @@
 <div class="container">
 
-  <H1 class="Title">REGISTRAR NUEVO GASTO</H1>
+  <H1 class="Title">Registrar nuevo gasto</H1>
   <br>
 
   <div class="centrar-columnas">
-
     <form [formGroup]="formularioGastos" (ngSubmit)="enviarDatos()">
       <div class="formula">
 
@@ -26,13 +25,23 @@
             <mat-label>Periodo</mat-label>
             <input placeholder="Ej. Enero - Febrero" formControlName="Periodo" matInput>
           </mat-form-field>
+
+
+          <label>Maquina</label>
+          <mat-form-field>
+              <mat-label>Maquina</mat-label>
+              <mat-select  formControlName="Maquina">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let maquina of maquina" [value]="maquina.idMaquinaria">{{ maquina.Modelo }}</mat-option>
+              </mat-select>
+          </mat-form-field>
         </div>
 
         <div class="formula2">
           <label>Monto</label>
           <mat-form-field>
             <mat-label>Monto</mat-label>
-            <input placeholder="2500" formControlName="Monto" matInput>
+            <input type="number" placeholder="2500" formControlName="Monto" matInput>
             <mat-error *ngIf="formularioGastos.get('Monto')?.hasError('required')">
               El monto del gasto es obligatorio.
             </mat-error>
@@ -50,6 +59,11 @@
               <mat-option value="Gasto Servicios">Gasto Servicios</mat-option>
               <mat-option value="Gasto Viaticos">Gasto Viaticos </mat-option>
             </mat-select>
+          </mat-form-field>
+          <label>Área</label>
+          <mat-form-field>
+            <!-- <mat-label>Nombre del usuario</mat-label> -->
+            <input formControlName="areaNombre" type="text" [disabled]="true" readonly matInput value="{{areaNombre}}">
           </mat-form-field>
         </div>
 

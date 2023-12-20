@@ -8,6 +8,8 @@ import { InventarioSalidaService } from '../inventario-salida.service';
 import { ConfirmationDialogComponent } from 'src/app/maquinas/confirmation-dialog/confirmation-dialog.component';
 import { PeriodicElement2 } from '../PeriodicElement2';
 
+import { ExporterService } from 'src/app/services/exporter.service';
+
 interface Food {
   value: string;
   viewValue: string;
@@ -54,7 +56,8 @@ export class InventarioControlSalidaComponent implements OnInit {
 
   constructor(private router:Router,
     private dialog:MatDialog,
-    private InventarioServiceSalida:InventarioSalidaService
+    private InventarioServiceSalida:InventarioSalidaService,
+    private excelService:ExporterService
 
     ) {
       this.dataSource=new MatTableDataSource<PeriodicElement2>([]);
@@ -66,7 +69,11 @@ export class InventarioControlSalidaComponent implements OnInit {
       this.router.navigateByUrl('/dashboard/inventario/inventarioSalida');
     }
     inventarioEntrada(){
-      this.router.navigateByUrl('/dashboard/inventario/inventarios')
+      this.router.navigateByUrl('/dashboard/inventario/inventarios');
+    }
+
+    agregarInventarioSalida(){
+      this.router.navigateByUrl('/dashboard/inventario/suma-a-inventario-salida');
     }
 
 
@@ -111,12 +118,25 @@ export class InventarioControlSalidaComponent implements OnInit {
   }
 
 
+  //Exportar SIN filtros
+  exportarXLSX(): void {
+    this.excelService.exportToExcel(this.dataSource.data, 'reporte-control-inventario-produccion');
+  }
+
+  //Exportar CON filtros
+  exportarXLSXFilter(): void {
+    this.excelService.exportToExcel(this.dataSource.filteredData, 'reporte-control-inventario-produccion');
+  }
+
+
 obtenerNombreArea(idArea: number): string {
     const area = this.areas.find(item => item.idArea === idArea);
     return area ? area.NombreArea : '';
   }
 
-
+  regresar (){
+    this.router.navigateByUrl('/dashboard/tablero');
+  }
 
 
 }

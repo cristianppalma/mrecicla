@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="cabecera"><h1 class="Title">INVENTARIO SALIDA</h1></div>
+    <div class="cabecera"><h1 class="Title">Stock de producción</h1></div>
       <div class="Filter"  >
         <mat-form-field>
           <mat-label>Producto</mat-label>
@@ -12,8 +12,10 @@
             <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button (click)="inventarioEntrada();" mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;">INVENTARIO ENTRADA</button>
-        <!---<button  (click)="inventario();" mat-button style="background-color: #d6e44b; margin-left: 1rem; color: white">AGREGAR</button>-->
+        <!-- <button (click)="agregarInventarioSalida();" mat-button style="background-color: #d6e44b; margin-left: 5rem; color: white;">AGREGAR STOCK A INVENTARIO SALIDA</button> -->
+        <button class="exportar" (click)="exportarXLSXFilter();" mat-button>EXPORTAR XLSX
+          <!-- <mat-icon>trending_down</mat-icon> -->
+        </button>
       </div>
       <div class="table">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -74,3 +76,9 @@
       </div>
 
   </div>
+
+  <!-- <div class="button-container">
+    <button type="submit" (click)="regresar();" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
+      Regresar
+    </button>
+  </div> -->

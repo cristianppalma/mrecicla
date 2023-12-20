@@ -9,52 +9,64 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class ProveedorService {
   // URL DE LA LLAMADA A LA API
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/proveedores/'
+  // API: string = 'https://recicladora.arvispace.com/PhpAngular/proveedores/'
 
-  //API: string = 'http://localhost/PhpAngular/proveedores/';
+  API: string = 'http://localhost/PhpAngular/proveedores/';
 
   // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;
   private nombre: string;
+  private  idFabricaUsuario: string;
 
   constructor( private clientService:HttpClient) { }
+
+  // AGREGAMOS UN REGISTRO
+  agregarProveedor(datosProveedor:Proveedor):Observable<any>{
+    return this.clientService.post(this.API+"?insertarProvedoresPro=1",datosProveedor);
+  }
+
+  // OBTENEMOS TODOS LOS REGISTROS
+  listarProveedor(): Observable<PeriodicElement[]> {
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProvedores=1");
+  }
+
+  // ELIMINAMOS UN REGISTRO DE ACUERDO AL ID
+  borrarProveedor(idProveedor:any, usuarioEliminador: any):Observable<any>{
+    return this.clientService.get(`${this.API}?borrarProveedor=${idProveedor}&UsuarioEliminador=${usuarioEliminador}`);
+  }
+
+  // OBTENEMOS UN REGISTRO POR EL ID
+  obtenerProveedor(idProveedor:string):Observable<any>{
+    return this.clientService.get(this.API+"?consultarProveedor="+idProveedor);
+  }
+
+  // ACTUALIZAMOS UN REGISTRO
+  editarProveedor(idProveedor:any, datosProveedor:Proveedor):Observable<any>{
+    return this.clientService.post(this.API+"?actualizarProvedores="+idProveedor,datosProveedor);
+  }
+
+  // OBTENEMOS LOS DATOS DE LA TABLA INVENTARIO FABRICA
+  selectInventarioFabrica(){
+    return this.clientService.get<any[]>(this.API+"?selectInventarioFabrica");
+  }
 
   getProveedores(){
     return this.clientService.get<any[]>(this.API+"?selectProveedor=1");
   }
 
-  // AGREGAMOS UN NUEVO REGISTRO EN LA TABLA PROVEEDORES
-  agregarProveedor(datosProveedor:Proveedor):Observable<any>{
-    return this.clientService.post(this.API+"?insertarProvedoresPro=1",datosProveedor);
-  }
-
-  listarProveedor(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerProvedores=1");
-  }
-
-  // ELIMINAMOS LOS DATOS DEL REGISTRO DE ACUERDO AL ID
-  borrarProveedor(idProveedor:any, usuarioEliminador: any):Observable<any>{
-    return this.clientService.get(`${this.API}?borrarProveedor=${idProveedor}&UsuarioEliminador=${usuarioEliminador}`);
-  }
-
-  // OBTENEMOS LOS DATOS DEL REGISTRO POR EL ID
-  obtenerProveedor(idProveedor:string):Observable<any>{
-    return this.clientService.get(this.API+"?consultarProveedor="+idProveedor);
-  }
-
-  // SE ACTUALIZAN TODOS LOS DATOS DEL REGISTRO OBTENIDO
-  editarProveedor(idProveedor:any, datosProveedor:Proveedor):Observable<any>{
-    return this.clientService.post(this.API+"?actualizarProvedores="+idProveedor,datosProveedor);
-  }
-
-  // OBTENEMOS EL CORREO DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  // OBTENEMOS EL CORREO DEL LOCALSTORAGE
   getCorreo(): string {
     return this.correo = localStorage.getItem("Correo") || '';
   }
 
-  // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
+  // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE
   getNombre(): string {
     return this.nombre = localStorage.getItem("Nombre") || '';
+  }
+
+  // OBTENEMOS idfabrica del usuario por LOCALSTORAGE
+  getIdFabricaUsuario(): string {
+    return this.idFabricaUsuario = localStorage.getItem("idFabrica") || '';
   }
 
 }

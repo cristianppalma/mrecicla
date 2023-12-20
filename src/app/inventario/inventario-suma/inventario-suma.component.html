@@ -1,9 +1,9 @@
 <div class="container">
   <div class="cabecera">
-    <H1 >AGREGAR A INVENTARIO</H1>
+    <H1 >Agregar a inventario</H1>
   </div >
-    
-    
+
+
   <form [formGroup]="formularioEditarInventario"(ngSubmit)="enviarDatos()" >
     <div class="formula" style="border:none;" >
       <div class="formula1">
@@ -11,7 +11,7 @@
         <label>Nombre Producto</label>
           <mat-form-field>
             <mat-label>Nombre Producto</mat-label>
-            <mat-select  id="NombreInsumo" formControlName="NombreInsumo"  
+            <mat-select  id="NombreInsumo" formControlName="NombreInsumo"
             (selectionChange)="validateDataInventory($event)">
               <mat-option value="0"> </mat-option>
               <mat-option  *ngFor="let producto of productos" [value]="producto.idInventarioFabrica">{{producto.NombreInsumo}}</mat-option>
@@ -24,20 +24,21 @@
             <mat-label>Peso</mat-label>
             <input formControlName="Peso" type="text" id="Peso" matInput>
           </mat-form-field>
-          
+
           <label>Peso a agregar</label>
           <mat-form-field class="example-full-width">
             <mat-label>Peso</mat-label>
             <input formControlName="p_cantidad" type="number" id="p_cantidad" [(ngModel)]="p_cantidad" matInput>
           </mat-form-field>
           </div>
-        
+
+
 
           <label>FechaCreacion</label>
           <mat-form-field class="example-full-width"  >
             <input  type="text" formControlName="Fecha" matInput>
           </mat-form-field>
-      
+
 
 
           <label>Calibre</label>
@@ -45,7 +46,7 @@
             <mat-label>Calibre</mat-label>
             <input  formControlName="Calibre" matInput >
           </mat-form-field>
-        
+
         </div>
       </div>
       <div class="botones">
@@ -54,5 +55,5 @@
 
       </div>
       </form>
-     
+
 </div>

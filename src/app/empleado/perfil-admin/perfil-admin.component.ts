@@ -16,11 +16,13 @@ import { Areas } from 'src/app/areas/areas';
 })
 export class PerfilAdminComponent implements OnInit {
 
-  // nombreUsuario: string | null;
+  usuarioTienePermiso: boolean;
+  usuarioTienePermisoSuper: boolean;
 
   areas : any[];
   puestos : any[];
   tipoUsuarios : any[];
+  fabricas : any[]= [];
 
   formularioEditarEmpleado: FormGroup;
   idEmpleado: any;
@@ -38,8 +40,6 @@ export class PerfilAdminComponent implements OnInit {
     private activateRoute : ActivatedRoute,
     private dialog: MatDialog,
     private router: Router,
-
-
     ) {
       const correoSave = this.editarEmpleado.getCorreo();
       this.formularioEditarEmpleado = this.formbuilder.group({
@@ -52,13 +52,44 @@ export class PerfilAdminComponent implements OnInit {
         Sueldo : [''],
         Turno : [''],
         Domicilio : [''],
+        idFabrica: [''],
         idTipoUsuario : [''],
-        // idTipoUsuario : [this.nombreUsuario],
         idAsignacion : [''],
         idArea : [''],
         UsuarioActualizador:[correoSave]
       });
+
+      this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
+
+      this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
      }
+
+     private verificarPermisosDelUsuario(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      const puesto = localStorage.getItem("Puesto");
+      // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+      return ((nombreUsuario === "Administrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+    }
+
+    private verificarPermisosDelUsuarioSuper(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      const puesto = localStorage.getItem("Puesto");
+      // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+      return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+    }
+
+    cancelar() {
+      if (window.history.length > 1) {
+        // Si hay más de una página en el historial, regresa a la página anterior
+        window.history.back();
+      } else {
+        // Si no hay más páginas en el historial, puedes redirigir a una página específica
+        // o realizar alguna otra acción en su lugar.
+        console.warn('No hay páginas anteriores en el historial.');
+        // Puedes redirigir a otra página o realizar otra acción aquí
+      }
+    }
 
      ngOnInit(): void {
 
@@ -95,6 +126,7 @@ export class PerfilAdminComponent implements OnInit {
             Sueldo: respuesta.Sueldo,
             Turno: respuesta.Turno,
             Domicilio: respuesta.Domicilio,
+            idFabrica: respuesta.idFabrica.toString() || '',
             idTipoUsuario: respuesta.idTipoUsuario.toString(),
             idAsignacion: respuesta.idAsignacion.toString(),
             idArea: respuesta.idArea.toString(),
@@ -143,6 +175,10 @@ export class PerfilAdminComponent implements OnInit {
 
       this.editarEmpleado.SelectTipoUsuarios().subscribe((data) => {
         this.tipoUsuarios=data;
+      });
+
+      this.editarEmpleado.SelectFabricas().subscribe((data) => {
+        this.fabricas=data;
       });
     }
 

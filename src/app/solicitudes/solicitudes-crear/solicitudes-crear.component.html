@@ -1,25 +1,25 @@
 <div class="container">
   <div class="cabecera">
-    <H1 >REGISTRAR NUEVA SOLICITUD </H1>
+    <H1 >Registrar nueva solicitud</H1>
   </div >
-  
+
     <form [formGroup]="formularioSolicitud" (ngSubmit)="enviarDatos()">
-      <div class="formula" style="border:none;" > 
+      <div class="formula" style="border:none;" >
         <div class="formula1">
 
-          <!--<label>ID</label> 
+          <!--<label>ID</label>
           <mat-form-field>
             <mat-label>ID</mat-label>
             <input formControlName="ID" matInput>
           </mat-form-field>-->
 
-        <label>Nombre del producto</label> 
+        <label>Nombre del producto</label>
           <mat-form-field>
             <mat-label>Producto</mat-label>
             <input formControlName="nombreProducto" matInput>
           </mat-form-field>
 
-          <label>Peso</label> 
+          <label>Peso</label>
           <mat-form-field >
             <mat-label>Peso</mat-label>
             <input formControlName="Peso" matInput>
@@ -31,14 +31,14 @@
             <input formControlName="Dimensiones" matInput>
           </mat-form-field>
 
-          <label>Fecha Peticion</label> 
+          <label>Fecha Peticion</label>
           <mat-form-field >
             <mat-label>Fecha Peticion</mat-label>
             <input formControlName="FechaPeticion" type="date" matInput>
           </mat-form-field>
 
-          
-         
+
+
         <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
 
         </div>
@@ -59,13 +59,13 @@
             </mat-select>
           </mat-form-field>
 
-          <label>Composicion</label> 
+          <label>Composicion</label>
           <mat-form-field >
             <mat-label>Composicion</mat-label>
             <input formControlName="Composicion" matInput>
           </mat-form-field>
 
-          <label>Fecha Recepcion</label> 
+          <label>Fecha Recepcion</label>
           <mat-form-field >
             <mat-label>Fecha Recepcion</mat-label>
             <input formControlName="FechaRecepcion" type="date" matInput>
@@ -80,4 +80,3 @@
     </form>
 </div>
 
-        

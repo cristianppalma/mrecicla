@@ -1,0 +1,72 @@
+<div class="container">
+
+  <div class="cabecera">
+    <h1>Registrar nueva empresa</h1>
+  </div>
+
+  <form ngNativeValidate [formGroup]="formularioEmpresa" (ngSubmit)="enviarDatos()">
+    <div class="formula" style="border:none;" >
+
+      <div class="formula1">
+
+        <label>Nombre</label>
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input required min="1" type="text" name="" formControlName="NombreFabrica" matInput>
+          <mat-error *ngIf="formularioEmpresa.get('NombreProveedor')?.hasError('required')">
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+
+        <label>Descripcion</label>
+        <mat-form-field>
+          <mat-label>DescripcionFabrica</mat-label>
+          <input required type="text" formControlName="DescripcionFabrica" matInput>
+        </mat-form-field>
+
+        <label>RFC</label>
+        <mat-form-field>
+          <mat-label>RFC</mat-label>
+          <input required type="text" formControlName="RFC" matInput>
+        </mat-form-field>
+
+        <label>Presupuesto</label>
+        <mat-form-field>
+          <mat-label>Presupuesto</mat-label>
+          <input required type="number" formControlName="Presupuesto" matInput>
+        </mat-form-field>
+
+      </div>
+
+      <div class="formula2">
+
+        <label>Direccion</label>
+        <mat-form-field>
+          <mat-label>Direccion</mat-label>
+          <input required type="text" formControlName="DireccionFabrica" matInput>
+        </mat-form-field>
+
+        <label>Telefono</label>
+        <mat-form-field>
+            <mat-label>Telefono</mat-label>
+            <input required type="number" formControlName="TelefonoFabrica" matInput>
+        </mat-form-field>
+
+        <label>Correo</label>
+        <mat-form-field>
+          <mat-label>Correo</mat-label>
+          <input required type="email" formControlName="CorreoFabrica" matInput>
+        </mat-form-field>
+
+      </div>
+
+    </div>
+
+    <div class="botones" role="group">
+      <button type="submit" class="btn-acep" mat-button>AGREGAR</button>
+      <button type="button" (click)="cancelar();" class="btn-canc" mat-button>CANCELAR</button>
+    </div>
+
+  </form>
+</div>
+

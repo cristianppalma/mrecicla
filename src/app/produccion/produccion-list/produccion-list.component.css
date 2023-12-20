@@ -75,3 +75,24 @@ h1 {
 .btn-details{
   color: green;
 }
+
+.filterArea {
+  background-color: #d6e44b;
+  margin-left: 2rem;
+  color: white;
+}
+
+.agregar {
+  background-color: #d6e44b;
+  margin-left: 1rem;
+}
+
+.exportar {
+  background: #d6e44b;
+  color: black;
+  width: 150px;
+  margin: 8px;
+  margin-left: 3rem;
+  border-radius: 5px;
+  font-size: 14px;
+}

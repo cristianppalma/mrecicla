@@ -8,7 +8,10 @@
       <mat-label>Concepto</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ej.Luz" #input>
     </mat-form-field>
-    <button (click)="CrearGastosGenerales();" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR NUEVO GASTO</button>
+    <button class="agregar" (click)="CrearGastosGenerales();" mat-button>AGREGAR NUEVO GASTO</button>
+    <button class="exportar" (click)="exportarXLSXFilter();" mat-button>EXPORTAR XLSX
+      <!-- <mat-icon>trending_down</mat-icon> -->
+    </button>
   </div>
   <br>
 
@@ -95,3 +98,9 @@
   </div>
 
 </div>
+
+<!-- <div class="button-container">
+  <button type="submit" (click)="regresar();" class="btn_int" mat-raised-button style="background: #80a943; color: white;">
+    Regresar
+  </button>
+</div> -->
