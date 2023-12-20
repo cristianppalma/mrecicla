@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component';
 import { PeriodicElement } from '../PeriodicElement';
 import { MatTableDataSource } from '@angular/material/table';
+import { subscribeOn } from 'rxjs';
 
 //paqueteria prueba
 interface Area {
@@ -44,7 +45,7 @@ export class InventarioEditComponent implements OnInit{
     });
     const correoSave = this.InventarioService.getCorreo();
     this.formularioEditarInventario = this.formBuilder.group({
-      NombreInsumo: [''],
+      NombreInsumo: [''] || '' ,
       Peso: [''],
       Dimension: [''],  
       Fecha: [''],
@@ -55,12 +56,12 @@ export class InventarioEditComponent implements OnInit{
     });
     this.activateRoute.paramMap.subscribe(params => {
       this.idInventarioFabrica = params.get('id');
-
+      console.log('id:',params);
       this.InventarioService.consultarInventario(this.idInventarioFabrica).subscribe((respuesta=>{
         this.formularioEditarInventario.setValue({
-          NombreInsumo: respuesta.NombreInsumo,
+          NombreInsumo: respuesta.NombreInsumo || '',
           Peso: respuesta.Peso,
-          Dimension:  respuesta.Dimension,
+          Dimension: respuesta.Dimension,
           Fecha: respuesta.Fecha,
           Calibre: respuesta.Calibre,
           Composicion: respuesta.Composicion,
@@ -124,12 +125,44 @@ export class InventarioEditComponent implements OnInit{
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
 
-    this.InventarioService.selectAreas().subscribe((data)=>{
-      this.areas=data;
+    //this.InventarioService.selectAreas().subscribe((data)=>{
+      //this.areas=data;
+    //})
+
+    this.consultarDatosInventario(this.idInventarioFabrica);
+    
+  }
+
+  consultarDatosInventario(idInventarioFabrica: any){
+    alert(idInventarioFabrica);
+    this.InventarioService.ConsultarInv(idInventarioFabrica).subscribe((data:any)=>{
+      console.log(data);
+      if(data == 201){  
+        alert('no se encontraron datos');
+      }
+      else{
+        console.log('datos a mostrar',data);
+        data.forEach((element:any) => {
+          console.log(element.Peso)
+          console.log(element.Fecha)
+         // let varPeso= this.formularioEditarInventario.value.Peso=element.Peso
+          this.formularioEditarInventario=this.formBuilder.group({
+            NombreInsumo:[element.NombreInsumo],
+            Peso:[element.Peso],
+            Dimension:[element.Dimension],
+            Fecha:[element.Fecha],
+            Calibre:[element.Calibre],
+            Composicion:[element.Composicion],
+            AreaDesignada:[element.AreaDesignada].toString()
+          })
+        });
+      }
+    },(err)=>{
+      console.log(err)
     })
   }
-}
-
+ }
+ 
 
 export class BottomSheetOverviewExampleSheet {
   constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}

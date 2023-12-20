@@ -1,6 +1,6 @@
 export class producto{
     //ID!:String;
-    Producto!:String;
+    NombreInsumo!:String;
     Peso!:String;
     Dimensiones!:String;
     FechaCreacion!:String;

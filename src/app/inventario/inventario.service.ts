@@ -71,7 +71,7 @@ export class InventarioService {
 
     ConsultarInvent(p_idInventario: any) {
       let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-      let params = 'p_idInventario=' + p_idInventario
+      let params = 'p_idInventario=' + p_idInventario;
       return this.clientService.post(this.URL + 'MostrarInventario.php', params, { headers });
     }
 
@@ -80,6 +80,18 @@ export class InventarioService {
       let params = 'Peso=' + Peso +
                    '&idFabrica=' + idFabrica;
       return this.clientService.post(this.URL + 'ActualizarPesoInv.php', params, { headers });
+    }
+
+    sumarAlInventario(p_ID: number, p_cantidad: number): Observable<any> {
+      const body = { p_ID, p_cantidad };
+      return this.clientService.post(`${this.URL}/sumarInventario`, body);
+    }
+
+
+    ConsultarInv(p_idInventario: any) {
+      let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+      let params = 'p_idInventario=' + p_idInventario;
+      return this.clientService.post(this.URL + 'MostrarInventarioPorID.php', params, { headers });
     }
 }
 

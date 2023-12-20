@@ -18,7 +18,7 @@ interface Food {
 })
 
 export class InventarioControlComponent implements OnInit {
-  areas:any[];
+  areas:any[]=[];
   Producto:PeriodicElement[] = [];
   displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Peso','Fecha','Dimension','Composicion','Calibre','AreaDesignada','action']
   dataSource: MatTableDataSource<PeriodicElement>;
@@ -112,7 +112,7 @@ export class InventarioControlComponent implements OnInit {
   
   ngOnInit(): void {
     this.InventarioService.listarInventario().subscribe((respuesta: PeriodicElement[]) => {
-      console.log(respuesta);
+      console.log('LISTA DE PRODUCTOS: ',respuesta);
       this.Producto = respuesta;
       this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
@@ -123,7 +123,7 @@ export class InventarioControlComponent implements OnInit {
   }
 
   obtenerNombreArea(idArea: number): string {
-    const area = this.areas.find(item => item.idArea === idArea);
+    const area = this.areas.find(item => item.IdArea === idArea);
     return area ? area.NombreArea : '';
   }
  

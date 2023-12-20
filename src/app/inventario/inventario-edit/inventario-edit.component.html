@@ -20,7 +20,6 @@
             <mat-label>Peso</mat-label>
             <input formControlName="Peso" matInput>
           </mat-form-field>
-          <label>Image</label>
 
 
           <label>Dimensiones</label>
@@ -30,8 +29,6 @@
             <input formControlName="Dimension" matInput>
           </mat-form-field> 
 
-
-          <button class="img_update" mat-raised-button (click)="openBottomSheet()">Open file</button>
         </div>
 
         <div class="formula2">
@@ -49,7 +46,7 @@
             <mat-label>Área</mat-label>
             <mat-select  formControlName="AreaDesignada">
               <mat-option value="0"> </mat-option>
-              <mat-option *ngFor="let area of areas" [value]="area.IdArea">{{area.NombreArea}}</mat-option>
+              <mat-option *ngFor="let area of areas" [value]="area.idArea">{{area.NombreArea}}</mat-option>
             </mat-select>
           </mat-form-field>
 

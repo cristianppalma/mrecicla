@@ -9,4 +9,5 @@ export interface PeriodicElement {
     AreaDesignada: string;
     UsuarioCreador: string;
     UsuarioActualizador: string;
+    p_cantidad:number;
   }
