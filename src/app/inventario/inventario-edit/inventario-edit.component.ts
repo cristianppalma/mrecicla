@@ -119,9 +119,9 @@ export class InventarioEditComponent implements OnInit{
     this.router.navigateByUrl('/dashboard/inventario/inventarios');
   }
 
-  openBottomSheet(): void {
-    this._bottomSheet.open(BottomSheetOverviewExampleSheet);
-  }
+  // openBottomSheet(): void {
+  //   this._bottomSheet.open(BottomSheetOverviewExampleSheet);
+  // }
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
 
@@ -134,7 +134,9 @@ export class InventarioEditComponent implements OnInit{
   }
 
   consultarDatosInventario(idInventarioFabrica: any){
-    alert(idInventarioFabrica);
+    // alert(idInventarioFabrica);
+    const correoSave = this.InventarioService.getCorreo();
+
     this.InventarioService.ConsultarInv(idInventarioFabrica).subscribe((data:any)=>{
       console.log(data);
       if(data == 201){
@@ -153,7 +155,8 @@ export class InventarioEditComponent implements OnInit{
             Fecha:[element.Fecha],
             Calibre:[element.Calibre],
             Composicion:[element.Composicion],
-            AreaDesignada:[element.AreaDesignada].toString()
+            idArea:[element.idArea].toString(),
+            UsuarioActualizador:[correoSave]
           })
         });
       }
@@ -164,12 +167,12 @@ export class InventarioEditComponent implements OnInit{
  }
 
 
-export class BottomSheetOverviewExampleSheet {
-  constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
+// export class BottomSheetOverviewExampleSheet {
+//   constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
 
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
-}
-}
+//   openLink(event: MouseEvent): void {
+//     this._bottomSheetRef.dismiss();
+//     event.preventDefault();
+// }
+// }
 

@@ -47,9 +47,9 @@ export class InventarioControlComponent implements OnInit {
   verDetalles(element: PeriodicElement) {
     // Implementa la lógica para mostrar los detalles del elemento seleccionado aquí
     console.log('Detalles de:');
-    const idproducto = element.idInventarioFabrica;
+    const idInventarioFabrica = element.idInventarioFabrica;
     // Puedes abrir un modal, mostrar información adicional, etc.
-    this.router.navigateByUrl(`/dashboard/inventario/inventarioEdit/${idproducto}`)
+    this.router.navigateByUrl(`/dashboard/inventario/inventarioEdit/${idInventarioFabrica}`)
   }
 
   constructor(private router:Router,

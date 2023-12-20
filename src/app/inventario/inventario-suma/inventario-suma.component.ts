@@ -26,9 +26,9 @@ export class InventarioSumaComponent implements OnInit{
   p_ID:any;
   p_cantidad:number=0;
   productoIds: number[] = [];
-   
 
-  constructor(private router:Router, 
+
+  constructor(private router:Router,
   private _bottomSheet: MatBottomSheet,
   private formBuilder :FormBuilder,
     private InventarioService: InventarioService,
@@ -44,7 +44,7 @@ export class InventarioSumaComponent implements OnInit{
       NombreInsumo: [],
       Peso: [],
       p_cantidad: [],
-      Dimension: [],  
+      Dimension: [],
       Fecha: [],
       Calibre: [],
       Composicion:[],
@@ -68,10 +68,10 @@ export class InventarioSumaComponent implements OnInit{
         });
       }))
     })
-    
+
   }
 //selectProductos
- 
+
 
 validateDataInventory(idInventario:any ){
   //localStorage.setItem('idInventarioFabrica', idInventario.value);
@@ -153,7 +153,7 @@ enviarDatos() {
     }
 );
     }
-    
+
   }*/
 
   mostratDialogoAviso():void{
@@ -165,7 +165,7 @@ enviarDatos() {
         this.router.navigateByUrl('/dashboard/inventario/inventarios');
       }
     });
-  
+
   }
 
   Cancelar(){
@@ -185,11 +185,11 @@ enviarDatos() {
     this.InventarioService.selectProductos().subscribe((data)=>{
       this.productos=data;
     });
-    
+
     this.InventarioService.getProductIds().subscribe((data) => {
       this.productoIds = data;
     });
-    
+
   }
 //onProductoChange
 }

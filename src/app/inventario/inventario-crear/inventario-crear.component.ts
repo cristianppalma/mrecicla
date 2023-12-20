@@ -12,6 +12,7 @@ import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog
 import { MatTableModule } from '@angular/material/table';import { MatTableDataSource } from '@angular/material/table';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
+import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.component';
 
 
 @Component({
@@ -26,7 +27,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class InventarioCrearComponent implements OnInit{
   formularioProducto: FormGroup;
-  areas:any[];
+  areas: any[] = [];
   productos:any[];
 
   constructor(private router:Router,
@@ -36,8 +37,8 @@ export class InventarioCrearComponent implements OnInit{
     private dialog:MatDialog
   ) {
     const correSave = this.InventarioService.getCorreo();
+    const idFabricaUsuario = this.InventarioService.getIdFabricaUsuario();
     this.formularioProducto = this.formBuilder.group({
-      //ID: ['', [Validators.required]],
       NombreInsumo: ['', [Validators.required]],
       Peso: ['', [Validators.required]],
       Dimension: ['', [Validators.required]],
@@ -46,7 +47,7 @@ export class InventarioCrearComponent implements OnInit{
       Composicion:['', [Validators.required]],
       idArea:['', [Validators.required]],
       UsuarioCreador:[correSave],
-      idFabrica:[''],
+      idFabrica:[idFabricaUsuario],
     });
   }
 
@@ -56,10 +57,10 @@ export class InventarioCrearComponent implements OnInit{
     /**
     boton de abrir imagen
     */
-  openBottomSheet(): void
-  {
-    this._bottomSheet.open(BottomSheetOverviewExampleSheet);
-  }
+  // openBottomSheet(): void
+  // {
+  //   this._bottomSheet.open(BottomSheetOverviewExampleSheet);
+  // }
 
 
   enviarDatos(): void {
@@ -70,13 +71,20 @@ export class InventarioCrearComponent implements OnInit{
       console.log(this.formularioProducto.value);
       this.InventarioService.agregarProducto(this.formularioProducto.value).subscribe(
         (response) => {
-         console.log('Se registro correctamente');
-         this.mostratDialogoAviso();
+          console.log('Respuesta del servidor: ', response);
 
+          if (response.success === 1){
+            console.log('Registro exitoso');
+            this.mostratDialogoAviso();
+          } else {
+            console.error('Error al registrar en la Base de Datos: ', response.error);
+            this.mostrarDialogError();
+          }
 
         },
         (error) => {
            //Manejar errores del servicio aquí
+           this.mostrarDialogError();
         }
       );
     }
@@ -92,6 +100,17 @@ export class InventarioCrearComponent implements OnInit{
     });
 
   }
+
+  mostrarDialogError(): void {
+    const dialogAviso = this.dialog.open(AvisoErrorComponent, {
+        data: { message: 'Hubo un error al registrar en la Base de Datos' }
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+        if (result) {
+            // Puedes realizar alguna acción adicional si es necesario
+        }
+    });
+}
 
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
@@ -110,20 +129,20 @@ export class InventarioCrearComponent implements OnInit{
 
 
 
-@Component({
-  selector: 'bottom-sheet-overview-example-sheet',
-  templateUrl: 'inventario-opciones.component.html',
-  standalone: true,
-  imports: [MatListModule],
-})
-export class BottomSheetOverviewExampleSheet {
-  constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
+// @Component({
+//   selector: 'bottom-sheet-overview-example-sheet',
+//   templateUrl: 'inventario-opciones.component.html',
+//   standalone: true,
+//   imports: [MatListModule],
+// })
+// export class BottomSheetOverviewExampleSheet {
+//   constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
 
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
-  }
-}
+//   openLink(event: MouseEvent): void {
+//     this._bottomSheetRef.dismiss();
+//     event.preventDefault();
+//   }
+// }
     /**
     boton de abrir imagen
     */

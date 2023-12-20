@@ -13,7 +13,8 @@ export class InventarioService {
   //URL: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
   private correo: string;
   private nombre: string;
-  API: string = 'http://localhost/PhpAngular/inventario/';
+  private idFabricaUsuario: string;
+  API: string = 'http://localhost/PhpAngular/inventario/actual/';
   URL: string = 'http://localhost/PhpAngular/inventario/';
 
 
@@ -37,12 +38,12 @@ export class InventarioService {
     return this.clientService.delete(`${this.API}?BorrarInventario=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
   //Actualizar y consultar
-  consultarInventario(id:any): Observable<PeriodicElement> {
-    return this.clientService.get<PeriodicElement>(this.API+"?=consultarinventarioPro"+id);
+  consultarInventario(id:any): Observable<any> {
+    return this.clientService.get<PeriodicElement>(this.API+"?=obtenerProductoInsumoPorID="+id);
   }
 
   editarproducto(id:any, datosProducto:producto):Observable<any>{
-    return this.clientService.post(this.API+"?ActualizarInventario="+id,datosProducto);
+    return this.clientService.post(this.API+"?actualizarProductoInsumo="+id,datosProducto);
   }
 
   selectAreas(){
@@ -66,6 +67,10 @@ export class InventarioService {
     // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
     getNombre(): string {
       return this.nombre = localStorage.getItem("Nombre") || '';
+    }
+
+    getIdFabricaUsuario(): string {
+      return this.idFabricaUsuario = localStorage.getItem("idFabrica") || '';
     }
 
     ConsultarInvent(p_idInventario: any) {

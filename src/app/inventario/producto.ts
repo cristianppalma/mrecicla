@@ -6,7 +6,7 @@ export class producto{
     Dimension!:String;
     Composicion!:String;
     Calibre!:String;
-    AreaDesignada!:String;
+    // AreaDesignada!:String;
     idArea!:String;
     UsuarioCreador!:String;
     UsuarioActualizador!:String;
