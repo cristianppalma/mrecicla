@@ -103,6 +103,8 @@ export class ProduccionListComponent implements OnInit {
      console.log('AQUI ABAJO SE MOSTRARIA EL id QUE SE TRAE DESDE EL LOCALSTORAGE');
      const idEmpleado = this.produccionEmpleadoService.getId();
      console.log('ID desde el localStorage: ', idEmpleado);
+     
+     const idArea = this.produccionEmpleadoService.getidArea();
 
      //Obtenemos los nombres del inventarioFabrica
      this.produccionEmpleadoService.selectInventarioSalida().subscribe((data) => {

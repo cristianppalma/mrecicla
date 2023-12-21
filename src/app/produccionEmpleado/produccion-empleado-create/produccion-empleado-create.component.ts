@@ -8,7 +8,7 @@ import { inject } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Dialog } from '@angular/cdk/dialog';
-
+import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.component';
 
 @Component({
   selector: 'app-produccion-empleado-create',
@@ -25,6 +25,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
   inventariosSalida: any[];
   productosEntrada: any[]; //Obtenemos los datos de la tabla productos
   formularioProduccionArea: FormGroup;
+  turnousuario: any[];
 
   constructor(
     private router: Router,
@@ -58,7 +59,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     this.router.navigateByUrl('/dashboard/produccion-empleado/produccionEmpleado');
   }
 
-  enviarDatos(): void{
+  /*enviarDatos(): void{
     const correoSave2 = this.produccionEmpleadoService.getCorreo();
     if (this.formularioProduccionArea.valid){
       console.log('Se presiono el boton de registrar');
@@ -68,7 +69,6 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
           console.log('Se inserto correctamente');
           console.log('respuesta exitosa:', response.headers);
           this.mostrarDialogoAviso();
-
         },
         (error) => {
           console.log('Hubo un error al insertar');
@@ -77,7 +77,43 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
         }
       );
     }
+  }*/
+
+  enviarDatos(): void {
+    const correoSave2 = this.produccionEmpleadoService.getCorreo();
+    if (this.formularioProduccionArea.valid) {
+      console.log('Se presionó el botón de registrar');
+      console.log(this.formularioProduccionArea.value);
+      this.produccionEmpleadoService.agregarProduccionArea(this.formularioProduccionArea.value).subscribe(
+        (response) => {
+          console.log('Respuesta exitosa:', response);
+          if (response && response.success) {
+            if (response.success === 1) {
+              console.log('Producción insertada correctamente');
+              this.mostrarDialogoAviso();
+            } else if (response.success === 2) {
+              console.log('Insumos insuficientes');
+              this.mostrarDialogError('Insumos insuficientes');
+              // Realiza acciones específicas para insumos insuficientes
+            } else {
+              console.log('Operación no exitosa:', response.mensaje);
+              this.mostrarDialogError('Hubo un problema, no se pudo registrar');
+            }
+          } else {
+            console.log('Respuesta desconocida:', response);
+          }
+        },
+        (error) => {
+          console.log('Hubo un error al insertar');
+          console.log(this.formularioProduccionArea.value);
+          console.log('Error en la solicitud:', error);
+          this.mostrarDialogError('Error en la Base de Datos Contacte a Sistemas');
+        }
+      );
+    }
   }
+  
+
 
   mostrarDialogoAviso(): void {
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
@@ -90,6 +126,19 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     });
   }
 
+
+  mostrarDialogError(mensaje: string): void {
+    const dialogAviso = this.dialog.open(AvisoErrorComponent, {
+        data: { message: mensaje }
+    });
+    dialogAviso.afterClosed().subscribe(result => {
+        if (result) {
+            // Puedes realizar alguna acción adicional si es necesario
+        }
+    });
+  }
+
+
   ngOnInit(): void {
     this.areaNombre = localStorage.getItem("NombreArea");
     console.log('ID: ', this.areaNombre);
@@ -99,8 +148,10 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     const idUserSave = this.produccionEmpleadoService.getId();
     console.log('ID del Usuario desde el service: ', idUserSave);
 
-    this.usuarioId = localStorage.getItem("id_user");
+    const usuarioId = this.usuarioId = localStorage.getItem("id_user");
     console.log('ID: ', this.usuarioId);
+
+
 
     // TRAEMOS EL NOMBRE
     console.log('AQUI MOSTRARIAMOS EL NOMBRE TRAIDO DESDE EL SERVICE');
@@ -127,13 +178,21 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       this.maquinarias = data2
     });
 
+    this.produccionEmpleadoService.getTurno(usuarioId).subscribe((data1)=>{
+      this.turnousuario = data1;
+      console.log('turno', this.turnousuario);
+      this.formularioProduccionArea.patchValue({
+        Turno: this.turnousuario[0]?.Turno || ''
+      });
+    });
+
     //
     this.produccionEmpleadoService.selectAreas().subscribe((data)=>{
       this.areas=data;
     });
 
     //
-    this.produccionEmpleadoService.selectInventarioSalida().subscribe((data)=>{
+    this.produccionEmpleadoService.selectInventarioSalida1(idArea).subscribe((data)=>{
       this.inventariosSalida=data;
     })
 

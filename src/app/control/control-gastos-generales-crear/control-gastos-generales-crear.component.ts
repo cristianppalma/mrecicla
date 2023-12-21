@@ -71,7 +71,6 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
           console.error('Error al registrar en la Base de Datos', response.error);
           this.mostrarDialogError();
         }
-
         },
         (error) => {
           // Manejar errores del servicio aquí

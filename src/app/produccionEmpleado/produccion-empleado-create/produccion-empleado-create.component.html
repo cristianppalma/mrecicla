@@ -29,6 +29,7 @@
             <input required type="time" formControlName="HoraFin" matInput>
           </mat-form-field>
 
+          <!-- Se cambio para que el dato viniera de la BD-->
          <!-- <label>Area</label>
           <mat-form-field>
             <mat-label>Area</mat-label>
@@ -40,17 +41,16 @@
 
           <label>Área</label>
           <mat-form-field>
-            <!-- <mat-label>Nombre del usuario</mat-label> -->
-            <input formControlName="areaNombre" type="text" [disabled]="true" readonly matInput value="{{areaNombre}}">
+            <!-- <mat-label>Nombre del usuario</mat-label> [disabled]="true"  formControlName="areaNombre" -->
+            <input  type="text"  readonly matInput value="{{areaNombre}}">
           </mat-form-field>
+
 
           <label>ID Usuario</label>
           <mat-form-field>
-            <!-- <mat-label>Nombre del usuario</mat-label> -->
+          <!-- <mat-label>Nombre del usuario</mat-label> -->
             <input readonly type="text" matInput formControlName="idUsuario" value="{{usuarioId}}">
           </mat-form-field>
-
-
 
           <!-- <label>Correo Usuario</label>
           <mat-form-field>
@@ -90,7 +90,7 @@
             <input required type="number" step="0.01" formControlName="KgProduccion" matInput>
           </mat-form-field>
 
-          <label>Turno</label>
+         <!-- <label>Turno</label>
           <mat-form-field>
             <mat-label>Turno</mat-label>
             <mat-select required formControlName="Turno" >
@@ -99,7 +99,15 @@
               <mat-option value="Vespertino">Vespertino</mat-option>
               <mat-option value="Nocturno">Nocturno</mat-option>
             </mat-select>
+          </mat-form-field>-->
+         
+          <label>Turno Usuario</label>
+          <mat-form-field>
+              <input  formControlName="Turno" readonly type="text" matInput value="{{turnousuario[0]?.Turno}}">
           </mat-form-field>
+          
+
+
 
           <label>Maquina</label>
           <mat-form-field>

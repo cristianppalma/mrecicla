@@ -23,10 +23,19 @@ export class ProduccionEmpleadoService {
     private clientService: HttpClient
   ) { }
 
+    getTurno(id:any){
+      const url = this.API + "?selectTurno=" +id;
+      return this.clientService.get<any[]>(url)
+    }
     
   getAreas(){
     return this.clientService.get<any[]>(this.API+"?selectArea=1");
   }
+
+  selectInventarioSalida1(id:any){
+    return this.clientService.get<any[]>(this.API+"?selectInventarioSalida1=" + id);
+  }
+
 
   getMaquinas(id:any){
     const url = this.API + "?selectMaquina=" + id;
