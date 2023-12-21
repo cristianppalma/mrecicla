@@ -17,6 +17,8 @@ export class ControlService {
   private nombre: string;
   private area: string;
   private fabrica: string;
+  private tipoUsuario: string;
+
 
   constructor( private clientService:HttpClient) {}
 
@@ -83,6 +85,10 @@ export class ControlService {
 
   getidFabrica(): string{
     return this.fabrica = localStorage.getItem("idFabrica") || '';
+  }
+
+  getTipoUsuario(): string {
+    return this.tipoUsuario = localStorage.getItem("NombreTipoUser") || '';
   }
 
 }

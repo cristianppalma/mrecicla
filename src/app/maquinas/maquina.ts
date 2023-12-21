@@ -7,4 +7,5 @@ export class Maquina{
     Area!:String;
     UsuarioCreador!:String;
     UsuarioActualizador!:String;
+    idFabrica!:String;
 }

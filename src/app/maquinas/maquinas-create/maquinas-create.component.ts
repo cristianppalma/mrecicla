@@ -22,6 +22,7 @@ export class MaquinasCreateComponent implements OnInit {
     private dialog: MatDialog
   ) {
     const correoSave = this.MaquinasService.getCorreo();
+    const idFabrica = this.MaquinasService.getIdFabrica();
     this.formularioMaquina = this.formBuilder.group({
       Numero: ['', [Validators.required]],
       Serie: [''],
@@ -30,6 +31,7 @@ export class MaquinasCreateComponent implements OnInit {
       Estado: ['',[Validators.required]],
       Area: [''],
       UsuarioCreador:[correoSave],
+      idFabrica: [idFabrica]
     });
   }
 
@@ -60,7 +62,7 @@ export class MaquinasCreateComponent implements OnInit {
       );
     }
   }
-  
+
   /*
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
@@ -71,20 +73,20 @@ export class MaquinasCreateComponent implements OnInit {
         this.router.navigateByUrl('/dashboard/maquinas/maquinas');
       }
     });
-  
+
   }
 
-   
+
   mostrarDialogError():void{
     const dialogAviso = this.dialog.open(AvisoErrorComponent,{
       data: {message: 'Hubo un error al registrar en la Base de Datos'}
     });
     dialogAviso.afterClosed().subscribe(result => {
       if (result) {
-      
+
       }
     });
-  
+
   }*/
   mostratDialogoAviso(mensaje: string): void {
     const dialogAviso = this.dialog.open(AvisoDialogComponent, {

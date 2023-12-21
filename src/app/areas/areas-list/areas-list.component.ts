@@ -21,8 +21,9 @@ interface Food {
 })
 export class AreasListComponent implements OnInit {
 
+  usuarioTienePermisoSuper: boolean;
   areas: areasList[] = [];
-  displayedColumns: string[] = ['idArea','NombreArea','DescripcionArea', 'EstadoArea','action'];
+  displayedColumns: string[];
   dataSource: MatTableDataSource<areasList>;
 
   selectedArea: string = '';
@@ -56,7 +57,35 @@ export class AreasListComponent implements OnInit {
               private excelService:ExporterService
               ) {
                  this.dataSource = new MatTableDataSource<areasList>([]);
+
+                 const nombreUsuarioTipo = this.areasService.getTipoUsuario();
+                 this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+                 if (nombreUsuarioTipo === "SuperAdministrador") {
+                  this.displayedColumns = [
+                    'idArea',
+                    'NombreArea',
+                    'DescripcionArea',
+                    'EstadoArea',
+                    'Empresa',
+                    'action'
+                  ];
+                 } else {
+                  this.displayedColumns = [
+                    'idArea',
+                    'NombreArea',
+                    'DescripcionArea',
+                    'EstadoArea',
+                    'action'
+                  ];
+                 }
                 }
+
+  private verificarPermisosDelUsuarioSuper(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ((nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "SuperAdmin" tiene permiso
+  }
 
 
   crearArea(){

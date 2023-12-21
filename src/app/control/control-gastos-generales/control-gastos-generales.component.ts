@@ -21,9 +21,11 @@ interface Food {
 
 export class ControlGastosGeneralesComponent  implements OnInit {
 
+  usuarioTienePermisoSuper: boolean;
+
   Gastos: PeriodicElement[] = [];
   // displayedColumns: string[] = ['idControl','Concepto', 'Descripcion', 'Periodo', 'UsuarioCreador','FechaCreacion','UsuarioActualizar', 'FechaActualizacion', 'Monto','Tipo','action'];
-  displayedColumns: string[] = ['idGastosFabrica','Concepto', 'Descripcion', 'Periodo', 'Monto','Tipo', 'UsuarioCreador','FechaCreacion','UsuarioActualizador', 'FechaActualizacion','action'];
+  displayedColumns: string[];
   dataSource: MatTableDataSource<PeriodicElement>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -60,6 +62,46 @@ export class ControlGastosGeneralesComponent  implements OnInit {
     private excelService:ExporterService
   ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
+
+      const nombreUsuarioTipo = this.ControlService.getTipoUsuario();
+      this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+      if (nombreUsuarioTipo === "SuperAdministrador") {
+        this.displayedColumns =  [
+          'idGastosFabrica',
+          'Concepto',
+          'Descripcion',
+          'Periodo',
+          'Monto',
+          'Tipo',
+          'UsuarioCreador',
+          'FechaCreacion',
+          'UsuarioActualizador',
+          'FechaActualizacion',
+          'Empresa',
+          'action'
+        ];
+      } else {
+        this.displayedColumns =  [
+          'idGastosFabrica',
+          'Concepto',
+          'Descripcion',
+          'Periodo',
+          'Monto',
+          'Tipo',
+          'UsuarioCreador',
+          'FechaCreacion',
+          'UsuarioActualizador',
+          'FechaActualizacion',
+          'action'
+        ];
+      }
+    }
+
+    private verificarPermisosDelUsuarioSuper(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+      return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
     }
 
   CrearGastosGenerales(){

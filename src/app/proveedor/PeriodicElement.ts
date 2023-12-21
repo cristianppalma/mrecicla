@@ -11,4 +11,5 @@ export interface PeriodicElement {
   UsuarioCreador:       String;
   UsuarioEliminador:    String;
   idFabrica:            String;
+  Empresa:              String;
 }

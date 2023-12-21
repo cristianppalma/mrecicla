@@ -16,6 +16,7 @@ export class ProveedorService {
   // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;
   private nombre: string;
+  private tipoUsuario: string;
   private  idFabricaUsuario: string;
 
   constructor( private clientService:HttpClient) { }
@@ -62,6 +63,10 @@ export class ProveedorService {
   // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE
   getNombre(): string {
     return this.nombre = localStorage.getItem("Nombre") || '';
+  }
+
+  getTipoUsuario(): string {
+    return this.tipoUsuario = localStorage.getItem("NombreTipoUser") || '';
   }
 
   // OBTENEMOS idfabrica del usuario por LOCALSTORAGE

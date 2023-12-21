@@ -21,17 +21,11 @@ import { ExporterService } from 'src/app/services/exporter.service';
 
 export class ProveedorListComponent  implements OnInit {
 
+  usuarioTienePermisoSuper: boolean;
   inventarioFabrica: any[];
 
   Proveedor: PeriodicElement[] = [];
-  displayedColumns: string[] = [  'idProveedor',
-                                  'NombreProveedor',
-                                  'idInventarioFabrica',
-                                  'DireccionProveedor',
-                                  'Telefono',
-                                  'Correo',
-                                  'EstatusProveedor',
-                                  'action'];
+  displayedColumns: string[];
   dataSource: MatTableDataSource<PeriodicElement>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -79,6 +73,40 @@ export class ProveedorListComponent  implements OnInit {
     private excelService:ExporterService
   ) {
       this.dataSource = new MatTableDataSource<PeriodicElement>([]);
+
+      const nombreUsuarioTipo = this.proveedorService.getTipoUsuario();
+      this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+      if (nombreUsuarioTipo === "SuperAdministrador") {
+        this.displayedColumns =  [
+          'idProveedor',
+          'NombreProveedor',
+          'idInventarioFabrica',
+          'DireccionProveedor',
+          'Telefono',
+          'Correo',
+          'EstatusProveedor',
+          'Empresa',
+          'action'
+        ];
+      } else {
+        this.displayedColumns =  [
+          'idProveedor',
+          'NombreProveedor',
+          'idInventarioFabrica',
+          'DireccionProveedor',
+          'Telefono',
+          'Correo',
+          'EstatusProveedor',
+          'action'
+        ];
+      }
+    }
+
+    private verificarPermisosDelUsuarioSuper(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+      return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
     }
 
   crearProveedor(){

@@ -32,14 +32,12 @@ import { ExporterService } from 'src/app/services/exporter.service';
   styleUrls: ['./lista-empleados.component.css'],
 })
 export class UsuarioTableComponent implements OnInit {
+
+  usuarioTienePermisoSuper: boolean;
+
   puestos: any[];
   listaEmpleado: PeriodicElement[] = [];
-  displayedColumns: string[] = [  'idUsuario',
-                                  'Nombre',
-                                  'ApellidoPaterno',
-                                  'ApellidoMaterno',
-                                  'Correo',
-                                  'action'];
+  displayedColumns: string[];
   dataSource: MatTableDataSource<PeriodicElement>
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -83,7 +81,37 @@ export class UsuarioTableComponent implements OnInit {
     private excelService:ExporterService
     ) {
      this.dataSource = new MatTableDataSource<PeriodicElement>([]);
+     const nombreUsuarioTipo = this.EmpleadoService.getTipoUsuario();
+     this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+     if (nombreUsuarioTipo === "SuperAdministrador") {
+      this.displayedColumns = [
+        'idUsuario',
+        'Nombre',
+        'ApellidoPaterno',
+        'ApellidoMaterno',
+        'Correo',
+        'Empresa',
+        'action'
+      ];
+     } else {
+      this.displayedColumns = [
+        'idUsuario',
+        'Nombre',
+        'ApellidoPaterno',
+        'ApellidoMaterno',
+        'Correo',
+        'action'
+      ];
+     }
     }
+
+    private verificarPermisosDelUsuarioSuper(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+      return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+    }
+
 
     eliminarElemento(element: PeriodicElement): void {
       const correoSave = this.EmpleadoService.getCorreo();
