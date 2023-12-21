@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AvisoDialogComponent } from 'src/app/maquinas/aviso-dialog/aviso-dialog.component';
 import { PeriodicElement } from '../PeriodicElement';
 import { MatTableDataSource } from '@angular/material/table';
+import { subscribeOn } from 'rxjs';
 
 //paqueteria prueba
 interface Area {
@@ -28,43 +29,43 @@ export class InventarioEditComponent implements OnInit{
   formularioEditarInventario:FormGroup;
   idInventarioFabrica:any;
 
-   
 
-  constructor(private router:Router, 
+
+  constructor(private router:Router,
   private _bottomSheet: MatBottomSheet,
   private formBuilder :FormBuilder,
     private InventarioService: InventarioService,
     private dialog:MatDialog,
     private activateRoute: ActivatedRoute
 //traer servicios
- 
+
   ) {
     this.InventarioService.selectAreas().subscribe((data) => {
       this.areas = data;
     });
     const correoSave = this.InventarioService.getCorreo();
     this.formularioEditarInventario = this.formBuilder.group({
-      NombreInsumo: [''],
+      NombreInsumo: [''] || '' ,
       Peso: [''],
-      Dimension: [''],  
+      Dimension: [''],
       Fecha: [''],
       Calibre: [''],
       Composicion:[''],
-      AreaDesignada:[''],
+      idArea:[''],
       UsuarioActualizador:[correoSave]
     });
     this.activateRoute.paramMap.subscribe(params => {
       this.idInventarioFabrica = params.get('id');
-
+      console.log('id:',params);
       this.InventarioService.consultarInventario(this.idInventarioFabrica).subscribe((respuesta=>{
         this.formularioEditarInventario.setValue({
-          NombreInsumo: respuesta.NombreInsumo,
+          NombreInsumo: respuesta.NombreInsumo || '',
           Peso: respuesta.Peso,
-          Dimension:  respuesta.Dimension,
+          Dimension: respuesta.Dimension,
           Fecha: respuesta.Fecha,
           Calibre: respuesta.Calibre,
           Composicion: respuesta.Composicion,
-          AreaDesignada: respuesta.AreaDesignada.toString(),
+          idArea: respuesta.idArea.toString(),
           UsuarioActualizador: respuesta.UsuarioActualizador || correoSave
 
         });
@@ -100,7 +101,7 @@ export class InventarioEditComponent implements OnInit{
 );
 
     }
-    
+
   }
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
@@ -111,32 +112,67 @@ export class InventarioEditComponent implements OnInit{
         this.router.navigateByUrl('/dashboard/inventario/inventarios');
       }
     });
-  
+
   }
 
   Cancelar(){
     this.router.navigateByUrl('/dashboard/inventario/inventarios');
   }
 
-  openBottomSheet(): void {
-    this._bottomSheet.open(BottomSheetOverviewExampleSheet);
-  }
+  // openBottomSheet(): void {
+  //   this._bottomSheet.open(BottomSheetOverviewExampleSheet);
+  // }
   ngOnInit(): void {
     // Puedes realizar alguna inicialización adicional aquí si es necesario.
 
-    this.InventarioService.selectAreas().subscribe((data)=>{
-      this.areas=data;
+    //this.InventarioService.selectAreas().subscribe((data)=>{
+      //this.areas=data;
+    //})
+
+    this.consultarDatosInventario(this.idInventarioFabrica);
+
+  }
+
+  consultarDatosInventario(idInventarioFabrica: any){
+    // alert(idInventarioFabrica);
+    const correoSave = this.InventarioService.getCorreo();
+
+    this.InventarioService.ConsultarInv(idInventarioFabrica).subscribe((data:any)=>{
+      console.log(data);
+      if(data == 201){
+        alert('no se encontraron datos');
+      }
+      else{
+        console.log('datos a mostrar',data);
+        data.forEach((element:any) => {
+          console.log(element.Peso)
+          console.log(element.Fecha)
+         // let varPeso= this.formularioEditarInventario.value.Peso=element.Peso
+          this.formularioEditarInventario=this.formBuilder.group({
+            NombreInsumo:[element.NombreInsumo],
+            Peso:[element.Peso],
+            Dimension:[element.Dimension],
+            Fecha:[element.Fecha],
+            Calibre:[element.Calibre],
+            Composicion:[element.Composicion],
+            idArea:[element.idArea].toString(),
+            UsuarioActualizador:[correoSave]
+          })
+        });
+      }
+    },(err)=>{
+      console.log(err)
     })
   }
-}
+ }
 
 
-export class BottomSheetOverviewExampleSheet {
-  constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
+// export class BottomSheetOverviewExampleSheet {
+//   constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
 
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
-}
-}
+//   openLink(event: MouseEvent): void {
+//     this._bottomSheetRef.dismiss();
+//     event.preventDefault();
+// }
+// }
 

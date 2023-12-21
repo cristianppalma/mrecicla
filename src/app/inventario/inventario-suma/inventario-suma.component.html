@@ -18,11 +18,20 @@
             </mat-select>
           </mat-form-field>
 
-        <label>Peso</label>
+          <div>
+            <label>Kilogramos en inventario</label>
           <mat-form-field class="example-full-width">
             <mat-label>Peso</mat-label>
             <input formControlName="Peso" type="text" id="Peso" matInput>
           </mat-form-field>
+
+          <label>Peso a agregar</label>
+          <mat-form-field class="example-full-width">
+            <mat-label>Peso</mat-label>
+            <input formControlName="p_cantidad" type="number" id="p_cantidad" [(ngModel)]="p_cantidad" matInput>
+          </mat-form-field>
+          </div>
+
 
 
           <label>FechaCreacion</label>

@@ -23,10 +23,12 @@ export class InventarioSumaComponent implements OnInit{
   productos : any[]=[];
   formularioEditarInventario:FormGroup;
   idInventarioFabrica:any;
+  p_ID:any;
+  p_cantidad:number=0;
   productoIds: number[] = [];
-   
 
-  constructor(private router:Router, 
+
+  constructor(private router:Router,
   private _bottomSheet: MatBottomSheet,
   private formBuilder :FormBuilder,
     private InventarioService: InventarioService,
@@ -41,7 +43,8 @@ export class InventarioSumaComponent implements OnInit{
     this.formularioEditarInventario = this.formBuilder.group({
       NombreInsumo: [],
       Peso: [],
-      Dimension: [],  
+      p_cantidad: [],
+      Dimension: [],
       Fecha: [],
       Calibre: [],
       Composicion:[],
@@ -55,6 +58,7 @@ export class InventarioSumaComponent implements OnInit{
         this.formularioEditarInventario.setValue({
           NombreInsumo: respuesta.NombreInsumo,
           Peso: respuesta.Peso ||'',
+          p_cantidad: respuesta.p_cantidad ||'',
           Dimension:  respuesta.Dimension ||'',
           Fecha: respuesta.Fecha ||'',
           Calibre: respuesta.Calibre ||'',
@@ -64,16 +68,16 @@ export class InventarioSumaComponent implements OnInit{
         });
       }))
     })
-    
+
   }
 //selectProductos
- 
+
 
 validateDataInventory(idInventario:any ){
   //localStorage.setItem('idInventarioFabrica', idInventario.value);
   let idInventarioGen = idInventario.value;
-            localStorage.setItem("id_inventarioGral", idInventarioGen );
-  alert("idInventario"+idInventario.value)
+  localStorage.setItem("id_inventarioGral", idInventarioGen );
+  //alert("idInventario"+idInventario.value)
   this.InventarioService.ConsultarInvent(idInventario.value).subscribe((data:any)=>{
     if(data !== 201){
       console.log(data);
@@ -88,16 +92,29 @@ validateDataInventory(idInventario:any ){
         })
       });
       //let Peso=this.formularioEditarInventario.value.Peso='2';
-      
     }
   },(err)=>{
     console.log(err)
   })
 }
 
-
-
-  enviarDatos() {
+enviarDatos() {
+  if (this.p_ID && this.p_cantidad > 0) {
+    this.InventarioService.sumarAlInventario(this.p_ID, this.p_cantidad).subscribe(
+      response => {
+        console.log(response);
+        // Realizar acciones adicionales si es necesario
+      },
+      error => {
+        console.error(error);
+        // Manejar errores si es necesario
+      }
+    );
+  } else {
+    console.log('Por favor, ingresa un producto y un peso válido.');
+  }
+}
+ /*   enviarDatos() {
     if (this.formularioEditarInventario.valid) {
       console.log('Formulario:', this.formularioEditarInventario.value);
       console.log('id rec', this.idInventarioFabrica);
@@ -115,7 +132,7 @@ validateDataInventory(idInventario:any ){
           alert('error al actualizar');
         }
       })
-   /*  this.InventarioService.editarproducto(this.idInventarioFabrica, this.formularioEditarInventario.value).subscribe(
+   this.InventarioService.editarproducto(this.idInventarioFabrica, this.formularioEditarInventario.value).subscribe(
     (response) => {
         console.log('Respuesta del servidor:', response);
 
@@ -134,11 +151,11 @@ validateDataInventory(idInventario:any ){
     (error) => {
         console.error('Error al actualizar la máquina con error:', error);
     }
-);*/
-
+);
     }
-    
-  }
+
+  }*/
+
   mostratDialogoAviso():void{
     const dialogAviso = this.dialog.open(AvisoDialogComponent,{
       data: {message: 'Se actualizo correctamente en la Base de Datos'}
@@ -148,7 +165,7 @@ validateDataInventory(idInventario:any ){
         this.router.navigateByUrl('/dashboard/inventario/inventarios');
       }
     });
-  
+
   }
 
   Cancelar(){
@@ -168,11 +185,11 @@ validateDataInventory(idInventario:any ){
     this.InventarioService.selectProductos().subscribe((data)=>{
       this.productos=data;
     });
-    
+
     this.InventarioService.getProductIds().subscribe((data) => {
       this.productoIds = data;
     });
-    
+
   }
 //onProductoChange
 }

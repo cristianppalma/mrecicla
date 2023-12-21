@@ -13,18 +13,19 @@ export class InventarioService {
   //URL: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
   private correo: string;
   private nombre: string;
-  API: string = 'http://localhost/PhpAngular/inventario/';
+  private idFabricaUsuario: string;
+  API: string = 'http://localhost/PhpAngular/inventario/actual/';
   URL: string = 'http://localhost/PhpAngular/inventario/';
 
 
   constructor( private clientService:HttpClient) { }
 
   agregarProducto(datosProducto:producto):Observable<any>{
-    return this.clientService.post(this.API+"?insertarProducto=1",datosProducto);
+    return this.clientService.post(this.API+"?insertarInventarioInsumosPro=1",datosProducto);
   }
 
   listarInventario(): Observable<PeriodicElement[]> {
-    return this.clientService.get<PeriodicElement[]>(this.API+"?Inventario=1");
+    return this.clientService.get<PeriodicElement[]>(this.API+"?ObtenerInventarioGeneral=1");
   }
 
 /*  borrarInventario(id:any):Observable<any>{
@@ -34,15 +35,15 @@ export class InventarioService {
   //Borrar con procedimientos curi
 
   borrarInventario(id:any,usuarioEliminador: any):Observable<any>{
-    return this.clientService.delete(`${this.API}?BorrarInventario=${id}&UsuarioEliminador=${usuarioEliminador}`);
+    return this.clientService.delete(`${this.API}?eliminarInventarioInsumo=${id}&UsuarioEliminador=${usuarioEliminador}`);
   }
   //Actualizar y consultar
-  consultarInventario(id:any): Observable<PeriodicElement> {
-    return this.clientService.get<PeriodicElement>(this.API+"?=consultarinventarioPro"+id);
+  consultarInventario(id:any): Observable<any> {
+    return this.clientService.get<PeriodicElement>(this.API+"?=obtenerProductoInsumoPorID="+id);
   }
 
   editarproducto(id:any, datosProducto:producto):Observable<any>{
-    return this.clientService.post(this.API+"?ActualizarInventario="+id,datosProducto);
+    return this.clientService.post(this.API+"?actualizarProductoInsumo="+id,datosProducto);
   }
 
   selectAreas(){
@@ -68,9 +69,13 @@ export class InventarioService {
       return this.nombre = localStorage.getItem("Nombre") || '';
     }
 
+    getIdFabricaUsuario(): string {
+      return this.idFabricaUsuario = localStorage.getItem("idFabrica") || '';
+    }
+
     ConsultarInvent(p_idInventario: any) {
       let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
-      let params = 'p_idInventario=' + p_idInventario
+      let params = 'p_idInventario=' + p_idInventario;
       return this.clientService.post(this.URL + 'MostrarInventario.php', params, { headers });
     }
 
@@ -79,6 +84,18 @@ export class InventarioService {
       let params = 'Peso=' + Peso +
                    '&idFabrica=' + idFabrica;
       return this.clientService.post(this.URL + 'ActualizarPesoInv.php', params, { headers });
+    }
+
+    sumarAlInventario(p_ID: number, p_cantidad: number): Observable<any> {
+      const body = { p_ID, p_cantidad };
+      return this.clientService.post(`${this.URL}/sumarInventario`, body);
+    }
+
+
+    ConsultarInv(p_idInventario: any) {
+      let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+      let params = 'p_idInventario=' + p_idInventario;
+      return this.clientService.post(this.URL + 'MostrarInventarioPorID.php', params, { headers });
     }
 }
 
