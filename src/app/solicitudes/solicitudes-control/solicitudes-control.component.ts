@@ -21,8 +21,9 @@ interface Food {
 })
 export class SolicitudesControlComponent implements OnInit{
 
+  usuarioTienePermisoSuper: boolean;
   Solicitud:PeriodicElement[] = [];
-  displayedColumns:string[] = ['idSolicitud','nombreProducto','Peso','Dimensiones','FechaPeticion','Calibre','idProveedor','Composicion','FechaRecepcion','Estado','action']
+  displayedColumns:string[];
   dataSource: MatTableDataSource<PeriodicElement>;
 
   foods: Food[] = [
@@ -49,9 +50,47 @@ constructor(private router:Router,
   private excelService:ExporterService
   ) {
     this.dataSource=new MatTableDataSource<PeriodicElement>([]);
+
+    const nombreUsuarioTipo = this.SolicitudesService.getTipoUsuario();
+      this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+      if (nombreUsuarioTipo === "SuperAdministrador") {
+        this.displayedColumns = [
+          'idSolicitud',
+          'nombreProducto',
+          'Peso',
+          'Dimensiones',
+          'FechaPeticion',
+          'Calibre',
+          'idProveedor',
+          'Composicion',
+          'FechaRecepcion',
+          'Estado',
+          'Empresa',
+          'action'
+        ];
+      } else {
+        this.displayedColumns = [
+          'idSolicitud',
+          'nombreProducto',
+          'Peso',
+          'Dimensiones',
+          'FechaPeticion',
+          'Calibre',
+          'idProveedor',
+          'Composicion',
+          'FechaRecepcion',
+          'Estado',
+          'action'
+        ];
+      }
   }
 
-
+  private verificarPermisosDelUsuarioSuper(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "SuperAdmin" tiene permiso
+  }
 
 SolicitudCrear(){
   this.router.navigateByUrl('/dashboard/solicitudes/SolicitudesCrear');

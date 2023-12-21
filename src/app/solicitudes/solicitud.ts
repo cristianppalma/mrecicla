@@ -10,4 +10,5 @@ export class solicitud{
     FechaRecepcion!:String;
      UsuarioCreador!:String;
     UsuarioActualizador!:String;
+    idFabrica!:String;
 }

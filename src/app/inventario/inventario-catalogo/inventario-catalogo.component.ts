@@ -21,9 +21,10 @@ interface Food {
   styleUrls: ['./inventario-catalogo.component.css']
 })
 export class InventarioCatalogoComponent implements OnInit {
+  usuarioTienePermisoSuper: boolean;
   areas:any[];
   Producto:PeriodicElement[] = [];
-  displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Composicion','Calibre']
+  displayedColumns:string[];
   dataSource: MatTableDataSource<PeriodicElement>;
   filterForm: FormGroup;
   formatDateWithLeadingZeros(date: Date): string {
@@ -61,7 +62,34 @@ export class InventarioCatalogoComponent implements OnInit {
     ) {
 
       this.dataSource=new MatTableDataSource<PeriodicElement>([]);
+
+      const nombreUsuarioTipo = this.InventarioService.getTipoUsuario();
+      this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+      if (nombreUsuarioTipo === "SuperAdministrador") {
+        this.displayedColumns = [
+          'idInventarioFabrica',
+          'NombreInsumo',
+          'Composicion',
+          'Calibre',
+          'Empresa'
+        ];
+      } else {
+        this.displayedColumns = [
+          'idInventarioFabrica',
+          'NombreInsumo',
+          'Composicion',
+          'Calibre'
+        ];
+      }
     }
+
+    private verificarPermisosDelUsuarioSuper(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      // Realiza la lógica paradeterminar si el usuario tiene permiso basado en su rol
+      return ((nombreUsuario === "SuperAdministrador"));
+    }
+
     inventarioSuma(){
       this.router.navigateByUrl('/dashboard/inventario/inventarioSuma');
     }

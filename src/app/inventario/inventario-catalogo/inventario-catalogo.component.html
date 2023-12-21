@@ -76,6 +76,11 @@
             <td mat-cell *matCellDef="let element"> {{element.AreaDesignada}} </td>
           </ng-container>
 
+          <ng-container matColumnDef="Empresa" *ngIf="usuarioTienePermisoSuper">
+            <th mat-header-cell *matHeaderCellDef> Empresa </th>
+            <td mat-cell *matCellDef="let element">{{ element.Empresa }}</td>
+          </ng-container>
+
               <!-- porcentaje de material Column -->
            <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Accion</th>

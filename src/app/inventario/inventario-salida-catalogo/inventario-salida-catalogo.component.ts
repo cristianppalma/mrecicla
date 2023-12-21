@@ -15,9 +15,10 @@ import { ExporterService } from 'src/app/services/exporter.service';
 })
 export class InventarioSalidaCatalogoComponent implements OnInit{
 
+  usuarioTienePermisoSuper: boolean;
   areas: any[] = [];
   ProductoSalida: PeriodicElement2[] = [];
-  displayedColumns:string[] = ['idProductosalida','nombreProducto','calibre','idArea'];
+  displayedColumns:string[];
   dataSource: MatTableDataSource<PeriodicElement2>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -49,6 +50,32 @@ export class InventarioSalidaCatalogoComponent implements OnInit{
   )
   {
     this.dataSource=new MatTableDataSource<PeriodicElement2>([]);
+
+    const nombreUsuarioTipo = this.InventarioServiceSalida.getTipoUsuario();
+    this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+    if (nombreUsuarioTipo === "SuperAdministrador") {
+      this.displayedColumns = [
+        'idProductosalida',
+        'nombreProducto',
+        'calibre',
+        'idArea',
+        'Empresa'
+      ];
+    } else {
+      this.displayedColumns = [
+        'idProductosalida',
+        'nombreProducto',
+        'calibre',
+        'idArea'
+      ];
+    }
+  }
+
+  private verificarPermisosDelUsuarioSuper(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "SuperAdmin" tiene permiso
   }
 
   //Crear un nuevo Producto de inventario salida
