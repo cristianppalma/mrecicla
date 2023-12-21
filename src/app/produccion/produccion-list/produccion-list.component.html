@@ -3,15 +3,20 @@
   <div class="cabecera">
     <h1>Registros de Producción General</h1>
   </div>
+  <br>
 
   <div class="button-container" [formGroup]="filterForm">
-    <p class="filter">Busqueda</p>
-    <mat-form-field>
-      <mat-label>Fecha</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ej.2023-11-11" #input>
+    <p class="filter">Busqueda: Ingresa un rango de fechas y/o selecciona un área</p>
+    <mat-form-field style="width: 200px;">
+      <mat-label>Fecha Rango Menor</mat-label>
+      <input matInput formControlName="FechaInicio" placeholder="Ej.2023-01-01" #input>
+    </mat-form-field>
+    <mat-form-field style="width: 200px;">
+      <mat-label>Fecha Rango Mayor</mat-label>
+      <input matInput formControlName="FechaFin" placeholder="Ej.2026-12-31" #input>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field style="width: 200px;">
       <mat-label >Área</mat-label>
       <mat-select formControlName="Area">
       <mat-option value="0"> </mat-option>
@@ -20,8 +25,8 @@
       </mat-select>
     </mat-form-field>
 
-    <button mat-button style="background-color:#d6e44b;margin-left:1rem;color:white;" (click)="filtrarPorArea()">BUSCAR</button>
-
+    <button mat-button style="background-color:#d6e44b;margin-left:2rem;color:white;" (click)="filtrarPorAreaYFechas();">BUSCAR</button>
+    <button mat-button style="background-color:#d6e44b;margin-left:2rem;color:white;" (click)="limpiarFiltro();">LIMPIAR FILTROS</button>
     <button class="exportar" (click)="exportarXLSXFilter();" mat-button>EXPORTAR XLSX</button>
   </div>
 
