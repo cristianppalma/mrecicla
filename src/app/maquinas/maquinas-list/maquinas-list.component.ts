@@ -16,9 +16,10 @@ import { ExporterService } from 'src/app/services/exporter.service';
 })
 
 export class MaquinasListComponent  implements OnInit {
+  usuarioTienePermisoSuper: boolean;
   Maquina: PeriodicElement[] = [];
   areas: any[]=[];
-  displayedColumns: string[] = ['idMaquina','Serie', 'Numero', 'Modelo', 'Descripcion', 'Estado','Area','action'];
+  displayedColumns: string[];
   dataSource: MatTableDataSource<PeriodicElement>;
   filterForm: FormGroup;  // Declara un FormGroup
 
@@ -32,7 +33,42 @@ export class MaquinasListComponent  implements OnInit {
       this.filterForm = this.fb.group({
         Area: ['']
       });
+
+      const nombreUsuarioTipo = this.MaquinaService.getTipoUsuario();
+      this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+      if (nombreUsuarioTipo === "SuperAdministrador") {
+        this.displayedColumns = [
+          'idMaquina',
+          'Serie',
+          'Numero',
+          'Modelo',
+          'Descripcion',
+          'Estado',
+          'Area',
+          'Empresa',
+          'action'
+        ];
+      } else {
+        this.displayedColumns = [
+          'idMaquina',
+          'Serie',
+          'Numero',
+          'Modelo',
+          'Descripcion',
+          'Estado',
+          'Area',
+          'action'
+        ];
+      }
      }
+
+     private verificarPermisosDelUsuarioSuper(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+      return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "SuperAdmin" tiene permiso
+    }
+
   crearMaquina(){
     this.router.navigateByUrl('/dashboard/maquinas/maquinascreate');
   }

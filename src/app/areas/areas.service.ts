@@ -13,6 +13,7 @@ export class AreasService {
   API: string = 'http://localhost/PhpAngular/areas/';
  private correo: string;
  private nombre: string;
+ private tipoUsuario: string;
  private fabrica: string;
 
   constructor( private clientService:HttpClient) { }
@@ -68,6 +69,10 @@ export class AreasService {
   // OBTENEMOS EL NOMBRE DEL LOCALSTORAGE  A LA LISTA DE LOS REGISTROS
   getNombre(): string {
     return this.nombre = localStorage.getItem("Nombre") || '';
+  }
+
+  getTipoUsuario(): string {
+    return this.tipoUsuario = localStorage.getItem("NombreTipoUser") || '';
   }
   getidFabrica(): string{
     return this.fabrica = localStorage.getItem("idFabrica") || '';
