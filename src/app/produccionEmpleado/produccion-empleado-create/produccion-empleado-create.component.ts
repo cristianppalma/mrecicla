@@ -37,6 +37,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
     const nombreSave = this.produccionEmpleadoService.getNombre();
     const correoSave = this.produccionEmpleadoService.getCorreo();
     const idAreaUser = this.produccionEmpleadoService.getidArea();
+    const usuarioFabrica = this.produccionEmpleadoService.getidFabrica();
     this.formularioProduccionArea = this.formBuilder.group({
       FechaInicio: [''],
       FechaFin: [''],
@@ -51,6 +52,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       idProductosalida: [''],
       idUsuario: [idUserSave],
       UsuarioCreador : [correoSave],
+      idFabrica:[usuarioFabrica]
       // UsuarioCreadorNombre: [nombreSave + ' ' + apePatSave + ' ' + apeMatSave],
     });
   }
@@ -112,7 +114,7 @@ export class ProduccionEmpleadoCreateComponent implements OnInit {
       );
     }
   }
-  
+
 
 
   mostrarDialogoAviso(): void {
