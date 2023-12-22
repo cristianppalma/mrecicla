@@ -14,6 +14,7 @@ export class InventarioService {
   private correo: string;
   private nombre: string;
   private idFabricaUsuario: string;
+  private tipoUsuario: string;
   API: string = 'http://localhost/PhpAngular/inventario/actual/';
   URL: string = 'http://localhost/PhpAngular/inventario/';
 
@@ -71,6 +72,10 @@ export class InventarioService {
 
     getIdFabricaUsuario(): string {
       return this.idFabricaUsuario = localStorage.getItem("idFabrica") || '';
+    }
+
+    getTipoUsuario(): string {
+      return this.tipoUsuario = localStorage.getItem("NombreTipoUser") || '';
     }
 
     ConsultarInvent(p_idInventario: any) {

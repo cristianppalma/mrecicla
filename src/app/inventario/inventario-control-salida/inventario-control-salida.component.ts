@@ -22,9 +22,10 @@ interface Food {
   styleUrls: ['./inventario-control-salida.component.css']
 })
 export class InventarioControlSalidaComponent implements OnInit {
+  usuarioTienePermisoSuper: boolean;
   areas : any[]=[];
   Producto:PeriodicElement2[] = [];
-  displayedColumns:string[] = ['idProductosalida','nombreProducto','peso','fechaRegistro','calibre','idArea','action']
+  displayedColumns:string[];
   dataSource: MatTableDataSource<PeriodicElement2>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -61,7 +62,41 @@ export class InventarioControlSalidaComponent implements OnInit {
 
     ) {
       this.dataSource=new MatTableDataSource<PeriodicElement2>([]);
+
+      const nombreUsuarioTipo = this.InventarioServiceSalida.getTipoUsuario();
+      this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+      if (nombreUsuarioTipo === "SuperAdministrador") {
+        this.displayedColumns = [
+          'idProductosalida',
+          'nombreProducto',
+          'peso',
+          'fechaRegistro',
+          'calibre',
+          'idArea',
+          'Empresa',
+          'action'
+        ];
+      } else {
+        this.displayedColumns = [
+          'idProductosalida',
+          'nombreProducto',
+          'peso',
+          'fechaRegistro',
+          'calibre',
+          'idArea',
+          'action'
+        ];
+      }
+
     }
+
+    private verificarPermisosDelUsuarioSuper(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+      return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "SuperAdmin" tiene permiso
+    }
+
     inventario(){
       this.router.navigateByUrl('/dashboard/inventario/inventarioCrear');
     }

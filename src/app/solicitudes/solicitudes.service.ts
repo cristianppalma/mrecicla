@@ -12,6 +12,8 @@ export class SolicitudesService {
  API: string = 'http://localhost/PhpAngular/solicitudes/';
   private correo: string;
   private nombre: string;
+  private fabrica: string;
+  private tipoUsuario: string;
 
   constructor( private clientService:HttpClient) { }
 
@@ -59,4 +61,13 @@ export class SolicitudesService {
   getNombre(): string {
     return this.nombre = localStorage.getItem("Nombre") || '';
   }
+
+  getIdFabrica(): string {
+    return this.fabrica = localStorage.getItem("idFabrica") || '';
+  }
+
+  getTipoUsuario(): string {
+    return this.tipoUsuario = localStorage.getItem("NombreTipoUser") || '';
+  }
+
 }

@@ -27,7 +27,7 @@ interface Area {
   styleUrls: ['./solicitudes-crear.component.css']
 })
 export class SolicitudesCrearComponent implements OnInit{
-  
+
   Areas: Area[] = [
     {value: 'area1', viewValue: 'telares'},
     {value: 'area2', viewValue: 'hilado'},
@@ -43,34 +43,36 @@ export class SolicitudesCrearComponent implements OnInit{
     private dialog:MatDialog
  ) {
   const correoSave=this.SolicitudesService.getCorreo();
+  const idFabrica = this.SolicitudesService.getIdFabrica();
   this.formularioSolicitud = this.formBuilder.group({
     //ID: ['', [Validators.required]],
     nombreProducto: ['', [Validators.required]],
     Peso: ['', [Validators.required]],
-    Dimensiones: ['', [Validators.required]],  
+    Dimensiones: ['', [Validators.required]],
     FechaPeticion: ['', [Validators.required]],
     Calibre: ['', [Validators.required]],
     idProveedor:['', [Validators.required]],
     Composicion:['', [Validators.required]],
     FechaRecepcion: ['', [Validators.required]],
     UsuarioCreador:[correoSave],
+    idFabrica:[idFabrica]
   });
  }
 
   Cancelar()
   {
     this.router.navigateByUrl('/dashboard/solicitudes/solicitudes');
-  } 
+  }
     /**
     boton de abrir imagen
     */
-  openBottomSheet(): void 
+  openBottomSheet(): void
   {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
 
   enviarDatos(): void {
-    if (this.formularioSolicitud.valid) 
+    if (this.formularioSolicitud.valid)
     {
       console.log('Se presionó el botón');
       console.log(this.formularioSolicitud.value);
@@ -100,7 +102,7 @@ export class SolicitudesCrearComponent implements OnInit{
         this.router.navigateByUrl('/dashboard/solicitudes/solicitudes');
       }
     });
-  
+
   }*/
 
   mostratDialogoAviso(mensaje: string): void {

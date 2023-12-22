@@ -16,6 +16,7 @@ export class InventarioSalidaService {
   private correo: string;
   private nombre: string;
   private idFabricaUsuario: string;
+  private tipoUsuario: string;
 
 
   constructor( private clientService:HttpClient) { }
@@ -68,5 +69,9 @@ export class InventarioSalidaService {
         // OBTENEMOS idfabrica del usuario por LOCALSTORAGE
     getIdFabricaUsuario(): string {
       return this.idFabricaUsuario = localStorage.getItem("idFabrica") || '';
+    }
+
+    getTipoUsuario(): string {
+      return this.tipoUsuario = localStorage.getItem("NombreTipoUser") || '';
     }
 }

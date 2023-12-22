@@ -20,9 +20,10 @@ interface Food {
 })
 
 export class InventarioControlComponent implements OnInit {
+  usuarioTienePermisoSuper: boolean;
   areas:any[]=[];
   Producto:PeriodicElement[] = [];
-  displayedColumns:string[] = ['idInventarioFabrica','NombreInsumo','Peso','Fecha','Dimension','Composicion','Calibre','AreaDesignada','action']
+  displayedColumns:string[];
   dataSource: MatTableDataSource<PeriodicElement>;
 
   formatDateWithLeadingZeros(date: Date): string {
@@ -59,7 +60,45 @@ export class InventarioControlComponent implements OnInit {
     ) {
 
       this.dataSource=new MatTableDataSource<PeriodicElement>([]);
+
+      const nombreUsuarioTipo = this.InventarioService.getTipoUsuario();
+      this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+      if (nombreUsuarioTipo === "SuperAdministrador") {
+        this.displayedColumns = [
+          'idInventarioFabrica',
+          'NombreInsumo',
+          'Peso',
+          'Fecha',
+          'Dimension',
+          'Composicion',
+          'Calibre',
+          'AreaDesignada',
+          'Empresa',
+          'action'
+        ];
+      } else {
+        this.displayedColumns = [
+          'idInventarioFabrica',
+          'NombreInsumo',
+          'Peso',
+          'Fecha',
+          'Dimension',
+          'Composicion',
+          'Calibre',
+          'AreaDesignada',
+          'action'
+        ];
+      }
+
     }
+
+    private verificarPermisosDelUsuarioSuper(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      // Realiza la lógica paradeterminar si el usuario tiene permiso basado en su rol
+      return ((nombreUsuario === "SuperAdministrador"));
+    }
+
     inventarioSuma(){
       this.router.navigateByUrl('/dashboard/inventario/inventarioSuma');
     }
