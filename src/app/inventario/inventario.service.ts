@@ -86,16 +86,29 @@ export class InventarioService {
       return this.clientService.post(this.URL + 'ActualizarPesoInv.php', params, { headers });
     }
 
-    sumarAlInventario(p_ID: number, p_cantidad: number): Observable<any> {
-      const body = { p_ID, p_cantidad };
-      return this.clientService.post(`${this.URL}/sumarInventario`, body);
+    // sumarAlInventario(p_ID: any, p_cantidad: any): Observable<any> {
+    //   const body = { p_ID, p_cantidad };
+    //   return this.clientService.post(`${this.URL}/sumarInventario`, body);
+    // }
+
+    sumarAlInventario(p_ID: any, p_cantidad: any) {
+      let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+      let params = 'p_ID=' + p_ID+'&p_cantidad='+p_cantidad;
+      return this.clientService.post(this.URL + 'sumarInventario.php', params, { headers });
     }
+
 
 
     ConsultarInv(p_idInventario: any) {
       let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
       let params = 'p_idInventario=' + p_idInventario;
       return this.clientService.post(this.URL + 'MostrarInventarioPorID.php', params, { headers });
+    }
+
+    consultarDatosInventario() {
+      let headers: any = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+      let params = 'xrsxryw1y21';
+      return this.clientService.post(this.URL + 'MostrarDatosInventario.php', params, { headers });
     }
 }
 
