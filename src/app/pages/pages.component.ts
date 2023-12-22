@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-pages',
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent implements OnInit {
+  // Referencia al mat-sidenav
+  @ViewChild('sidenav') sidenav:MatSidenav;
 
   // Visualizar de acuerdo al rol
   usuarioTienePermiso: boolean;
@@ -69,6 +72,11 @@ export class PagesComponent implements OnInit {
     this.nombreUsuario = localStorage.getItem("NombreTipoUser");
     console.log('NombreTipoUser', this.nombreUsuario);
 
+  }
+
+  // Método para cambiar la visibilidad del mat-sidenav (Ocultar y/o mostrar)
+  toggleSidenav() {
+    this.sidenav.toggle();
   }
 
 }

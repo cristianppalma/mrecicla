@@ -18,6 +18,7 @@ export class ProduccionEmpleadoService {
   private iduser: string;
   private area: string;
   private fabrica: string;
+  private tipoUsuario: string;
 
   constructor(
     private clientService: HttpClient
@@ -119,6 +120,10 @@ export class ProduccionEmpleadoService {
 
   getidFabrica(): string{
     return this.fabrica = localStorage.getItem("idFabrica") || '';
+  }
+
+  getTipoUsuario(): string {
+    return this.tipoUsuario =localStorage.getItem("NombreTipoUser") || '';
   }
 
 
