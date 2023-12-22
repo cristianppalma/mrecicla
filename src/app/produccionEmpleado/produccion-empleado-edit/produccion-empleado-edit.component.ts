@@ -11,20 +11,20 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./produccion-empleado-edit.component.css']
 })
 export class ProduccionEmpleadoEditComponent implements OnInit {
-
+  areaNombre: string | null;
   usuarioTienePermisoAdmin: boolean;
 
   usuario: string | null;
   usuarioNombre: string | null;
   usuarioCorreo: string | null;
-
   maquinarias: any[];
   areas: any[];
   inventariosSalida: any[];
   productosEntrada: any[]; //Obtenemos los datos de la tabla productos
   formularioProduccionAreaDetails: FormGroup;
   elID:any;
-
+  idAreaSeleccionada: any ;
+  
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -43,14 +43,17 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
       Turno: [''],
       UnidadesInsumo: [''],
       KgProduccion: [''],
-      idMaquinaria: [''],
+      idMaquinaria: ['ValorPorDefecto'],
       idArea: [''],
+      nombreArea: [''],
+      turnousuario:[''],
       idInventarioFabrica: [''],
       idProductosalida: [''],
       UsuarioCreador:[''],
       idUsuario : [''],
       // idEmpleado: [''],
       UsuarioActualizador : [correoSave],
+     
 
     });
 
@@ -100,16 +103,44 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
               Turno: respuesta.Turno,
               UnidadesInsumo: respuesta.UnidadesInsumo,
               KgProduccion: respuesta.KgProduccion,
-              idMaquinaria: respuesta.idMaquinaria.toString(),
+              
               idArea: respuesta.idArea.toString(),
+              nombreArea: respuesta.NombreArea,
+              turnousuario: respuesta.Turno,
               idInventarioFabrica: respuesta.idInventarioFabrica.toString(),
               idProductosalida: respuesta.idProductosalida.toString(),
               UsuarioCreador:respuesta.Nombre.toString() || 'na',
               idUsuario : respuesta.idEmpleado,
               UsuarioActualizador: respuesta.UsuarioActualizador || correoSave,
+              idMaquinaria: ['0']
+              
             });
-
-
+         
+            this.idAreaSeleccionada = respuesta.idArea.toString();
+            this.produccionEmpleadoService.getMaquinas(this.idAreaSeleccionada).subscribe(
+              (data1) => {
+                this.maquinarias = data1;
+                console.log('Maquinarias:', this.maquinarias);
+            
+                // Asegúrate de que haya máquinas
+                if (this.maquinarias && this.maquinarias.length > 0) {
+                  // Encuentra la máquina correspondiente en la lista y obtén su ID
+                  const maquinaSeleccionada = this.maquinarias.find(m => m.idMaquinaria === respuesta.idMaquinaria);
+            
+                  // Si encontramos la máquina, actualiza el valor de idMaquinaria
+                  if (maquinaSeleccionada) {
+                    this.formularioProduccionAreaDetails.patchValue({
+                      idMaquinaria: maquinaSeleccionada.idMaquinaria,
+                    });
+                  } else {
+                    console.warn('No se encontró la máquina correspondiente en la lista.');
+                  }
+                }
+            },
+            (error) => {
+              console.error('Error al obtener las máquinas:', error);
+            }
+          );
           } catch (error) {
             console.error('Error al deserializar los datos JSON:', error);
           }
@@ -132,10 +163,14 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
     this.usuarioCorreo = localStorage.getItem("Correo");
     console.log('Correo del usuario logueado: ', this.usuarioCorreo);
 
+    /*  this.produccionEmpleadoService.getMaquinas(this.idAreaSeleccionada).subscribe((data1)=>{
+        this.maquinarias =data1
+      }
+      );*/
 
-    this.produccionEmpleadoService.selectMaquinaria().subscribe((data)=>{
+   /* this.produccionEmpleadoService.selectMaquinaria().subscribe((data)=>{
       this.maquinarias=data;
-    });
+    });*/
 
     this.produccionEmpleadoService.selectAreas().subscribe((data)=>{
       this.areas=data;

@@ -10,12 +10,14 @@ export class DashboardComponent {
 
   // Visualizar de acuerdo al rol
   usuarioTienePermiso: boolean;
+  usuarioSupervisor:boolean;
 
   constructor(
     private router: Router
   ) {
     // Visualizar de acuerdo al rol
     this.usuarioTienePermiso = this.verificarPermisosDelUsuario();
+    this.usuarioSupervisor = this.verificarPuestoUser();
   }
 
   // Visualizar de acuerdo al rol
@@ -24,6 +26,13 @@ export class DashboardComponent {
     const puesto = localStorage.getItem("Puesto");
     // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
     return ((nombreUsuario === "Administrador") || (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+  }
+
+  private verificarPuestoUser(): boolean{
+    
+    const puesto = localStorage.getItem("Puesto");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ((puesto === "Encargado de Área") ); 
   }
 
 }

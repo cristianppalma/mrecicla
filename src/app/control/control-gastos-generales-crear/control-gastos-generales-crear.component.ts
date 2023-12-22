@@ -15,14 +15,22 @@ import { AvisoErrorComponent } from 'src/app/maquinas/aviso-error/aviso-error.co
 export class ControlGastosGeneralesCrearComponent implements OnInit {
   areaNombre:  string | null;
   formularioGastos: FormGroup;
+  empresas: any[]=[];
   areas:   any[]=[];
   maquina: any[]=[];
+  usuarioSupervisor:boolean;
+  usuarioSuper:boolean;
+  usuarioAdmin:boolean;
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private ControlService: ControlService,
     private dialog: MatDialog
   ) {
+    this.usuarioSupervisor = this.verificarPuestoUser();
+    this.usuarioSuper = this.verificarPermisosDelUsuarioSuper();
+    this.usuarioAdmin = this.verificarPermisosDeladmin();
     const idFabrica = this.ControlService.getidFabrica();
     const correoSave = this.ControlService.getCorreo();
     const idAreaUser = this.ControlService.getidArea();
@@ -39,6 +47,26 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
     });
     //this.formularioGastos.get('Area')?.disable();
   }
+  private verificarPuestoUser(): boolean{
+    
+    const puesto = localStorage.getItem("Puesto");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ((puesto === "Encargado de Área") ); 
+  }
+
+  private verificarPermisosDelUsuarioSuper(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ( (nombreUsuario === "SuperAdministrador" )); // Ejemplo: el usuario con rol "admin" tiene permiso
+  }
+  
+  
+  private verificarPermisosDeladmin(): boolean {
+    const nombreUsuario = localStorage.getItem("NombreTipoUser");
+    // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+    return ( (nombreUsuario === "Administrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
+  }
+  
 
   CancelarGastosGeneralesCrear(){
     this.router.navigateByUrl('/dashboard/control/controlGastosGenerales');
@@ -102,6 +130,7 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
     });
   }
 
+
   ngOnInit(): void {
     this.areaNombre = localStorage.getItem("NombreArea");
     console.log('ID: ', this.areaNombre);
@@ -113,10 +142,18 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
       this.areas = data;
       //this.formularioGastos.get('Area')?.disable();
     });
-
-    this.ControlService.getMaquinas(idArea).subscribe((data2)=>{
-      this.maquina = data2
-    });
+ 
+    if (this.usuarioSupervisor) {
+      // Encargado de Área
+      this.ControlService.getMaquinas(idArea).subscribe((data2) => {
+        this.maquina = data2;
+      });
+    } else if (this.usuarioAdmin || this.usuarioSuper) {
+      // Administrador o SuperAdministrador
+      this.ControlService.getmaquinaria().subscribe((data1) => {
+        this.maquina = data1;
+      });
+    }
     // TRAEMOS EL CORREO DESDE EL SERVICIO
     console.log('AQUI ABAJO SE MOSTRARIA EL CORREO QUE SE TRAE DESDE EL LOCALSTORAGE');
     const correoSave = this.ControlService.getCorreo();
@@ -124,6 +161,21 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
     console.log('AQUI ABAJO SE MOSTRARIA EL NOMBRE QUE SE TRAE DESDE EL LOCALSTORAGE');
     const nombreSave = this.ControlService.getNombre();
     console.log('Nombre desde el localStorage: ', nombreSave);
+    
 
+
+    this.areaNombre = localStorage.getItem("NombreArea");
+    console.log('ID: ', this.areaNombre);
+    console.log('Nombre desde el localStorage: ', idArea);
+  
+    // ... (resto del código)
+  
+    // Verifica que usuarioSupervisor tenga el valor correcto
+    console.log('Valor de usuarioSupervisor:', this.usuarioSupervisor);
+
+
+    this.ControlService.getEmpresas().subscribe((data2) => {
+      this.empresas = data2;
+    });
   }
 }
