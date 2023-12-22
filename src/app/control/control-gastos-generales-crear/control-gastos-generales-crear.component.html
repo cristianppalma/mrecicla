@@ -46,9 +46,9 @@
               El monto del gasto es obligatorio.
             </mat-error>
           </mat-form-field>
-
+          
           <label>Tipo de Gasto</label>
-          <mat-form-field>
+          <mat-form-field *ngIf="usuarioSuper">
             <mat-label>Tipo de Gasto</mat-label>
             <mat-select formControlName="Tipo">
               <mat-option value="0"> </mat-option>
@@ -60,14 +60,51 @@
               <mat-option value="Gasto Viaticos">Gasto Viaticos </mat-option>
             </mat-select>
           </mat-form-field>
+
+          <mat-form-field *ngIf="usuarioAdmin">
+            <mat-label>Tipo de Gasto</mat-label>
+            <mat-select formControlName="Tipo">
+              <mat-option value="0"> </mat-option>
+              <mat-option value="Gasto General">Gasto General</mat-option>
+              <mat-option value="Gasto Maquinaria">Gasto Maquinaria</mat-option>
+              <mat-option value="Gasto Nomina">Gasto Nomina</mat-option>
+              <mat-option value="Gasto Materia Prima">Gasto Materia Prima</mat-option>
+              <mat-option value="Gasto Servicios">Gasto Servicios</mat-option>
+              <mat-option value="Gasto Viaticos">Gasto Viaticos </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="usuarioSupervisor">
+            <mat-label>Tipo de Gasto</mat-label>
+            <mat-select formControlName="Tipo">
+              <mat-option value="0"> </mat-option>
+              <mat-option value="Gasto Maquinaria">Gasto Maquinaria</mat-option>
+              <mat-option value="Gasto Materia Prima">Gasto Materia Prima</mat-option>
+              <mat-option value="Gasto Servicios">Gasto Servicios</mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <label>Área</label>
           <mat-form-field>
             <!-- <mat-label>Nombre del usuario</mat-label> -->
             <input formControlName="areaNombre" type="text" [disabled]="true" readonly matInput value="{{areaNombre}}">
           </mat-form-field>
+
+
+        
+          <mat-form-field *ngIf="usuarioSuper">
+            <label>Empresa</label>
+         
+            <mat-select formControlName="Tipo">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let empresas of empresas" [value]="empresas.idFabrica">{{ empresas.NombreFabrica }}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
 
       </div>
+
+
 
       <div class="botones">
         <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>

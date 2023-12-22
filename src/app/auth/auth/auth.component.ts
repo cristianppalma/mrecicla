@@ -78,6 +78,13 @@ export class AuthComponent  implements OnInit {
             // Obtenemos el id de la fabrica del usuario
             let idFabrica = response.idFabrica;
             localStorage.setItem("idFabrica",idFabrica);
+            //Obtener su asignacion
+            let asignacion = response.Puesto;
+            localStorage.setItem("Puesto",asignacion);
+            //Obtener el idAsignacion
+            let idAsignacion = response.idAsignacion;
+            localStorage.setItem("idAsignacion",idAsignacion);
+
 
           }
         },

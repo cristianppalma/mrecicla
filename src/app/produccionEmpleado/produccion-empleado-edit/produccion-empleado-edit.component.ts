@@ -117,21 +117,25 @@ export class ProduccionEmpleadoEditComponent implements OnInit {
             });
          
             this.idAreaSeleccionada = respuesta.idArea.toString();
-
             this.produccionEmpleadoService.getMaquinas(this.idAreaSeleccionada).subscribe(
               (data1) => {
                 this.maquinarias = data1;
-    console.log('Maquinarias:', this.maquinarias);
-
-    // Encuentra la máquina correspondiente en la lista y obtén su ID
-    const maquinaSeleccionada = this.maquinarias.find(m => m.Modelo === respuesta.idMaquinaria);
-    const idMaquinariaSeleccionada = maquinaSeleccionada ? maquinaSeleccionada.idMaquinaria : 'ValorPorDefecto';
-
-    // Actualiza el valor de idMaquinaria después de cargar las máquinas
-    this.formularioProduccionAreaDetails.patchValue({
-      idMaquinaria: idMaquinariaSeleccionada,
-    
-    });
+                console.log('Maquinarias:', this.maquinarias);
+            
+                // Asegúrate de que haya máquinas
+                if (this.maquinarias && this.maquinarias.length > 0) {
+                  // Encuentra la máquina correspondiente en la lista y obtén su ID
+                  const maquinaSeleccionada = this.maquinarias.find(m => m.idMaquinaria === respuesta.idMaquinaria);
+            
+                  // Si encontramos la máquina, actualiza el valor de idMaquinaria
+                  if (maquinaSeleccionada) {
+                    this.formularioProduccionAreaDetails.patchValue({
+                      idMaquinaria: maquinaSeleccionada.idMaquinaria,
+                    });
+                  } else {
+                    console.warn('No se encontró la máquina correspondiente en la lista.');
+                  }
+                }
             },
             (error) => {
               console.error('Error al obtener las máquinas:', error);

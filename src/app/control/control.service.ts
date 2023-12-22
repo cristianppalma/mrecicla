@@ -18,6 +18,7 @@ export class ControlService {
   private area: string;
   private fabrica: string;
   private tipoUsuario: string;
+  private asignacion: string;
 
 
   constructor( private clientService:HttpClient) {}
@@ -37,6 +38,10 @@ export class ControlService {
     return this.clientService.get<any[]>(this.API+"?selectmaqui=1");
   }
 
+  getEmpresas(){
+    return this.clientService.get<any[]>(this.API+"?selectEmpresa=1");
+  }
+
   getGastos(){
     return this.clientService.get<any[]>(this.API+"?selectGasto=1");
   }
@@ -49,6 +54,10 @@ export class ControlService {
   // OBTENEMOS TODOS LOS REGISTROS DE LA TABLA CONTROL DE GASTOS
   listarGastos(): Observable<PeriodicElement[]> {
     return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerGastos=1");
+  }
+
+  listarGastosporArea(id:any): Observable<PeriodicElement[]>{
+    return this.clientService.get<PeriodicElement[]>(this.API+"?obtenerGastosArea="+id)
   }
 
   // ELIMINAMOS LOS DATOS DEL REGISTRO DE ACUERDO AL ID
@@ -91,4 +100,7 @@ export class ControlService {
     return this.tipoUsuario = localStorage.getItem("NombreTipoUser") || '';
   }
 
+  getAsignacion():string{
+    return this.asignacion = localStorage.getItem("Puesto") || '';
+  }
 }

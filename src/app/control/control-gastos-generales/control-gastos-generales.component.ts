@@ -22,6 +22,8 @@ interface Food {
 export class ControlGastosGeneralesComponent  implements OnInit {
 
   usuarioTienePermisoSuper: boolean;
+  usuarioSupervisor:boolean;
+
 
   Gastos: PeriodicElement[] = [];
   // displayedColumns: string[] = ['idControl','Concepto', 'Descripcion', 'Periodo', 'UsuarioCreador','FechaCreacion','UsuarioActualizar', 'FechaActualizacion', 'Monto','Tipo','action'];
@@ -65,6 +67,7 @@ export class ControlGastosGeneralesComponent  implements OnInit {
 
       const nombreUsuarioTipo = this.ControlService.getTipoUsuario();
       this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+      this.usuarioSupervisor = this.verificarPuestoUser();
 
       if (nombreUsuarioTipo === "SuperAdministrador") {
         this.displayedColumns =  [
@@ -104,6 +107,12 @@ export class ControlGastosGeneralesComponent  implements OnInit {
       return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "admin" tiene permiso
     }
 
+    private verificarPuestoUser(): boolean{
+    
+      const puesto = localStorage.getItem("Puesto");
+      // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+      return ((puesto === "Encargado de Área") ); 
+    }
   CrearGastosGenerales(){
     this.router.navigateByUrl('/dashboard/control/controlGastosGeneralesCrear');
   }
@@ -155,13 +164,41 @@ export class ControlGastosGeneralesComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ControlService.listarGastos().subscribe((respuesta: PeriodicElement[]) => {
+
+    //asi estaba antes de meter el puesto 
+   /*this.ControlService.listarGastos().subscribe((respuesta: PeriodicElement[]) => {
     console.log(respuesta);
     this.Gastos = respuesta;
     this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
     });
-  }
 
+    const idArea= localStorage.getItem("idArea");
+    this.ControlService.listarGastosporArea(idArea).subscribe((respuesta:PeriodicElement[])=>{
+      console.log(respuesta);
+      this.Gastos = respuesta;
+      this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
+    })*/
+    const nombreUsuarioTipo = this.ControlService.getTipoUsuario();
+    const puesto=localStorage.getItem("Puesto");
+    if (nombreUsuarioTipo === "SuperAdministrador" || nombreUsuarioTipo === "Administrador") {
+      // Lógica para SuperAdministrador
+      this.ControlService.listarGastos().subscribe((respuesta: PeriodicElement[]) => {
+        console.log(respuesta);
+        this.Gastos = respuesta;
+        this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
+      });
+    } else if (puesto === "Encargado de Área") {
+      // Lógica para Encargado de Área
+      const idArea = localStorage.getItem("idArea");
+      this.ControlService.listarGastosporArea(idArea).subscribe((respuesta: PeriodicElement[]) => {
+        console.log(respuesta);
+        this.Gastos = respuesta;
+        this.dataSource.data = respuesta; // Actualiza el origen de datos con los resultados
+      })
+
+    
+  }
+  }
   //Exportar SIN filtros
   exportarXLSX(): void {
     this.excelService.exportToExcel(this.dataSource.data, 'reporte-control-de-gastos');
