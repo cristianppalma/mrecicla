@@ -65,3 +65,23 @@ h1{
   background-repeat: no-repeat;
   border: 0px solid #80a943;
 }
+
+
+/* ESTILOS PARA VERSIONES DE PANTALLAS PEQUEÑAS */
+@media screen and (max-width:768px) {
+
+  .btn{
+    margin-left: 0px;
+    margin-top: 30px;
+  }
+
+  .content_grid_padre {
+    grid-template-columns: 1fr;
+    min-height: 50vh;
+  }
+
+  .content_grid_h2 {
+    display: none;
+  }
+
+}
