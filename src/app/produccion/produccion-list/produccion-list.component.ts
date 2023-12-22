@@ -14,23 +14,12 @@ import { ExporterService } from 'src/app/services/exporter.service';
 
 export class ProduccionListComponent implements OnInit {
 
+  usuarioTienePermisoSuper: boolean;
   areas: any[] = [];
   inventariosSalida: any[];
   productosEntrada: any[]; //Obtenemos los datos de la tabla productos
   Produccion: PeriodicElement[] = [];
-  displayedColumns: string[] = [
-                                  'idProduccionArea',
-                                  'UsuarioCreadorNombre',
-                                  'FechaInicio',
-                                  // 'FechaFin',
-                                  'HoraInicio',
-                                  'HoraFin',
-                                  'idInventarioFabrica',
-                                  'UnidadesInsumo',
-                                  'idProductosalida',
-                                  'KgProduccion',
-                                  'Area',
-                                  'action' ];
+  displayedColumns: string[];
   dataSource: MatTableDataSource<PeriodicElement>;
   filterForm: FormGroup;  // Declara un FormGroup
 
@@ -46,6 +35,48 @@ export class ProduccionListComponent implements OnInit {
         FechaFin: [''],
         Area: [''],
       });
+
+
+      const nombreUsuarioTipo = this.produccionEmpleadoService.getTipoUsuario();;
+      this.usuarioTienePermisoSuper = this.verificarPermisosDelUsuarioSuper();
+
+      if (nombreUsuarioTipo === "SuperAdministrador") {
+        this.displayedColumns = [
+          'idProduccionArea',
+          'UsuarioCreadorNombre',
+          'FechaInicio',
+          'HoraInicio',
+          'HoraFin',
+          'idInventarioFabrica',
+          'UnidadesInsumo',
+          'idProductosalida',
+          'KgProduccion',
+          'Area',
+          'Empresa',
+          'action'
+        ];
+      } else {
+        this.displayedColumns = [
+          'idProduccionArea',
+          'UsuarioCreadorNombre',
+          'FechaInicio',
+          'HoraInicio',
+          'HoraFin',
+          'idInventarioFabrica',
+          'UnidadesInsumo',
+          'idProductosalida',
+          'KgProduccion',
+          'Area',
+          'action'
+        ];
+      }
+    }
+
+
+    private verificarPermisosDelUsuarioSuper(): boolean {
+      const nombreUsuario = localStorage.getItem("NombreTipoUser");
+      // Realiza la lógica para determinar si el usuario tiene permiso basado en su rol
+      return ( (nombreUsuario === "SuperAdministrador")); // Ejemplo: el usuario con rol "SuperAdmin" tiene permiso
     }
 
   filtrarPorAreaYFechas() {
@@ -115,7 +146,7 @@ export class ProduccionListComponent implements OnInit {
 
      const idEmpleado = this.produccionEmpleadoService.getId();
      console.log('ID desde el localStorage: ', idEmpleado);
-     
+
      const idArea = this.produccionEmpleadoService.getidArea();
 
      //Obtenemos los nombres del inventarioFabrica

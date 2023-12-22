@@ -38,6 +38,10 @@ mat-sidenav {
   font-size: 15px;
   margin-bottom: 10px;
 }
+.menu {
+  color: #80a943;
+  font-size: 25px;
+}
 mat-icon, span, a {
   margin-right: 0px;
   color: #fff;
@@ -60,3 +64,25 @@ mat-sidenav-content{
 a{
   text-decoration: none;
 }
+
+.btn-menu {
+  display: none;
+}
+
+/* ESTILOS PARA VERSIONES DE PANTALLAS PEQUEÑAS */
+@media screen and (max-width:768px) {
+
+  .btn-menu {
+    margin-left: -10px;
+    display: block;
+  }
+  .perfil {
+    font-size: 13px;;
+  }
+
+  .sesion {
+    font-size: 13px;
+  }
+
+}
+

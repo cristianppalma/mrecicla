@@ -91,6 +91,11 @@
           <td mat-cell *matCellDef="let element">{{ element.Area }}</td>
         </ng-container>
 
+        <ng-container matColumnDef="Empresa" *ngIf="usuarioTienePermisoSuper">
+          <th mat-header-cell *matHeaderCellDef> Empresa </th>
+          <td mat-cell *matCellDef="let element">{{ element.Empresa }}</td>
+        </ng-container>
+
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Accion</th>
           <td mat-cell *matCellDef="let element">

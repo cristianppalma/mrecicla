@@ -3,6 +3,9 @@
     <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button> -->
+    <button class="btn-menu" mat-icon-button (click)="toggleSidenav()">
+      <mat-icon class="menu">menu</mat-icon>
+    </button>
     <img width="100" src="../assets/img/navbar/m-recicla.jpeg" alt="">
     <span class="example-spacer"></span>
     <!-- <span style="color: #000;">
@@ -10,20 +13,20 @@
     </span> -->
     <button (click)="editarAdmin();" mat-button class="" style="color:#000;">
       <span style="color: #000;" >
-        <a style="color: #000;" >{{nombreUsuario}}</a>
+        <a class="perfil" style="color: #000;" >{{nombreUsuario}}</a>
       </span>
     </button>
     <button mat-button class="" style="color:#000;">
       <mat-icon style="color: #000;">logout</mat-icon>
       <span style="color: #000;">
-        <a style="color: #000;" (click)="logout()">Cerrar Sesión</a>
+        <a class="sesion" style="color: #000;" (click)="logout()">Cerrar Sesión</a>
       </span>
     </button>
   </mat-toolbar>
 </p>
 
 <mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened>
+  <mat-sidenav #sidenav mode="side" opened>
     <h4>{{nombreUsuario}}</h4>
     <mat-divider></mat-divider>
 
