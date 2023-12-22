@@ -12,5 +12,6 @@ export interface PeriodicElement {
     UsuarioActualizador: String;
     UsuarioEliminador: String;
     idFabrica: String;
-    p_cantidad:number;
+    //p_cantidad:number;
+    cantidad: string;
   }
