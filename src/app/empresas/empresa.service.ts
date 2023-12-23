@@ -9,9 +9,9 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class EmpresaService {
 
-  // API: string = 'https://recicladora.arvispace.com/PhpAngular/empresas/'
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/empresas/'
 
-  API: string = 'http://localhost/PhpAngular/empresas/';
+  // API: string = 'http://localhost/PhpAngular/empresas/';
 
   private correo: string;
   private nombre: string;

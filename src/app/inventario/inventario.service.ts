@@ -9,14 +9,14 @@ import { PeriodicElement2 } from './PeriodicElement2';
   providedIn: 'root'
 })
 export class InventarioService {
-  //API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
-  //URL: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/actual/'
+  URL: string = 'https://recicladora.arvispace.com/PhpAngular/inventario/'
   private correo: string;
   private nombre: string;
   private idFabricaUsuario: string;
   private tipoUsuario: string;
-  API: string = 'http://localhost/PhpAngular/inventario/actual/';
-  URL: string = 'http://localhost/PhpAngular/inventario/';
+  // API: string = 'http://localhost/PhpAngular/inventario/actual/';
+  // URL: string = 'http://localhost/PhpAngular/inventario/';
 
 
   constructor( private clientService:HttpClient) { }

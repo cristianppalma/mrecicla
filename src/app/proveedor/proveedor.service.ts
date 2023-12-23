@@ -9,9 +9,9 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class ProveedorService {
   // URL DE LA LLAMADA A LA API
-  // API: string = 'https://recicladora.arvispace.com/PhpAngular/proveedores/'
+  API: string = 'https://recicladora.arvispace.com/PhpAngular/proveedores/'
 
-  API: string = 'http://localhost/PhpAngular/proveedores/';
+  // API: string = 'http://localhost/PhpAngular/proveedores/';
 
   // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;
