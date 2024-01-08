@@ -9,4 +9,5 @@ export class Gastos{
     UsuarioCreador!:      String;
     UsuarioActualizador!: String;
     Fabrica!:             String;
+    //TipoServicio!:        String;
 }

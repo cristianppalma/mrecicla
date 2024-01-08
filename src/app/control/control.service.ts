@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Gastos } from './control';
 import { PeriodicElement } from './PeriodicElement';
@@ -8,9 +8,9 @@ import { PeriodicElement } from './PeriodicElement';
 })
 export class ControlService {
   // URL DE LA LLAMADA A LA API
-  API: string = 'https://recicladora.arvispace.com/PhpAngular/controlgastos/'
+  //API: string = 'https://recicladora.arvispace.com/PhpAngular/controlgastos/'
 
-  // API: string = 'http://localhost/PhpAngular/controlgastos/';
+   API: string = 'http://localhost/PhpAngular/controlgastos/';
 
   // CONSTANTES PARA GUARDAR EL CORREO Y NOMBRE DEL USUARIO DESDE EL LOCALSTORAGE
   private correo: string;
@@ -19,6 +19,7 @@ export class ControlService {
   private fabrica: string;
   private tipoUsuario: string;
   private asignacion: string;
+  private arealocal: string;
 
 
   constructor( private clientService:HttpClient) {}
@@ -41,7 +42,15 @@ export class ControlService {
   getEmpresas(){
     return this.clientService.get<any[]>(this.API+"?selectEmpresa=1");
   }
+  getServicio(){
+    return this.clientService.get<any[]>(this.API+"?selectServicio=1");
+  }
+  getservicioMaquina(p_idMaquina:any){
+    let headers: any = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    let params = 'p_idMaquina='+ p_idMaquina;
+    return this.clientService.post(this.API+'MostrarServicio.php', params, { headers });
 
+  }
   getGastos(){
     return this.clientService.get<any[]>(this.API+"?selectGasto=1");
   }
@@ -90,6 +99,9 @@ export class ControlService {
 
   getidArea(): string{
     return this.area = localStorage.getItem("idArea") || '';
+  }
+  getArea(): string{
+    return this.arealocal=localStorage.getItem("NombreArea")|| '';
   }
 
   getidFabrica(): string{

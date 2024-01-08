@@ -15,38 +15,16 @@
           </mat-form-field>
 
           <label>Descripcion</label>
-          <mat-form-field>
+          <mat-form-field >
             <mat-label>Descripcion</mat-label>
-            <input placeholder="Ej. Pago de Servicio" formControlName="Descripcion" matInput >
-          </mat-form-field>
-
-          <label>Periodo</label>
-          <mat-form-field>
-            <mat-label>Periodo</mat-label>
-            <input placeholder="Ej. Enero - Febrero" formControlName="Periodo" matInput>
-          </mat-form-field>
-
-
-          <label>Maquina</label>
-          <mat-form-field>
-              <mat-label>Maquina</mat-label>
-              <mat-select  formControlName="Maquina">
-              <mat-option value="0"> </mat-option>
-              <mat-option *ngFor="let maquina of maquina" [value]="maquina.idMaquinaria">{{ maquina.Modelo }}</mat-option>
-              </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div class="formula2">
-          <label>Monto</label>
-          <mat-form-field>
-            <mat-label>Monto</mat-label>
-            <input type="number" placeholder="2500" formControlName="Monto" matInput>
-            <mat-error *ngIf="formularioGastos.get('Monto')?.hasError('required')">
-              El monto del gasto es obligatorio.
+            <textarea style="height: 16px;" placeholder="Ej. Pago de Servicio" formControlName="Descripcion" matInput></textarea>
+            <mat-error>
+              Por favor, agregue una descripción corta
             </mat-error>
           </mat-form-field>
           
+      
+            
           <label>Tipo de Gasto</label>
           <mat-form-field *ngIf="usuarioSuper">
             <mat-label>Tipo de Gasto</mat-label>
@@ -62,7 +40,7 @@
           </mat-form-field>
 
           <mat-form-field *ngIf="usuarioAdmin">
-            <mat-label>Tipo de Gasto</mat-label>
+           
             <mat-select formControlName="Tipo">
               <mat-option value="0"> </mat-option>
               <mat-option value="Gasto General">Gasto General</mat-option>
@@ -75,8 +53,8 @@
           </mat-form-field>
 
           <mat-form-field *ngIf="usuarioSupervisor">
-            <mat-label>Tipo de Gasto</mat-label>
-            <mat-select formControlName="Tipo">
+          
+            <mat-select formControlName="Tipo" >
               <mat-option value="0"> </mat-option>
               <mat-option value="Gasto Maquinaria">Gasto Maquinaria</mat-option>
               <mat-option value="Gasto Materia Prima">Gasto Materia Prima</mat-option>
@@ -84,27 +62,121 @@
             </mat-select>
           </mat-form-field>
 
+     <!-- La que se tenia antes de deshabilitar bien  
+         <mat-form-field>
+          <mat-label  >Maquina</mat-label>
+          <mat-select (selectionChange)="llenardatos($event)" formControlName="Maquina"  [disabled]="!(formularioGastos.get('Tipo')?.value !== 'Gasto Materia Prima')">
+            <mat-option value="0"> </mat-option>
+            <mat-option *ngFor="let maquina of maquina" [value]="maquina.idMaquinaria">{{ maquina.Modelo }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="formularioGastos.get('Maquina')?.hasError('required')">
+            Por favor seleccione una máquina.
+          </mat-error>
+    </mat-form-field>-->
+
+<!-- Este deshabilita de forma correcta
+      <mat-form-field>
+      <mat-label>Maquina</mat-label>
+      <mat-select (selectionChange)="llenardatos($event)" formControlName="Maquina"  [disabled]="!(formularioGastos.get('Tipo')?.value !== 'Gasto Materia Prima') || !(formularioGastos.get('Tipo')?.value !== 'Gasto Nomina'  )">
+        <mat-option value="0"> </mat-option>
+        <mat-option *ngFor="let maquina of maquina" [value]="maquina.idMaquinaria">{{ maquina.Modelo }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="formularioGastos.get('Maquina')?.hasError('maquinaRequerida') && !formularioGastos.get('Maquina')?.disable">
+        La máquina es obligatoria cuando está habilitada.
+      </mat-error>  
+    </mat-form-field>-->
+
+   <!-- deshabilita de forma correcta same
+     <mat-form-field>
+      <mat-label>Maquina</mat-label>
+      <mat-select (selectionChange)="llenardatos($event)" formControlName="Maquina" [disabled]="isMaquinaDisabled()">
+        
+        <mat-option value="0"> </mat-option>
+        <mat-option *ngFor="let maquina of maquina" [value]="maquina.idMaquinaria">{{ maquina.Modelo }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="isMaquinaErrorVisible && formularioGastos.get('Maquina')?.hasError('maquinaRequerida')">
+        La máquina es obligatoria cuando está habilitada.
+      </mat-error>
+    </mat-form-field>-->
+    <mat-form-field *ngIf="isMaquinaVisible() && actualizarVisibilidadmaquina() !== null">
+      <label>Maquina</label>
+      <mat-select (selectionChange)="llenardatos($event)" formControlName="Maquina">
+        <mat-option value="0"> </mat-option>
+        <mat-option *ngFor="let maquina of maquina" [value]="maquina.idMaquinaria">{{ maquina.Modelo }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="isMaquinaErrorVisible && formularioGastos.get('Maquina')?.hasError('maquinaRequerida')">
+        La máquina es obligatoria cuando está habilitada.
+      </mat-error>
+    </mat-form-field>
+    
+        </div>
+
+        <div class="formula2">
+          <label>Monto</label>
+          <mat-form-field>
+            <mat-label>Monto</mat-label>
+            <input type="number" placeholder="2500" formControlName="Monto" matInput>
+            <mat-error *ngIf="formularioGastos.get('Monto')?.hasError('required')">
+              El monto del gasto es obligatorio.
+            </mat-error>
+            <mat-error *ngIf="formularioGastos.get('Monto')?.hasError('noNegativo')">
+              El monto no puede ser negativo.
+            </mat-error>
+          </mat-form-field>
+
+          <label>Periodo</label>
+          <mat-form-field>
+            <mat-label>Periodo</mat-label>
+            <input placeholder="Ej. Enero - Febrero" formControlName="Periodo" matInput>
+          </mat-form-field>
+
+        
+       
           <label>Área</label>
           <mat-form-field>
             <!-- <mat-label>Nombre del usuario</mat-label> -->
-            <input formControlName="areaNombre" type="text" [disabled]="true" readonly matInput value="{{areaNombre}}">
+            <input formControlName="areaNombre" type="text" readonly matInput value="{{areaNombre}}">
           </mat-form-field>
 
+          <mat-form-field *ngIf="usuarioAdmin && isTipoServicioVisible() !== null">
+            <label>Tipo de Servicio</label>
+            <mat-select formControlName="TipoServicio ">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let servicio of servicio" [value]="servicio.idServicio">{{ servicio.NombreServicio }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="formularioGastos.get('TipoServicio')?.hasError('required')">
+              Por favor seleccione un tipo de servicio.
+            </mat-error>
+            <mat-error *ngIf="isMaquinaErrorVisible && formularioGastos.get('Maquina')?.hasError('maquinaRequerida') && formularioGastos.get('Tipo')?.value === 'Gasto Servicios' && formularioGastos.get('Maquina')?.value">
+              La máquina es obligatoria cuando está habilitada.
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field *ngIf="usuarioSupervisor && isTipoServicioVisible() !== null"  >
+            <label>Tipo de Servicio</label>
+            <mat-select formControlName="TipoServicio">
+              <mat-option value="0"> </mat-option>
+              <mat-option *ngFor="let servicio of servicio" [value]="servicio.idServicio">{{ servicio.NombreServicio }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="formularioGastos.get('TipoServicio')?.hasError('required')">
+              Por favor seleccione un tipo de servicio.
+            </mat-error>
+            <mat-error *ngIf="isMaquinaErrorVisible && formularioGastos.get('Maquina')?.hasError('maquinaRequerida') && formularioGastos.get('Tipo')?.value === 'Gasto Servicios' && formularioGastos.get('Maquina')?.value">
+              La máquina es obligatoria cuando está habilitada.
+            </mat-error>
+          </mat-form-field>
 
-        
+    
+
           <mat-form-field *ngIf="usuarioSuper">
             <label>Empresa</label>
-         
-            <mat-select formControlName="Tipo">
+            <mat-select formControlName="TipoEmpresa">
               <mat-option value="0"> </mat-option>
               <mat-option *ngFor="let empresas of empresas" [value]="empresas.idFabrica">{{ empresas.NombreFabrica }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-
       </div>
-
-
 
       <div class="botones">
         <button type="submit" mat-button style="background-color: #d6e44b; margin-left: 1rem;">AGREGAR</button>
