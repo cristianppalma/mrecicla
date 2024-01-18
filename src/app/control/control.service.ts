@@ -24,7 +24,6 @@ export class ControlService {
 
   constructor( private clientService:HttpClient) {}
 
-
   getAreas(){
     return this.clientService.get<any[]>(this.API+"?selectArea=1");
   }

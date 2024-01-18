@@ -57,7 +57,6 @@ export class ProveedorCreateComponent implements OnInit {
           console.error('Error al registrar en la Base de Datos: ', response.error);
           this.mostrarDialogError();
          }
-
         },
         (error) => {
           // Manejar errores del servicio aquí
@@ -84,10 +83,9 @@ export class ProveedorCreateComponent implements OnInit {
     });
     dialogAviso.afterClosed().subscribe(result => {
         if (result) {
-            // Puedes realizar alguna acción adicional si es necesario
+          
         }
-    });
-}
+    });}
 
   ngOnInit(): void {
      // TRAEMOS EL CORREO DESDE EL SERVICIO

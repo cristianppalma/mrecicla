@@ -12,7 +12,6 @@ export class ProduccionEmpleadoService {
   API: string = 'https://recicladora.arvispace.com/PhpAngular/produccionarea/';
 
   // API: string = 'http://localhost/PhpAngular/produccionarea/';
-
   private correo: string;
   private nombre: string;
   private iduser: string;
@@ -36,7 +35,6 @@ export class ProduccionEmpleadoService {
   selectInventarioSalida1(id:any){
     return this.clientService.get<any[]>(this.API+"?selectInventarioSalida1=" + id);
   }
-
 
   getMaquinas(id:any){
     const url = this.API + "?selectMaquina=" + id;

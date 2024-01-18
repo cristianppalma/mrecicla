@@ -22,8 +22,6 @@
               Por favor, agregue una descripción corta
             </mat-error>
           </mat-form-field>
-          
-      
             
           <label>Tipo de Gasto</label>
           <mat-form-field *ngIf="usuarioSuper">
@@ -108,9 +106,7 @@
         La máquina es obligatoria cuando está habilitada.
       </mat-error>
     </mat-form-field>
-    
         </div>
-
         <div class="formula2">
           <label>Monto</label>
           <mat-form-field>
@@ -123,14 +119,11 @@
               El monto no puede ser negativo.
             </mat-error>
           </mat-form-field>
-
           <label>Periodo</label>
           <mat-form-field>
             <mat-label>Periodo</mat-label>
             <input placeholder="Ej. Enero - Febrero" formControlName="Periodo" matInput>
           </mat-form-field>
-
-        
        
           <label>Área</label>
           <mat-form-field>
@@ -143,7 +136,7 @@
             <mat-select formControlName="TipoServicio ">
               <mat-option value="0"> </mat-option>
               <mat-option *ngFor="let servicio of servicio" [value]="servicio.idServicio">{{ servicio.NombreServicio }}</mat-option>
-            </mat-select>
+            </mat-select> 
             <mat-error *ngIf="formularioGastos.get('TipoServicio')?.hasError('required')">
               Por favor seleccione un tipo de servicio.
             </mat-error>
