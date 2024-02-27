@@ -29,7 +29,6 @@ export class ControlGastosGeneralesCrearComponent implements OnInit {
   public tipoServicioVisible: boolean | null = null;
   public maquinaVisible: boolean | null = null;
 
-
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
